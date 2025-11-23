@@ -10,22 +10,25 @@ export default function HomePage() {
 
   return (
     <div className="min-h-[100svh] bg-white pb-[68px] flex flex-col">
-      <HeaderBar title="Noodi Support" />
+      <HeaderBar />
 
       <main className="flex-1 px-4 pt-8 pb-4">
-        <div className="max-w-md mx-auto space-y-8">
+        <div className="max-w-md mx-auto space-y-10">
 
           {/* KİŞİSEL YARDIM */}
           <button
             onClick={() => r.push('/personal')}
             className="
               w-full
+              h-[180px]             /* ← GERÇEK DEV DİKEY YÜKSEKLİK */
               bg-[#D73333]
               text-white
               rounded-3xl
-              shadow-lg
-              py-30                        /* ← DİKKAT: YÜKSEKLİĞİ UZATAN KISIM */
-              text-2xl                     /* yazıyı da büyüttüm */
+              shadow-xl
+              flex
+              items-center
+              justify-center
+              text-3xl
               font-bold
               tracking-wide
               active:scale-95
@@ -40,12 +43,15 @@ export default function HomePage() {
             onClick={() => r.push('/disaster')}
             className="
               w-full
+              h-[180px]             /* ← DİREKT DEV BOYUT */
               bg-[#D73333]
               text-white
               rounded-3xl
-              shadow-lg
-              py-30                        /* ← BURASI DİKEY UZUNLUK */
-              text-2xl
+              shadow-xl
+              flex
+              items-center
+              justify-center
+              text-3xl
               font-bold
               tracking-wide
               active:scale-95
