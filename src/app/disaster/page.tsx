@@ -25,12 +25,12 @@ export default function Disaster() {
     <div className="min-h-[100svh] bg-white pb-[68px]">
       <HeaderBar title="Afetler" />
       <div className="mt-4 px-4">
-        <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-          {items.map((t) => (
-            <Tile key={t} label={t} onClick={() => click(t)} />
-          ))}
-        </div>
-      </div>
+  <div className="max-w-md mx-auto grid grid-cols-2 gap-3">
+    {items.map((t) => (
+      <Tile key={t} label={t} onClick={() => click(t)} />
+    ))}
+  </div>
+</div>
       <BottomTabs />
       <AssistantPanel />
     </div>

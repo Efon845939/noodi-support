@@ -43,7 +43,8 @@ export default function HomePage() {
             onClick={() => r.push('/disaster')}
             className="
               w-full
-              h-[180px]             /* ← DİREKT DEV BOYUT */
+              h-[200px]
+              sm:h-[220px]             /* ← DİREKT DEV BOYUT */
               bg-[#D73333]
               text-white
               rounded-3xl

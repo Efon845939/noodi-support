@@ -13,7 +13,8 @@ export function Tile({
       onClick={onClick}
       className="
         w-full
-        h-[110px]            /* ← bu yükseklik croplara çok yakın */
+        h-[140px]            /* ← daha uzun, ekrandaki kartlara daha yakın */
+        sm:h-[150px]
         bg-[#D73333]
         text-white
         rounded-2xl
@@ -21,8 +22,10 @@ export function Tile({
         flex
         items-center
         justify-center
-        text-lg
+        text-center
+        text-xl              /* ← yazı biraz büyüdü */
         font-semibold
+        tracking-wide
         active:scale-95
         transition
       "
