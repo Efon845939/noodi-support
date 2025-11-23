@@ -1,8 +1,15 @@
 'use client'
 
-export function Tile({ label, onClick }: { label: string; onClick: () => void }) {
+export function Tile({
+  label,
+  onClick,
+}: {
+  label: string
+  onClick: () => void
+}) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className="
         w-full
