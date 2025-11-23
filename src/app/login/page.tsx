@@ -21,7 +21,7 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
-  const mapFirebaseError = (e: any, mode: 'login' | 'signup') => {
+  const mapFirebaseError = (e: any) => {
     const code = e?.code || ''
 
     switch (code) {
@@ -44,7 +44,10 @@ export default function LoginPage() {
   }
 
   const handleSubmit = async () => {
-    if (!auth) return
+    if (!auth) {
+      setError('Giriş sistemi hazır değil. Daha sonra tekrar dene.')
+      return
+    }
     if (!email || !password) {
       setError('E-posta ve şifre boş olamaz.')
       return
@@ -62,24 +65,38 @@ export default function LoginPage() {
 
       router.replace('/profile')
     } catch (e: any) {
-      console.error(e)
-      setError(mapFirebaseError(e, mode))
+      console.error('EMAIL AUTH ERROR', e)
+      setError(mapFirebaseError(e))
     } finally {
       setLoading(false)
     }
   }
 
   const handleGoogle = async () => {
-    if (!auth) return
+    if (!auth) {
+      setError('Giriş sistemi hazır değil.')
+      return
+    }
+
     try {
       setError('')
       setLoading(true)
+
       await signInWithPopup(auth, google)
       router.replace('/profile')
     } catch (e: any) {
-      console.error(e)
-      // genelde popup kapanır / iptal; çok kasmaya gerek yok
-      setError('Google ile giriş yapılamadı.')
+      console.error('GOOGLE AUTH ERROR', e?.code, e?.message)
+      const code = e?.code || ''
+      if (code === 'auth/popup-closed-by-user') {
+        setError('Google penceresi kapatıldı.')
+      } else if (code === 'auth/cancelled-popup-request') {
+        // kullanıcı aynı anda iki defa tıkladıysa vs.
+        setError('Google ile giriş isteği iptal edildi.')
+      } else if (code === 'auth/popup-blocked') {
+        setError('Tarayıcı açılır pencereyi engelledi.')
+      } else {
+        setError(`Google ile giriş yapılamadı. (${code || 'bilinmiyor'})`)
+      }
     } finally {
       setLoading(false)
     }

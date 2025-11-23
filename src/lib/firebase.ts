@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { initializeApp, getApps, getApp, type FirebaseApp } from 'firebase/app'
 import { getAuth, GoogleAuthProvider, type Auth } from 'firebase/auth'
@@ -12,54 +12,65 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-};
+} as const
 
-let firebaseApp: FirebaseApp | null = null;
+let firebaseApp: FirebaseApp | null = null
+let firestoreDb: Firestore | null = null
 
-function getFirebaseApp(): FirebaseApp | null {
-  if (firebaseApp) return firebaseApp;
+function ensureConfig() {
+  if (!firebaseConfig.apiKey) {
+    console.error('🔥 Firebase config eksik. .env değerlerini kontrol et.')
+    throw new Error('Firebase env config missing')
+  }
+}
+
+function getFirebaseApp(): FirebaseApp {
+  if (firebaseApp) return firebaseApp
+
+  ensureConfig()
 
   if (getApps().length === 0) {
-    if (firebaseConfig.apiKey) {
-      firebaseApp = initializeApp(firebaseConfig);
-    } else {
-      console.warn("Firebase config is missing (e.g., NEXT_PUBLIC_FIREBASE_API_KEY). Firebase features will be disabled.");
-      return null;
-    }
+    firebaseApp = initializeApp(firebaseConfig)
   } else {
-    firebaseApp = getApp();
+    firebaseApp = getApp()
   }
 
-  return firebaseApp;
+  return firebaseApp!
 }
 
 export function getFirebaseAuth(): Auth | null {
-  const app = getFirebaseApp();
-  if (!app) {
-    console.warn("Firebase is not initialized. Auth features are unavailable.");
-    return null;
+  try {
+    const app = getFirebaseApp()
+    return getAuth(app)
+  } catch (e) {
+    console.warn('Firebase Auth başlatılamadı.', e)
+    return null
   }
-  return getAuth(app);
 }
 
 export function getFirebaseStorage(): FirebaseStorage | null {
-  const app = getFirebaseApp();
-  if (!app) return null;
-  return getStorage(app);
+  try {
+    const app = getFirebaseApp()
+    return getStorage(app)
+  } catch {
+    return null
+  }
 }
-
-let firestoreDb: Firestore | null = null;
 
 export function getFirebaseDb(): Firestore | null {
-  const app = getFirebaseApp();
-  if (!app) {
-    console.warn('Firebase app yok, Firestore başlatılamıyor.');
-    return null;
+  try {
+    if (firestoreDb) return firestoreDb
+    const app = getFirebaseApp()
+    firestoreDb = getFirestore(app)
+    return firestoreDb
+  } catch (e) {
+    console.warn('Firebase Firestore başlatılamadı.', e)
+    return null
   }
-  if (!firestoreDb) {
-    firestoreDb = getFirestore(app);
-  }
-  return firestoreDb;
 }
 
-export const google = new GoogleAuthProvider();
+// Google provider
+export const google = new GoogleAuthProvider()
+google.setCustomParameters({
+  prompt: 'select_account',
+})

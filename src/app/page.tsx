@@ -20,7 +20,8 @@ export default function HomePage() {
             onClick={() => r.push('/personal')}
             className="
               w-full
-              h-[180px]             /* ← GERÇEK DEV DİKEY YÜKSEKLİK */
+              h-[230px]
+              sm:h-[260px]             /* ← GERÇEK DEV DİKEY YÜKSEKLİK */
               bg-[#D73333]
               text-white
               rounded-3xl
@@ -28,7 +29,7 @@ export default function HomePage() {
               flex
               items-center
               justify-center
-              text-3xl
+              text-4xl
               font-bold
               tracking-wide
               active:scale-95
@@ -43,8 +44,8 @@ export default function HomePage() {
             onClick={() => r.push('/disaster')}
             className="
               w-full
-              h-[200px]
-              sm:h-[220px]             /* ← DİREKT DEV BOYUT */
+              h-[230px]
+              sm:h-[260px]             /* ← DİREKT DEV BOYUT */
               bg-[#D73333]
               text-white
               rounded-3xl
@@ -52,7 +53,7 @@ export default function HomePage() {
               flex
               items-center
               justify-center
-              text-3xl
+              text-4xl
               font-bold
               tracking-wide
               active:scale-95
