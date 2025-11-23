@@ -6,6 +6,11 @@ import ChatFab from '@/components/ChatFab';
 export const metadata: Metadata = {
   title: 'Noodi Support',
   description: 'Immediate Help, When You Need It Most.',
+  icons: {
+  icon: '/favicon.ico',
+  apple: '/icon-192.png',
+  },
+  manifest: '/manifest.webmanifest',
 };
 
 export default function RootLayout({
