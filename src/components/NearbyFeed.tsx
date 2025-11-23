@@ -1,4 +1,5 @@
 'use client'
+
 import { useEffect, useState } from 'react'
 
 type Item = {
@@ -52,7 +53,7 @@ export default function NearbyFeed({
           }).catch(() => null)
 
           if (!r) {
-            // Ağ hatası: kullanıcıya “yakın olay yok” gibi davran
+            // Ağ hatası → kullanıcıya sadece "yakın olay yok" gösterelim
             setItems([])
             return
           }
@@ -67,7 +68,6 @@ export default function NearbyFeed({
       (error) => {
         if (cancelled) return
         console.warn('Geolocation error:', error)
-        // Sadece gerçekten konum reddedildiyse hata göster
         setErr('Konum alınamadı veya reddedildi.')
         setLoading(false)
       }
