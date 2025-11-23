@@ -1,6 +1,3 @@
-'use client'
-
-import { useSearchParams } from 'next/navigation'
 import AppHeader from '@/components/AppHeader'
 import BottomNav from '@/components/BottomNav'
 import GeoGate from '@/components/GeoGate'
@@ -19,12 +16,10 @@ const ORGS: Record<
   },
   SEL: {
     primary: { name: 'AFAD', logo: '/logos/afad.png' },
-    // Sel’de yardımcı olarak AKUT yeterli
     support: [{ name: 'AKUT', logo: '/logos/akut.png' }],
   },
   YANGIN: {
     primary: { name: 'İtfaiye', logo: '/logos/itfaiye.png' },
-    // Yangında AFAD yerine AKUT destekçi
     support: [{ name: 'AKUT', logo: '/logos/akut.png' }],
   },
   HEYELAN: {
@@ -39,9 +34,18 @@ const ORGS: Record<
 
 type DisasterType = keyof typeof ORGS
 
-export default function StatusPage() {
-  const sp = useSearchParams()
-  const subtypeRaw = (sp.get('subtype') || 'DEPREM').toString().toUpperCase()
+type StatusPageProps = {
+  searchParams?: {
+    [key: string]: string | string[] | undefined
+  }
+}
+
+export default function StatusPage({ searchParams }: StatusPageProps) {
+  const raw = searchParams?.subtype
+  const subtype =
+    (Array.isArray(raw) ? raw[0] : raw) || 'DEPREM'
+
+  const subtypeRaw = subtype.toString().toUpperCase()
 
   const validTypes = Object.keys(ORGS) as DisasterType[]
   const TYPE: DisasterType = validTypes.includes(subtypeRaw as DisasterType)
