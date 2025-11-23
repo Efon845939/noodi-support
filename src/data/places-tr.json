@@ -1,0 +1,8615 @@
+[
+  {
+    "id": "ilce-1",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Aladağ(karsanti)",
+    "label": "Adana / Aladağ(karsanti)",
+    "lat": 37.546379,
+    "lng": 35.402962
+  },
+  {
+    "id": "ilce-2",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Ceyhan",
+    "label": "Adana / Ceyhan",
+    "lat": 37.0317,
+    "lng": 35.82275
+  },
+  {
+    "id": "ilce-3",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Çukurova",
+    "label": "Adana / Çukurova",
+    "lat": 37,
+    "lng": 35.3213333
+  },
+  {
+    "id": "ilce-4",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Feke",
+    "label": "Adana / Feke",
+    "lat": 37.8199181,
+    "lng": 35.9124835
+  },
+  {
+    "id": "ilce-5",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "İmamoğlu",
+    "label": "Adana / İmamoğlu",
+    "lat": 37.258751,
+    "lng": 35.67284
+  },
+  {
+    "id": "ilce-6",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Karai̇sali",
+    "label": "Adana / Karai̇sali",
+    "lat": 37.25201,
+    "lng": 35.06329
+  },
+  {
+    "id": "ilce-7",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Karataş",
+    "label": "Adana / Karataş",
+    "lat": 36.563376,
+    "lng": 35.384388
+  },
+  {
+    "id": "ilce-8",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Kozan",
+    "label": "Adana / Kozan",
+    "lat": 37.45,
+    "lng": 35.8
+  },
+  {
+    "id": "ilce-9",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Pozanti",
+    "label": "Adana / Pozanti",
+    "lat": 37.4277778,
+    "lng": 34.8711111
+  },
+  {
+    "id": "ilce-10",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Sai̇mbeyli̇",
+    "label": "Adana / Sai̇mbeyli̇",
+    "lat": 37.9881827,
+    "lng": 36.0920584
+  },
+  {
+    "id": "ilce-11",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Sariçam",
+    "label": "Adana / Sariçam",
+    "lat": 37,
+    "lng": 35.3213333
+  },
+  {
+    "id": "ilce-12",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Seyhan",
+    "label": "Adana / Seyhan",
+    "lat": 37,
+    "lng": 35.3213333
+  },
+  {
+    "id": "ilce-13",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Tufanbeyli̇",
+    "label": "Adana / Tufanbeyli̇",
+    "lat": 38.2646417,
+    "lng": 36.2223985
+  },
+  {
+    "id": "ilce-14",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Yumurtalik",
+    "label": "Adana / Yumurtalik",
+    "lat": 36.7666667,
+    "lng": 35.7833333
+  },
+  {
+    "id": "ilce-15",
+    "cityCode": 1,
+    "cityName": "Adana",
+    "districtName": "Yüreği̇r",
+    "label": "Adana / Yüreği̇r",
+    "lat": 37,
+    "lng": 35.3213333
+  },
+  {
+    "id": "ilce-16",
+    "cityCode": 2,
+    "cityName": "Adiyaman",
+    "districtName": "Adiyaman",
+    "label": "Adiyaman / Adiyaman",
+    "lat": 37.7641667,
+    "lng": 38.2761667
+  },
+  {
+    "id": "ilce-17",
+    "cityCode": 2,
+    "cityName": "Adiyaman",
+    "districtName": "Besni̇",
+    "label": "Adiyaman / Besni̇",
+    "lat": 37.6929433,
+    "lng": 37.8591895
+  },
+  {
+    "id": "ilce-18",
+    "cityCode": 2,
+    "cityName": "Adiyaman",
+    "districtName": "Çeli̇khan",
+    "label": "Adiyaman / Çeli̇khan",
+    "lat": 38.0333333,
+    "lng": 38.25
+  },
+  {
+    "id": "ilce-19",
+    "cityCode": 2,
+    "cityName": "Adiyaman",
+    "districtName": "Gerger",
+    "label": "Adiyaman / Gerger",
+    "lat": 38.0288889,
+    "lng": 39.0322222
+  },
+  {
+    "id": "ilce-20",
+    "cityCode": 2,
+    "cityName": "Adiyaman",
+    "districtName": "Gölbaşi",
+    "label": "Adiyaman / Gölbaşi",
+    "lat": 37.7838889,
+    "lng": 37.6444444
+  },
+  {
+    "id": "ilce-21",
+    "cityCode": 2,
+    "cityName": "Adiyaman",
+    "districtName": "Kahta",
+    "label": "Adiyaman / Kahta",
+    "lat": 37.7833333,
+    "lng": 38.6166667
+  },
+  {
+    "id": "ilce-22",
+    "cityCode": 2,
+    "cityName": "Adiyaman",
+    "districtName": "Samsat",
+    "label": "Adiyaman / Samsat",
+    "lat": 37.5792887,
+    "lng": 38.482364
+  },
+  {
+    "id": "ilce-23",
+    "cityCode": 2,
+    "cityName": "Adiyaman",
+    "districtName": "Si̇nci̇k",
+    "label": "Adiyaman / Si̇nci̇k",
+    "lat": 38.0380556,
+    "lng": 38.6158333
+  },
+  {
+    "id": "ilce-24",
+    "cityCode": 2,
+    "cityName": "Adiyaman",
+    "districtName": "Tut",
+    "label": "Adiyaman / Tut",
+    "lat": 37.7966667,
+    "lng": 37.915
+  },
+  {
+    "id": "ilce-25",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Afyon",
+    "label": "Afyonkarahi̇sar / Afyon",
+    "lat": 38.76376,
+    "lng": 30.54034
+  },
+  {
+    "id": "ilce-26",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Başmakçi",
+    "label": "Afyonkarahi̇sar / Başmakçi",
+    "lat": 37.8959675,
+    "lng": 30.0116271
+  },
+  {
+    "id": "ilce-27",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Bayat",
+    "label": "Afyonkarahi̇sar / Bayat",
+    "lat": 38.98708,
+    "lng": 30.919849
+  },
+  {
+    "id": "ilce-28",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Bolvadi̇n",
+    "label": "Afyonkarahi̇sar / Bolvadi̇n",
+    "lat": 38.7166667,
+    "lng": 31.05
+  },
+  {
+    "id": "ilce-29",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Çay",
+    "label": "Afyonkarahi̇sar / Çay",
+    "lat": 38.5931933,
+    "lng": 31.0249093
+  },
+  {
+    "id": "ilce-30",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Çobanlar",
+    "label": "Afyonkarahi̇sar / Çobanlar",
+    "lat": 38.7,
+    "lng": 30.783333
+  },
+  {
+    "id": "ilce-31",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Dazkiri",
+    "label": "Afyonkarahi̇sar / Dazkiri",
+    "lat": 37.9166667,
+    "lng": 29.8666667
+  },
+  {
+    "id": "ilce-32",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Di̇nar",
+    "label": "Afyonkarahi̇sar / Di̇nar",
+    "lat": 38.0666667,
+    "lng": 30.1666667
+  },
+  {
+    "id": "ilce-33",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Emi̇rdağ",
+    "label": "Afyonkarahi̇sar / Emi̇rdağ",
+    "lat": 39.026039,
+    "lng": 31.15345
+  },
+  {
+    "id": "ilce-34",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Evci̇ler",
+    "label": "Afyonkarahi̇sar / Evci̇ler",
+    "lat": 38.043083,
+    "lng": 29.883094
+  },
+  {
+    "id": "ilce-35",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Hocalar",
+    "label": "Afyonkarahi̇sar / Hocalar",
+    "lat": 38.58337,
+    "lng": 29.972071
+  },
+  {
+    "id": "ilce-36",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "İhsani̇ye",
+    "label": "Afyonkarahi̇sar / İhsani̇ye",
+    "lat": 39.0333333,
+    "lng": 30.4166667
+  },
+  {
+    "id": "ilce-37",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "İscehi̇sar",
+    "label": "Afyonkarahi̇sar / İscehi̇sar",
+    "lat": 38.8666667,
+    "lng": 30.75
+  },
+  {
+    "id": "ilce-38",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Kizilören",
+    "label": "Afyonkarahi̇sar / Kizilören",
+    "lat": 37.9629031,
+    "lng": 29.8019498
+  },
+  {
+    "id": "ilce-39",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Sandikli",
+    "label": "Afyonkarahi̇sar / Sandikli",
+    "lat": 38.465389,
+    "lng": 30.270241
+  },
+  {
+    "id": "ilce-40",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Si̇ncanli(si̇nanpaşa)",
+    "label": "Afyonkarahi̇sar / Si̇ncanli(si̇nanpaşa)",
+    "lat": 38.743796,
+    "lng": 30.2440609
+  },
+  {
+    "id": "ilce-41",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Sultandaği",
+    "label": "Afyonkarahi̇sar / Sultandaği",
+    "lat": 38.5333333,
+    "lng": 31.2333333
+  },
+  {
+    "id": "ilce-42",
+    "cityCode": 3,
+    "cityName": "Afyonkarahi̇sar",
+    "districtName": "Şuhut",
+    "label": "Afyonkarahi̇sar / Şuhut",
+    "lat": 38.5333333,
+    "lng": 30.55
+  },
+  {
+    "id": "ilce-43",
+    "cityCode": 4,
+    "cityName": "Ağri",
+    "districtName": "Ağri",
+    "label": "Ağri / Ağri",
+    "lat": 39.7216667,
+    "lng": 43.0566667
+  },
+  {
+    "id": "ilce-44",
+    "cityCode": 4,
+    "cityName": "Ağri",
+    "districtName": "Di̇yadi̇n",
+    "label": "Ağri / Di̇yadi̇n",
+    "lat": 39.54,
+    "lng": 43.6772222
+  },
+  {
+    "id": "ilce-45",
+    "cityCode": 4,
+    "cityName": "Ağri",
+    "districtName": "Doğubayazit(doğubeyazit)",
+    "label": "Ağri / Doğubayazit(doğubeyazit)",
+    "lat": 39.548,
+    "lng": 44.083333
+  },
+  {
+    "id": "ilce-46",
+    "cityCode": 4,
+    "cityName": "Ağri",
+    "districtName": "Eleşki̇rt",
+    "label": "Ağri / Eleşki̇rt",
+    "lat": 39.797161,
+    "lng": 42.687111
+  },
+  {
+    "id": "ilce-47",
+    "cityCode": 4,
+    "cityName": "Ağri",
+    "districtName": "Hamur",
+    "label": "Ağri / Hamur",
+    "lat": 39.6102778,
+    "lng": 42.9925
+  },
+  {
+    "id": "ilce-48",
+    "cityCode": 4,
+    "cityName": "Ağri",
+    "districtName": "Patnos",
+    "label": "Ağri / Patnos",
+    "lat": 39.2333333,
+    "lng": 42.8666667
+  },
+  {
+    "id": "ilce-49",
+    "cityCode": 4,
+    "cityName": "Ağri",
+    "districtName": "Taşliçay",
+    "label": "Ağri / Taşliçay",
+    "lat": 39.6343827,
+    "lng": 43.3767661
+  },
+  {
+    "id": "ilce-50",
+    "cityCode": 4,
+    "cityName": "Ağri",
+    "districtName": "Tutak",
+    "label": "Ağri / Tutak",
+    "lat": 39.5422222,
+    "lng": 42.7716667
+  },
+  {
+    "id": "ilce-51",
+    "cityCode": 5,
+    "cityName": "Amasya",
+    "districtName": "Amasya",
+    "label": "Amasya / Amasya",
+    "lat": 40.65,
+    "lng": 35.8333333
+  },
+  {
+    "id": "ilce-52",
+    "cityCode": 5,
+    "cityName": "Amasya",
+    "districtName": "Göynücek",
+    "label": "Amasya / Göynücek",
+    "lat": 40.397869,
+    "lng": 35.52615
+  },
+  {
+    "id": "ilce-53",
+    "cityCode": 5,
+    "cityName": "Amasya",
+    "districtName": "Gümüşhaciköy",
+    "label": "Amasya / Gümüşhaciköy",
+    "lat": 40.87064,
+    "lng": 35.217579
+  },
+  {
+    "id": "ilce-54",
+    "cityCode": 5,
+    "cityName": "Amasya",
+    "districtName": "Hamamözü",
+    "label": "Amasya / Hamamözü",
+    "lat": 40.78347,
+    "lng": 35.022289
+  },
+  {
+    "id": "ilce-55",
+    "cityCode": 5,
+    "cityName": "Amasya",
+    "districtName": "Merzi̇fon",
+    "label": "Amasya / Merzi̇fon",
+    "lat": 40.874859,
+    "lng": 35.45974
+  },
+  {
+    "id": "ilce-56",
+    "cityCode": 5,
+    "cityName": "Amasya",
+    "districtName": "Suluova",
+    "label": "Amasya / Suluova",
+    "lat": 40.8333333,
+    "lng": 35.65
+  },
+  {
+    "id": "ilce-57",
+    "cityCode": 5,
+    "cityName": "Amasya",
+    "districtName": "Taşova",
+    "label": "Amasya / Taşova",
+    "lat": 40.7619873,
+    "lng": 36.3226471
+  },
+  {
+    "id": "ilce-58",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Akyurt",
+    "label": "Ankara / Akyurt",
+    "lat": 40.1333333,
+    "lng": 33.0833333
+  },
+  {
+    "id": "ilce-59",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Altindağ",
+    "label": "Ankara / Altindağ",
+    "lat": 39.92077,
+    "lng": 32.85411
+  },
+  {
+    "id": "ilce-60",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Ayaş",
+    "label": "Ankara / Ayaş",
+    "lat": 40.021751,
+    "lng": 32.34095
+  },
+  {
+    "id": "ilce-61",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Bala",
+    "label": "Ankara / Bala",
+    "lat": 39.5538889,
+    "lng": 33.1211111
+  },
+  {
+    "id": "ilce-62",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Beypazari",
+    "label": "Ankara / Beypazari",
+    "lat": 40.1675,
+    "lng": 31.9211111
+  },
+  {
+    "id": "ilce-63",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Çamlidere",
+    "label": "Ankara / Çamlidere",
+    "lat": 40.48735,
+    "lng": 32.4726901
+  },
+  {
+    "id": "ilce-64",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Çankaya",
+    "label": "Ankara / Çankaya",
+    "lat": 39.8451842,
+    "lng": 32.9212265
+  },
+  {
+    "id": "ilce-65",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Çubuk",
+    "label": "Ankara / Çubuk",
+    "lat": 40.2386111,
+    "lng": 33.0330556
+  },
+  {
+    "id": "ilce-66",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Elmadağ",
+    "label": "Ankara / Elmadağ",
+    "lat": 39.9208333,
+    "lng": 33.2308333
+  },
+  {
+    "id": "ilce-67",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Eti̇mesgut",
+    "label": "Ankara / Eti̇mesgut",
+    "lat": 39.9458333,
+    "lng": 32.6694444
+  },
+  {
+    "id": "ilce-68",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Evren",
+    "label": "Ankara / Evren",
+    "lat": 39.0290506,
+    "lng": 33.8104222
+  },
+  {
+    "id": "ilce-69",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Gölbaşi",
+    "label": "Ankara / Gölbaşi",
+    "lat": 39.92077,
+    "lng": 32.85411
+  },
+  {
+    "id": "ilce-70",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Güdül",
+    "label": "Ankara / Güdül",
+    "lat": 40.2111111,
+    "lng": 32.2427778
+  },
+  {
+    "id": "ilce-71",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Haymana",
+    "label": "Ankara / Haymana",
+    "lat": 39.436069,
+    "lng": 32.496639
+  },
+  {
+    "id": "ilce-72",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Kaleci̇k",
+    "label": "Ankara / Kaleci̇k",
+    "lat": 40.0972222,
+    "lng": 33.4083333
+  },
+  {
+    "id": "ilce-73",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Kazan",
+    "label": "Ankara / Kazan",
+    "lat": 40.2316667,
+    "lng": 32.6838889
+  },
+  {
+    "id": "ilce-74",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Keçi̇ören",
+    "label": "Ankara / Keçi̇ören",
+    "lat": 40.0210623,
+    "lng": 32.831015
+  },
+  {
+    "id": "ilce-75",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Kizilcahamam",
+    "label": "Ankara / Kizilcahamam",
+    "lat": 40.4697222,
+    "lng": 32.6505556
+  },
+  {
+    "id": "ilce-76",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Mamak",
+    "label": "Ankara / Mamak",
+    "lat": 39.8900436,
+    "lng": 33.0113568
+  },
+  {
+    "id": "ilce-77",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Nallihan",
+    "label": "Ankara / Nallihan",
+    "lat": 40.191601,
+    "lng": 31.359949
+  },
+  {
+    "id": "ilce-78",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Polatli",
+    "label": "Ankara / Polatli",
+    "lat": 39.5841667,
+    "lng": 32.1472222
+  },
+  {
+    "id": "ilce-79",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Pursaklar",
+    "label": "Ankara / Pursaklar",
+    "lat": 40.0488418,
+    "lng": 32.8953187
+  },
+  {
+    "id": "ilce-80",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Si̇ncan",
+    "label": "Ankara / Si̇ncan",
+    "lat": 39.966751,
+    "lng": 32.584229
+  },
+  {
+    "id": "ilce-81",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Şerefli̇koçhi̇sar",
+    "label": "Ankara / Şerefli̇koçhi̇sar",
+    "lat": 38.93951,
+    "lng": 33.55246
+  },
+  {
+    "id": "ilce-82",
+    "cityCode": 6,
+    "cityName": "Ankara",
+    "districtName": "Yeni̇mahalle",
+    "label": "Ankara / Yeni̇mahalle",
+    "lat": 39.9904289,
+    "lng": 32.695547
+  },
+  {
+    "id": "ilce-83",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Akseki̇",
+    "label": "Antalya / Akseki̇",
+    "lat": 37.051529,
+    "lng": 31.78381
+  },
+  {
+    "id": "ilce-84",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Aksu",
+    "label": "Antalya / Aksu",
+    "lat": 36.9466805,
+    "lng": 30.839845
+  },
+  {
+    "id": "ilce-85",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Alanya",
+    "label": "Antalya / Alanya",
+    "lat": 36.560139,
+    "lng": 32.002121
+  },
+  {
+    "id": "ilce-86",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Demre(kale)",
+    "label": "Antalya / Demre(kale)",
+    "lat": 36.249441,
+    "lng": 29.950079
+  },
+  {
+    "id": "ilce-87",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Döşemealti",
+    "label": "Antalya / Döşemealti",
+    "lat": 37.0229292,
+    "lng": 30.5984143
+  },
+  {
+    "id": "ilce-88",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Elmali",
+    "label": "Antalya / Elmali",
+    "lat": 36.7373079,
+    "lng": 29.9191194
+  },
+  {
+    "id": "ilce-89",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Fi̇ni̇ke",
+    "label": "Antalya / Fi̇ni̇ke",
+    "lat": 36.3008267,
+    "lng": 30.144496
+  },
+  {
+    "id": "ilce-90",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Gazi̇paşa",
+    "label": "Antalya / Gazi̇paşa",
+    "lat": 36.270902,
+    "lng": 32.3135862
+  },
+  {
+    "id": "ilce-91",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Gündoğmuş",
+    "label": "Antalya / Gündoğmuş",
+    "lat": 36.811194,
+    "lng": 32.0013363
+  },
+  {
+    "id": "ilce-92",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "İbradi(aydinkent)",
+    "label": "Antalya / İbradi(aydinkent)",
+    "lat": 37.092651,
+    "lng": 31.58786
+  },
+  {
+    "id": "ilce-93",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Kaş",
+    "label": "Antalya / Kaş",
+    "lat": 36.204441,
+    "lng": 29.638981
+  },
+  {
+    "id": "ilce-94",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Kemer",
+    "label": "Antalya / Kemer",
+    "lat": 36.592381,
+    "lng": 30.54771
+  },
+  {
+    "id": "ilce-95",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Kepez",
+    "label": "Antalya / Kepez",
+    "lat": 36.88414,
+    "lng": 30.70563
+  },
+  {
+    "id": "ilce-96",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Konyaalti",
+    "label": "Antalya / Konyaalti",
+    "lat": 36.88414,
+    "lng": 30.70563
+  },
+  {
+    "id": "ilce-97",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Korkuteli̇",
+    "label": "Antalya / Korkuteli̇",
+    "lat": 37.0666667,
+    "lng": 30.2
+  },
+  {
+    "id": "ilce-98",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Kumluca",
+    "label": "Antalya / Kumluca",
+    "lat": 36.362831,
+    "lng": 30.286421
+  },
+  {
+    "id": "ilce-99",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Manavgat",
+    "label": "Antalya / Manavgat",
+    "lat": 36.790081,
+    "lng": 31.46286
+  },
+  {
+    "id": "ilce-100",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Muratpaşa",
+    "label": "Antalya / Muratpaşa",
+    "lat": 36.8827594,
+    "lng": 30.769476
+  },
+  {
+    "id": "ilce-101",
+    "cityCode": 7,
+    "cityName": "Antalya",
+    "districtName": "Seri̇k",
+    "label": "Antalya / Seri̇k",
+    "lat": 36.921822,
+    "lng": 31.101271
+  },
+  {
+    "id": "ilce-102",
+    "cityCode": 8,
+    "cityName": "Artvi̇n",
+    "districtName": "Ardanuç",
+    "label": "Artvi̇n / Ardanuç",
+    "lat": 41.1286,
+    "lng": 42.0592
+  },
+  {
+    "id": "ilce-103",
+    "cityCode": 8,
+    "cityName": "Artvi̇n",
+    "districtName": "Arhavi̇",
+    "label": "Artvi̇n / Arhavi̇",
+    "lat": 41.3520976,
+    "lng": 41.3115846
+  },
+  {
+    "id": "ilce-104",
+    "cityCode": 8,
+    "cityName": "Artvi̇n",
+    "districtName": "Artvi̇n",
+    "label": "Artvi̇n / Artvi̇n",
+    "lat": 41.1833333,
+    "lng": 41.8166667
+  },
+  {
+    "id": "ilce-105",
+    "cityCode": 8,
+    "cityName": "Artvi̇n",
+    "districtName": "Borçka",
+    "label": "Artvi̇n / Borçka",
+    "lat": 41.3625,
+    "lng": 41.68
+  },
+  {
+    "id": "ilce-106",
+    "cityCode": 8,
+    "cityName": "Artvi̇n",
+    "districtName": "Hopa",
+    "label": "Artvi̇n / Hopa",
+    "lat": 41.386719,
+    "lng": 41.437018
+  },
+  {
+    "id": "ilce-107",
+    "cityCode": 8,
+    "cityName": "Artvi̇n",
+    "districtName": "Murgul(göktaş)",
+    "label": "Artvi̇n / Murgul(göktaş)",
+    "lat": 41.25,
+    "lng": 41.65
+  },
+  {
+    "id": "ilce-108",
+    "cityCode": 8,
+    "cityName": "Artvi̇n",
+    "districtName": "Şavşat",
+    "label": "Artvi̇n / Şavşat",
+    "lat": 41.2419,
+    "lng": 42.3644
+  },
+  {
+    "id": "ilce-109",
+    "cityCode": 8,
+    "cityName": "Artvi̇n",
+    "districtName": "Yusufeli̇",
+    "label": "Artvi̇n / Yusufeli̇",
+    "lat": 40.8253871,
+    "lng": 41.5486163
+  },
+  {
+    "id": "ilce-110",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Aydin",
+    "label": "Aydin / Aydin",
+    "lat": 37.8444,
+    "lng": 27.8458
+  },
+  {
+    "id": "ilce-111",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Bozdoğan",
+    "label": "Aydin / Bozdoğan",
+    "lat": 37.6703,
+    "lng": 28.3097
+  },
+  {
+    "id": "ilce-112",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Buharkent(çubukdaği)",
+    "label": "Aydin / Buharkent(çubukdaği)",
+    "lat": 37.970211,
+    "lng": 28.747219
+  },
+  {
+    "id": "ilce-113",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Çi̇ne",
+    "label": "Aydin / Çi̇ne",
+    "lat": 37.6117,
+    "lng": 28.0614
+  },
+  {
+    "id": "ilce-114",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Di̇di̇m(yeni̇hi̇sar)",
+    "label": "Aydin / Di̇di̇m(yeni̇hi̇sar)",
+    "lat": 37.3756,
+    "lng": 27.2678
+  },
+  {
+    "id": "ilce-115",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Germenci̇k",
+    "label": "Aydin / Germenci̇k",
+    "lat": 37.87207,
+    "lng": 27.60181
+  },
+  {
+    "id": "ilce-116",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "İnci̇rli̇ova",
+    "label": "Aydin / İnci̇rli̇ova",
+    "lat": 37.8522,
+    "lng": 27.7236
+  },
+  {
+    "id": "ilce-117",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Karacasu",
+    "label": "Aydin / Karacasu",
+    "lat": 37.729641,
+    "lng": 28.60634
+  },
+  {
+    "id": "ilce-118",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Karpuzlu",
+    "label": "Aydin / Karpuzlu",
+    "lat": 37.5586,
+    "lng": 27.8336
+  },
+  {
+    "id": "ilce-119",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Koçarli",
+    "label": "Aydin / Koçarli",
+    "lat": 37.761749,
+    "lng": 27.70397
+  },
+  {
+    "id": "ilce-120",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Köşk",
+    "label": "Aydin / Köşk",
+    "lat": 37.8533,
+    "lng": 28.0517
+  },
+  {
+    "id": "ilce-121",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Kuşadasi",
+    "label": "Aydin / Kuşadasi",
+    "lat": 37.86,
+    "lng": 27.26
+  },
+  {
+    "id": "ilce-122",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Kuyucak",
+    "label": "Aydin / Kuyucak",
+    "lat": 37.9153,
+    "lng": 28.4592
+  },
+  {
+    "id": "ilce-123",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Nazi̇lli̇",
+    "label": "Aydin / Nazi̇lli̇",
+    "lat": 37.910419,
+    "lng": 28.320259
+  },
+  {
+    "id": "ilce-124",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Söke",
+    "label": "Aydin / Söke",
+    "lat": 37.756081,
+    "lng": 27.403931
+  },
+  {
+    "id": "ilce-125",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Sultanhi̇sar",
+    "label": "Aydin / Sultanhi̇sar",
+    "lat": 37.8897,
+    "lng": 28.1575
+  },
+  {
+    "id": "ilce-126",
+    "cityCode": 9,
+    "cityName": "Aydin",
+    "districtName": "Yeni̇pazar",
+    "label": "Aydin / Yeni̇pazar",
+    "lat": 37.829769,
+    "lng": 28.19549
+  },
+  {
+    "id": "ilce-127",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Ayvalik",
+    "label": "Balikesi̇r / Ayvalik",
+    "lat": 39.3178003,
+    "lng": 26.6980742
+  },
+  {
+    "id": "ilce-128",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Balikesi̇r",
+    "label": "Balikesi̇r / Balikesi̇r",
+    "lat": 39.648369,
+    "lng": 27.88261
+  },
+  {
+    "id": "ilce-129",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Balya",
+    "label": "Balikesi̇r / Balya",
+    "lat": 39.75,
+    "lng": 27.5833333
+  },
+  {
+    "id": "ilce-130",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Bandirma",
+    "label": "Balikesi̇r / Bandirma",
+    "lat": 40.35946,
+    "lng": 27.979227
+  },
+  {
+    "id": "ilce-131",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Bi̇gadi̇ç",
+    "label": "Balikesi̇r / Bi̇gadi̇ç",
+    "lat": 39.3925,
+    "lng": 28.1311111
+  },
+  {
+    "id": "ilce-132",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Burhani̇ye",
+    "label": "Balikesi̇r / Burhani̇ye",
+    "lat": 39.506931,
+    "lng": 26.977819
+  },
+  {
+    "id": "ilce-133",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Dursunbey",
+    "label": "Balikesi̇r / Dursunbey",
+    "lat": 39.5877778,
+    "lng": 28.6275
+  },
+  {
+    "id": "ilce-134",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Edremi̇t",
+    "label": "Balikesi̇r / Edremi̇t",
+    "lat": 39.59901,
+    "lng": 27.022079
+  },
+  {
+    "id": "ilce-135",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Erdek",
+    "label": "Balikesi̇r / Erdek",
+    "lat": 40.403052,
+    "lng": 27.796098
+  },
+  {
+    "id": "ilce-136",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Gömeç",
+    "label": "Balikesi̇r / Gömeç",
+    "lat": 39.3911111,
+    "lng": 26.84
+  },
+  {
+    "id": "ilce-137",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Gönen",
+    "label": "Balikesi̇r / Gönen",
+    "lat": 40.103329,
+    "lng": 27.65575
+  },
+  {
+    "id": "ilce-138",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Havran",
+    "label": "Balikesi̇r / Havran",
+    "lat": 39.5583333,
+    "lng": 27.0983333
+  },
+  {
+    "id": "ilce-139",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "İvri̇ndi̇",
+    "label": "Balikesi̇r / İvri̇ndi̇",
+    "lat": 39.5833333,
+    "lng": 27.4833333
+  },
+  {
+    "id": "ilce-140",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Kepsut",
+    "label": "Balikesi̇r / Kepsut",
+    "lat": 39.6888889,
+    "lng": 28.1522222
+  },
+  {
+    "id": "ilce-141",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Manyas",
+    "label": "Balikesi̇r / Manyas",
+    "lat": 40.0463889,
+    "lng": 27.97
+  },
+  {
+    "id": "ilce-142",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Marmara",
+    "label": "Balikesi̇r / Marmara",
+    "lat": 40.5875,
+    "lng": 27.5552778
+  },
+  {
+    "id": "ilce-143",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Savaştepe",
+    "label": "Balikesi̇r / Savaştepe",
+    "lat": 39.3838889,
+    "lng": 27.6547222
+  },
+  {
+    "id": "ilce-144",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Sindirgi",
+    "label": "Balikesi̇r / Sindirgi",
+    "lat": 39.24,
+    "lng": 28.175
+  },
+  {
+    "id": "ilce-145",
+    "cityCode": 10,
+    "cityName": "Balikesi̇r",
+    "districtName": "Susurluk",
+    "label": "Balikesi̇r / Susurluk",
+    "lat": 39.918869,
+    "lng": 28.157101
+  },
+  {
+    "id": "ilce-146",
+    "cityCode": 11,
+    "cityName": "Bi̇leci̇k",
+    "districtName": "Bi̇leci̇k",
+    "label": "Bi̇leci̇k / Bi̇leci̇k",
+    "lat": 40.150131,
+    "lng": 29.983061
+  },
+  {
+    "id": "ilce-147",
+    "cityCode": 11,
+    "cityName": "Bi̇leci̇k",
+    "districtName": "Bozüyük",
+    "label": "Bi̇leci̇k / Bozüyük",
+    "lat": 39.9077778,
+    "lng": 30.0366667
+  },
+  {
+    "id": "ilce-148",
+    "cityCode": 11,
+    "cityName": "Bi̇leci̇k",
+    "districtName": "Gölpazari",
+    "label": "Bi̇leci̇k / Gölpazari",
+    "lat": 40.2847222,
+    "lng": 30.3172222
+  },
+  {
+    "id": "ilce-149",
+    "cityCode": 11,
+    "cityName": "Bi̇leci̇k",
+    "districtName": "İnhi̇sar",
+    "label": "Bi̇leci̇k / İnhi̇sar",
+    "lat": 40.05349,
+    "lng": 30.39068
+  },
+  {
+    "id": "ilce-150",
+    "cityCode": 11,
+    "cityName": "Bi̇leci̇k",
+    "districtName": "Osmaneli̇",
+    "label": "Bi̇leci̇k / Osmaneli̇",
+    "lat": 40.3593103,
+    "lng": 30.0116271
+  },
+  {
+    "id": "ilce-151",
+    "cityCode": 11,
+    "cityName": "Bi̇leci̇k",
+    "districtName": "Pazaryeri̇",
+    "label": "Bi̇leci̇k / Pazaryeri̇",
+    "lat": 39.9964874,
+    "lng": 29.9075516
+  },
+  {
+    "id": "ilce-152",
+    "cityCode": 11,
+    "cityName": "Bi̇leci̇k",
+    "districtName": "Söğüt",
+    "label": "Bi̇leci̇k / Söğüt",
+    "lat": 40.0186111,
+    "lng": 30.1813889
+  },
+  {
+    "id": "ilce-153",
+    "cityCode": 11,
+    "cityName": "Bi̇leci̇k",
+    "districtName": "Yeni̇pazar",
+    "label": "Bi̇leci̇k / Yeni̇pazar",
+    "lat": 40.1783333,
+    "lng": 30.52
+  },
+  {
+    "id": "ilce-154",
+    "cityCode": 12,
+    "cityName": "Bi̇ngöl",
+    "districtName": "Adakli",
+    "label": "Bi̇ngöl / Adakli",
+    "lat": 39.2281776,
+    "lng": 40.4833955
+  },
+  {
+    "id": "ilce-155",
+    "cityCode": 12,
+    "cityName": "Bi̇ngöl",
+    "districtName": "Bi̇ngöl",
+    "label": "Bi̇ngöl / Bi̇ngöl",
+    "lat": 38.885349,
+    "lng": 40.498291
+  },
+  {
+    "id": "ilce-156",
+    "cityCode": 12,
+    "cityName": "Bi̇ngöl",
+    "districtName": "Genç",
+    "label": "Bi̇ngöl / Genç",
+    "lat": 38.7530556,
+    "lng": 40.5666667
+  },
+  {
+    "id": "ilce-157",
+    "cityCode": 12,
+    "cityName": "Bi̇ngöl",
+    "districtName": "Karliova",
+    "label": "Bi̇ngöl / Karliova",
+    "lat": 39.2977738,
+    "lng": 41.0125134
+  },
+  {
+    "id": "ilce-158",
+    "cityCode": 12,
+    "cityName": "Bi̇ngöl",
+    "districtName": "Ki̇ği",
+    "label": "Bi̇ngöl / Ki̇ği",
+    "lat": 39.3166667,
+    "lng": 40.35
+  },
+  {
+    "id": "ilce-159",
+    "cityCode": 12,
+    "cityName": "Bi̇ngöl",
+    "districtName": "Solhan",
+    "label": "Bi̇ngöl / Solhan",
+    "lat": 38.9689856,
+    "lng": 41.0523881
+  },
+  {
+    "id": "ilce-160",
+    "cityCode": 12,
+    "cityName": "Bi̇ngöl",
+    "districtName": "Yayladere",
+    "label": "Bi̇ngöl / Yayladere",
+    "lat": 39.2244444,
+    "lng": 40.0725
+  },
+  {
+    "id": "ilce-161",
+    "cityCode": 12,
+    "cityName": "Bi̇ngöl",
+    "districtName": "Yedi̇su",
+    "label": "Bi̇ngöl / Yedi̇su",
+    "lat": 39.4333333,
+    "lng": 40.55
+  },
+  {
+    "id": "ilce-162",
+    "cityCode": 13,
+    "cityName": "Bi̇tli̇s",
+    "districtName": "Adi̇lcevaz",
+    "label": "Bi̇tli̇s / Adi̇lcevaz",
+    "lat": 38.8066671,
+    "lng": 42.7346377
+  },
+  {
+    "id": "ilce-163",
+    "cityCode": 13,
+    "cityName": "Bi̇tli̇s",
+    "districtName": "Ahlat",
+    "label": "Bi̇tli̇s / Ahlat",
+    "lat": 38.7527778,
+    "lng": 42.4944444
+  },
+  {
+    "id": "ilce-164",
+    "cityCode": 13,
+    "cityName": "Bi̇tli̇s",
+    "districtName": "Bi̇tli̇s",
+    "label": "Bi̇tli̇s / Bi̇tli̇s",
+    "lat": 38.4,
+    "lng": 42.1166667
+  },
+  {
+    "id": "ilce-165",
+    "cityCode": 13,
+    "cityName": "Bi̇tli̇s",
+    "districtName": "Güroymak",
+    "label": "Bi̇tli̇s / Güroymak",
+    "lat": 38.5753871,
+    "lng": 42.0174717
+  },
+  {
+    "id": "ilce-166",
+    "cityCode": 13,
+    "cityName": "Bi̇tli̇s",
+    "districtName": "Hi̇zan",
+    "label": "Bi̇tli̇s / Hi̇zan",
+    "lat": 38.2247019,
+    "lng": 42.4252797
+  },
+  {
+    "id": "ilce-167",
+    "cityCode": 13,
+    "cityName": "Bi̇tli̇s",
+    "districtName": "Mutki̇",
+    "label": "Bi̇tli̇s / Mutki̇",
+    "lat": 38.4102386,
+    "lng": 41.9184957
+  },
+  {
+    "id": "ilce-168",
+    "cityCode": 13,
+    "cityName": "Bi̇tli̇s",
+    "districtName": "Tatvan",
+    "label": "Bi̇tli̇s / Tatvan",
+    "lat": 38.5022222,
+    "lng": 42.2813889
+  },
+  {
+    "id": "ilce-169",
+    "cityCode": 14,
+    "cityName": "Bolu",
+    "districtName": "Bolu",
+    "label": "Bolu / Bolu",
+    "lat": 40.739479,
+    "lng": 31.611561
+  },
+  {
+    "id": "ilce-170",
+    "cityCode": 14,
+    "cityName": "Bolu",
+    "districtName": "Dörtdi̇van",
+    "label": "Bolu / Dörtdi̇van",
+    "lat": 40.7166667,
+    "lng": 32.0666667
+  },
+  {
+    "id": "ilce-171",
+    "cityCode": 14,
+    "cityName": "Bolu",
+    "districtName": "Gerede",
+    "label": "Bolu / Gerede",
+    "lat": 40.8005556,
+    "lng": 32.1986111
+  },
+  {
+    "id": "ilce-172",
+    "cityCode": 14,
+    "cityName": "Bolu",
+    "districtName": "Göynük",
+    "label": "Bolu / Göynük",
+    "lat": 40.4003841,
+    "lng": 30.7838403
+  },
+  {
+    "id": "ilce-173",
+    "cityCode": 14,
+    "cityName": "Bolu",
+    "districtName": "Kibriscik",
+    "label": "Bolu / Kibriscik",
+    "lat": 40.4086815,
+    "lng": 31.8472123
+  },
+  {
+    "id": "ilce-174",
+    "cityCode": 14,
+    "cityName": "Bolu",
+    "districtName": "Mengen",
+    "label": "Bolu / Mengen",
+    "lat": 40.9374385,
+    "lng": 32.0762881
+  },
+  {
+    "id": "ilce-175",
+    "cityCode": 14,
+    "cityName": "Bolu",
+    "districtName": "Mudurnu",
+    "label": "Bolu / Mudurnu",
+    "lat": 40.4666667,
+    "lng": 31.2166667
+  },
+  {
+    "id": "ilce-176",
+    "cityCode": 14,
+    "cityName": "Bolu",
+    "districtName": "Seben",
+    "label": "Bolu / Seben",
+    "lat": 40.4090719,
+    "lng": 31.5741036
+  },
+  {
+    "id": "ilce-177",
+    "cityCode": 14,
+    "cityName": "Bolu",
+    "districtName": "Yeni̇çağa",
+    "label": "Bolu / Yeni̇çağa",
+    "lat": 40.7724078,
+    "lng": 32.0358283
+  },
+  {
+    "id": "ilce-178",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Ağlasun",
+    "label": "Burdur / Ağlasun",
+    "lat": 37.657716,
+    "lng": 30.532342
+  },
+  {
+    "id": "ilce-179",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Altinyayla(di̇rmi̇l)",
+    "label": "Burdur / Altinyayla(di̇rmi̇l)",
+    "lat": 36.998631,
+    "lng": 29.54598
+  },
+  {
+    "id": "ilce-180",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Bucak",
+    "label": "Burdur / Bucak",
+    "lat": 37.456841,
+    "lng": 30.581881
+  },
+  {
+    "id": "ilce-181",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Burdur",
+    "label": "Burdur / Burdur",
+    "lat": 37.726909,
+    "lng": 30.288876
+  },
+  {
+    "id": "ilce-182",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Çavdir",
+    "label": "Burdur / Çavdir",
+    "lat": 37.155,
+    "lng": 29.6938889
+  },
+  {
+    "id": "ilce-183",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Çelti̇kçi̇",
+    "label": "Burdur / Çelti̇kçi̇",
+    "lat": 37.5344444,
+    "lng": 30.4844444
+  },
+  {
+    "id": "ilce-184",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Gölhi̇sar",
+    "label": "Burdur / Gölhi̇sar",
+    "lat": 37.144437,
+    "lng": 29.5078705
+  },
+  {
+    "id": "ilce-185",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Karamanli",
+    "label": "Burdur / Karamanli",
+    "lat": 37.37,
+    "lng": 29.821
+  },
+  {
+    "id": "ilce-186",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Kemer",
+    "label": "Burdur / Kemer",
+    "lat": 37.352,
+    "lng": 30.063
+  },
+  {
+    "id": "ilce-187",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Tefenni̇",
+    "label": "Burdur / Tefenni̇",
+    "lat": 37.310984,
+    "lng": 29.7744512
+  },
+  {
+    "id": "ilce-188",
+    "cityCode": 15,
+    "cityName": "Burdur",
+    "districtName": "Yeşi̇lova",
+    "label": "Burdur / Yeşi̇lova",
+    "lat": 37.5080556,
+    "lng": 29.7547222
+  },
+  {
+    "id": "ilce-189",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Büyükorhan",
+    "label": "Bursa / Büyükorhan",
+    "lat": 39.7710397,
+    "lng": 28.885894
+  },
+  {
+    "id": "ilce-190",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Gemli̇k",
+    "label": "Bursa / Gemli̇k",
+    "lat": 40.4330556,
+    "lng": 29.1566667
+  },
+  {
+    "id": "ilce-191",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Gürsu",
+    "label": "Bursa / Gürsu",
+    "lat": 40.2409678,
+    "lng": 29.2088303
+  },
+  {
+    "id": "ilce-192",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Harmancik",
+    "label": "Bursa / Harmancik",
+    "lat": 39.6761111,
+    "lng": 29.1552778
+  },
+  {
+    "id": "ilce-193",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "İnegöl",
+    "label": "Bursa / İnegöl",
+    "lat": 40.0833333,
+    "lng": 29.5166667
+  },
+  {
+    "id": "ilce-194",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "İzni̇k",
+    "label": "Bursa / İzni̇k",
+    "lat": 40.4289628,
+    "lng": 29.7165417
+  },
+  {
+    "id": "ilce-195",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Karacabey",
+    "label": "Bursa / Karacabey",
+    "lat": 40.225498,
+    "lng": 28.37273
+  },
+  {
+    "id": "ilce-196",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Keles",
+    "label": "Bursa / Keles",
+    "lat": 39.9136111,
+    "lng": 29.2294444
+  },
+  {
+    "id": "ilce-197",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Kestel",
+    "label": "Bursa / Kestel",
+    "lat": 40.1956105,
+    "lng": 29.2117365
+  },
+  {
+    "id": "ilce-198",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Mudanya",
+    "label": "Bursa / Mudanya",
+    "lat": 40.3763889,
+    "lng": 28.8833333
+  },
+  {
+    "id": "ilce-199",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Mustafakemalpaşa",
+    "label": "Bursa / Mustafakemalpaşa",
+    "lat": 40.0353,
+    "lng": 28.4117
+  },
+  {
+    "id": "ilce-200",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Ni̇lüfer",
+    "label": "Bursa / Ni̇lüfer",
+    "lat": 40.18257,
+    "lng": 29.06687
+  },
+  {
+    "id": "ilce-201",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Orhaneli̇",
+    "label": "Bursa / Orhaneli̇",
+    "lat": 39.906719,
+    "lng": 28.988621
+  },
+  {
+    "id": "ilce-202",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Orhangazi̇",
+    "label": "Bursa / Orhangazi̇",
+    "lat": 40.501129,
+    "lng": 29.31068
+  },
+  {
+    "id": "ilce-203",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Osmangazi̇",
+    "label": "Bursa / Osmangazi̇",
+    "lat": 40.18257,
+    "lng": 29.06687
+  },
+  {
+    "id": "ilce-204",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Yeni̇şehi̇r",
+    "label": "Bursa / Yeni̇şehi̇r",
+    "lat": 40.2644444,
+    "lng": 29.6530556
+  },
+  {
+    "id": "ilce-205",
+    "cityCode": 16,
+    "cityName": "Bursa",
+    "districtName": "Yildirim",
+    "label": "Bursa / Yildirim",
+    "lat": 40.3298442,
+    "lng": 29.5586174
+  },
+  {
+    "id": "ilce-206",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Ayvacik",
+    "label": "Çanakkale / Ayvacik",
+    "lat": 39.6011111,
+    "lng": 26.4047222
+  },
+  {
+    "id": "ilce-207",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Bayrami̇ç",
+    "label": "Çanakkale / Bayrami̇ç",
+    "lat": 40.7038355,
+    "lng": 26.9101736
+  },
+  {
+    "id": "ilce-208",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Bi̇ga",
+    "label": "Çanakkale / Bi̇ga",
+    "lat": 40.23407,
+    "lng": 27.24572
+  },
+  {
+    "id": "ilce-209",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Bozcaada",
+    "label": "Çanakkale / Bozcaada",
+    "lat": 39.8230643,
+    "lng": 26.0325226
+  },
+  {
+    "id": "ilce-210",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Çan",
+    "label": "Çanakkale / Çan",
+    "lat": 40.0275,
+    "lng": 27.0475
+  },
+  {
+    "id": "ilce-211",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Çanakkale",
+    "label": "Çanakkale / Çanakkale",
+    "lat": 40.155312,
+    "lng": 26.41416
+  },
+  {
+    "id": "ilce-212",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Eceabat",
+    "label": "Çanakkale / Eceabat",
+    "lat": 40.1838889,
+    "lng": 26.3563889
+  },
+  {
+    "id": "ilce-213",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Ezi̇ne",
+    "label": "Çanakkale / Ezi̇ne",
+    "lat": 39.7832499,
+    "lng": 26.3411793
+  },
+  {
+    "id": "ilce-214",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Geli̇bolu",
+    "label": "Çanakkale / Geli̇bolu",
+    "lat": 40.417447,
+    "lng": 26.677435
+  },
+  {
+    "id": "ilce-215",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Gökçeada(i̇mroz)",
+    "label": "Çanakkale / Gökçeada(i̇mroz)",
+    "lat": 40.197029,
+    "lng": 25.917959
+  },
+  {
+    "id": "ilce-216",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Lapseki̇",
+    "label": "Çanakkale / Lapseki̇",
+    "lat": 40.35299,
+    "lng": 26.6995478
+  },
+  {
+    "id": "ilce-217",
+    "cityCode": 17,
+    "cityName": "Çanakkale",
+    "districtName": "Yeni̇ce",
+    "label": "Çanakkale / Yeni̇ce",
+    "lat": 39.928291,
+    "lng": 27.26038
+  },
+  {
+    "id": "ilce-218",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Atkaracalar",
+    "label": "Çankiri / Atkaracalar",
+    "lat": 40.8166667,
+    "lng": 33.0833333
+  },
+  {
+    "id": "ilce-219",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Bayramören",
+    "label": "Çankiri / Bayramören",
+    "lat": 40.9419568,
+    "lng": 33.2041374
+  },
+  {
+    "id": "ilce-220",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Çankiri",
+    "label": "Çankiri / Çankiri",
+    "lat": 40.6,
+    "lng": 33.6166667
+  },
+  {
+    "id": "ilce-221",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Çerkeş",
+    "label": "Çankiri / Çerkeş",
+    "lat": 40.8166667,
+    "lng": 32.9
+  },
+  {
+    "id": "ilce-222",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Eldi̇van",
+    "label": "Çankiri / Eldi̇van",
+    "lat": 40.5333333,
+    "lng": 33.5
+  },
+  {
+    "id": "ilce-223",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Ilgaz",
+    "label": "Çankiri / Ilgaz",
+    "lat": 40.9261452,
+    "lng": 33.6289615
+  },
+  {
+    "id": "ilce-224",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Kizilirmak",
+    "label": "Çankiri / Kizilirmak",
+    "lat": 40.35,
+    "lng": 33.9833333
+  },
+  {
+    "id": "ilce-225",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Korgun",
+    "label": "Çankiri / Korgun",
+    "lat": 40.7333333,
+    "lng": 33.5166667
+  },
+  {
+    "id": "ilce-226",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Kurşunlu",
+    "label": "Çankiri / Kurşunlu",
+    "lat": 40.8396835,
+    "lng": 33.2577547
+  },
+  {
+    "id": "ilce-227",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Orta",
+    "label": "Çankiri / Orta",
+    "lat": 40.6240684,
+    "lng": 33.1116234
+  },
+  {
+    "id": "ilce-228",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Şabanözü",
+    "label": "Çankiri / Şabanözü",
+    "lat": 40.4833333,
+    "lng": 33.2833333
+  },
+  {
+    "id": "ilce-229",
+    "cityCode": 18,
+    "cityName": "Çankiri",
+    "districtName": "Yaprakli",
+    "label": "Çankiri / Yaprakli",
+    "lat": 40.763351,
+    "lng": 33.777699
+  },
+  {
+    "id": "ilce-230",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Alaca",
+    "label": "Çorum / Alaca",
+    "lat": 40.17366,
+    "lng": 34.844238
+  },
+  {
+    "id": "ilce-231",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Bayat",
+    "label": "Çorum / Bayat",
+    "lat": 40.646,
+    "lng": 34.261
+  },
+  {
+    "id": "ilce-232",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Boğazkale",
+    "label": "Çorum / Boğazkale",
+    "lat": 40.0277582,
+    "lng": 34.6167589
+  },
+  {
+    "id": "ilce-233",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Çorum",
+    "label": "Çorum / Çorum",
+    "lat": 40.5505556,
+    "lng": 34.9555556
+  },
+  {
+    "id": "ilce-234",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Dodurga",
+    "label": "Çorum / Dodurga",
+    "lat": 40.8570016,
+    "lng": 34.808352
+  },
+  {
+    "id": "ilce-235",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "İski̇li̇p",
+    "label": "Çorum / İski̇li̇p",
+    "lat": 40.74123,
+    "lng": 34.470829
+  },
+  {
+    "id": "ilce-236",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Kargi",
+    "label": "Çorum / Kargi",
+    "lat": 41.1344,
+    "lng": 34.4872
+  },
+  {
+    "id": "ilce-237",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Laçi̇n",
+    "label": "Çorum / Laçi̇n",
+    "lat": 40.7693431,
+    "lng": 34.896896
+  },
+  {
+    "id": "ilce-238",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Meci̇tözü",
+    "label": "Çorum / Meci̇tözü",
+    "lat": 40.52,
+    "lng": 35.2952778
+  },
+  {
+    "id": "ilce-239",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Oğuzlar(karaören)",
+    "label": "Çorum / Oğuzlar(karaören)",
+    "lat": 40.5505556,
+    "lng": 34.9555556
+  },
+  {
+    "id": "ilce-240",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Ortaköy",
+    "label": "Çorum / Ortaköy",
+    "lat": 40.2733356,
+    "lng": 35.2490312
+  },
+  {
+    "id": "ilce-241",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Osmancik",
+    "label": "Çorum / Osmancik",
+    "lat": 40.97406,
+    "lng": 34.802158
+  },
+  {
+    "id": "ilce-242",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Sungurlu",
+    "label": "Çorum / Sungurlu",
+    "lat": 40.161,
+    "lng": 34.377
+  },
+  {
+    "id": "ilce-243",
+    "cityCode": 19,
+    "cityName": "Çorum",
+    "districtName": "Uğurludağ",
+    "label": "Çorum / Uğurludağ",
+    "lat": 40.447504,
+    "lng": 34.4547213
+  },
+  {
+    "id": "ilce-244",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Acipayam",
+    "label": "Deni̇zli̇ / Acipayam",
+    "lat": 37.4333333,
+    "lng": 29.35
+  },
+  {
+    "id": "ilce-245",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Akköy",
+    "label": "Deni̇zli̇ / Akköy",
+    "lat": 37.9558,
+    "lng": 29.0786
+  },
+  {
+    "id": "ilce-246",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Babadağ",
+    "label": "Deni̇zli̇ / Babadağ",
+    "lat": 37.8087799,
+    "lng": 28.8567675
+  },
+  {
+    "id": "ilce-247",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Baklan",
+    "label": "Deni̇zli̇ / Baklan",
+    "lat": 37.9795005,
+    "lng": 29.6064479
+  },
+  {
+    "id": "ilce-248",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Beki̇lli̇",
+    "label": "Deni̇zli̇ / Beki̇lli̇",
+    "lat": 38.2319444,
+    "lng": 29.4216667
+  },
+  {
+    "id": "ilce-249",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Beyağaç",
+    "label": "Deni̇zli̇ / Beyağaç",
+    "lat": 37.2221931,
+    "lng": 28.9091914
+  },
+  {
+    "id": "ilce-250",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Bozkurt",
+    "label": "Deni̇zli̇ / Bozkurt",
+    "lat": 37.8244223,
+    "lng": 29.6064479
+  },
+  {
+    "id": "ilce-251",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Buldan",
+    "label": "Deni̇zli̇ / Buldan",
+    "lat": 38.052872,
+    "lng": 28.831499
+  },
+  {
+    "id": "ilce-252",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Çal",
+    "label": "Deni̇zli̇ / Çal",
+    "lat": 38.0844338,
+    "lng": 29.3961647
+  },
+  {
+    "id": "ilce-253",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Çameli̇",
+    "label": "Deni̇zli̇ / Çameli̇",
+    "lat": 37.0708307,
+    "lng": 29.3453611
+  },
+  {
+    "id": "ilce-254",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Çardak",
+    "label": "Deni̇zli̇ / Çardak",
+    "lat": 37.8246553,
+    "lng": 29.6759908
+  },
+  {
+    "id": "ilce-255",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Çi̇vri̇l",
+    "label": "Deni̇zli̇ / Çi̇vri̇l",
+    "lat": 38.2998807,
+    "lng": 29.7397084
+  },
+  {
+    "id": "ilce-256",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Deni̇zli̇",
+    "label": "Deni̇zli̇ / Deni̇zli̇",
+    "lat": 37.77652,
+    "lng": 29.08639
+  },
+  {
+    "id": "ilce-257",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Güney",
+    "label": "Deni̇zli̇ / Güney",
+    "lat": 38.159569,
+    "lng": 29.06777
+  },
+  {
+    "id": "ilce-258",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Honaz",
+    "label": "Deni̇zli̇ / Honaz",
+    "lat": 37.7576427,
+    "lng": 29.2640387
+  },
+  {
+    "id": "ilce-259",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Kale",
+    "label": "Deni̇zli̇ / Kale",
+    "lat": 37.4391667,
+    "lng": 28.8452778
+  },
+  {
+    "id": "ilce-260",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Sarayköy",
+    "label": "Deni̇zli̇ / Sarayköy",
+    "lat": 37.9264527,
+    "lng": 28.9266621
+  },
+  {
+    "id": "ilce-261",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Seri̇nhi̇sar",
+    "label": "Deni̇zli̇ / Seri̇nhi̇sar",
+    "lat": 37.5806645,
+    "lng": 29.2698489
+  },
+  {
+    "id": "ilce-262",
+    "cityCode": 20,
+    "cityName": "Deni̇zli̇",
+    "districtName": "Tavas",
+    "label": "Deni̇zli̇ / Tavas",
+    "lat": 37.59108,
+    "lng": 29.06315
+  },
+  {
+    "id": "ilce-263",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Bağlar",
+    "label": "Di̇yarbakir / Bağlar",
+    "lat": 37.91441,
+    "lng": 40.230629
+  },
+  {
+    "id": "ilce-264",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Bi̇smi̇l",
+    "label": "Di̇yarbakir / Bi̇smi̇l",
+    "lat": 37.8452,
+    "lng": 40.67561
+  },
+  {
+    "id": "ilce-265",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Çermi̇k",
+    "label": "Di̇yarbakir / Çermi̇k",
+    "lat": 38.1372222,
+    "lng": 39.4511111
+  },
+  {
+    "id": "ilce-266",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Çinar",
+    "label": "Di̇yarbakir / Çinar",
+    "lat": 37.7241667,
+    "lng": 40.415
+  },
+  {
+    "id": "ilce-267",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Çüngüş",
+    "label": "Di̇yarbakir / Çüngüş",
+    "lat": 38.2166667,
+    "lng": 39.2833333
+  },
+  {
+    "id": "ilce-268",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Di̇cle",
+    "label": "Di̇yarbakir / Di̇cle",
+    "lat": 38.375,
+    "lng": 40.0733333
+  },
+  {
+    "id": "ilce-269",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Eği̇l",
+    "label": "Di̇yarbakir / Eği̇l",
+    "lat": 38.2566123,
+    "lng": 40.0836662
+  },
+  {
+    "id": "ilce-270",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Ergani̇",
+    "label": "Di̇yarbakir / Ergani̇",
+    "lat": 38.2666667,
+    "lng": 39.7666667
+  },
+  {
+    "id": "ilce-271",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Hani̇",
+    "label": "Di̇yarbakir / Hani̇",
+    "lat": 38.4136111,
+    "lng": 40.3925
+  },
+  {
+    "id": "ilce-272",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Hazro",
+    "label": "Di̇yarbakir / Hazro",
+    "lat": 38.25,
+    "lng": 40.7833333
+  },
+  {
+    "id": "ilce-273",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Kayapinar",
+    "label": "Di̇yarbakir / Kayapinar",
+    "lat": 37.91441,
+    "lng": 40.230629
+  },
+  {
+    "id": "ilce-274",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Kocaköy",
+    "label": "Di̇yarbakir / Kocaköy",
+    "lat": 38.2897222,
+    "lng": 40.5013889
+  },
+  {
+    "id": "ilce-275",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Kulp",
+    "label": "Di̇yarbakir / Kulp",
+    "lat": 38.5016667,
+    "lng": 41.0116667
+  },
+  {
+    "id": "ilce-276",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Li̇ce",
+    "label": "Di̇yarbakir / Li̇ce",
+    "lat": 38.4604983,
+    "lng": 40.6468573
+  },
+  {
+    "id": "ilce-277",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Si̇lvan",
+    "label": "Di̇yarbakir / Si̇lvan",
+    "lat": 38.1422222,
+    "lng": 41.0013889
+  },
+  {
+    "id": "ilce-278",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Sur",
+    "label": "Di̇yarbakir / Sur",
+    "lat": 38.0597606,
+    "lng": 40.388604
+  },
+  {
+    "id": "ilce-279",
+    "cityCode": 21,
+    "cityName": "Di̇yarbakir",
+    "districtName": "Yeni̇şehi̇r",
+    "label": "Di̇yarbakir / Yeni̇şehi̇r",
+    "lat": 37.91441,
+    "lng": 40.230629
+  },
+  {
+    "id": "ilce-280",
+    "cityCode": 22,
+    "cityName": "Edi̇rne",
+    "districtName": "Edi̇rne",
+    "label": "Edi̇rne / Edi̇rne",
+    "lat": 41.6666667,
+    "lng": 26.5666667
+  },
+  {
+    "id": "ilce-281",
+    "cityCode": 22,
+    "cityName": "Edi̇rne",
+    "districtName": "Enez",
+    "label": "Edi̇rne / Enez",
+    "lat": 40.729328,
+    "lng": 26.0889
+  },
+  {
+    "id": "ilce-282",
+    "cityCode": 22,
+    "cityName": "Edi̇rne",
+    "districtName": "Havsa",
+    "label": "Edi̇rne / Havsa",
+    "lat": 41.55,
+    "lng": 26.8166667
+  },
+  {
+    "id": "ilce-283",
+    "cityCode": 22,
+    "cityName": "Edi̇rne",
+    "districtName": "İpsala",
+    "label": "Edi̇rne / İpsala",
+    "lat": 40.9227353,
+    "lng": 26.3795495
+  },
+  {
+    "id": "ilce-284",
+    "cityCode": 22,
+    "cityName": "Edi̇rne",
+    "districtName": "Keşan",
+    "label": "Edi̇rne / Keşan",
+    "lat": 40.85,
+    "lng": 26.6333333
+  },
+  {
+    "id": "ilce-285",
+    "cityCode": 22,
+    "cityName": "Edi̇rne",
+    "districtName": "Lalapaşa",
+    "label": "Edi̇rne / Lalapaşa",
+    "lat": 41.8333333,
+    "lng": 26.7333333
+  },
+  {
+    "id": "ilce-286",
+    "cityCode": 22,
+    "cityName": "Edi̇rne",
+    "districtName": "Meri̇ç",
+    "label": "Edi̇rne / Meri̇ç",
+    "lat": 41.189,
+    "lng": 26.418
+  },
+  {
+    "id": "ilce-287",
+    "cityCode": 22,
+    "cityName": "Edi̇rne",
+    "districtName": "Süloğlu(süleoğlu)",
+    "label": "Edi̇rne / Süloğlu(süleoğlu)",
+    "lat": 41.7666667,
+    "lng": 26.9166667
+  },
+  {
+    "id": "ilce-288",
+    "cityCode": 22,
+    "cityName": "Edi̇rne",
+    "districtName": "Uzunköprü",
+    "label": "Edi̇rne / Uzunköprü",
+    "lat": 41.271259,
+    "lng": 26.69972
+  },
+  {
+    "id": "ilce-289",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Ağin",
+    "label": "Elaziğ / Ağin",
+    "lat": 38.9422222,
+    "lng": 38.7155556
+  },
+  {
+    "id": "ilce-290",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Alacakaya",
+    "label": "Elaziğ / Alacakaya",
+    "lat": 38.453244,
+    "lng": 39.8512762
+  },
+  {
+    "id": "ilce-291",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Aricak",
+    "label": "Elaziğ / Aricak",
+    "lat": 38.5666667,
+    "lng": 40.1333333
+  },
+  {
+    "id": "ilce-292",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Baski̇l",
+    "label": "Elaziğ / Baski̇l",
+    "lat": 38.5697222,
+    "lng": 38.8230556
+  },
+  {
+    "id": "ilce-293",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Elaziğ",
+    "label": "Elaziğ / Elaziğ",
+    "lat": 38.680969,
+    "lng": 39.226398
+  },
+  {
+    "id": "ilce-294",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Karakoçan",
+    "label": "Elaziğ / Karakoçan",
+    "lat": 38.9583665,
+    "lng": 40.03481
+  },
+  {
+    "id": "ilce-295",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Keban",
+    "label": "Elaziğ / Keban",
+    "lat": 38.7939296,
+    "lng": 38.7419367
+  },
+  {
+    "id": "ilce-296",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Kovancilar",
+    "label": "Elaziğ / Kovancilar",
+    "lat": 38.7166667,
+    "lng": 39.8666667
+  },
+  {
+    "id": "ilce-297",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Maden",
+    "label": "Elaziğ / Maden",
+    "lat": 38.3897222,
+    "lng": 39.6686111
+  },
+  {
+    "id": "ilce-298",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Palu",
+    "label": "Elaziğ / Palu",
+    "lat": 38.7054728,
+    "lng": 39.9525286
+  },
+  {
+    "id": "ilce-299",
+    "cityCode": 23,
+    "cityName": "Elaziğ",
+    "districtName": "Si̇vri̇ce",
+    "label": "Elaziğ / Si̇vri̇ce",
+    "lat": 38.4466667,
+    "lng": 39.3116667
+  },
+  {
+    "id": "ilce-300",
+    "cityCode": 24,
+    "cityName": "Erzi̇ncan",
+    "districtName": "Çayirli",
+    "label": "Erzi̇ncan / Çayirli",
+    "lat": 39.805,
+    "lng": 40.0411111
+  },
+  {
+    "id": "ilce-301",
+    "cityCode": 24,
+    "cityName": "Erzi̇ncan",
+    "districtName": "Erzi̇ncan",
+    "label": "Erzi̇ncan / Erzi̇ncan",
+    "lat": 39.75,
+    "lng": 39.5
+  },
+  {
+    "id": "ilce-302",
+    "cityCode": 24,
+    "cityName": "Erzi̇ncan",
+    "districtName": "Iliç(i̇li̇ç)",
+    "label": "Erzi̇ncan / Iliç(i̇li̇ç)",
+    "lat": 39.4580563,
+    "lng": 38.5647362
+  },
+  {
+    "id": "ilce-303",
+    "cityCode": 24,
+    "cityName": "Erzi̇ncan",
+    "districtName": "Kemah",
+    "label": "Erzi̇ncan / Kemah",
+    "lat": 39.6027778,
+    "lng": 39.0355556
+  },
+  {
+    "id": "ilce-304",
+    "cityCode": 24,
+    "cityName": "Erzi̇ncan",
+    "districtName": "Kemali̇ye",
+    "label": "Erzi̇ncan / Kemali̇ye",
+    "lat": 39.2608333,
+    "lng": 38.4966667
+  },
+  {
+    "id": "ilce-305",
+    "cityCode": 24,
+    "cityName": "Erzi̇ncan",
+    "districtName": "Otlukbeli̇",
+    "label": "Erzi̇ncan / Otlukbeli̇",
+    "lat": 39.9739655,
+    "lng": 40.0224165
+  },
+  {
+    "id": "ilce-306",
+    "cityCode": 24,
+    "cityName": "Erzi̇ncan",
+    "districtName": "Refahi̇ye",
+    "label": "Erzi̇ncan / Refahi̇ye",
+    "lat": 39.9016487,
+    "lng": 38.7683142
+  },
+  {
+    "id": "ilce-307",
+    "cityCode": 24,
+    "cityName": "Erzi̇ncan",
+    "districtName": "Tercan",
+    "label": "Erzi̇ncan / Tercan",
+    "lat": 39.7794559,
+    "lng": 40.3850845
+  },
+  {
+    "id": "ilce-308",
+    "cityCode": 24,
+    "cityName": "Erzi̇ncan",
+    "districtName": "Üzümlü",
+    "label": "Erzi̇ncan / Üzümlü",
+    "lat": 39.71,
+    "lng": 39.7016667
+  },
+  {
+    "id": "ilce-309",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Aşkale",
+    "label": "Erzurum / Aşkale",
+    "lat": 39.92025,
+    "lng": 40.6923611
+  },
+  {
+    "id": "ilce-310",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Azi̇zi̇ye(ilica)",
+    "label": "Erzurum / Azi̇zi̇ye(ilica)",
+    "lat": 39.9458333,
+    "lng": 41.1052778
+  },
+  {
+    "id": "ilce-311",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Çat",
+    "label": "Erzurum / Çat",
+    "lat": 39.6111111,
+    "lng": 40.9788889
+  },
+  {
+    "id": "ilce-312",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Hinis",
+    "label": "Erzurum / Hinis",
+    "lat": 39.3566706,
+    "lng": 41.702949
+  },
+  {
+    "id": "ilce-313",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Horasan",
+    "label": "Erzurum / Horasan",
+    "lat": 40.038521,
+    "lng": 42.16235
+  },
+  {
+    "id": "ilce-314",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "İspi̇r",
+    "label": "Erzurum / İspi̇r",
+    "lat": 40.4836111,
+    "lng": 40.9952778
+  },
+  {
+    "id": "ilce-315",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Karaçoban",
+    "label": "Erzurum / Karaçoban",
+    "lat": 39.3508333,
+    "lng": 42.1119444
+  },
+  {
+    "id": "ilce-316",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Karayazi",
+    "label": "Erzurum / Karayazi",
+    "lat": 39.7010606,
+    "lng": 42.143789
+  },
+  {
+    "id": "ilce-317",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Köprüköy",
+    "label": "Erzurum / Köprüköy",
+    "lat": 39.9755556,
+    "lng": 41.8711111
+  },
+  {
+    "id": "ilce-318",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Narman",
+    "label": "Erzurum / Narman",
+    "lat": 40.345058,
+    "lng": 41.867199
+  },
+  {
+    "id": "ilce-319",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Oltu",
+    "label": "Erzurum / Oltu",
+    "lat": 40.5455556,
+    "lng": 41.9955556
+  },
+  {
+    "id": "ilce-320",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Olur",
+    "label": "Erzurum / Olur",
+    "lat": 40.8333333,
+    "lng": 42.1333333
+  },
+  {
+    "id": "ilce-321",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Palandöken",
+    "label": "Erzurum / Palandöken",
+    "lat": 39.9043189,
+    "lng": 41.2678853
+  },
+  {
+    "id": "ilce-322",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Pasi̇nler",
+    "label": "Erzurum / Pasi̇nler",
+    "lat": 39.9797222,
+    "lng": 41.6755556
+  },
+  {
+    "id": "ilce-323",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Pazaryolu",
+    "label": "Erzurum / Pazaryolu",
+    "lat": 40.415909,
+    "lng": 40.768829
+  },
+  {
+    "id": "ilce-324",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Şenkaya",
+    "label": "Erzurum / Şenkaya",
+    "lat": 40.5666667,
+    "lng": 42.35
+  },
+  {
+    "id": "ilce-325",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Tekman",
+    "label": "Erzurum / Tekman",
+    "lat": 39.645,
+    "lng": 41.5083333
+  },
+  {
+    "id": "ilce-326",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Tortum",
+    "label": "Erzurum / Tortum",
+    "lat": 40.2992011,
+    "lng": 41.5478508
+  },
+  {
+    "id": "ilce-327",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Uzundere",
+    "label": "Erzurum / Uzundere",
+    "lat": 40.5363889,
+    "lng": 41.5483333
+  },
+  {
+    "id": "ilce-328",
+    "cityCode": 25,
+    "cityName": "Erzurum",
+    "districtName": "Yakuti̇ye",
+    "label": "Erzurum / Yakuti̇ye",
+    "lat": 39.9043189,
+    "lng": 41.2678853
+  },
+  {
+    "id": "ilce-329",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Alpu",
+    "label": "Eski̇şehi̇r / Alpu",
+    "lat": 39.7605556,
+    "lng": 30.9580556
+  },
+  {
+    "id": "ilce-330",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Beyli̇kova",
+    "label": "Eski̇şehi̇r / Beyli̇kova",
+    "lat": 39.6869444,
+    "lng": 31.2055556
+  },
+  {
+    "id": "ilce-331",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Çi̇fteler",
+    "label": "Eski̇şehi̇r / Çi̇fteler",
+    "lat": 39.3830556,
+    "lng": 31.0391667
+  },
+  {
+    "id": "ilce-332",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Günyüzü",
+    "label": "Eski̇şehi̇r / Günyüzü",
+    "lat": 39.3838889,
+    "lng": 31.81
+  },
+  {
+    "id": "ilce-333",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Han",
+    "label": "Eski̇şehi̇r / Han",
+    "lat": 39.1591667,
+    "lng": 30.8613889
+  },
+  {
+    "id": "ilce-334",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "İnönü",
+    "label": "Eski̇şehi̇r / İnönü",
+    "lat": 39.8212299,
+    "lng": 30.144496
+  },
+  {
+    "id": "ilce-335",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Mahmudi̇ye",
+    "label": "Eski̇şehi̇r / Mahmudi̇ye",
+    "lat": 39.497327,
+    "lng": 30.988913
+  },
+  {
+    "id": "ilce-336",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Mi̇halgazi̇",
+    "label": "Eski̇şehi̇r / Mi̇halgazi̇",
+    "lat": 40.0263889,
+    "lng": 30.5777778
+  },
+  {
+    "id": "ilce-337",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Mi̇haliççik",
+    "label": "Eski̇şehi̇r / Mi̇haliççik",
+    "lat": 39.8641667,
+    "lng": 31.4952778
+  },
+  {
+    "id": "ilce-338",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Odunpazari",
+    "label": "Eski̇şehi̇r / Odunpazari",
+    "lat": 39.784302,
+    "lng": 30.51922
+  },
+  {
+    "id": "ilce-339",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Saricakaya",
+    "label": "Eski̇şehi̇r / Saricakaya",
+    "lat": 40.0403444,
+    "lng": 30.617113
+  },
+  {
+    "id": "ilce-340",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Seyi̇tgazi̇",
+    "label": "Eski̇şehi̇r / Seyi̇tgazi̇",
+    "lat": 39.4447222,
+    "lng": 30.6947222
+  },
+  {
+    "id": "ilce-341",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Si̇vri̇hi̇sar",
+    "label": "Eski̇şehi̇r / Si̇vri̇hi̇sar",
+    "lat": 39.45,
+    "lng": 31.5377778
+  },
+  {
+    "id": "ilce-342",
+    "cityCode": 26,
+    "cityName": "Eski̇şehi̇r",
+    "districtName": "Tepebaşi",
+    "label": "Eski̇şehi̇r / Tepebaşi",
+    "lat": 39.784302,
+    "lng": 30.51922
+  },
+  {
+    "id": "ilce-343",
+    "cityCode": 27,
+    "cityName": "Gazi̇antep",
+    "districtName": "Araban",
+    "label": "Gazi̇antep / Araban",
+    "lat": 37.4265042,
+    "lng": 37.6892062
+  },
+  {
+    "id": "ilce-344",
+    "cityCode": 27,
+    "cityName": "Gazi̇antep",
+    "districtName": "İslahi̇ye",
+    "label": "Gazi̇antep / İslahi̇ye",
+    "lat": 37.025,
+    "lng": 36.6345
+  },
+  {
+    "id": "ilce-345",
+    "cityCode": 27,
+    "cityName": "Gazi̇antep",
+    "districtName": "Karkamiş",
+    "label": "Gazi̇antep / Karkamiş",
+    "lat": 36.834,
+    "lng": 38.001
+  },
+  {
+    "id": "ilce-346",
+    "cityCode": 27,
+    "cityName": "Gazi̇antep",
+    "districtName": "Ni̇zi̇p",
+    "label": "Gazi̇antep / Ni̇zi̇p",
+    "lat": 37.0166667,
+    "lng": 37.8
+  },
+  {
+    "id": "ilce-347",
+    "cityCode": 27,
+    "cityName": "Gazi̇antep",
+    "districtName": "Nurdaği",
+    "label": "Gazi̇antep / Nurdaği",
+    "lat": 37.1791719,
+    "lng": 36.7361539
+  },
+  {
+    "id": "ilce-348",
+    "cityCode": 27,
+    "cityName": "Gazi̇antep",
+    "districtName": "Oğuzeli̇",
+    "label": "Gazi̇antep / Oğuzeli̇",
+    "lat": 36.9657424,
+    "lng": 37.513475
+  },
+  {
+    "id": "ilce-349",
+    "cityCode": 27,
+    "cityName": "Gazi̇antep",
+    "districtName": "Şahi̇nbey",
+    "label": "Gazi̇antep / Şahi̇nbey",
+    "lat": 37.06622,
+    "lng": 37.38332
+  },
+  {
+    "id": "ilce-350",
+    "cityCode": 27,
+    "cityName": "Gazi̇antep",
+    "districtName": "Şehi̇tkami̇l",
+    "label": "Gazi̇antep / Şehi̇tkami̇l",
+    "lat": 37.06622,
+    "lng": 37.38332
+  },
+  {
+    "id": "ilce-351",
+    "cityCode": 27,
+    "cityName": "Gazi̇antep",
+    "districtName": "Yavuzeli̇",
+    "label": "Gazi̇antep / Yavuzeli̇",
+    "lat": 37.3201746,
+    "lng": 37.5667735
+  },
+  {
+    "id": "ilce-352",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Alucra",
+    "label": "Gi̇resun / Alucra",
+    "lat": 40.3166667,
+    "lng": 38.7666667
+  },
+  {
+    "id": "ilce-353",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Bulancak",
+    "label": "Gi̇resun / Bulancak",
+    "lat": 40.9352034,
+    "lng": 38.2125926
+  },
+  {
+    "id": "ilce-354",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Çamoluk",
+    "label": "Gi̇resun / Çamoluk",
+    "lat": 40.133333,
+    "lng": 38.75
+  },
+  {
+    "id": "ilce-355",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Çanakçi",
+    "label": "Gi̇resun / Çanakçi",
+    "lat": 40.9130184,
+    "lng": 39.0043345
+  },
+  {
+    "id": "ilce-356",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Dereli̇",
+    "label": "Gi̇resun / Dereli̇",
+    "lat": 40.7400946,
+    "lng": 38.4481174
+  },
+  {
+    "id": "ilce-357",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Doğankent",
+    "label": "Gi̇resun / Doğankent",
+    "lat": 40.8,
+    "lng": 38.9166667
+  },
+  {
+    "id": "ilce-358",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Espi̇ye",
+    "label": "Gi̇resun / Espi̇ye",
+    "lat": 40.9483587,
+    "lng": 38.7082259
+  },
+  {
+    "id": "ilce-359",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Eynesi̇l",
+    "label": "Gi̇resun / Eynesi̇l",
+    "lat": 41.0602883,
+    "lng": 39.1435365
+  },
+  {
+    "id": "ilce-360",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Gi̇resun",
+    "label": "Gi̇resun / Gi̇resun",
+    "lat": 40.912811,
+    "lng": 38.38953
+  },
+  {
+    "id": "ilce-361",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Görele",
+    "label": "Gi̇resun / Görele",
+    "lat": 41.0318044,
+    "lng": 39.0013811
+  },
+  {
+    "id": "ilce-362",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Güce",
+    "label": "Gi̇resun / Güce",
+    "lat": 40.8934796,
+    "lng": 38.8059883
+  },
+  {
+    "id": "ilce-363",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Keşap",
+    "label": "Gi̇resun / Keşap",
+    "lat": 40.9166667,
+    "lng": 38.5166667
+  },
+  {
+    "id": "ilce-364",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Pi̇razi̇z",
+    "label": "Gi̇resun / Pi̇razi̇z",
+    "lat": 40.9515492,
+    "lng": 38.1200837
+  },
+  {
+    "id": "ilce-365",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Şebi̇nkarahi̇sar",
+    "label": "Gi̇resun / Şebi̇nkarahi̇sar",
+    "lat": 40.2897875,
+    "lng": 38.4209894
+  },
+  {
+    "id": "ilce-366",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Ti̇rebolu",
+    "label": "Gi̇resun / Ti̇rebolu",
+    "lat": 41.0051024,
+    "lng": 38.8141059
+  },
+  {
+    "id": "ilce-367",
+    "cityCode": 28,
+    "cityName": "Gi̇resun",
+    "districtName": "Yağlidere",
+    "label": "Gi̇resun / Yağlidere",
+    "lat": 40.8616233,
+    "lng": 38.6254981
+  },
+  {
+    "id": "ilce-368",
+    "cityCode": 29,
+    "cityName": "Gümüşhane",
+    "districtName": "Gümüşhane",
+    "label": "Gümüşhane / Gümüşhane",
+    "lat": 40.4602778,
+    "lng": 39.4813889
+  },
+  {
+    "id": "ilce-369",
+    "cityCode": 29,
+    "cityName": "Gümüşhane",
+    "districtName": "Kelki̇t",
+    "label": "Gümüşhane / Kelki̇t",
+    "lat": 40.1286111,
+    "lng": 39.4383333
+  },
+  {
+    "id": "ilce-370",
+    "cityCode": 29,
+    "cityName": "Gümüşhane",
+    "districtName": "Köse",
+    "label": "Gümüşhane / Köse",
+    "lat": 40.210369,
+    "lng": 39.65073
+  },
+  {
+    "id": "ilce-371",
+    "cityCode": 29,
+    "cityName": "Gümüşhane",
+    "districtName": "Kürtün",
+    "label": "Gümüşhane / Kürtün",
+    "lat": 40.6909866,
+    "lng": 39.1029913
+  },
+  {
+    "id": "ilce-372",
+    "cityCode": 29,
+    "cityName": "Gümüşhane",
+    "districtName": "Şi̇ran",
+    "label": "Gümüşhane / Şi̇ran",
+    "lat": 40.1894444,
+    "lng": 39.1266667
+  },
+  {
+    "id": "ilce-373",
+    "cityCode": 29,
+    "cityName": "Gümüşhane",
+    "districtName": "Torul",
+    "label": "Gümüşhane / Torul",
+    "lat": 40.5572222,
+    "lng": 39.2919444
+  },
+  {
+    "id": "ilce-374",
+    "cityCode": 30,
+    "cityName": "Hakkari̇",
+    "districtName": "Çukurca",
+    "label": "Hakkari̇ / Çukurca",
+    "lat": 37.2505556,
+    "lng": 43.6166667
+  },
+  {
+    "id": "ilce-375",
+    "cityCode": 30,
+    "cityName": "Hakkari̇",
+    "districtName": "Hakkari̇",
+    "label": "Hakkari̇ / Hakkari̇",
+    "lat": 37.5833333,
+    "lng": 43.7333333
+  },
+  {
+    "id": "ilce-376",
+    "cityCode": 30,
+    "cityName": "Hakkari̇",
+    "districtName": "Şemdi̇nli̇",
+    "label": "Hakkari̇ / Şemdi̇nli̇",
+    "lat": 37.3028311,
+    "lng": 44.5748696
+  },
+  {
+    "id": "ilce-377",
+    "cityCode": 30,
+    "cityName": "Hakkari̇",
+    "districtName": "Yüksekova",
+    "label": "Hakkari̇ / Yüksekova",
+    "lat": 37.5666667,
+    "lng": 44.2833333
+  },
+  {
+    "id": "ilce-378",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Altinözü",
+    "label": "Hatay / Altinözü",
+    "lat": 36.1166667,
+    "lng": 36.25
+  },
+  {
+    "id": "ilce-379",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Antakya",
+    "label": "Hatay / Antakya",
+    "lat": 36.20015,
+    "lng": 36.176189
+  },
+  {
+    "id": "ilce-380",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Belen",
+    "label": "Hatay / Belen",
+    "lat": 36.4927,
+    "lng": 36.1933
+  },
+  {
+    "id": "ilce-381",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Dörtyol",
+    "label": "Hatay / Dörtyol",
+    "lat": 36.85603,
+    "lng": 36.222328
+  },
+  {
+    "id": "ilce-382",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Erzi̇n",
+    "label": "Hatay / Erzi̇n",
+    "lat": 36.9539,
+    "lng": 36.2022
+  },
+  {
+    "id": "ilce-383",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Hassa",
+    "label": "Hatay / Hassa",
+    "lat": 36.7994,
+    "lng": 36.5178
+  },
+  {
+    "id": "ilce-384",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "İskenderun",
+    "label": "Hatay / İskenderun",
+    "lat": 36.586863,
+    "lng": 36.172571
+  },
+  {
+    "id": "ilce-385",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Kirikhan",
+    "label": "Hatay / Kirikhan",
+    "lat": 36.497959,
+    "lng": 36.364128
+  },
+  {
+    "id": "ilce-386",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Kumlu",
+    "label": "Hatay / Kumlu",
+    "lat": 36.3717386,
+    "lng": 36.4553727
+  },
+  {
+    "id": "ilce-387",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Reyhanli",
+    "label": "Hatay / Reyhanli",
+    "lat": 36.267181,
+    "lng": 36.573669
+  },
+  {
+    "id": "ilce-388",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Samandağ",
+    "label": "Hatay / Samandağ",
+    "lat": 36.08239,
+    "lng": 35.999321
+  },
+  {
+    "id": "ilce-389",
+    "cityCode": 31,
+    "cityName": "Hatay",
+    "districtName": "Yayladaği",
+    "label": "Hatay / Yayladaği",
+    "lat": 35.9025,
+    "lng": 36.0606
+  },
+  {
+    "id": "ilce-390",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Aksu",
+    "label": "Isparta / Aksu",
+    "lat": 37.799,
+    "lng": 31.071
+  },
+  {
+    "id": "ilce-391",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Atabey",
+    "label": "Isparta / Atabey",
+    "lat": 37.9523623,
+    "lng": 30.6458749
+  },
+  {
+    "id": "ilce-392",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Eği̇rdi̇r(eğri̇di̇r)",
+    "label": "Isparta / Eği̇rdi̇r(eğri̇di̇r)",
+    "lat": 38.0237567,
+    "lng": 30.8728615
+  },
+  {
+    "id": "ilce-393",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Gelendost",
+    "label": "Isparta / Gelendost",
+    "lat": 38.123989,
+    "lng": 31.011351
+  },
+  {
+    "id": "ilce-394",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Gönen",
+    "label": "Isparta / Gönen",
+    "lat": 37.958611,
+    "lng": 30.514391
+  },
+  {
+    "id": "ilce-395",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Isparta",
+    "label": "Isparta / Isparta",
+    "lat": 37.7666667,
+    "lng": 30.55
+  },
+  {
+    "id": "ilce-396",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Keçi̇borlu",
+    "label": "Isparta / Keçi̇borlu",
+    "lat": 37.9481994,
+    "lng": 30.3060706
+  },
+  {
+    "id": "ilce-397",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Seni̇rkent",
+    "label": "Isparta / Seni̇rkent",
+    "lat": 38.1054091,
+    "lng": 30.5480578
+  },
+  {
+    "id": "ilce-398",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Sütçüler",
+    "label": "Isparta / Sütçüler",
+    "lat": 37.487251,
+    "lng": 30.98963
+  },
+  {
+    "id": "ilce-399",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Şarki̇karaağaç",
+    "label": "Isparta / Şarki̇karaağaç",
+    "lat": 38.081272,
+    "lng": 31.3670283
+  },
+  {
+    "id": "ilce-400",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Uluborlu",
+    "label": "Isparta / Uluborlu",
+    "lat": 38.0789004,
+    "lng": 30.4559258
+  },
+  {
+    "id": "ilce-401",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Yalvaç",
+    "label": "Isparta / Yalvaç",
+    "lat": 38.295231,
+    "lng": 31.180229
+  },
+  {
+    "id": "ilce-402",
+    "cityCode": 32,
+    "cityName": "Isparta",
+    "districtName": "Yeni̇şarbademli̇",
+    "label": "Isparta / Yeni̇şarbademli̇",
+    "lat": 37.7080691,
+    "lng": 31.3856088
+  },
+  {
+    "id": "ilce-403",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Akdeni̇z",
+    "label": "Mersi̇n(i̇çel) / Akdeni̇z",
+    "lat": 36.8,
+    "lng": 34.6333333
+  },
+  {
+    "id": "ilce-404",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Anamur",
+    "label": "Mersi̇n(i̇çel) / Anamur",
+    "lat": 36.07515,
+    "lng": 32.838539
+  },
+  {
+    "id": "ilce-405",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Aydincik",
+    "label": "Mersi̇n(i̇çel) / Aydincik",
+    "lat": 36.1416948,
+    "lng": 33.3177479
+  },
+  {
+    "id": "ilce-406",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Bozyazi",
+    "label": "Mersi̇n(i̇çel) / Bozyazi",
+    "lat": 36.1030632,
+    "lng": 32.9747512
+  },
+  {
+    "id": "ilce-407",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Çamliyayla",
+    "label": "Mersi̇n(i̇çel) / Çamliyayla",
+    "lat": 37.170139,
+    "lng": 34.60825
+  },
+  {
+    "id": "ilce-408",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Erdemli̇",
+    "label": "Mersi̇n(i̇çel) / Erdemli̇",
+    "lat": 36.607769,
+    "lng": 34.316139
+  },
+  {
+    "id": "ilce-409",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Gülnar (gülpinar)",
+    "label": "Mersi̇n(i̇çel) / Gülnar (gülpinar)",
+    "lat": 36.8,
+    "lng": 34.6333333
+  },
+  {
+    "id": "ilce-410",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Mezi̇tli̇",
+    "label": "Mersi̇n(i̇çel) / Mezi̇tli̇",
+    "lat": 36.8,
+    "lng": 34.6333333
+  },
+  {
+    "id": "ilce-411",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Mut",
+    "label": "Mersi̇n(i̇çel) / Mut",
+    "lat": 36.644336,
+    "lng": 33.4355499
+  },
+  {
+    "id": "ilce-412",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Si̇li̇fke",
+    "label": "Mersi̇n(i̇çel) / Si̇li̇fke",
+    "lat": 36.3753014,
+    "lng": 33.9331874
+  },
+  {
+    "id": "ilce-413",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Tarsus",
+    "label": "Mersi̇n(i̇çel) / Tarsus",
+    "lat": 36.9166667,
+    "lng": 34.9
+  },
+  {
+    "id": "ilce-414",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Toroslar",
+    "label": "Mersi̇n(i̇çel) / Toroslar",
+    "lat": 36.8,
+    "lng": 34.6333333
+  },
+  {
+    "id": "ilce-415",
+    "cityCode": 33,
+    "cityName": "Mersi̇n(i̇çel)",
+    "districtName": "Yeni̇şehi̇r",
+    "label": "Mersi̇n(i̇çel) / Yeni̇şehi̇r",
+    "lat": 36.8661859,
+    "lng": 34.4863567
+  },
+  {
+    "id": "ilce-416",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Adalar",
+    "label": "İstanbul / Adalar",
+    "lat": 40.8763772,
+    "lng": 29.095444
+  },
+  {
+    "id": "ilce-417",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Arnavutköy",
+    "label": "İstanbul / Arnavutköy",
+    "lat": 41.2,
+    "lng": 28.733333
+  },
+  {
+    "id": "ilce-418",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Ataşehi̇r",
+    "label": "İstanbul / Ataşehi̇r",
+    "lat": 40.9833333,
+    "lng": 29.1166667
+  },
+  {
+    "id": "ilce-419",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Avcilar",
+    "label": "İstanbul / Avcilar",
+    "lat": 41.0153479,
+    "lng": 28.7314618
+  },
+  {
+    "id": "ilce-420",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Bağcilar",
+    "label": "İstanbul / Bağcilar",
+    "lat": 41.0455556,
+    "lng": 28.8405556
+  },
+  {
+    "id": "ilce-421",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Bahçeli̇evler",
+    "label": "İstanbul / Bahçeli̇evler",
+    "lat": 40.9975,
+    "lng": 28.8505556
+  },
+  {
+    "id": "ilce-422",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Bakirköy",
+    "label": "İstanbul / Bakirköy",
+    "lat": 40.968155,
+    "lng": 28.8228
+  },
+  {
+    "id": "ilce-423",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Başakşehi̇r",
+    "label": "İstanbul / Başakşehi̇r",
+    "lat": 41.077895,
+    "lng": 28.812551
+  },
+  {
+    "id": "ilce-424",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Bayrampaşa",
+    "label": "İstanbul / Bayrampaşa",
+    "lat": 41.0481503,
+    "lng": 28.9004553
+  },
+  {
+    "id": "ilce-425",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Beşi̇ktaş",
+    "label": "İstanbul / Beşi̇ktaş",
+    "lat": 41.068616,
+    "lng": 29.0285355
+  },
+  {
+    "id": "ilce-426",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Beykoz",
+    "label": "İstanbul / Beykoz",
+    "lat": 41.132719,
+    "lng": 29.10569
+  },
+  {
+    "id": "ilce-427",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Beyli̇kdüzü",
+    "label": "İstanbul / Beyli̇kdüzü",
+    "lat": 40.9910381,
+    "lng": 28.6498144
+  },
+  {
+    "id": "ilce-428",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Beyoğlu",
+    "label": "İstanbul / Beyoğlu",
+    "lat": 41.0382864,
+    "lng": 28.9703304
+  },
+  {
+    "id": "ilce-429",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Büyükçekmece",
+    "label": "İstanbul / Büyükçekmece",
+    "lat": 41.034133,
+    "lng": 28.590003
+  },
+  {
+    "id": "ilce-430",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Çatalca",
+    "label": "İstanbul / Çatalca",
+    "lat": 41.148239,
+    "lng": 28.46773
+  },
+  {
+    "id": "ilce-431",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Çekmeköy",
+    "label": "İstanbul / Çekmeköy",
+    "lat": 41.104235,
+    "lng": 29.3177272
+  },
+  {
+    "id": "ilce-432",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Esenler",
+    "label": "İstanbul / Esenler",
+    "lat": 41.0794133,
+    "lng": 28.8538545
+  },
+  {
+    "id": "ilce-433",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Esenyurt",
+    "label": "İstanbul / Esenyurt",
+    "lat": 41.0342806,
+    "lng": 28.6801194
+  },
+  {
+    "id": "ilce-434",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Eyüp",
+    "label": "İstanbul / Eyüp",
+    "lat": 41.1871598,
+    "lng": 28.8829816
+  },
+  {
+    "id": "ilce-435",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Fati̇h",
+    "label": "İstanbul / Fati̇h",
+    "lat": 41.0166667,
+    "lng": 28.9333333
+  },
+  {
+    "id": "ilce-436",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Gazi̇osmanpaşa",
+    "label": "İstanbul / Gazi̇osmanpaşa",
+    "lat": 41.0759477,
+    "lng": 28.9004553
+  },
+  {
+    "id": "ilce-437",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Güngören",
+    "label": "İstanbul / Güngören",
+    "lat": 41.0166667,
+    "lng": 28.8833333
+  },
+  {
+    "id": "ilce-438",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Kadiköy",
+    "label": "İstanbul / Kadiköy",
+    "lat": 40.980141,
+    "lng": 29.08227
+  },
+  {
+    "id": "ilce-439",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Kağithane",
+    "label": "İstanbul / Kağithane",
+    "lat": 41.071,
+    "lng": 28.97
+  },
+  {
+    "id": "ilce-440",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Kartal",
+    "label": "İstanbul / Kartal",
+    "lat": 40.899651,
+    "lng": 29.193649
+  },
+  {
+    "id": "ilce-441",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Küçükçekmece",
+    "label": "İstanbul / Küçükçekmece",
+    "lat": 41.008658,
+    "lng": 28.775342
+  },
+  {
+    "id": "ilce-442",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Maltepe",
+    "label": "İstanbul / Maltepe",
+    "lat": 40.949047,
+    "lng": 29.174109
+  },
+  {
+    "id": "ilce-443",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Pendi̇k",
+    "label": "İstanbul / Pendi̇k",
+    "lat": 40.879326,
+    "lng": 29.258135
+  },
+  {
+    "id": "ilce-444",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Sancaktepe",
+    "label": "İstanbul / Sancaktepe",
+    "lat": 41.0287028,
+    "lng": 29.2901829
+  },
+  {
+    "id": "ilce-445",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Sariyer",
+    "label": "İstanbul / Sariyer",
+    "lat": 41.166328,
+    "lng": 29.04995
+  },
+  {
+    "id": "ilce-446",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Si̇li̇vri̇",
+    "label": "İstanbul / Si̇li̇vri̇",
+    "lat": 41.080158,
+    "lng": 28.26829
+  },
+  {
+    "id": "ilce-447",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Sultanbeyli̇",
+    "label": "İstanbul / Sultanbeyli̇",
+    "lat": 40.9611123,
+    "lng": 29.2669438
+  },
+  {
+    "id": "ilce-448",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Sultangazi̇",
+    "label": "İstanbul / Sultangazi̇",
+    "lat": 41.1255794,
+    "lng": 28.8713314
+  },
+  {
+    "id": "ilce-449",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Şi̇le",
+    "label": "İstanbul / Şi̇le",
+    "lat": 41.1763889,
+    "lng": 29.6127778
+  },
+  {
+    "id": "ilce-450",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Şi̇şli̇",
+    "label": "İstanbul / Şi̇şli̇",
+    "lat": 41.06,
+    "lng": 28.987
+  },
+  {
+    "id": "ilce-451",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Tuzla",
+    "label": "İstanbul / Tuzla",
+    "lat": 40.842,
+    "lng": 29.295
+  },
+  {
+    "id": "ilce-452",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Ümrani̇ye",
+    "label": "İstanbul / Ümrani̇ye",
+    "lat": 41.0303,
+    "lng": 29.1065
+  },
+  {
+    "id": "ilce-453",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Üsküdar",
+    "label": "İstanbul / Üsküdar",
+    "lat": 41.032236,
+    "lng": 29.031938
+  },
+  {
+    "id": "ilce-454",
+    "cityCode": 34,
+    "cityName": "İstanbul",
+    "districtName": "Zeyti̇nburnu",
+    "label": "İstanbul / Zeyti̇nburnu",
+    "lat": 40.990635,
+    "lng": 28.89614
+  },
+  {
+    "id": "ilce-455",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Ali̇ağa",
+    "label": "İzmi̇r / Ali̇ağa",
+    "lat": 38.795,
+    "lng": 26.9702778
+  },
+  {
+    "id": "ilce-456",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Balçova",
+    "label": "İzmi̇r / Balçova",
+    "lat": 38.369294,
+    "lng": 27.093442
+  },
+  {
+    "id": "ilce-457",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Bayindir",
+    "label": "İzmi̇r / Bayindir",
+    "lat": 38.228565,
+    "lng": 27.646533
+  },
+  {
+    "id": "ilce-458",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Bayrakli",
+    "label": "İzmi̇r / Bayrakli",
+    "lat": 38.4622222,
+    "lng": 27.1666667
+  },
+  {
+    "id": "ilce-459",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Bergama",
+    "label": "İzmi̇r / Bergama",
+    "lat": 39.1166667,
+    "lng": 27.1833333
+  },
+  {
+    "id": "ilce-460",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Beydağ",
+    "label": "İzmi̇r / Beydağ",
+    "lat": 38.0868739,
+    "lng": 28.2088013
+  },
+  {
+    "id": "ilce-461",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Bornova",
+    "label": "İzmi̇r / Bornova",
+    "lat": 38.4626548,
+    "lng": 27.2440957
+  },
+  {
+    "id": "ilce-462",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Buca",
+    "label": "İzmi̇r / Buca",
+    "lat": 38.41885,
+    "lng": 27.12872
+  },
+  {
+    "id": "ilce-463",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Çeşme",
+    "label": "İzmi̇r / Çeşme",
+    "lat": 38.32981,
+    "lng": 26.314921
+  },
+  {
+    "id": "ilce-464",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Çi̇ğli̇",
+    "label": "İzmi̇r / Çi̇ğli̇",
+    "lat": 38.4994322,
+    "lng": 27.0382158
+  },
+  {
+    "id": "ilce-465",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Di̇ki̇li̇",
+    "label": "İzmi̇r / Di̇ki̇li̇",
+    "lat": 39.072097,
+    "lng": 26.888203
+  },
+  {
+    "id": "ilce-466",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Foça",
+    "label": "İzmi̇r / Foça",
+    "lat": 38.6675,
+    "lng": 26.7580556
+  },
+  {
+    "id": "ilce-467",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Gazi̇emi̇r",
+    "label": "İzmi̇r / Gazi̇emi̇r",
+    "lat": 38.32515,
+    "lng": 27.12252
+  },
+  {
+    "id": "ilce-468",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Güzelbahçe",
+    "label": "İzmi̇r / Güzelbahçe",
+    "lat": 38.3619761,
+    "lng": 26.9028125
+  },
+  {
+    "id": "ilce-469",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Karabağlar",
+    "label": "İzmi̇r / Karabağlar",
+    "lat": 38.3269882,
+    "lng": 27.0441009
+  },
+  {
+    "id": "ilce-470",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Karaburun",
+    "label": "İzmi̇r / Karaburun",
+    "lat": 38.6333333,
+    "lng": 26.5166667
+  },
+  {
+    "id": "ilce-471",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Karşiyaka",
+    "label": "İzmi̇r / Karşiyaka",
+    "lat": 38.41885,
+    "lng": 27.12872
+  },
+  {
+    "id": "ilce-472",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Kemalpaşa",
+    "label": "İzmi̇r / Kemalpaşa",
+    "lat": 38.426323,
+    "lng": 27.423052
+  },
+  {
+    "id": "ilce-473",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Kinik",
+    "label": "İzmi̇r / Kinik",
+    "lat": 39.088371,
+    "lng": 27.38069
+  },
+  {
+    "id": "ilce-474",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Ki̇raz",
+    "label": "İzmi̇r / Ki̇raz",
+    "lat": 38.2306,
+    "lng": 28.2044
+  },
+  {
+    "id": "ilce-475",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Konak",
+    "label": "İzmi̇r / Konak",
+    "lat": 38.4144802,
+    "lng": 27.1441227
+  },
+  {
+    "id": "ilce-476",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Menderes(cumaovasi)",
+    "label": "İzmi̇r / Menderes(cumaovasi)",
+    "lat": 38.254,
+    "lng": 27.134
+  },
+  {
+    "id": "ilce-477",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Menemen",
+    "label": "İzmi̇r / Menemen",
+    "lat": 38.6,
+    "lng": 27.0666667
+  },
+  {
+    "id": "ilce-478",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Narlidere",
+    "label": "İzmi̇r / Narlidere",
+    "lat": 38.3909989,
+    "lng": 27.0029015
+  },
+  {
+    "id": "ilce-479",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Ödemi̇ş",
+    "label": "İzmi̇r / Ödemi̇ş",
+    "lat": 38.2305556,
+    "lng": 27.9716667
+  },
+  {
+    "id": "ilce-480",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Seferi̇hi̇sar",
+    "label": "İzmi̇r / Seferi̇hi̇sar",
+    "lat": 38.198921,
+    "lng": 26.837339
+  },
+  {
+    "id": "ilce-481",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Selçuk",
+    "label": "İzmi̇r / Selçuk",
+    "lat": 37.949888,
+    "lng": 27.370142
+  },
+  {
+    "id": "ilce-482",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Ti̇re",
+    "label": "İzmi̇r / Ti̇re",
+    "lat": 38.088581,
+    "lng": 27.733471
+  },
+  {
+    "id": "ilce-483",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Torbali",
+    "label": "İzmi̇r / Torbali",
+    "lat": 38.177841,
+    "lng": 27.35334
+  },
+  {
+    "id": "ilce-484",
+    "cityCode": 35,
+    "cityName": "İzmi̇r",
+    "districtName": "Urla",
+    "label": "İzmi̇r / Urla",
+    "lat": 38.32457,
+    "lng": 26.7619
+  },
+  {
+    "id": "ilce-485",
+    "cityCode": 36,
+    "cityName": "Kars",
+    "districtName": "Akyaka",
+    "label": "Kars / Akyaka",
+    "lat": 40.7444444,
+    "lng": 43.625
+  },
+  {
+    "id": "ilce-486",
+    "cityCode": 36,
+    "cityName": "Kars",
+    "districtName": "Arpaçay",
+    "label": "Kars / Arpaçay",
+    "lat": 40.85,
+    "lng": 43.3333333
+  },
+  {
+    "id": "ilce-487",
+    "cityCode": 36,
+    "cityName": "Kars",
+    "districtName": "Di̇gor",
+    "label": "Kars / Di̇gor",
+    "lat": 40.3755556,
+    "lng": 43.4125
+  },
+  {
+    "id": "ilce-488",
+    "cityCode": 36,
+    "cityName": "Kars",
+    "districtName": "Kağizman",
+    "label": "Kars / Kağizman",
+    "lat": 40.1577181,
+    "lng": 43.1331231
+  },
+  {
+    "id": "ilce-489",
+    "cityCode": 36,
+    "cityName": "Kars",
+    "districtName": "Kars",
+    "label": "Kars / Kars",
+    "lat": 40.59267,
+    "lng": 43.077831
+  },
+  {
+    "id": "ilce-490",
+    "cityCode": 36,
+    "cityName": "Kars",
+    "districtName": "Sarikamiş",
+    "label": "Kars / Sarikamiş",
+    "lat": 40.331921,
+    "lng": 42.595169
+  },
+  {
+    "id": "ilce-491",
+    "cityCode": 36,
+    "cityName": "Kars",
+    "districtName": "Seli̇m",
+    "label": "Kars / Seli̇m",
+    "lat": 40.4633333,
+    "lng": 42.7858333
+  },
+  {
+    "id": "ilce-492",
+    "cityCode": 36,
+    "cityName": "Kars",
+    "districtName": "Susuz",
+    "label": "Kars / Susuz",
+    "lat": 40.78,
+    "lng": 43.1352778
+  },
+  {
+    "id": "ilce-493",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Abana",
+    "label": "Kastamonu / Abana",
+    "lat": 41.9758333,
+    "lng": 34.0113889
+  },
+  {
+    "id": "ilce-494",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Ağli",
+    "label": "Kastamonu / Ağli",
+    "lat": 41.6873612,
+    "lng": 33.5534665
+  },
+  {
+    "id": "ilce-495",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Araç",
+    "label": "Kastamonu / Araç",
+    "lat": 41.2422222,
+    "lng": 33.3283333
+  },
+  {
+    "id": "ilce-496",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Azdavay",
+    "label": "Kastamonu / Azdavay",
+    "lat": 41.6408126,
+    "lng": 33.2983279
+  },
+  {
+    "id": "ilce-497",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Bozkurt",
+    "label": "Kastamonu / Bozkurt",
+    "lat": 41.9609909,
+    "lng": 34.0153241
+  },
+  {
+    "id": "ilce-498",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Ci̇de",
+    "label": "Kastamonu / Ci̇de",
+    "lat": 41.891941,
+    "lng": 33.000192
+  },
+  {
+    "id": "ilce-499",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Çatalzeyti̇n",
+    "label": "Kastamonu / Çatalzeyti̇n",
+    "lat": 41.954521,
+    "lng": 34.215031
+  },
+  {
+    "id": "ilce-500",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Daday",
+    "label": "Kastamonu / Daday",
+    "lat": 41.4792128,
+    "lng": 33.46907
+  },
+  {
+    "id": "ilce-501",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Devrekani̇",
+    "label": "Kastamonu / Devrekani̇",
+    "lat": 41.6002778,
+    "lng": 33.8333333
+  },
+  {
+    "id": "ilce-502",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Doğanyurt",
+    "label": "Kastamonu / Doğanyurt",
+    "lat": 42.0041489,
+    "lng": 33.459841
+  },
+  {
+    "id": "ilce-503",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Hanönü(gökçeağaç)",
+    "label": "Kastamonu / Hanönü(gökçeağaç)",
+    "lat": 41.6385322,
+    "lng": 34.4970675
+  },
+  {
+    "id": "ilce-504",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "İhsangazi̇",
+    "label": "Kastamonu / İhsangazi̇",
+    "lat": 41.2033203,
+    "lng": 33.5517834
+  },
+  {
+    "id": "ilce-505",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "İnebolu",
+    "label": "Kastamonu / İnebolu",
+    "lat": 41.9747222,
+    "lng": 33.7608333
+  },
+  {
+    "id": "ilce-506",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Kastamonu",
+    "label": "Kastamonu / Kastamonu",
+    "lat": 41.38871,
+    "lng": 33.78273
+  },
+  {
+    "id": "ilce-507",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Küre",
+    "label": "Kastamonu / Küre",
+    "lat": 41.8047731,
+    "lng": 33.7106855
+  },
+  {
+    "id": "ilce-508",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Pinarbaşi",
+    "label": "Kastamonu / Pinarbaşi",
+    "lat": 41.6024392,
+    "lng": 33.1056816
+  },
+  {
+    "id": "ilce-509",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Seydi̇ler",
+    "label": "Kastamonu / Seydi̇ler",
+    "lat": 41.6193614,
+    "lng": 33.7154617
+  },
+  {
+    "id": "ilce-510",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Şenpazar",
+    "label": "Kastamonu / Şenpazar",
+    "lat": 41.8069491,
+    "lng": 33.2325445
+  },
+  {
+    "id": "ilce-511",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Taşköprü",
+    "label": "Kastamonu / Taşköprü",
+    "lat": 41.5138889,
+    "lng": 34.2147222
+  },
+  {
+    "id": "ilce-512",
+    "cityCode": 37,
+    "cityName": "Kastamonu",
+    "districtName": "Tosya",
+    "label": "Kastamonu / Tosya",
+    "lat": 41.0184913,
+    "lng": 34.0373739
+  },
+  {
+    "id": "ilce-513",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Akkişla",
+    "label": "Kayseri̇ / Akkişla",
+    "lat": 39,
+    "lng": 36.1666667
+  },
+  {
+    "id": "ilce-514",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Bünyan",
+    "label": "Kayseri̇ / Bünyan",
+    "lat": 38.8483,
+    "lng": 35.86
+  },
+  {
+    "id": "ilce-515",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Develi̇",
+    "label": "Kayseri̇ / Develi̇",
+    "lat": 38.385429,
+    "lng": 35.499519
+  },
+  {
+    "id": "ilce-516",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Felahi̇ye",
+    "label": "Kayseri̇ / Felahi̇ye",
+    "lat": 39.0913648,
+    "lng": 35.5685219
+  },
+  {
+    "id": "ilce-517",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Hacilar",
+    "label": "Kayseri̇ / Hacilar",
+    "lat": 38.6497222,
+    "lng": 35.4502778
+  },
+  {
+    "id": "ilce-518",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "İncesu",
+    "label": "Kayseri̇ / İncesu",
+    "lat": 38.62043,
+    "lng": 35.188278
+  },
+  {
+    "id": "ilce-519",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Kocasi̇nan",
+    "label": "Kayseri̇ / Kocasi̇nan",
+    "lat": 38.7333333,
+    "lng": 35.4833333
+  },
+  {
+    "id": "ilce-520",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Meli̇kgazi̇",
+    "label": "Kayseri̇ / Meli̇kgazi̇",
+    "lat": 38.7333333,
+    "lng": 35.4833333
+  },
+  {
+    "id": "ilce-521",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Özvatan(çukur)",
+    "label": "Kayseri̇ / Özvatan(çukur)",
+    "lat": 38.7333333,
+    "lng": 35.4833333
+  },
+  {
+    "id": "ilce-522",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Pinarbaşi",
+    "label": "Kayseri̇ / Pinarbaşi",
+    "lat": 38.722,
+    "lng": 36.391
+  },
+  {
+    "id": "ilce-523",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Sarioğlan",
+    "label": "Kayseri̇ / Sarioğlan",
+    "lat": 39.0793999,
+    "lng": 35.9652586
+  },
+  {
+    "id": "ilce-524",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Sariz",
+    "label": "Kayseri̇ / Sariz",
+    "lat": 38.4791667,
+    "lng": 36.5005556
+  },
+  {
+    "id": "ilce-525",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Talas",
+    "label": "Kayseri̇ / Talas",
+    "lat": 38.68602,
+    "lng": 35.577911
+  },
+  {
+    "id": "ilce-526",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Tomarza",
+    "label": "Kayseri̇ / Tomarza",
+    "lat": 38.45,
+    "lng": 35.8
+  },
+  {
+    "id": "ilce-527",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Yahyali",
+    "label": "Kayseri̇ / Yahyali",
+    "lat": 38.1,
+    "lng": 35.3608333
+  },
+  {
+    "id": "ilce-528",
+    "cityCode": 38,
+    "cityName": "Kayseri̇",
+    "districtName": "Yeşi̇lhi̇sar",
+    "label": "Kayseri̇ / Yeşi̇lhi̇sar",
+    "lat": 38.3585317,
+    "lng": 35.0801068
+  },
+  {
+    "id": "ilce-529",
+    "cityCode": 39,
+    "cityName": "Kirklareli̇",
+    "districtName": "Babaeski̇",
+    "label": "Kirklareli̇ / Babaeski̇",
+    "lat": 41.4333333,
+    "lng": 27.1
+  },
+  {
+    "id": "ilce-530",
+    "cityCode": 39,
+    "cityName": "Kirklareli̇",
+    "districtName": "Demi̇rköy",
+    "label": "Kirklareli̇ / Demi̇rköy",
+    "lat": 41.823,
+    "lng": 27.7623
+  },
+  {
+    "id": "ilce-531",
+    "cityCode": 39,
+    "cityName": "Kirklareli̇",
+    "districtName": "Kirklareli̇",
+    "label": "Kirklareli̇ / Kirklareli̇",
+    "lat": 41.7333333,
+    "lng": 27.2166667
+  },
+  {
+    "id": "ilce-532",
+    "cityCode": 39,
+    "cityName": "Kirklareli̇",
+    "districtName": "Kofçaz",
+    "label": "Kirklareli̇ / Kofçaz",
+    "lat": 41.939905,
+    "lng": 27.162063
+  },
+  {
+    "id": "ilce-533",
+    "cityCode": 39,
+    "cityName": "Kirklareli̇",
+    "districtName": "Lüleburgaz",
+    "label": "Kirklareli̇ / Lüleburgaz",
+    "lat": 41.4,
+    "lng": 27.35
+  },
+  {
+    "id": "ilce-534",
+    "cityCode": 39,
+    "cityName": "Kirklareli̇",
+    "districtName": "Pehli̇vanköy",
+    "label": "Kirklareli̇ / Pehli̇vanköy",
+    "lat": 41.3480556,
+    "lng": 26.9197222
+  },
+  {
+    "id": "ilce-535",
+    "cityCode": 39,
+    "cityName": "Kirklareli̇",
+    "districtName": "Pinarhi̇sar",
+    "label": "Kirklareli̇ / Pinarhi̇sar",
+    "lat": 41.6281282,
+    "lng": 27.5122086
+  },
+  {
+    "id": "ilce-536",
+    "cityCode": 39,
+    "cityName": "Kirklareli̇",
+    "districtName": "Vi̇ze",
+    "label": "Kirklareli̇ / Vi̇ze",
+    "lat": 41.5736111,
+    "lng": 27.7652778
+  },
+  {
+    "id": "ilce-537",
+    "cityCode": 40,
+    "cityName": "Kirşehi̇r",
+    "districtName": "Akçakent",
+    "label": "Kirşehi̇r / Akçakent",
+    "lat": 39.6227778,
+    "lng": 34.0958333
+  },
+  {
+    "id": "ilce-538",
+    "cityCode": 40,
+    "cityName": "Kirşehi̇r",
+    "districtName": "Akpinar",
+    "label": "Kirşehi̇r / Akpinar",
+    "lat": 39.4472222,
+    "lng": 33.9680556
+  },
+  {
+    "id": "ilce-539",
+    "cityCode": 40,
+    "cityName": "Kirşehi̇r",
+    "districtName": "Boztepe",
+    "label": "Kirşehi̇r / Boztepe",
+    "lat": 39.2697222,
+    "lng": 34.2611111
+  },
+  {
+    "id": "ilce-540",
+    "cityCode": 40,
+    "cityName": "Kirşehi̇r",
+    "districtName": "Çi̇çekdaği",
+    "label": "Kirşehi̇r / Çi̇çekdaği",
+    "lat": 39.6069444,
+    "lng": 34.4086111
+  },
+  {
+    "id": "ilce-541",
+    "cityCode": 40,
+    "cityName": "Kirşehi̇r",
+    "districtName": "Kaman",
+    "label": "Kirşehi̇r / Kaman",
+    "lat": 39.367119,
+    "lng": 33.72934
+  },
+  {
+    "id": "ilce-542",
+    "cityCode": 40,
+    "cityName": "Kirşehi̇r",
+    "districtName": "Kirşehi̇r",
+    "label": "Kirşehi̇r / Kirşehi̇r",
+    "lat": 39.15,
+    "lng": 34.1666667
+  },
+  {
+    "id": "ilce-543",
+    "cityCode": 40,
+    "cityName": "Kirşehi̇r",
+    "districtName": "Mucur",
+    "label": "Kirşehi̇r / Mucur",
+    "lat": 39.0636111,
+    "lng": 34.3783333
+  },
+  {
+    "id": "ilce-544",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Başi̇skele",
+    "label": "Kocaeli̇ / Başi̇skele",
+    "lat": 40.6298368,
+    "lng": 29.950926
+  },
+  {
+    "id": "ilce-545",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Çayirova",
+    "label": "Kocaeli̇ / Çayirova",
+    "lat": 40.8361421,
+    "lng": 29.3831026
+  },
+  {
+    "id": "ilce-546",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Darica",
+    "label": "Kocaeli̇ / Darica",
+    "lat": 40.769587,
+    "lng": 29.370031
+  },
+  {
+    "id": "ilce-547",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Deri̇nce",
+    "label": "Kocaeli̇ / Deri̇nce",
+    "lat": 40.9021193,
+    "lng": 29.9046594
+  },
+  {
+    "id": "ilce-548",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Di̇lovasi",
+    "label": "Kocaeli̇ / Di̇lovasi",
+    "lat": 40.7797222,
+    "lng": 29.535
+  },
+  {
+    "id": "ilce-549",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Gebze",
+    "label": "Kocaeli̇ / Gebze",
+    "lat": 40.8,
+    "lng": 29.4333333
+  },
+  {
+    "id": "ilce-550",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Gölcük",
+    "label": "Kocaeli̇ / Gölcük",
+    "lat": 40.7120603,
+    "lng": 29.8410174
+  },
+  {
+    "id": "ilce-551",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "İzmi̇t",
+    "label": "Kocaeli̇ / İzmi̇t",
+    "lat": 40.775986,
+    "lng": 29.948357
+  },
+  {
+    "id": "ilce-552",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Kandira",
+    "label": "Kocaeli̇ / Kandira",
+    "lat": 41.07,
+    "lng": 30.15
+  },
+  {
+    "id": "ilce-553",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Karamürsel",
+    "label": "Kocaeli̇ / Karamürsel",
+    "lat": 40.6891667,
+    "lng": 29.615
+  },
+  {
+    "id": "ilce-554",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Kartepe",
+    "label": "Kocaeli̇ / Kartepe",
+    "lat": 40.7013917,
+    "lng": 30.0896313
+  },
+  {
+    "id": "ilce-555",
+    "cityCode": 41,
+    "cityName": "Kocaeli̇",
+    "districtName": "Körfez(tütünçi̇ftli̇k)",
+    "label": "Kocaeli̇ / Körfez(tütünçi̇ftli̇k)",
+    "lat": 40.74613,
+    "lng": 29.78953
+  },
+  {
+    "id": "ilce-556",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Ahirli",
+    "label": "Konya / Ahirli",
+    "lat": 37.2375,
+    "lng": 32.1180556
+  },
+  {
+    "id": "ilce-557",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Akören",
+    "label": "Konya / Akören",
+    "lat": 37.4569444,
+    "lng": 32.3694444
+  },
+  {
+    "id": "ilce-558",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Akşehi̇r",
+    "label": "Konya / Akşehi̇r",
+    "lat": 38.355911,
+    "lng": 31.415409
+  },
+  {
+    "id": "ilce-559",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Altineki̇n",
+    "label": "Konya / Altineki̇n",
+    "lat": 38.3077778,
+    "lng": 32.8686111
+  },
+  {
+    "id": "ilce-560",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Beyşehi̇r",
+    "label": "Konya / Beyşehi̇r",
+    "lat": 37.6763889,
+    "lng": 31.7261111
+  },
+  {
+    "id": "ilce-561",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Bozkir",
+    "label": "Konya / Bozkir",
+    "lat": 37.1877778,
+    "lng": 32.2480556
+  },
+  {
+    "id": "ilce-562",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Ci̇hanbeyli̇",
+    "label": "Konya / Ci̇hanbeyli̇",
+    "lat": 38.6580556,
+    "lng": 32.9280556
+  },
+  {
+    "id": "ilce-563",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Çelti̇k",
+    "label": "Konya / Çelti̇k",
+    "lat": 39.0244444,
+    "lng": 31.7905556
+  },
+  {
+    "id": "ilce-564",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Çumra",
+    "label": "Konya / Çumra",
+    "lat": 37.571251,
+    "lng": 32.784439
+  },
+  {
+    "id": "ilce-565",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Derbent",
+    "label": "Konya / Derbent",
+    "lat": 38.0136111,
+    "lng": 32.0163889
+  },
+  {
+    "id": "ilce-566",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Derebucak",
+    "label": "Konya / Derebucak",
+    "lat": 37.3936111,
+    "lng": 31.5075
+  },
+  {
+    "id": "ilce-567",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Doğanhi̇sar",
+    "label": "Konya / Doğanhi̇sar",
+    "lat": 38.1447222,
+    "lng": 31.6780556
+  },
+  {
+    "id": "ilce-568",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Emi̇rgazi̇",
+    "label": "Konya / Emi̇rgazi̇",
+    "lat": 37.9022222,
+    "lng": 33.8372222
+  },
+  {
+    "id": "ilce-569",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Ereğli̇",
+    "label": "Konya / Ereğli̇",
+    "lat": 37.5058333,
+    "lng": 34.0516667
+  },
+  {
+    "id": "ilce-570",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Güneysinir",
+    "label": "Konya / Güneysinir",
+    "lat": 37.2686111,
+    "lng": 32.7330556
+  },
+  {
+    "id": "ilce-571",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Hadi̇m",
+    "label": "Konya / Hadi̇m",
+    "lat": 36.990669,
+    "lng": 32.46207
+  },
+  {
+    "id": "ilce-572",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Halkapinar",
+    "label": "Konya / Halkapinar",
+    "lat": 37.4353035,
+    "lng": 34.1893473
+  },
+  {
+    "id": "ilce-573",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Hüyük",
+    "label": "Konya / Hüyük",
+    "lat": 37.9519444,
+    "lng": 31.5958333
+  },
+  {
+    "id": "ilce-574",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Ilgin",
+    "label": "Konya / Ilgin",
+    "lat": 38.2791667,
+    "lng": 31.9138889
+  },
+  {
+    "id": "ilce-575",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Kadinhani",
+    "label": "Konya / Kadinhani",
+    "lat": 38.2397222,
+    "lng": 32.2113889
+  },
+  {
+    "id": "ilce-576",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Karapinar",
+    "label": "Konya / Karapinar",
+    "lat": 37.714821,
+    "lng": 33.552238
+  },
+  {
+    "id": "ilce-577",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Karatay",
+    "label": "Konya / Karatay",
+    "lat": 37.8666667,
+    "lng": 32.4833333
+  },
+  {
+    "id": "ilce-578",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Kulu",
+    "label": "Konya / Kulu",
+    "lat": 39.0891667,
+    "lng": 33.0805556
+  },
+  {
+    "id": "ilce-579",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Meram",
+    "label": "Konya / Meram",
+    "lat": 37.8666667,
+    "lng": 32.4833333
+  },
+  {
+    "id": "ilce-580",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Sarayönü",
+    "label": "Konya / Sarayönü",
+    "lat": 38.2661111,
+    "lng": 32.4063889
+  },
+  {
+    "id": "ilce-581",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Selçuklu",
+    "label": "Konya / Selçuklu",
+    "lat": 37.8666667,
+    "lng": 32.4833333
+  },
+  {
+    "id": "ilce-582",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Seydi̇şehi̇r",
+    "label": "Konya / Seydi̇şehi̇r",
+    "lat": 37.423908,
+    "lng": 31.85071
+  },
+  {
+    "id": "ilce-583",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Taşkent",
+    "label": "Konya / Taşkent",
+    "lat": 36.9225015,
+    "lng": 32.4948384
+  },
+  {
+    "id": "ilce-584",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Tuzlukçu",
+    "label": "Konya / Tuzlukçu",
+    "lat": 38.478168,
+    "lng": 31.63121
+  },
+  {
+    "id": "ilce-585",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Yalihüyük",
+    "label": "Konya / Yalihüyük",
+    "lat": 37.3036111,
+    "lng": 32.0869444
+  },
+  {
+    "id": "ilce-586",
+    "cityCode": 42,
+    "cityName": "Konya",
+    "districtName": "Yunak",
+    "label": "Konya / Yunak",
+    "lat": 38.8172222,
+    "lng": 31.7355556
+  },
+  {
+    "id": "ilce-587",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Altintaş",
+    "label": "Kütahya / Altintaş",
+    "lat": 39.0615228,
+    "lng": 30.1098472
+  },
+  {
+    "id": "ilce-588",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Aslanapa",
+    "label": "Kütahya / Aslanapa",
+    "lat": 39.21904,
+    "lng": 29.874319
+  },
+  {
+    "id": "ilce-589",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Çavdarhi̇sar",
+    "label": "Kütahya / Çavdarhi̇sar",
+    "lat": 39.1977778,
+    "lng": 29.6158333
+  },
+  {
+    "id": "ilce-590",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Domani̇ç",
+    "label": "Kütahya / Domani̇ç",
+    "lat": 39.803471,
+    "lng": 29.61153
+  },
+  {
+    "id": "ilce-591",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Dumlupinar",
+    "label": "Kütahya / Dumlupinar",
+    "lat": 38.8563973,
+    "lng": 29.9769441
+  },
+  {
+    "id": "ilce-592",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Emet",
+    "label": "Kütahya / Emet",
+    "lat": 39.3420624,
+    "lng": 29.2582282
+  },
+  {
+    "id": "ilce-593",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Gedi̇z",
+    "label": "Kütahya / Gedi̇z",
+    "lat": 38.9876217,
+    "lng": 29.3860054
+  },
+  {
+    "id": "ilce-594",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Hi̇sarcik",
+    "label": "Kütahya / Hi̇sarcik",
+    "lat": 39.2469225,
+    "lng": 29.2407955
+  },
+  {
+    "id": "ilce-595",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Kütahya",
+    "label": "Kütahya / Kütahya",
+    "lat": 39.4166667,
+    "lng": 29.9833333
+  },
+  {
+    "id": "ilce-596",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Pazarlar",
+    "label": "Kütahya / Pazarlar",
+    "lat": 38.9971092,
+    "lng": 29.1245255
+  },
+  {
+    "id": "ilce-597",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Si̇mav",
+    "label": "Kütahya / Si̇mav",
+    "lat": 39.092739,
+    "lng": 28.97761
+  },
+  {
+    "id": "ilce-598",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Şaphane",
+    "label": "Kütahya / Şaphane",
+    "lat": 39.0277778,
+    "lng": 29.2227778
+  },
+  {
+    "id": "ilce-599",
+    "cityCode": 43,
+    "cityName": "Kütahya",
+    "districtName": "Tavşanli",
+    "label": "Kütahya / Tavşanli",
+    "lat": 39.544399,
+    "lng": 29.491579
+  },
+  {
+    "id": "ilce-600",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Akçadağ",
+    "label": "Malatya / Akçadağ",
+    "lat": 38.35,
+    "lng": 37.9666667
+  },
+  {
+    "id": "ilce-601",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Arapki̇r(arapgi̇r)",
+    "label": "Malatya / Arapki̇r(arapgi̇r)",
+    "lat": 39.0466847,
+    "lng": 38.4878234
+  },
+  {
+    "id": "ilce-602",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Arguvan",
+    "label": "Malatya / Arguvan",
+    "lat": 38.7730293,
+    "lng": 38.2713867
+  },
+  {
+    "id": "ilce-603",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Battalgazi̇",
+    "label": "Malatya / Battalgazi̇",
+    "lat": 38.4227778,
+    "lng": 38.3655556
+  },
+  {
+    "id": "ilce-604",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Darende",
+    "label": "Malatya / Darende",
+    "lat": 38.5472,
+    "lng": 37.5111
+  },
+  {
+    "id": "ilce-605",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Doğanşehi̇r",
+    "label": "Malatya / Doğanşehi̇r",
+    "lat": 38.0958333,
+    "lng": 37.8791667
+  },
+  {
+    "id": "ilce-606",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Doğanyol",
+    "label": "Malatya / Doğanyol",
+    "lat": 38.3105556,
+    "lng": 39.0394444
+  },
+  {
+    "id": "ilce-607",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Heki̇mhan",
+    "label": "Malatya / Heki̇mhan",
+    "lat": 38.8166667,
+    "lng": 37.9333333
+  },
+  {
+    "id": "ilce-608",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Kale",
+    "label": "Malatya / Kale",
+    "lat": 38.4161111,
+    "lng": 38.7666667
+  },
+  {
+    "id": "ilce-609",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Kuluncak",
+    "label": "Malatya / Kuluncak",
+    "lat": 38.8833333,
+    "lng": 37.6666667
+  },
+  {
+    "id": "ilce-610",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Malatya",
+    "label": "Malatya / Malatya",
+    "lat": 38.35519,
+    "lng": 38.30946
+  },
+  {
+    "id": "ilce-611",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Pütürge(pötürge)",
+    "label": "Malatya / Pütürge(pötürge)",
+    "lat": 38.1966667,
+    "lng": 38.8697222
+  },
+  {
+    "id": "ilce-612",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Yazihan",
+    "label": "Malatya / Yazihan",
+    "lat": 38.5969444,
+    "lng": 38.1877778
+  },
+  {
+    "id": "ilce-613",
+    "cityCode": 44,
+    "cityName": "Malatya",
+    "districtName": "Yeşi̇lyurt",
+    "label": "Malatya / Yeşi̇lyurt",
+    "lat": 38.2974489,
+    "lng": 38.2442727
+  },
+  {
+    "id": "ilce-614",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Ahmetli̇",
+    "label": "Mani̇sa / Ahmetli̇",
+    "lat": 38.5215064,
+    "lng": 27.9395454
+  },
+  {
+    "id": "ilce-615",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Akhi̇sar",
+    "label": "Mani̇sa / Akhi̇sar",
+    "lat": 38.92469,
+    "lng": 27.83618
+  },
+  {
+    "id": "ilce-616",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Alaşehi̇r",
+    "label": "Mani̇sa / Alaşehi̇r",
+    "lat": 38.350861,
+    "lng": 28.515169
+  },
+  {
+    "id": "ilce-617",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Demi̇rci̇",
+    "label": "Mani̇sa / Demi̇rci̇",
+    "lat": 39.045,
+    "lng": 28.6580556
+  },
+  {
+    "id": "ilce-618",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Gölmarmara",
+    "label": "Mani̇sa / Gölmarmara",
+    "lat": 38.7166667,
+    "lng": 27.9166667
+  },
+  {
+    "id": "ilce-619",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Gördes",
+    "label": "Mani̇sa / Gördes",
+    "lat": 38.9327778,
+    "lng": 28.2902778
+  },
+  {
+    "id": "ilce-620",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Kirkağaç",
+    "label": "Mani̇sa / Kirkağaç",
+    "lat": 39.109379,
+    "lng": 27.666201
+  },
+  {
+    "id": "ilce-621",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Köprübaşi",
+    "label": "Mani̇sa / Köprübaşi",
+    "lat": 38.7497222,
+    "lng": 28.4047222
+  },
+  {
+    "id": "ilce-622",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Kula",
+    "label": "Mani̇sa / Kula",
+    "lat": 38.5458333,
+    "lng": 28.6494444
+  },
+  {
+    "id": "ilce-623",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Mani̇sa",
+    "label": "Mani̇sa / Mani̇sa",
+    "lat": 38.619099,
+    "lng": 27.428921
+  },
+  {
+    "id": "ilce-624",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Sali̇hli̇",
+    "label": "Mani̇sa / Sali̇hli̇",
+    "lat": 38.4811111,
+    "lng": 28.1391667
+  },
+  {
+    "id": "ilce-625",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Sarigöl",
+    "label": "Mani̇sa / Sarigöl",
+    "lat": 38.2402778,
+    "lng": 28.6988889
+  },
+  {
+    "id": "ilce-626",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Saruhanli",
+    "label": "Mani̇sa / Saruhanli",
+    "lat": 38.7341667,
+    "lng": 27.5658333
+  },
+  {
+    "id": "ilce-627",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Selendi̇",
+    "label": "Mani̇sa / Selendi̇",
+    "lat": 38.7444444,
+    "lng": 28.8677778
+  },
+  {
+    "id": "ilce-628",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Soma",
+    "label": "Mani̇sa / Soma",
+    "lat": 39.1883333,
+    "lng": 27.6088889
+  },
+  {
+    "id": "ilce-629",
+    "cityCode": 45,
+    "cityName": "Mani̇sa",
+    "districtName": "Turgutlu",
+    "label": "Mani̇sa / Turgutlu",
+    "lat": 38.504238,
+    "lng": 27.70442
+  },
+  {
+    "id": "ilce-630",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Afşi̇n",
+    "label": "Kahramanmaraş / Afşi̇n",
+    "lat": 38.25,
+    "lng": 36.9166667
+  },
+  {
+    "id": "ilce-631",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Andirin",
+    "label": "Kahramanmaraş / Andirin",
+    "lat": 37.576345,
+    "lng": 36.3525183
+  },
+  {
+    "id": "ilce-632",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Çağliyanceri̇t",
+    "label": "Kahramanmaraş / Çağliyanceri̇t",
+    "lat": 37.5833333,
+    "lng": 36.9333333
+  },
+  {
+    "id": "ilce-633",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Eki̇nözü",
+    "label": "Kahramanmaraş / Eki̇nözü",
+    "lat": 38.0617,
+    "lng": 37.1928
+  },
+  {
+    "id": "ilce-634",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Elbi̇stan",
+    "label": "Kahramanmaraş / Elbi̇stan",
+    "lat": 38.20266,
+    "lng": 37.206169
+  },
+  {
+    "id": "ilce-635",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Göksun",
+    "label": "Kahramanmaraş / Göksun",
+    "lat": 38.0166667,
+    "lng": 36.5
+  },
+  {
+    "id": "ilce-636",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Kahramanmaraş",
+    "label": "Kahramanmaraş / Kahramanmaraş",
+    "lat": 37.5833333,
+    "lng": 36.9333333
+  },
+  {
+    "id": "ilce-637",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Nurhak",
+    "label": "Kahramanmaraş / Nurhak",
+    "lat": 37.9666667,
+    "lng": 37.4333333
+  },
+  {
+    "id": "ilce-638",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Pazarcik",
+    "label": "Kahramanmaraş / Pazarcik",
+    "lat": 37.4898349,
+    "lng": 37.2945303
+  },
+  {
+    "id": "ilce-639",
+    "cityCode": 46,
+    "cityName": "Kahramanmaraş",
+    "districtName": "Türkoğlu",
+    "label": "Kahramanmaraş / Türkoğlu",
+    "lat": 37.3914,
+    "lng": 36.8522
+  },
+  {
+    "id": "ilce-640",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Dargeçi̇t",
+    "label": "Mardi̇n / Dargeçi̇t",
+    "lat": 37.547104,
+    "lng": 41.7183823
+  },
+  {
+    "id": "ilce-641",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Deri̇k",
+    "label": "Mardi̇n / Deri̇k",
+    "lat": 37.3658333,
+    "lng": 40.2697222
+  },
+  {
+    "id": "ilce-642",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Kiziltepe",
+    "label": "Mardi̇n / Kiziltepe",
+    "lat": 37.1938889,
+    "lng": 40.5861111
+  },
+  {
+    "id": "ilce-643",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Mardi̇n",
+    "label": "Mardi̇n / Mardi̇n",
+    "lat": 37.3122361,
+    "lng": 40.735112
+  },
+  {
+    "id": "ilce-644",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Mazidaği",
+    "label": "Mardi̇n / Mazidaği",
+    "lat": 37.4833333,
+    "lng": 40.4833333
+  },
+  {
+    "id": "ilce-645",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Mi̇dyat(estel)",
+    "label": "Mardi̇n / Mi̇dyat(estel)",
+    "lat": 37.3122361,
+    "lng": 40.735112
+  },
+  {
+    "id": "ilce-646",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Nusaybi̇n",
+    "label": "Mardi̇n / Nusaybi̇n",
+    "lat": 37.0756876,
+    "lng": 41.2145207
+  },
+  {
+    "id": "ilce-647",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Ömerli̇",
+    "label": "Mardi̇n / Ömerli̇",
+    "lat": 37.4009249,
+    "lng": 40.956326
+  },
+  {
+    "id": "ilce-648",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Savur",
+    "label": "Mardi̇n / Savur",
+    "lat": 37.5378579,
+    "lng": 40.8896718
+  },
+  {
+    "id": "ilce-649",
+    "cityCode": 47,
+    "cityName": "Mardi̇n",
+    "districtName": "Yeşi̇lli̇",
+    "label": "Mardi̇n / Yeşi̇lli̇",
+    "lat": 37.3426171,
+    "lng": 40.8249471
+  },
+  {
+    "id": "ilce-650",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Bodrum",
+    "label": "Muğla / Bodrum",
+    "lat": 37.035339,
+    "lng": 27.43029
+  },
+  {
+    "id": "ilce-651",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Dalaman",
+    "label": "Muğla / Dalaman",
+    "lat": 36.77187,
+    "lng": 28.797701
+  },
+  {
+    "id": "ilce-652",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Datça",
+    "label": "Muğla / Datça",
+    "lat": 36.7283,
+    "lng": 27.6869
+  },
+  {
+    "id": "ilce-653",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Fethi̇ye",
+    "label": "Muğla / Fethi̇ye",
+    "lat": 36.6513889,
+    "lng": 29.1230556
+  },
+  {
+    "id": "ilce-654",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Kavaklidere",
+    "label": "Muğla / Kavaklidere",
+    "lat": 37.4469444,
+    "lng": 28.3633333
+  },
+  {
+    "id": "ilce-655",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Köyceği̇z",
+    "label": "Muğla / Köyceği̇z",
+    "lat": 36.97126,
+    "lng": 28.688841
+  },
+  {
+    "id": "ilce-656",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Marmari̇s",
+    "label": "Muğla / Marmari̇s",
+    "lat": 36.863411,
+    "lng": 28.27504
+  },
+  {
+    "id": "ilce-657",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Mi̇las",
+    "label": "Muğla / Mi̇las",
+    "lat": 37.3127778,
+    "lng": 27.7819444
+  },
+  {
+    "id": "ilce-658",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Muğla",
+    "label": "Muğla / Muğla",
+    "lat": 37.2152778,
+    "lng": 28.3636111
+  },
+  {
+    "id": "ilce-659",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Ortaca",
+    "label": "Muğla / Ortaca",
+    "lat": 36.8377778,
+    "lng": 28.7661111
+  },
+  {
+    "id": "ilce-660",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Ula",
+    "label": "Muğla / Ula",
+    "lat": 37.1027778,
+    "lng": 28.4166667
+  },
+  {
+    "id": "ilce-661",
+    "cityCode": 48,
+    "cityName": "Muğla",
+    "districtName": "Yatağan",
+    "label": "Muğla / Yatağan",
+    "lat": 37.3405556,
+    "lng": 28.1402778
+  },
+  {
+    "id": "ilce-662",
+    "cityCode": 49,
+    "cityName": "Muş",
+    "districtName": "Bulanik",
+    "label": "Muş / Bulanik",
+    "lat": 39.095,
+    "lng": 42.2666667
+  },
+  {
+    "id": "ilce-663",
+    "cityCode": 49,
+    "cityName": "Muş",
+    "districtName": "Hasköy",
+    "label": "Muş / Hasköy",
+    "lat": 38.6863889,
+    "lng": 41.6936111
+  },
+  {
+    "id": "ilce-664",
+    "cityCode": 49,
+    "cityName": "Muş",
+    "districtName": "Korkut",
+    "label": "Muş / Korkut",
+    "lat": 38.7442482,
+    "lng": 41.7839287
+  },
+  {
+    "id": "ilce-665",
+    "cityCode": 49,
+    "cityName": "Muş",
+    "districtName": "Malazgi̇rt",
+    "label": "Muş / Malazgi̇rt",
+    "lat": 39.150051,
+    "lng": 42.5541
+  },
+  {
+    "id": "ilce-666",
+    "cityCode": 49,
+    "cityName": "Muş",
+    "districtName": "Muş",
+    "label": "Muş / Muş",
+    "lat": 38.7432926,
+    "lng": 41.5064823
+  },
+  {
+    "id": "ilce-667",
+    "cityCode": 49,
+    "cityName": "Muş",
+    "districtName": "Varto",
+    "label": "Muş / Varto",
+    "lat": 39.1694444,
+    "lng": 41.4541667
+  },
+  {
+    "id": "ilce-668",
+    "cityCode": 50,
+    "cityName": "Nevşehi̇r",
+    "districtName": "Acigöl",
+    "label": "Nevşehi̇r / Acigöl",
+    "lat": 38.5528906,
+    "lng": 34.5057525
+  },
+  {
+    "id": "ilce-669",
+    "cityCode": 50,
+    "cityName": "Nevşehi̇r",
+    "districtName": "Avanos",
+    "label": "Nevşehi̇r / Avanos",
+    "lat": 38.71973,
+    "lng": 34.855259
+  },
+  {
+    "id": "ilce-670",
+    "cityCode": 50,
+    "cityName": "Nevşehi̇r",
+    "districtName": "Deri̇nkuyu",
+    "label": "Nevşehi̇r / Deri̇nkuyu",
+    "lat": 38.373451,
+    "lng": 34.739479
+  },
+  {
+    "id": "ilce-671",
+    "cityCode": 50,
+    "cityName": "Nevşehi̇r",
+    "districtName": "Gülşehi̇r",
+    "label": "Nevşehi̇r / Gülşehi̇r",
+    "lat": 38.743031,
+    "lng": 34.62608
+  },
+  {
+    "id": "ilce-672",
+    "cityCode": 50,
+    "cityName": "Nevşehi̇r",
+    "districtName": "Hacibektaş",
+    "label": "Nevşehi̇r / Hacibektaş",
+    "lat": 38.9674447,
+    "lng": 34.6414028
+  },
+  {
+    "id": "ilce-673",
+    "cityCode": 50,
+    "cityName": "Nevşehi̇r",
+    "districtName": "Kozakli",
+    "label": "Nevşehi̇r / Kozakli",
+    "lat": 39.2165516,
+    "lng": 34.8486199
+  },
+  {
+    "id": "ilce-674",
+    "cityCode": 50,
+    "cityName": "Nevşehi̇r",
+    "districtName": "Nevşehi̇r",
+    "label": "Nevşehi̇r / Nevşehi̇r",
+    "lat": 38.62442,
+    "lng": 34.723969
+  },
+  {
+    "id": "ilce-675",
+    "cityCode": 50,
+    "cityName": "Nevşehi̇r",
+    "districtName": "Ürgüp",
+    "label": "Nevşehi̇r / Ürgüp",
+    "lat": 38.5520179,
+    "lng": 34.994751
+  },
+  {
+    "id": "ilce-676",
+    "cityCode": 51,
+    "cityName": "Ni̇ğde",
+    "districtName": "Altunhi̇sar",
+    "label": "Ni̇ğde / Altunhi̇sar",
+    "lat": 38,
+    "lng": 34.3666667
+  },
+  {
+    "id": "ilce-677",
+    "cityCode": 51,
+    "cityName": "Ni̇ğde",
+    "districtName": "Bor",
+    "label": "Ni̇ğde / Bor",
+    "lat": 37.8833333,
+    "lng": 34.55
+  },
+  {
+    "id": "ilce-678",
+    "cityCode": 51,
+    "cityName": "Ni̇ğde",
+    "districtName": "Çamardi",
+    "label": "Ni̇ğde / Çamardi",
+    "lat": 37.8320289,
+    "lng": 34.9864861
+  },
+  {
+    "id": "ilce-679",
+    "cityCode": 51,
+    "cityName": "Ni̇ğde",
+    "districtName": "Çi̇ftli̇k(özyurt)",
+    "label": "Ni̇ğde / Çi̇ftli̇k(özyurt)",
+    "lat": 37.9606454,
+    "lng": 34.8582778
+  },
+  {
+    "id": "ilce-680",
+    "cityCode": 51,
+    "cityName": "Ni̇ğde",
+    "districtName": "Ni̇ğde",
+    "label": "Ni̇ğde / Ni̇ğde",
+    "lat": 37.9666667,
+    "lng": 34.6833333
+  },
+  {
+    "id": "ilce-681",
+    "cityCode": 51,
+    "cityName": "Ni̇ğde",
+    "districtName": "Ulukişla",
+    "label": "Ni̇ğde / Ulukişla",
+    "lat": 37.5457881,
+    "lng": 34.4835855
+  },
+  {
+    "id": "ilce-682",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Akkuş",
+    "label": "Ordu / Akkuş",
+    "lat": 40.7930556,
+    "lng": 37.0163889
+  },
+  {
+    "id": "ilce-683",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Aybasti",
+    "label": "Ordu / Aybasti",
+    "lat": 40.6821551,
+    "lng": 37.3943332
+  },
+  {
+    "id": "ilce-684",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Çamaş",
+    "label": "Ordu / Çamaş",
+    "lat": 40.898991,
+    "lng": 37.530029
+  },
+  {
+    "id": "ilce-685",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Çatalpinar",
+    "label": "Ordu / Çatalpinar",
+    "lat": 41.1060496,
+    "lng": 37.2516661
+  },
+  {
+    "id": "ilce-686",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Çaybaşi",
+    "label": "Ordu / Çaybaşi",
+    "lat": 41.0185714,
+    "lng": 37.0975924
+  },
+  {
+    "id": "ilce-687",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Fatsa",
+    "label": "Ordu / Fatsa",
+    "lat": 41.0333333,
+    "lng": 37.5
+  },
+  {
+    "id": "ilce-688",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Gölköy",
+    "label": "Ordu / Gölköy",
+    "lat": 40.6875,
+    "lng": 37.6177778
+  },
+  {
+    "id": "ilce-689",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Gülyali",
+    "label": "Ordu / Gülyali",
+    "lat": 40.9621093,
+    "lng": 38.0549015
+  },
+  {
+    "id": "ilce-690",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Gürgentepe",
+    "label": "Ordu / Gürgentepe",
+    "lat": 40.7883333,
+    "lng": 37.6016667
+  },
+  {
+    "id": "ilce-691",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "İki̇zce",
+    "label": "Ordu / İki̇zce",
+    "lat": 41.0583333,
+    "lng": 37.0802778
+  },
+  {
+    "id": "ilce-692",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Kabadüz(karadüz)",
+    "label": "Ordu / Kabadüz(karadüz)",
+    "lat": 40.9833333,
+    "lng": 37.8833333
+  },
+  {
+    "id": "ilce-693",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Kabataş",
+    "label": "Ordu / Kabataş",
+    "lat": 40.75,
+    "lng": 37.45
+  },
+  {
+    "id": "ilce-694",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Korgan",
+    "label": "Ordu / Korgan",
+    "lat": 40.8247222,
+    "lng": 37.3466667
+  },
+  {
+    "id": "ilce-695",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Kumru",
+    "label": "Ordu / Kumru",
+    "lat": 40.8744444,
+    "lng": 37.2638889
+  },
+  {
+    "id": "ilce-696",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Mesudi̇ye",
+    "label": "Ordu / Mesudi̇ye",
+    "lat": 40.46294,
+    "lng": 37.770821
+  },
+  {
+    "id": "ilce-697",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Ordu",
+    "label": "Ordu / Ordu",
+    "lat": 40.9833333,
+    "lng": 37.8833333
+  },
+  {
+    "id": "ilce-698",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Perşembe",
+    "label": "Ordu / Perşembe",
+    "lat": 41.0655556,
+    "lng": 37.7713889
+  },
+  {
+    "id": "ilce-699",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Ulubey",
+    "label": "Ordu / Ulubey",
+    "lat": 40.8710156,
+    "lng": 37.7576239
+  },
+  {
+    "id": "ilce-700",
+    "cityCode": 52,
+    "cityName": "Ordu",
+    "districtName": "Ünye",
+    "label": "Ordu / Ünye",
+    "lat": 41.127831,
+    "lng": 37.287189
+  },
+  {
+    "id": "ilce-701",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Ardeşen",
+    "label": "Ri̇ze / Ardeşen",
+    "lat": 41.1878114,
+    "lng": 40.9706691
+  },
+  {
+    "id": "ilce-702",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Çamlihemşi̇n",
+    "label": "Ri̇ze / Çamlihemşi̇n",
+    "lat": 41.0464845,
+    "lng": 41.0048663
+  },
+  {
+    "id": "ilce-703",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Çayeli̇",
+    "label": "Ri̇ze / Çayeli̇",
+    "lat": 41.089451,
+    "lng": 40.736488
+  },
+  {
+    "id": "ilce-704",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Derepazari",
+    "label": "Ri̇ze / Derepazari",
+    "lat": 41.0225849,
+    "lng": 40.4253555
+  },
+  {
+    "id": "ilce-705",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Findikli",
+    "label": "Ri̇ze / Findikli",
+    "lat": 40.9074057,
+    "lng": 40.4664602
+  },
+  {
+    "id": "ilce-706",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Güneysu",
+    "label": "Ri̇ze / Güneysu",
+    "lat": 40.9717875,
+    "lng": 40.6136749
+  },
+  {
+    "id": "ilce-707",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Hemşi̇n",
+    "label": "Ri̇ze / Hemşi̇n",
+    "lat": 41.05,
+    "lng": 40.9
+  },
+  {
+    "id": "ilce-708",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "İki̇zdere",
+    "label": "Ri̇ze / İki̇zdere",
+    "lat": 40.7818686,
+    "lng": 40.5533405
+  },
+  {
+    "id": "ilce-709",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "İyi̇dere",
+    "label": "Ri̇ze / İyi̇dere",
+    "lat": 41.0119444,
+    "lng": 40.3619444
+  },
+  {
+    "id": "ilce-710",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Kalkandere",
+    "label": "Ri̇ze / Kalkandere",
+    "lat": 40.9285479,
+    "lng": 40.4430798
+  },
+  {
+    "id": "ilce-711",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Pazar",
+    "label": "Ri̇ze / Pazar",
+    "lat": 41.180043,
+    "lng": 40.8914022
+  },
+  {
+    "id": "ilce-712",
+    "cityCode": 53,
+    "cityName": "Ri̇ze",
+    "districtName": "Ri̇ze",
+    "label": "Ri̇ze / Ri̇ze",
+    "lat": 41.02005,
+    "lng": 40.523449
+  },
+  {
+    "id": "ilce-713",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Adapazari",
+    "label": "Sakarya / Adapazari",
+    "lat": 40.788855,
+    "lng": 30.405954
+  },
+  {
+    "id": "ilce-714",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Akyazi",
+    "label": "Sakarya / Akyazi",
+    "lat": 40.6833333,
+    "lng": 30.6252778
+  },
+  {
+    "id": "ilce-715",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Ari̇fi̇ye",
+    "label": "Sakarya / Ari̇fi̇ye",
+    "lat": 40.714541,
+    "lng": 30.362375
+  },
+  {
+    "id": "ilce-716",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Erenler",
+    "label": "Sakarya / Erenler",
+    "lat": 40.7568793,
+    "lng": 30.378138
+  },
+  {
+    "id": "ilce-717",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Feri̇zli̇",
+    "label": "Sakarya / Feri̇zli̇",
+    "lat": 40.939719,
+    "lng": 30.4885735
+  },
+  {
+    "id": "ilce-718",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Geyve",
+    "label": "Sakarya / Geyve",
+    "lat": 40.519299,
+    "lng": 30.30188
+  },
+  {
+    "id": "ilce-719",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Hendek",
+    "label": "Sakarya / Hendek",
+    "lat": 40.805099,
+    "lng": 30.7493
+  },
+  {
+    "id": "ilce-720",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Karapürçek",
+    "label": "Sakarya / Karapürçek",
+    "lat": 40.6425,
+    "lng": 30.5386
+  },
+  {
+    "id": "ilce-721",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Karasu",
+    "label": "Sakarya / Karasu",
+    "lat": 41.1036111,
+    "lng": 30.6936111
+  },
+  {
+    "id": "ilce-722",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Kaynarca",
+    "label": "Sakarya / Kaynarca",
+    "lat": 41.03466,
+    "lng": 30.31016
+  },
+  {
+    "id": "ilce-723",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Kocaali̇",
+    "label": "Sakarya / Kocaali̇",
+    "lat": 41.0547222,
+    "lng": 30.8502778
+  },
+  {
+    "id": "ilce-724",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Pamukova",
+    "label": "Sakarya / Pamukova",
+    "lat": 40.5052701,
+    "lng": 30.1675902
+  },
+  {
+    "id": "ilce-725",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Sapanca",
+    "label": "Sakarya / Sapanca",
+    "lat": 40.690541,
+    "lng": 30.263447
+  },
+  {
+    "id": "ilce-726",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Serdi̇van",
+    "label": "Sakarya / Serdi̇van",
+    "lat": 40.7568793,
+    "lng": 30.378138
+  },
+  {
+    "id": "ilce-727",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Söğütlü",
+    "label": "Sakarya / Söğütlü",
+    "lat": 40.9036993,
+    "lng": 30.4690975
+  },
+  {
+    "id": "ilce-728",
+    "cityCode": 54,
+    "cityName": "Sakarya",
+    "districtName": "Tarakli",
+    "label": "Sakarya / Tarakli",
+    "lat": 40.3969444,
+    "lng": 30.4927778
+  },
+  {
+    "id": "ilce-729",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Alaçam",
+    "label": "Samsun / Alaçam",
+    "lat": 41.6169185,
+    "lng": 35.6054166
+  },
+  {
+    "id": "ilce-730",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Asarcik",
+    "label": "Samsun / Asarcik",
+    "lat": 41.0418153,
+    "lng": 36.230204
+  },
+  {
+    "id": "ilce-731",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Atakum",
+    "label": "Samsun / Atakum",
+    "lat": 41.292782,
+    "lng": 36.33128
+  },
+  {
+    "id": "ilce-732",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Ayvacik",
+    "label": "Samsun / Ayvacik",
+    "lat": 40.987041,
+    "lng": 36.63142
+  },
+  {
+    "id": "ilce-733",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Bafra",
+    "label": "Samsun / Bafra",
+    "lat": 41.565418,
+    "lng": 35.895241
+  },
+  {
+    "id": "ilce-734",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Cani̇k",
+    "label": "Samsun / Cani̇k",
+    "lat": 41.292782,
+    "lng": 36.33128
+  },
+  {
+    "id": "ilce-735",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Çarşamba",
+    "label": "Samsun / Çarşamba",
+    "lat": 41.198959,
+    "lng": 36.726891
+  },
+  {
+    "id": "ilce-736",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Havza",
+    "label": "Samsun / Havza",
+    "lat": 40.97044,
+    "lng": 35.662601
+  },
+  {
+    "id": "ilce-737",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "İlkadim",
+    "label": "Samsun / İlkadim",
+    "lat": 41.292782,
+    "lng": 36.33128
+  },
+  {
+    "id": "ilce-738",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Kavak",
+    "label": "Samsun / Kavak",
+    "lat": 41.0736111,
+    "lng": 36.0402778
+  },
+  {
+    "id": "ilce-739",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Ladi̇k",
+    "label": "Samsun / Ladi̇k",
+    "lat": 40.9105556,
+    "lng": 35.8919444
+  },
+  {
+    "id": "ilce-740",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Ondokuzmayis(ballica)",
+    "label": "Samsun / Ondokuzmayis(ballica)",
+    "lat": 41.5,
+    "lng": 36.083333
+  },
+  {
+    "id": "ilce-741",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Salipazari",
+    "label": "Samsun / Salipazari",
+    "lat": 41.0805525,
+    "lng": 36.8266328
+  },
+  {
+    "id": "ilce-742",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Tekkeköy",
+    "label": "Samsun / Tekkeköy",
+    "lat": 41.2125,
+    "lng": 36.4569444
+  },
+  {
+    "id": "ilce-743",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Terme",
+    "label": "Samsun / Terme",
+    "lat": 41.209209,
+    "lng": 36.97065
+  },
+  {
+    "id": "ilce-744",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Vezi̇rköprü",
+    "label": "Samsun / Vezi̇rköprü",
+    "lat": 41.145081,
+    "lng": 35.45726
+  },
+  {
+    "id": "ilce-745",
+    "cityCode": 55,
+    "cityName": "Samsun",
+    "districtName": "Yakakent",
+    "label": "Samsun / Yakakent",
+    "lat": 41.633103,
+    "lng": 35.5322627
+  },
+  {
+    "id": "ilce-746",
+    "cityCode": 56,
+    "cityName": "Si̇i̇rt",
+    "districtName": "Aydinlar",
+    "label": "Si̇i̇rt / Aydinlar",
+    "lat": 37.9503262,
+    "lng": 42.0150889
+  },
+  {
+    "id": "ilce-747",
+    "cityCode": 56,
+    "cityName": "Si̇i̇rt",
+    "districtName": "Baykan",
+    "label": "Si̇i̇rt / Baykan",
+    "lat": 38.1638889,
+    "lng": 41.7847222
+  },
+  {
+    "id": "ilce-748",
+    "cityCode": 56,
+    "cityName": "Si̇i̇rt",
+    "districtName": "Eruh",
+    "label": "Si̇i̇rt / Eruh",
+    "lat": 37.75,
+    "lng": 42.1833333
+  },
+  {
+    "id": "ilce-749",
+    "cityCode": 56,
+    "cityName": "Si̇i̇rt",
+    "districtName": "Kurtalan",
+    "label": "Si̇i̇rt / Kurtalan",
+    "lat": 37.92662,
+    "lng": 41.6947573
+  },
+  {
+    "id": "ilce-750",
+    "cityCode": 56,
+    "cityName": "Si̇i̇rt",
+    "districtName": "Pervari̇",
+    "label": "Si̇i̇rt / Pervari̇",
+    "lat": 37.9309505,
+    "lng": 42.5465358
+  },
+  {
+    "id": "ilce-751",
+    "cityCode": 56,
+    "cityName": "Si̇i̇rt",
+    "districtName": "Si̇i̇rt",
+    "label": "Si̇i̇rt / Si̇i̇rt",
+    "lat": 37.94429,
+    "lng": 41.93288
+  },
+  {
+    "id": "ilce-752",
+    "cityCode": 56,
+    "cityName": "Si̇i̇rt",
+    "districtName": "Şi̇rvan",
+    "label": "Si̇i̇rt / Şi̇rvan",
+    "lat": 38.0633333,
+    "lng": 42.0275
+  },
+  {
+    "id": "ilce-753",
+    "cityCode": 57,
+    "cityName": "Si̇nop",
+    "districtName": "Ayancik",
+    "label": "Si̇nop / Ayancik",
+    "lat": 41.947041,
+    "lng": 34.59177
+  },
+  {
+    "id": "ilce-754",
+    "cityCode": 57,
+    "cityName": "Si̇nop",
+    "districtName": "Boyabat",
+    "label": "Si̇nop / Boyabat",
+    "lat": 41.4666667,
+    "lng": 34.7666667
+  },
+  {
+    "id": "ilce-755",
+    "cityCode": 57,
+    "cityName": "Si̇nop",
+    "districtName": "Di̇kmen",
+    "label": "Si̇nop / Di̇kmen",
+    "lat": 41.6540491,
+    "lng": 35.2649916
+  },
+  {
+    "id": "ilce-756",
+    "cityCode": 57,
+    "cityName": "Si̇nop",
+    "districtName": "Durağan",
+    "label": "Si̇nop / Durağan",
+    "lat": 41.4219764,
+    "lng": 35.0549829
+  },
+  {
+    "id": "ilce-757",
+    "cityCode": 57,
+    "cityName": "Si̇nop",
+    "districtName": "Erfelek",
+    "label": "Si̇nop / Erfelek",
+    "lat": 41.8763569,
+    "lng": 34.9085152
+  },
+  {
+    "id": "ilce-758",
+    "cityCode": 57,
+    "cityName": "Si̇nop",
+    "districtName": "Gerze",
+    "label": "Si̇nop / Gerze",
+    "lat": 41.800411,
+    "lng": 35.18718
+  },
+  {
+    "id": "ilce-759",
+    "cityCode": 57,
+    "cityName": "Si̇nop",
+    "districtName": "Saraydüzü",
+    "label": "Si̇nop / Saraydüzü",
+    "lat": 41.3281618,
+    "lng": 34.8474633
+  },
+  {
+    "id": "ilce-760",
+    "cityCode": 57,
+    "cityName": "Si̇nop",
+    "districtName": "Si̇nop",
+    "label": "Si̇nop / Si̇nop",
+    "lat": 42.0264222,
+    "lng": 35.1550745
+  },
+  {
+    "id": "ilce-761",
+    "cityCode": 57,
+    "cityName": "Si̇nop",
+    "districtName": "Türkeli̇",
+    "label": "Si̇nop / Türkeli̇",
+    "lat": 41.9486111,
+    "lng": 34.3366667
+  },
+  {
+    "id": "ilce-762",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Akincilar",
+    "label": "Si̇vas / Akincilar",
+    "lat": 40.0803,
+    "lng": 38.3472
+  },
+  {
+    "id": "ilce-763",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Altinyayla",
+    "label": "Si̇vas / Altinyayla",
+    "lat": 39.272,
+    "lng": 36.752
+  },
+  {
+    "id": "ilce-764",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Di̇vri̇ği̇",
+    "label": "Si̇vas / Di̇vri̇ği̇",
+    "lat": 39.36586,
+    "lng": 38.127251
+  },
+  {
+    "id": "ilce-765",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Doğanşar",
+    "label": "Si̇vas / Doğanşar",
+    "lat": 40.2166667,
+    "lng": 37.5333333
+  },
+  {
+    "id": "ilce-766",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Gemerek",
+    "label": "Si̇vas / Gemerek",
+    "lat": 39.1852,
+    "lng": 36.075031
+  },
+  {
+    "id": "ilce-767",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Gölova",
+    "label": "Si̇vas / Gölova",
+    "lat": 40.0622,
+    "lng": 38.6094
+  },
+  {
+    "id": "ilce-768",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Gürün",
+    "label": "Si̇vas / Gürün",
+    "lat": 38.7225,
+    "lng": 37.2775
+  },
+  {
+    "id": "ilce-769",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Hafi̇k",
+    "label": "Si̇vas / Hafi̇k",
+    "lat": 39.85,
+    "lng": 37.3833333
+  },
+  {
+    "id": "ilce-770",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "İmranli",
+    "label": "Si̇vas / İmranli",
+    "lat": 39.8765105,
+    "lng": 38.1106253
+  },
+  {
+    "id": "ilce-771",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Kangal",
+    "label": "Si̇vas / Kangal",
+    "lat": 39.2333333,
+    "lng": 37.3833333
+  },
+  {
+    "id": "ilce-772",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Koyulhi̇sar",
+    "label": "Si̇vas / Koyulhi̇sar",
+    "lat": 40.3,
+    "lng": 37.8333333
+  },
+  {
+    "id": "ilce-773",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Si̇vas",
+    "label": "Si̇vas / Si̇vas",
+    "lat": 39.747662,
+    "lng": 37.017879
+  },
+  {
+    "id": "ilce-774",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Suşehri̇",
+    "label": "Si̇vas / Suşehri̇",
+    "lat": 40.162281,
+    "lng": 38.095749
+  },
+  {
+    "id": "ilce-775",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Şarkişla",
+    "label": "Si̇vas / Şarkişla",
+    "lat": 39.350948,
+    "lng": 36.417599
+  },
+  {
+    "id": "ilce-776",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Ulaş",
+    "label": "Si̇vas / Ulaş",
+    "lat": 39.443829,
+    "lng": 37.040508
+  },
+  {
+    "id": "ilce-777",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Yildizeli̇",
+    "label": "Si̇vas / Yildizeli̇",
+    "lat": 39.8666667,
+    "lng": 36.6
+  },
+  {
+    "id": "ilce-778",
+    "cityCode": 58,
+    "cityName": "Si̇vas",
+    "districtName": "Zara",
+    "label": "Si̇vas / Zara",
+    "lat": 39.895,
+    "lng": 37.7531
+  },
+  {
+    "id": "ilce-779",
+    "cityCode": 59,
+    "cityName": "Teki̇rdağ",
+    "districtName": "Çerkezköy",
+    "label": "Teki̇rdağ / Çerkezköy",
+    "lat": 41.2833333,
+    "lng": 28
+  },
+  {
+    "id": "ilce-780",
+    "cityCode": 59,
+    "cityName": "Teki̇rdağ",
+    "districtName": "Çorlu",
+    "label": "Teki̇rdağ / Çorlu",
+    "lat": 41.167461,
+    "lng": 27.805599
+  },
+  {
+    "id": "ilce-781",
+    "cityCode": 59,
+    "cityName": "Teki̇rdağ",
+    "districtName": "Hayrabolu",
+    "label": "Teki̇rdağ / Hayrabolu",
+    "lat": 41.2131684,
+    "lng": 27.1000014
+  },
+  {
+    "id": "ilce-782",
+    "cityCode": 59,
+    "cityName": "Teki̇rdağ",
+    "districtName": "Malkara",
+    "label": "Teki̇rdağ / Malkara",
+    "lat": 40.8933333,
+    "lng": 26.9041667
+  },
+  {
+    "id": "ilce-783",
+    "cityCode": 59,
+    "cityName": "Teki̇rdağ",
+    "districtName": "Marmaraereğli̇si̇",
+    "label": "Teki̇rdağ / Marmaraereğli̇si̇",
+    "lat": 40.97,
+    "lng": 27.955
+  },
+  {
+    "id": "ilce-784",
+    "cityCode": 59,
+    "cityName": "Teki̇rdağ",
+    "districtName": "Muratli",
+    "label": "Teki̇rdağ / Muratli",
+    "lat": 41.174049,
+    "lng": 27.508789
+  },
+  {
+    "id": "ilce-785",
+    "cityCode": 59,
+    "cityName": "Teki̇rdağ",
+    "districtName": "Saray",
+    "label": "Teki̇rdağ / Saray",
+    "lat": 41.4425419,
+    "lng": 27.921971
+  },
+  {
+    "id": "ilce-786",
+    "cityCode": 59,
+    "cityName": "Teki̇rdağ",
+    "districtName": "Şarköy",
+    "label": "Teki̇rdağ / Şarköy",
+    "lat": 40.61343,
+    "lng": 27.11357
+  },
+  {
+    "id": "ilce-787",
+    "cityCode": 59,
+    "cityName": "Teki̇rdağ",
+    "districtName": "Teki̇rdağ",
+    "label": "Teki̇rdağ / Teki̇rdağ",
+    "lat": 40.9833333,
+    "lng": 27.5166667
+  },
+  {
+    "id": "ilce-788",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Almus",
+    "label": "Tokat / Almus",
+    "lat": 40.3757197,
+    "lng": 36.9044104
+  },
+  {
+    "id": "ilce-789",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Artova",
+    "label": "Tokat / Artova",
+    "lat": 40.115426,
+    "lng": 36.3041552
+  },
+  {
+    "id": "ilce-790",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Başçi̇ftli̇k",
+    "label": "Tokat / Başçi̇ftli̇k",
+    "lat": 40.55,
+    "lng": 37.166667
+  },
+  {
+    "id": "ilce-791",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Erbaa",
+    "label": "Tokat / Erbaa",
+    "lat": 40.6666667,
+    "lng": 36.5666667
+  },
+  {
+    "id": "ilce-792",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Ni̇ksar",
+    "label": "Tokat / Ni̇ksar",
+    "lat": 40.590542,
+    "lng": 36.953602
+  },
+  {
+    "id": "ilce-793",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Pazar",
+    "label": "Tokat / Pazar",
+    "lat": 40.2776877,
+    "lng": 36.2876219
+  },
+  {
+    "id": "ilce-794",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Reşadi̇ye",
+    "label": "Tokat / Reşadi̇ye",
+    "lat": 40.2076,
+    "lng": 35.685421
+  },
+  {
+    "id": "ilce-795",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Sulusaray",
+    "label": "Tokat / Sulusaray",
+    "lat": 39.9965587,
+    "lng": 36.084759
+  },
+  {
+    "id": "ilce-796",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Tokat",
+    "label": "Tokat / Tokat",
+    "lat": 40.3166667,
+    "lng": 36.55
+  },
+  {
+    "id": "ilce-797",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Turhal",
+    "label": "Tokat / Turhal",
+    "lat": 40.38546,
+    "lng": 36.074322
+  },
+  {
+    "id": "ilce-798",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Yeşi̇lyurt",
+    "label": "Tokat / Yeşi̇lyurt",
+    "lat": 40.0103794,
+    "lng": 36.2163407
+  },
+  {
+    "id": "ilce-799",
+    "cityCode": 60,
+    "cityName": "Tokat",
+    "districtName": "Zi̇le",
+    "label": "Tokat / Zi̇le",
+    "lat": 40.3,
+    "lng": 35.8833333
+  },
+  {
+    "id": "ilce-800",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Akçaabat",
+    "label": "Trabzon / Akçaabat",
+    "lat": 41.0166667,
+    "lng": 39.5833333
+  },
+  {
+    "id": "ilce-801",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Arakli",
+    "label": "Trabzon / Arakli",
+    "lat": 40.9391608,
+    "lng": 40.0550396
+  },
+  {
+    "id": "ilce-802",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Arsi̇n",
+    "label": "Trabzon / Arsi̇n",
+    "lat": 40.9532923,
+    "lng": 39.925555
+  },
+  {
+    "id": "ilce-803",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Beşi̇kdüzü",
+    "label": "Trabzon / Beşi̇kdüzü",
+    "lat": 41.0494444,
+    "lng": 39.2352778
+  },
+  {
+    "id": "ilce-804",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Çarşibaşi",
+    "label": "Trabzon / Çarşibaşi",
+    "lat": 41.083333,
+    "lng": 39.383333
+  },
+  {
+    "id": "ilce-805",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Çaykara",
+    "label": "Trabzon / Çaykara",
+    "lat": 40.7520752,
+    "lng": 40.2449213
+  },
+  {
+    "id": "ilce-806",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Dernekpazari",
+    "label": "Trabzon / Dernekpazari",
+    "lat": 40.8019387,
+    "lng": 40.2448097
+  },
+  {
+    "id": "ilce-807",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Düzköy",
+    "label": "Trabzon / Düzköy",
+    "lat": 40.8759072,
+    "lng": 39.4272206
+  },
+  {
+    "id": "ilce-808",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Hayrat",
+    "label": "Trabzon / Hayrat",
+    "lat": 40.8902322,
+    "lng": 40.3676217
+  },
+  {
+    "id": "ilce-809",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Köprübaşi",
+    "label": "Trabzon / Köprübaşi",
+    "lat": 40.8081526,
+    "lng": 40.1225939
+  },
+  {
+    "id": "ilce-810",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Maçka",
+    "label": "Trabzon / Maçka",
+    "lat": 40.8166667,
+    "lng": 39.6166667
+  },
+  {
+    "id": "ilce-811",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Of",
+    "label": "Trabzon / Of",
+    "lat": 40.9454046,
+    "lng": 40.269028
+  },
+  {
+    "id": "ilce-812",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Sürmene",
+    "label": "Trabzon / Sürmene",
+    "lat": 40.9127386,
+    "lng": 40.1109783
+  },
+  {
+    "id": "ilce-813",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Şalpazari",
+    "label": "Trabzon / Şalpazari",
+    "lat": 40.9418571,
+    "lng": 39.1910715
+  },
+  {
+    "id": "ilce-814",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Tonya",
+    "label": "Trabzon / Tonya",
+    "lat": 40.8854019,
+    "lng": 39.2924269
+  },
+  {
+    "id": "ilce-815",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Trabzon",
+    "label": "Trabzon / Trabzon",
+    "lat": 41,
+    "lng": 39.7333333
+  },
+  {
+    "id": "ilce-816",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Vakfikebi̇r",
+    "label": "Trabzon / Vakfikebi̇r",
+    "lat": 41.0474944,
+    "lng": 39.2798028
+  },
+  {
+    "id": "ilce-817",
+    "cityCode": 61,
+    "cityName": "Trabzon",
+    "districtName": "Yomra",
+    "label": "Trabzon / Yomra",
+    "lat": 40.954281,
+    "lng": 39.8651406
+  },
+  {
+    "id": "ilce-818",
+    "cityCode": 62,
+    "cityName": "Tunceli̇",
+    "districtName": "Çemi̇şgezek",
+    "label": "Tunceli̇ / Çemi̇şgezek",
+    "lat": 39.0636111,
+    "lng": 38.9133333
+  },
+  {
+    "id": "ilce-819",
+    "cityCode": 62,
+    "cityName": "Tunceli̇",
+    "districtName": "Hozat",
+    "label": "Tunceli̇ / Hozat",
+    "lat": 39.1088889,
+    "lng": 39.2191667
+  },
+  {
+    "id": "ilce-820",
+    "cityCode": 62,
+    "cityName": "Tunceli̇",
+    "districtName": "Mazgi̇rt",
+    "label": "Tunceli̇ / Mazgi̇rt",
+    "lat": 39.0216667,
+    "lng": 39.6058333
+  },
+  {
+    "id": "ilce-821",
+    "cityCode": 62,
+    "cityName": "Tunceli̇",
+    "districtName": "Nazimi̇ye",
+    "label": "Tunceli̇ / Nazimi̇ye",
+    "lat": 39.1811111,
+    "lng": 39.8288889
+  },
+  {
+    "id": "ilce-822",
+    "cityCode": 62,
+    "cityName": "Tunceli̇",
+    "districtName": "Ovacik",
+    "label": "Tunceli̇ / Ovacik",
+    "lat": 39.3583333,
+    "lng": 39.2161111
+  },
+  {
+    "id": "ilce-823",
+    "cityCode": 62,
+    "cityName": "Tunceli̇",
+    "districtName": "Pertek",
+    "label": "Tunceli̇ / Pertek",
+    "lat": 38.8669444,
+    "lng": 39.3261111
+  },
+  {
+    "id": "ilce-824",
+    "cityCode": 62,
+    "cityName": "Tunceli̇",
+    "districtName": "Pülümür",
+    "label": "Tunceli̇ / Pülümür",
+    "lat": 39.4833333,
+    "lng": 39.9
+  },
+  {
+    "id": "ilce-825",
+    "cityCode": 62,
+    "cityName": "Tunceli̇",
+    "districtName": "Tunceli̇",
+    "label": "Tunceli̇ / Tunceli̇",
+    "lat": 39.1079868,
+    "lng": 39.5401672
+  },
+  {
+    "id": "ilce-826",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Akçakale",
+    "label": "Şanliurfa / Akçakale",
+    "lat": 36.711,
+    "lng": 38.948
+  },
+  {
+    "id": "ilce-827",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Bi̇reci̇k",
+    "label": "Şanliurfa / Bi̇reci̇k",
+    "lat": 37.025,
+    "lng": 37.9769444
+  },
+  {
+    "id": "ilce-828",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Bozova",
+    "label": "Şanliurfa / Bozova",
+    "lat": 37.3627778,
+    "lng": 38.5255556
+  },
+  {
+    "id": "ilce-829",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Ceylanpinar",
+    "label": "Şanliurfa / Ceylanpinar",
+    "lat": 36.85,
+    "lng": 40.05
+  },
+  {
+    "id": "ilce-830",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Halfeti̇",
+    "label": "Şanliurfa / Halfeti̇",
+    "lat": 37.25,
+    "lng": 37.8666667
+  },
+  {
+    "id": "ilce-831",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Harran",
+    "label": "Şanliurfa / Harran",
+    "lat": 36.8652394,
+    "lng": 39.0241756
+  },
+  {
+    "id": "ilce-832",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Hi̇lvan",
+    "label": "Şanliurfa / Hi̇lvan",
+    "lat": 37.5886111,
+    "lng": 38.9555556
+  },
+  {
+    "id": "ilce-833",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Si̇verek",
+    "label": "Şanliurfa / Si̇verek",
+    "lat": 37.75201,
+    "lng": 39.332069
+  },
+  {
+    "id": "ilce-834",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Suruç",
+    "label": "Şanliurfa / Suruç",
+    "lat": 36.9746519,
+    "lng": 38.4245156
+  },
+  {
+    "id": "ilce-835",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Şanliurfa",
+    "label": "Şanliurfa / Şanliurfa",
+    "lat": 37.15,
+    "lng": 38.8
+  },
+  {
+    "id": "ilce-836",
+    "cityCode": 63,
+    "cityName": "Şanliurfa",
+    "districtName": "Vi̇ranşehi̇r",
+    "label": "Şanliurfa / Vi̇ranşehi̇r",
+    "lat": 37.2333333,
+    "lng": 39.7666667
+  },
+  {
+    "id": "ilce-837",
+    "cityCode": 64,
+    "cityName": "Uşak",
+    "districtName": "Banaz",
+    "label": "Uşak / Banaz",
+    "lat": 38.7333333,
+    "lng": 29.75
+  },
+  {
+    "id": "ilce-838",
+    "cityCode": 64,
+    "cityName": "Uşak",
+    "districtName": "Eşme",
+    "label": "Uşak / Eşme",
+    "lat": 38.401871,
+    "lng": 28.96896
+  },
+  {
+    "id": "ilce-839",
+    "cityCode": 64,
+    "cityName": "Uşak",
+    "districtName": "Karahalli",
+    "label": "Uşak / Karahalli",
+    "lat": 38.325821,
+    "lng": 29.53051
+  },
+  {
+    "id": "ilce-840",
+    "cityCode": 64,
+    "cityName": "Uşak",
+    "districtName": "Si̇vasli",
+    "label": "Uşak / Si̇vasli",
+    "lat": 38.498701,
+    "lng": 29.6817845
+  },
+  {
+    "id": "ilce-841",
+    "cityCode": 64,
+    "cityName": "Uşak",
+    "districtName": "Ulubey",
+    "label": "Uşak / Ulubey",
+    "lat": 38.4229294,
+    "lng": 29.2930875
+  },
+  {
+    "id": "ilce-842",
+    "cityCode": 64,
+    "cityName": "Uşak",
+    "districtName": "Uşak",
+    "label": "Uşak / Uşak",
+    "lat": 38.682301,
+    "lng": 29.40819
+  },
+  {
+    "id": "ilce-843",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Bahçesaray",
+    "label": "Van / Bahçesaray",
+    "lat": 38.1286363,
+    "lng": 42.8092096
+  },
+  {
+    "id": "ilce-844",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Başkale",
+    "label": "Van / Başkale",
+    "lat": 38.046,
+    "lng": 44.015
+  },
+  {
+    "id": "ilce-845",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Çaldiran",
+    "label": "Van / Çaldiran",
+    "lat": 39.1419444,
+    "lng": 43.9138889
+  },
+  {
+    "id": "ilce-846",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Çatak",
+    "label": "Van / Çatak",
+    "lat": 38.0065818,
+    "lng": 43.0585505
+  },
+  {
+    "id": "ilce-847",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Edremi̇t(gümüşdere)",
+    "label": "Van / Edremi̇t(gümüşdere)",
+    "lat": 38.4941667,
+    "lng": 43.38
+  },
+  {
+    "id": "ilce-848",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Erci̇ş",
+    "label": "Van / Erci̇ş",
+    "lat": 39.0265354,
+    "lng": 43.353334
+  },
+  {
+    "id": "ilce-849",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Gevaş",
+    "label": "Van / Gevaş",
+    "lat": 38.2958483,
+    "lng": 43.10816
+  },
+  {
+    "id": "ilce-850",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Gürpinar",
+    "label": "Van / Gürpinar",
+    "lat": 38.3287875,
+    "lng": 43.4143197
+  },
+  {
+    "id": "ilce-851",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Muradi̇ye",
+    "label": "Van / Muradi̇ye",
+    "lat": 38.9947222,
+    "lng": 43.7680556
+  },
+  {
+    "id": "ilce-852",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Özalp",
+    "label": "Van / Özalp",
+    "lat": 38.6580037,
+    "lng": 43.9919959
+  },
+  {
+    "id": "ilce-853",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Saray",
+    "label": "Van / Saray",
+    "lat": 38.6505556,
+    "lng": 44.17
+  },
+  {
+    "id": "ilce-854",
+    "cityCode": 65,
+    "cityName": "Van",
+    "districtName": "Van",
+    "label": "Van / Van",
+    "lat": 38.4941667,
+    "lng": 43.38
+  },
+  {
+    "id": "ilce-855",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Akdağmadeni̇",
+    "label": "Yozgat / Akdağmadeni̇",
+    "lat": 39.6658333,
+    "lng": 35.8836111
+  },
+  {
+    "id": "ilce-856",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Aydincik",
+    "label": "Yozgat / Aydincik",
+    "lat": 40.1288432,
+    "lng": 35.2861824
+  },
+  {
+    "id": "ilce-857",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Boğazliyan",
+    "label": "Yozgat / Boğazliyan",
+    "lat": 39.1941667,
+    "lng": 35.2472222
+  },
+  {
+    "id": "ilce-858",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Çandir",
+    "label": "Yozgat / Çandir",
+    "lat": 39.2447222,
+    "lng": 35.5138889
+  },
+  {
+    "id": "ilce-859",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Çayiralan",
+    "label": "Yozgat / Çayiralan",
+    "lat": 39.3027778,
+    "lng": 35.6438889
+  },
+  {
+    "id": "ilce-860",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Çekerek",
+    "label": "Yozgat / Çekerek",
+    "lat": 40.0730556,
+    "lng": 35.4947222
+  },
+  {
+    "id": "ilce-861",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Kadişehri̇",
+    "label": "Yozgat / Kadişehri̇",
+    "lat": 39.9984928,
+    "lng": 35.7899202
+  },
+  {
+    "id": "ilce-862",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Saraykent",
+    "label": "Yozgat / Saraykent",
+    "lat": 39.6936111,
+    "lng": 35.5111111
+  },
+  {
+    "id": "ilce-863",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Sarikaya",
+    "label": "Yozgat / Sarikaya",
+    "lat": 39.4936111,
+    "lng": 35.3769444
+  },
+  {
+    "id": "ilce-864",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Sorgun",
+    "label": "Yozgat / Sorgun",
+    "lat": 39.812803,
+    "lng": 35.181652
+  },
+  {
+    "id": "ilce-865",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Şefaatli̇",
+    "label": "Yozgat / Şefaatli̇",
+    "lat": 39.5016667,
+    "lng": 34.7522222
+  },
+  {
+    "id": "ilce-866",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Yeni̇fakili",
+    "label": "Yozgat / Yeni̇fakili",
+    "lat": 39.2114486,
+    "lng": 34.9975057
+  },
+  {
+    "id": "ilce-867",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Yerköy",
+    "label": "Yozgat / Yerköy",
+    "lat": 39.6380556,
+    "lng": 34.4672222
+  },
+  {
+    "id": "ilce-868",
+    "cityCode": 66,
+    "cityName": "Yozgat",
+    "districtName": "Yozgat",
+    "label": "Yozgat / Yozgat",
+    "lat": 39.82,
+    "lng": 34.8044444
+  },
+  {
+    "id": "ilce-869",
+    "cityCode": 67,
+    "cityName": "Zonguldak",
+    "districtName": "Alapli",
+    "label": "Zonguldak / Alapli",
+    "lat": 41.1833333,
+    "lng": 31.3833333
+  },
+  {
+    "id": "ilce-870",
+    "cityCode": 67,
+    "cityName": "Zonguldak",
+    "districtName": "Çaycuma",
+    "label": "Zonguldak / Çaycuma",
+    "lat": 41.4333333,
+    "lng": 32.0833333
+  },
+  {
+    "id": "ilce-871",
+    "cityCode": 67,
+    "cityName": "Zonguldak",
+    "districtName": "Devrek",
+    "label": "Zonguldak / Devrek",
+    "lat": 41.225201,
+    "lng": 31.959709
+  },
+  {
+    "id": "ilce-872",
+    "cityCode": 67,
+    "cityName": "Zonguldak",
+    "districtName": "Gökçebey",
+    "label": "Zonguldak / Gökçebey",
+    "lat": 41.3079384,
+    "lng": 32.1415847
+  },
+  {
+    "id": "ilce-873",
+    "cityCode": 67,
+    "cityName": "Zonguldak",
+    "districtName": "Karadeni̇zereğli̇",
+    "label": "Zonguldak / Karadeni̇zereğli̇",
+    "lat": 41.2894444,
+    "lng": 31.4180556
+  },
+  {
+    "id": "ilce-874",
+    "cityCode": 67,
+    "cityName": "Zonguldak",
+    "districtName": "Zonguldak",
+    "label": "Zonguldak / Zonguldak",
+    "lat": 41.456409,
+    "lng": 31.798731
+  },
+  {
+    "id": "ilce-875",
+    "cityCode": 68,
+    "cityName": "Aksaray",
+    "districtName": "Ağaçören",
+    "label": "Aksaray / Ağaçören",
+    "lat": 38.8722222,
+    "lng": 33.9172222
+  },
+  {
+    "id": "ilce-876",
+    "cityCode": 68,
+    "cityName": "Aksaray",
+    "districtName": "Aksaray",
+    "label": "Aksaray / Aksaray",
+    "lat": 38.36869,
+    "lng": 34.03698
+  },
+  {
+    "id": "ilce-877",
+    "cityCode": 68,
+    "cityName": "Aksaray",
+    "districtName": "Eski̇l",
+    "label": "Aksaray / Eski̇l",
+    "lat": 38.4016667,
+    "lng": 33.4130556
+  },
+  {
+    "id": "ilce-878",
+    "cityCode": 68,
+    "cityName": "Aksaray",
+    "districtName": "Gülağaç",
+    "label": "Aksaray / Gülağaç",
+    "lat": 38.4,
+    "lng": 34.35
+  },
+  {
+    "id": "ilce-879",
+    "cityCode": 68,
+    "cityName": "Aksaray",
+    "districtName": "Güzelyurt",
+    "label": "Aksaray / Güzelyurt",
+    "lat": 38.2811386,
+    "lng": 34.3088255
+  },
+  {
+    "id": "ilce-880",
+    "cityCode": 68,
+    "cityName": "Aksaray",
+    "districtName": "Ortaköy",
+    "label": "Aksaray / Ortaköy",
+    "lat": 38.7361111,
+    "lng": 34.0402778
+  },
+  {
+    "id": "ilce-881",
+    "cityCode": 68,
+    "cityName": "Aksaray",
+    "districtName": "Sariyahşi̇",
+    "label": "Aksaray / Sariyahşi̇",
+    "lat": 38.9833333,
+    "lng": 33.85
+  },
+  {
+    "id": "ilce-882",
+    "cityCode": 69,
+    "cityName": "Bayburt",
+    "districtName": "Aydintepe",
+    "label": "Bayburt / Aydintepe",
+    "lat": 40.3908333,
+    "lng": 40.1505556
+  },
+  {
+    "id": "ilce-883",
+    "cityCode": 69,
+    "cityName": "Bayburt",
+    "districtName": "Bayburt",
+    "label": "Bayburt / Bayburt",
+    "lat": 40.255169,
+    "lng": 40.22488
+  },
+  {
+    "id": "ilce-884",
+    "cityCode": 69,
+    "cityName": "Bayburt",
+    "districtName": "Demi̇rözü",
+    "label": "Bayburt / Demi̇rözü",
+    "lat": 40.1638889,
+    "lng": 39.8925
+  },
+  {
+    "id": "ilce-885",
+    "cityCode": 70,
+    "cityName": "Karaman",
+    "districtName": "Ayranci",
+    "label": "Karaman / Ayranci",
+    "lat": 37.3619444,
+    "lng": 33.6836111
+  },
+  {
+    "id": "ilce-886",
+    "cityCode": 70,
+    "cityName": "Karaman",
+    "districtName": "Başyayla",
+    "label": "Karaman / Başyayla",
+    "lat": 36.7547222,
+    "lng": 32.6788889
+  },
+  {
+    "id": "ilce-887",
+    "cityCode": 70,
+    "cityName": "Karaman",
+    "districtName": "Ermenek",
+    "label": "Karaman / Ermenek",
+    "lat": 36.6388889,
+    "lng": 32.8925
+  },
+  {
+    "id": "ilce-888",
+    "cityCode": 70,
+    "cityName": "Karaman",
+    "districtName": "Karaman",
+    "label": "Karaman / Karaman",
+    "lat": 37.17593,
+    "lng": 33.228748
+  },
+  {
+    "id": "ilce-889",
+    "cityCode": 70,
+    "cityName": "Karaman",
+    "districtName": "Kazimkarabeki̇r",
+    "label": "Karaman / Kazimkarabeki̇r",
+    "lat": 37.2302778,
+    "lng": 32.9588889
+  },
+  {
+    "id": "ilce-890",
+    "cityCode": 70,
+    "cityName": "Karaman",
+    "districtName": "Sariveli̇ler",
+    "label": "Karaman / Sariveli̇ler",
+    "lat": 36.7011654,
+    "lng": 32.6192672
+  },
+  {
+    "id": "ilce-891",
+    "cityCode": 71,
+    "cityName": "Kirikkale",
+    "districtName": "Bahşi̇li̇",
+    "label": "Kirikkale / Bahşi̇li̇",
+    "lat": 39.7007427,
+    "lng": 33.3710571
+  },
+  {
+    "id": "ilce-892",
+    "cityCode": 71,
+    "cityName": "Kirikkale",
+    "districtName": "Balişeyh",
+    "label": "Kirikkale / Balişeyh",
+    "lat": 39.9166667,
+    "lng": 33.7166667
+  },
+  {
+    "id": "ilce-893",
+    "cityCode": 71,
+    "cityName": "Kirikkale",
+    "districtName": "Çelebi̇",
+    "label": "Kirikkale / Çelebi̇",
+    "lat": 39.4641936,
+    "lng": 33.5252068
+  },
+  {
+    "id": "ilce-894",
+    "cityCode": 71,
+    "cityName": "Kirikkale",
+    "districtName": "Deli̇ce",
+    "label": "Kirikkale / Deli̇ce",
+    "lat": 39.9436712,
+    "lng": 34.0395217
+  },
+  {
+    "id": "ilce-895",
+    "cityCode": 71,
+    "cityName": "Kirikkale",
+    "districtName": "Karakeçi̇li̇",
+    "label": "Kirikkale / Karakeçi̇li̇",
+    "lat": 39.5944352,
+    "lng": 33.3794717
+  },
+  {
+    "id": "ilce-896",
+    "cityCode": 71,
+    "cityName": "Kirikkale",
+    "districtName": "Keski̇n",
+    "label": "Kirikkale / Keski̇n",
+    "lat": 39.6730556,
+    "lng": 33.6136111
+  },
+  {
+    "id": "ilce-897",
+    "cityCode": 71,
+    "cityName": "Kirikkale",
+    "districtName": "Kirikkale",
+    "label": "Kirikkale / Kirikkale",
+    "lat": 39.846821,
+    "lng": 33.515251
+  },
+  {
+    "id": "ilce-898",
+    "cityCode": 71,
+    "cityName": "Kirikkale",
+    "districtName": "Sulakyurt",
+    "label": "Kirikkale / Sulakyurt",
+    "lat": 40.1575,
+    "lng": 33.7175
+  },
+  {
+    "id": "ilce-899",
+    "cityCode": 71,
+    "cityName": "Kirikkale",
+    "districtName": "Yahşi̇han",
+    "label": "Kirikkale / Yahşi̇han",
+    "lat": 39.8502778,
+    "lng": 33.4536111
+  },
+  {
+    "id": "ilce-900",
+    "cityCode": 72,
+    "cityName": "Batman",
+    "districtName": "Batman",
+    "label": "Batman / Batman",
+    "lat": 37.881168,
+    "lng": 41.13509
+  },
+  {
+    "id": "ilce-901",
+    "cityCode": 72,
+    "cityName": "Batman",
+    "districtName": "Beşi̇ri̇",
+    "label": "Batman / Beşi̇ri̇",
+    "lat": 37.92,
+    "lng": 41.29
+  },
+  {
+    "id": "ilce-902",
+    "cityCode": 72,
+    "cityName": "Batman",
+    "districtName": "Gercüş",
+    "label": "Batman / Gercüş",
+    "lat": 37.5648701,
+    "lng": 41.3879822
+  },
+  {
+    "id": "ilce-903",
+    "cityCode": 72,
+    "cityName": "Batman",
+    "districtName": "Hasankeyf",
+    "label": "Batman / Hasankeyf",
+    "lat": 37.7141667,
+    "lng": 41.4130556
+  },
+  {
+    "id": "ilce-904",
+    "cityCode": 72,
+    "cityName": "Batman",
+    "districtName": "Kozluk",
+    "label": "Batman / Kozluk",
+    "lat": 38.1944444,
+    "lng": 41.4911111
+  },
+  {
+    "id": "ilce-905",
+    "cityCode": 72,
+    "cityName": "Batman",
+    "districtName": "Sason",
+    "label": "Batman / Sason",
+    "lat": 38.3333333,
+    "lng": 41.4166667
+  },
+  {
+    "id": "ilce-906",
+    "cityCode": 73,
+    "cityName": "Şirnak",
+    "districtName": "Beytüşşebap",
+    "label": "Şirnak / Beytüşşebap",
+    "lat": 37.570945,
+    "lng": 43.1711666
+  },
+  {
+    "id": "ilce-907",
+    "cityCode": 73,
+    "cityName": "Şirnak",
+    "districtName": "Ci̇zre",
+    "label": "Şirnak / Ci̇zre",
+    "lat": 37.325,
+    "lng": 42.1958333
+  },
+  {
+    "id": "ilce-908",
+    "cityCode": 73,
+    "cityName": "Şirnak",
+    "districtName": "Güçlükonak",
+    "label": "Şirnak / Güçlükonak",
+    "lat": 37.4712187,
+    "lng": 41.9152339
+  },
+  {
+    "id": "ilce-909",
+    "cityCode": 73,
+    "cityName": "Şirnak",
+    "districtName": "İdi̇l",
+    "label": "Şirnak / İdi̇l",
+    "lat": 37.3416667,
+    "lng": 41.8902778
+  },
+  {
+    "id": "ilce-910",
+    "cityCode": 73,
+    "cityName": "Şirnak",
+    "districtName": "Si̇lopi̇",
+    "label": "Şirnak / Si̇lopi̇",
+    "lat": 37.2482504,
+    "lng": 42.4723315
+  },
+  {
+    "id": "ilce-911",
+    "cityCode": 73,
+    "cityName": "Şirnak",
+    "districtName": "Şirnak",
+    "label": "Şirnak / Şirnak",
+    "lat": 37.5163889,
+    "lng": 42.4611111
+  },
+  {
+    "id": "ilce-912",
+    "cityCode": 73,
+    "cityName": "Şirnak",
+    "districtName": "Uludere",
+    "label": "Şirnak / Uludere",
+    "lat": 37.4497443,
+    "lng": 42.8527269
+  },
+  {
+    "id": "ilce-913",
+    "cityCode": 74,
+    "cityName": "Bartin",
+    "districtName": "Amasra",
+    "label": "Bartin / Amasra",
+    "lat": 41.7451425,
+    "lng": 32.3846587
+  },
+  {
+    "id": "ilce-914",
+    "cityCode": 74,
+    "cityName": "Bartin",
+    "districtName": "Bartin",
+    "label": "Bartin / Bartin",
+    "lat": 41.6344444,
+    "lng": 32.3375
+  },
+  {
+    "id": "ilce-915",
+    "cityCode": 74,
+    "cityName": "Bartin",
+    "districtName": "Kurucaşi̇le",
+    "label": "Bartin / Kurucaşi̇le",
+    "lat": 41.8419474,
+    "lng": 32.7160829
+  },
+  {
+    "id": "ilce-916",
+    "cityCode": 74,
+    "cityName": "Bartin",
+    "districtName": "Ulus",
+    "label": "Bartin / Ulus",
+    "lat": 41.5861,
+    "lng": 32.6406
+  },
+  {
+    "id": "ilce-917",
+    "cityCode": 75,
+    "cityName": "Ardahan",
+    "districtName": "Ardahan",
+    "label": "Ardahan / Ardahan",
+    "lat": 41.110481,
+    "lng": 42.702171
+  },
+  {
+    "id": "ilce-918",
+    "cityCode": 75,
+    "cityName": "Ardahan",
+    "districtName": "Çildir",
+    "label": "Ardahan / Çildir",
+    "lat": 41.133333,
+    "lng": 43.133333
+  },
+  {
+    "id": "ilce-919",
+    "cityCode": 75,
+    "cityName": "Ardahan",
+    "districtName": "Damal",
+    "label": "Ardahan / Damal",
+    "lat": 41.3407232,
+    "lng": 42.8411894
+  },
+  {
+    "id": "ilce-920",
+    "cityCode": 75,
+    "cityName": "Ardahan",
+    "districtName": "Göle",
+    "label": "Ardahan / Göle",
+    "lat": 40.7935279,
+    "lng": 42.6087212
+  },
+  {
+    "id": "ilce-921",
+    "cityCode": 75,
+    "cityName": "Ardahan",
+    "districtName": "Hanak",
+    "label": "Ardahan / Hanak",
+    "lat": 41.2333333,
+    "lng": 42.85
+  },
+  {
+    "id": "ilce-922",
+    "cityCode": 75,
+    "cityName": "Ardahan",
+    "districtName": "Posof",
+    "label": "Ardahan / Posof",
+    "lat": 41.5105556,
+    "lng": 42.7291667
+  },
+  {
+    "id": "ilce-923",
+    "cityCode": 76,
+    "cityName": "Iğdir",
+    "districtName": "Aralik",
+    "label": "Iğdir / Aralik",
+    "lat": 39.8720068,
+    "lng": 44.5181343
+  },
+  {
+    "id": "ilce-924",
+    "cityCode": 76,
+    "cityName": "Iğdir",
+    "districtName": "Iğdir",
+    "label": "Iğdir / Iğdir",
+    "lat": 39.9166667,
+    "lng": 44.0333333
+  },
+  {
+    "id": "ilce-925",
+    "cityCode": 76,
+    "cityName": "Iğdir",
+    "districtName": "Karakoyunlu",
+    "label": "Iğdir / Karakoyunlu",
+    "lat": 39.9715094,
+    "lng": 44.174307
+  },
+  {
+    "id": "ilce-926",
+    "cityCode": 76,
+    "cityName": "Iğdir",
+    "districtName": "Tuzluca",
+    "label": "Iğdir / Tuzluca",
+    "lat": 40.045341,
+    "lng": 43.655891
+  },
+  {
+    "id": "ilce-927",
+    "cityCode": 77,
+    "cityName": "Yalova",
+    "districtName": "Altinova",
+    "label": "Yalova / Altinova",
+    "lat": 40.6975,
+    "lng": 29.5113889
+  },
+  {
+    "id": "ilce-928",
+    "cityCode": 77,
+    "cityName": "Yalova",
+    "districtName": "Armutlu",
+    "label": "Yalova / Armutlu",
+    "lat": 40.5194444,
+    "lng": 28.8280556
+  },
+  {
+    "id": "ilce-929",
+    "cityCode": 77,
+    "cityName": "Yalova",
+    "districtName": "Çinarcik",
+    "label": "Yalova / Çinarcik",
+    "lat": 40.6406111,
+    "lng": 29.1070773
+  },
+  {
+    "id": "ilce-930",
+    "cityCode": 77,
+    "cityName": "Yalova",
+    "districtName": "Çi̇ftli̇kköy",
+    "label": "Yalova / Çi̇ftli̇kköy",
+    "lat": 40.6602778,
+    "lng": 29.3236111
+  },
+  {
+    "id": "ilce-931",
+    "cityCode": 77,
+    "cityName": "Yalova",
+    "districtName": "Termal",
+    "label": "Yalova / Termal",
+    "lat": 40.6052778,
+    "lng": 29.1744444
+  },
+  {
+    "id": "ilce-932",
+    "cityCode": 77,
+    "cityName": "Yalova",
+    "districtName": "Yalova",
+    "label": "Yalova / Yalova",
+    "lat": 40.65,
+    "lng": 29.2666667
+  },
+  {
+    "id": "ilce-933",
+    "cityCode": 78,
+    "cityName": "Karabük",
+    "districtName": "Eflani̇",
+    "label": "Karabük / Eflani̇",
+    "lat": 41.4230556,
+    "lng": 32.9561111
+  },
+  {
+    "id": "ilce-934",
+    "cityCode": 78,
+    "cityName": "Karabük",
+    "districtName": "Eski̇pazar",
+    "label": "Karabük / Eski̇pazar",
+    "lat": 40.9430556,
+    "lng": 32.5305556
+  },
+  {
+    "id": "ilce-935",
+    "cityCode": 78,
+    "cityName": "Karabük",
+    "districtName": "Karabük",
+    "label": "Karabük / Karabük",
+    "lat": 41.2,
+    "lng": 32.6333333
+  },
+  {
+    "id": "ilce-936",
+    "cityCode": 78,
+    "cityName": "Karabük",
+    "districtName": "Ovacik",
+    "label": "Karabük / Ovacik",
+    "lat": 41.0761111,
+    "lng": 32.9219444
+  },
+  {
+    "id": "ilce-937",
+    "cityCode": 78,
+    "cityName": "Karabük",
+    "districtName": "Safranbolu",
+    "label": "Karabük / Safranbolu",
+    "lat": 41.25626,
+    "lng": 32.69162
+  },
+  {
+    "id": "ilce-938",
+    "cityCode": 78,
+    "cityName": "Karabük",
+    "districtName": "Yeni̇ce",
+    "label": "Karabük / Yeni̇ce",
+    "lat": 41.2,
+    "lng": 32.3291667
+  },
+  {
+    "id": "ilce-939",
+    "cityCode": 79,
+    "cityName": "Ki̇li̇s",
+    "districtName": "Elbeyli̇",
+    "label": "Ki̇li̇s / Elbeyli̇",
+    "lat": 36.6742,
+    "lng": 37.4658
+  },
+  {
+    "id": "ilce-940",
+    "cityCode": 79,
+    "cityName": "Ki̇li̇s",
+    "districtName": "Ki̇li̇s",
+    "label": "Ki̇li̇s / Ki̇li̇s",
+    "lat": 36.718399,
+    "lng": 37.12122
+  },
+  {
+    "id": "ilce-941",
+    "cityCode": 79,
+    "cityName": "Ki̇li̇s",
+    "districtName": "Musabeyli̇",
+    "label": "Ki̇li̇s / Musabeyli̇",
+    "lat": 36.8864,
+    "lng": 36.9186
+  },
+  {
+    "id": "ilce-942",
+    "cityCode": 79,
+    "cityName": "Ki̇li̇s",
+    "districtName": "Polateli̇",
+    "label": "Ki̇li̇s / Polateli̇",
+    "lat": 36.8408774,
+    "lng": 37.1446201
+  },
+  {
+    "id": "ilce-943",
+    "cityCode": 80,
+    "cityName": "Osmani̇ye",
+    "districtName": "Bahçe",
+    "label": "Osmani̇ye / Bahçe",
+    "lat": 37.2,
+    "lng": 36.5833333
+  },
+  {
+    "id": "ilce-944",
+    "cityCode": 80,
+    "cityName": "Osmani̇ye",
+    "districtName": "Düzi̇çi̇",
+    "label": "Osmani̇ye / Düzi̇çi̇",
+    "lat": 37.2571437,
+    "lng": 36.4661914
+  },
+  {
+    "id": "ilce-945",
+    "cityCode": 80,
+    "cityName": "Osmani̇ye",
+    "districtName": "Hasanbeyli̇",
+    "label": "Osmani̇ye / Hasanbeyli̇",
+    "lat": 37.1332009,
+    "lng": 36.5526851
+  },
+  {
+    "id": "ilce-946",
+    "cityCode": 80,
+    "cityName": "Osmani̇ye",
+    "districtName": "Kadi̇rli̇",
+    "label": "Osmani̇ye / Kadi̇rli̇",
+    "lat": 37.3698333,
+    "lng": 36.1
+  },
+  {
+    "id": "ilce-947",
+    "cityCode": 80,
+    "cityName": "Osmani̇ye",
+    "districtName": "Osmani̇ye",
+    "label": "Osmani̇ye / Osmani̇ye",
+    "lat": 37.06805,
+    "lng": 36.261589
+  },
+  {
+    "id": "ilce-948",
+    "cityCode": 80,
+    "cityName": "Osmani̇ye",
+    "districtName": "Sumbas",
+    "label": "Osmani̇ye / Sumbas",
+    "lat": 37.4431837,
+    "lng": 36.0322459
+  },
+  {
+    "id": "ilce-949",
+    "cityCode": 80,
+    "cityName": "Osmani̇ye",
+    "districtName": "Toprakkale",
+    "label": "Osmani̇ye / Toprakkale",
+    "lat": 37.0670174,
+    "lng": 36.1463934
+  },
+  {
+    "id": "ilce-950",
+    "cityCode": 81,
+    "cityName": "Düzce",
+    "districtName": "Akçakoca",
+    "label": "Düzce / Akçakoca",
+    "lat": 41.08593,
+    "lng": 31.120041
+  },
+  {
+    "id": "ilce-951",
+    "cityCode": 81,
+    "cityName": "Düzce",
+    "districtName": "Cumayeri̇",
+    "label": "Düzce / Cumayeri̇",
+    "lat": 40.8738707,
+    "lng": 30.9490568
+  },
+  {
+    "id": "ilce-952",
+    "cityCode": 81,
+    "cityName": "Düzce",
+    "districtName": "Çi̇li̇mli̇",
+    "label": "Düzce / Çi̇li̇mli̇",
+    "lat": 40.896897,
+    "lng": 31.047014
+  },
+  {
+    "id": "ilce-953",
+    "cityCode": 81,
+    "cityName": "Düzce",
+    "districtName": "Düzce",
+    "label": "Düzce / Düzce",
+    "lat": 40.843849,
+    "lng": 31.15654
+  },
+  {
+    "id": "ilce-954",
+    "cityCode": 81,
+    "cityName": "Düzce",
+    "districtName": "Gölyaka",
+    "label": "Düzce / Gölyaka",
+    "lat": 40.7765786,
+    "lng": 30.995727
+  },
+  {
+    "id": "ilce-955",
+    "cityCode": 81,
+    "cityName": "Düzce",
+    "districtName": "Gümüşova",
+    "label": "Düzce / Gümüşova",
+    "lat": 40.85,
+    "lng": 30.9333333
+  },
+  {
+    "id": "ilce-956",
+    "cityCode": 81,
+    "cityName": "Düzce",
+    "districtName": "Kaynaşli",
+    "label": "Düzce / Kaynaşli",
+    "lat": 40.7773367,
+    "lng": 31.3032669
+  },
+  {
+    "id": "ilce-957",
+    "cityCode": 81,
+    "cityName": "Düzce",
+    "districtName": "Yiğilca",
+    "label": "Düzce / Yiğilca",
+    "lat": 40.965939,
+    "lng": 31.442419
+  }
+]
