@@ -1,4 +1,3 @@
-// src/components/HeaderBar.tsx
 'use client'
 
 import { useRouter } from 'next/navigation'
@@ -31,20 +30,35 @@ export default function HeaderBar({
             <span className="text-lg leading-none">←</span>
           </button>
         )}
-        <div className="flex flex-col min-w-0">
-          <span className="text-sm font-semibold truncate">
-            {title || 'Noodi Support'}
-          </span>
-          {name && (
-            <span className="text-[11px] text-white/80 truncate">
-              {name}
+
+        {/* Logo + title alanı */}
+        <div className="flex items-center gap-2 min-w-0">
+          <div className="relative h-7 w-auto">
+            <Image
+              src="/logo-noodi-support.png"
+              alt="Noodi Support"
+              width={140}
+              height={28}
+              className="h-7 w-auto"
+              priority
+            />
+          </div>
+
+          {/* Çok dar ekranlarda gerekirse text fallback */}
+          {title && (
+            <span className="ml-1 text-xs font-semibold truncate max-w-[100px] sm:max-w-[160px]">
+              {title}
             </span>
           )}
         </div>
       </div>
 
       <div className="flex items-center gap-2">
-        {/* İleride bildirim ikonu vs. eklemek istersen buraya koy */}
+        {name && (
+          <span className="hidden sm:inline text-[11px] text-white/80 truncate max-w-[120px]">
+            {name}
+          </span>
+        )}
         {avatarUrl && (
           <div className="w-8 h-8 rounded-full overflow-hidden bg-white/20 relative">
             <Image
