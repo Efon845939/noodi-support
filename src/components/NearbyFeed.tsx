@@ -26,25 +26,14 @@ export default function NearbyFeed({
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      setErr('Konum erişimi yok')
+      setErr('Konum erişimi yok.')
       setLoading(false)
       return
     }
 
     let cancelled = false
-
     setLoading(true)
     setErr('')
-
-    // 10 saniye içinde hiçbir cevap gelmezse, loading’i zorla bitir
-    const timeout = setTimeout(() => {
-      if (!cancelled) {
-        setLoading(false)
-        if (!items.length) {
-          setErr('Konum alınamadı veya ağ yanıt vermedi.')
-        }
-      }
-    }, 10000)
 
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
@@ -63,33 +52,31 @@ export default function NearbyFeed({
           }).catch(() => null)
 
           if (!r) {
-            setErr('Yakın olaylar yüklenemedi (ağ hatası).')
+            // Ağ hatası: kullanıcıya “yakın olay yok” gibi davran
             setItems([])
-          } else {
-            const j = await r.json().catch(() => null)
-            const live = ((j?.items || []) as Item[]) || []
-            setItems(live)
+            return
           }
-        } catch {
-          setErr('Yakın olaylar yüklenirken bir hata oluştu.')
-          setItems([])
+
+          const j = await r.json().catch(() => null)
+          const live = ((j?.items || []) as Item[]) || []
+          setItems(live)
         } finally {
           if (!cancelled) setLoading(false)
         }
       },
-      () => {
-        if (!cancelled) {
-          setErr('Konum reddedildi')
-          setLoading(false)
-        }
+      (error) => {
+        if (cancelled) return
+        console.warn('Geolocation error:', error)
+        // Sadece gerçekten konum reddedildiyse hata göster
+        setErr('Konum alınamadı veya reddedildi.')
+        setLoading(false)
       }
     )
 
     return () => {
       cancelled = true
-      clearTimeout(timeout)
     }
-  }, [radiusKm, windowRange, JSON.stringify(categories)]) // bu kalsın
+  }, [radiusKm, windowRange, JSON.stringify(categories)])
 
   if (err) {
     return (

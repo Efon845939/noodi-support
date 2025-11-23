@@ -13,7 +13,7 @@ export function Tile({
       onClick={onClick}
       className="
         w-full
-        aspect-[4/3]
+        aspect-[3/2]    /* ÖNCE: 4/3 idi, biraz daha dikey */
         bg-[#D73333]
         text-white
         rounded-2xl
@@ -21,7 +21,7 @@ export function Tile({
         flex
         items-center
         justify-center
-        text-base
+        text-lg         /* Bir tık büyük */
         font-semibold
         active:scale-95
         transition
