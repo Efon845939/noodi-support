@@ -1,4 +1,3 @@
-// src/lib/reports.ts
 import {
   addDoc,
   collection,
@@ -9,6 +8,7 @@ import {
   query,
   where,
   limit,
+  writeBatch,
 } from 'firebase/firestore'
 import { getFirebaseDb } from '@/lib/firebase'
 
@@ -82,21 +82,39 @@ export interface ApproveExtras {
   severity: Severity
 }
 
-function mapReportTypeToCategory(t: ReportType):
-  'earthquake' | 'fire' | 'flood' | 'landslide' | 'storm' | 'assault' | 'robbery' | 'abduction' | 'other' {
+function mapReportTypeToCategory(
+  t: ReportType
+):
+  | 'earthquake'
+  | 'fire'
+  | 'flood'
+  | 'landslide'
+  | 'storm'
+  | 'assault'
+  | 'robbery'
+  | 'abduction'
+  | 'other' {
   switch (t) {
-    case 'deprem': return 'earthquake'
-    case 'yangin': return 'fire'
-    case 'sel': return 'flood'
-    case 'kayip': return 'abduction'
-    case 'trafik': return 'assault'
-    case 'gaz': return 'other'
-    case 'diger': return 'other'
-    default: return 'other'
+    case 'deprem':
+      return 'earthquake'
+    case 'yangin':
+      return 'fire'
+    case 'sel':
+      return 'flood'
+    case 'kayip':
+      return 'abduction'
+    case 'trafik':
+      return 'assault'
+    case 'gaz':
+      return 'other'
+    case 'diger':
+      return 'other'
+    default:
+      return 'other'
   }
 }
 
-/** pending ihbarı onaylar + nearByEvents + auditLogs */
+/** pending ihbarı onaylar + nearbyEvents + auditLogs */
 export async function approveReport(
   params: ApproveRejectInput & ApproveExtras
 ) {
@@ -169,12 +187,12 @@ export async function updateApprovedReportDetails(params: {
     reviewedAt: serverTimestamp(),
   })
 
-  const q = query(
+  const qNearby = query(
     collection(db, 'nearbyEvents'),
     where('reportId', '==', params.reportId),
-    limit(1),
+    limit(1)
   )
-  const snap = await getDocs(q)
+  const snap = await getDocs(qNearby)
   if (!snap.empty) {
     const evDoc = snap.docs[0]
     await updateDoc(evDoc.ref, {
@@ -215,6 +233,52 @@ export async function rejectReport(params: ApproveRejectInput) {
     adminId: params.adminId,
     reportId: params.reportId,
     action: 'reject',
+    timestamp: serverTimestamp(),
+  })
+}
+
+/** Sadece bu ihbara bağlı yakın olayları (nearbyEvents) siler */
+export async function clearNearbyEventsForReport(reportId: string) {
+  const db = requireDb()
+
+  const qNearby = query(
+    collection(db, 'nearbyEvents'),
+    where('reportId', '==', reportId)
+  )
+  const snap = await getDocs(qNearby)
+
+  if (snap.empty) return
+
+  const batch = writeBatch(db)
+  snap.forEach((d) => batch.delete(d.ref))
+  await batch.commit()
+}
+
+/** İhbarı tamamen siler + ona bağlı nearByEvents’i temizler + auditLog’a delete yazar */
+export async function deleteReportCompletely(params: {
+  reportId: string
+  adminId: string
+}) {
+  const db = requireDb()
+
+  const batch = writeBatch(db)
+
+  const reportRef = doc(db, 'reports', params.reportId)
+  batch.delete(reportRef)
+
+  const qNearby = query(
+    collection(db, 'nearbyEvents'),
+    where('reportId', '==', params.reportId)
+  )
+  const nearbySnap = await getDocs(qNearby)
+  nearbySnap.forEach((d) => batch.delete(d.ref))
+
+  await batch.commit()
+
+  await addDoc(collection(db, 'auditLogs'), {
+    adminId: params.adminId,
+    reportId: params.reportId,
+    action: 'delete',
     timestamp: serverTimestamp(),
   })
 }

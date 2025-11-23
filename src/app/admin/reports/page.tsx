@@ -18,6 +18,7 @@ import {
   approveReport,
   rejectReport,
   updateApprovedReportDetails,
+  deleteReportCompletely,
   ReportType,
   ReportLocation,
   Severity,
@@ -25,7 +26,6 @@ import {
 import HeaderBar from '@/components/HeaderBar'
 import BottomTabs from '@/components/BottomTabs'
 
-// Konum örnekleri
 const LOCATION_TEMPLATES = [
   'İlçe merkezi',
   'Zeytinburnu ormanlık alanı',
@@ -180,7 +180,6 @@ export default function AdminReportsPage() {
       setIsProcessing(true)
 
       if (editMode === 'approve' && editingReport.status === 'pending') {
-        // PENDING → APPROVED
         await approveReport({
           reportId: editingReport.id,
           adminId: auth.currentUser.uid,
@@ -192,7 +191,6 @@ export default function AdminReportsPage() {
           severity: editSeverity,
         })
       } else {
-        // APPROVED / REJECTED → sadece düzeltme
         await updateApprovedReportDetails({
           reportId: editingReport.id,
           adminId: auth.currentUser.uid,
@@ -203,9 +201,6 @@ export default function AdminReportsPage() {
           severity: editSeverity,
         })
       }
-
-      // Kaydettikten sonra paneli açık bırakmak istersen, burayı yorumla:
-      // closeEdit()
     } catch (e) {
       console.error(e)
       alert('Değişiklik uygulanırken hata oluştu.')
@@ -235,7 +230,34 @@ export default function AdminReportsPage() {
     }
   }
 
-  // Firebase yoksa
+  async function handleDelete(report: ReportItem) {
+    if (!auth?.currentUser) {
+      alert('Admin olarak giriş yapman gerekiyor.')
+      return
+    }
+
+    const ok = confirm(
+      `Bu ihbarı ve ona bağlı yakın olay kayıtlarını silmek istediğine emin misin?\n\nID: ${report.id}`
+    )
+    if (!ok) return
+
+    try {
+      setIsProcessing(true)
+      await deleteReportCompletely({
+        reportId: report.id,
+        adminId: auth.currentUser.uid,
+      })
+      if (editingReport?.id === report.id) {
+        closeEdit()
+      }
+    } catch (e) {
+      console.error(e)
+      alert('İhbar silinirken hata oluştu.')
+    } finally {
+      setIsProcessing(false)
+    }
+  }
+
   if (!auth || !db) {
     return (
       <div className="min-h-[100svh] bg-white px-4 py-6">
@@ -328,7 +350,7 @@ export default function AdminReportsPage() {
                 </div>
               )}
 
-              <div className="flex gap-2 pt-2">
+              <div className="flex flex-wrap gap-2 pt-2">
                 {allowApprove && r.status === 'pending' && (
                   <button
                     onClick={() => openEdit(r, 'approve')}
@@ -359,6 +381,15 @@ export default function AdminReportsPage() {
                     {isProcessing ? 'İşleniyor...' : 'Reddet'}
                   </button>
                 )}
+                {/* HER İHBAR İÇİN SİL BUTONU */}
+                <button
+                  onClick={() => handleDelete(r)}
+                  disabled={isProcessing}
+                  className="px-3 py-1 text-xs rounded-md bg-red-100 text-red-700 border border-red-300 disabled:opacity-60"
+                  type="button"
+                >
+                  Sil
+                </button>
               </div>
             </div>
           ))}
@@ -402,7 +433,6 @@ export default function AdminReportsPage() {
         />
       </main>
 
-      {/* ALTTA SABİT EDIT PANELİ */}
       {editingReport && (
         <div className="fixed inset-0 bg-black/40 flex items-end justify-center z-50">
           <div className="w-full max-w-md bg-white rounded-t-2xl p-4 space-y-3">
@@ -434,12 +464,14 @@ export default function AdminReportsPage() {
               </div>
 
               <div>
-                <label className="block text-sm font_medium mb-1">
+                <label className="block text-sm font-medium mb-1">
                   Gösterilecek Konum
                 </label>
                 <input
                   value={editDisplayLocation}
-                  onChange={(e) => setEditDisplayLocation(e.target.value)}
+                  onChange={(e) =>
+                    setEditDisplayLocation(e.target.value)
+                  }
                   className="w-full border rounded-lg px-3 py-2 text-sm"
                 />
                 <div className="flex flex-wrap gap-2 mt-2">
@@ -462,7 +494,9 @@ export default function AdminReportsPage() {
                 </label>
                 <select
                   value={editSeverity}
-                  onChange={(e) => setEditSeverity(e.target.value as Severity)}
+                  onChange={(e) =>
+                    setEditSeverity(e.target.value as Severity)
+                  }
                   className="w-full border rounded-lg px-3 py-2 text-sm"
                 >
                   <option value="low">Düşük</option>
@@ -477,7 +511,9 @@ export default function AdminReportsPage() {
                 </label>
                 <textarea
                   value={editDescription}
-                  onChange={(e) => setEditDescription(e.target.value)}
+                  onChange={(e) =>
+                    setEditDescription(e.target.value)
+                  }
                   rows={3}
                   className="w-full border rounded-lg px-3 py-2 text-sm"
                 />
