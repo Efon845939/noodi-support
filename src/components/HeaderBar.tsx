@@ -31,7 +31,7 @@ export default function HeaderBar({
           </button>
         )}
 
-        {/* Logo + title alanı */}
+        {/* Logo */}
         <div className="flex items-center gap-2 min-w-0">
           <div className="relative h-7 w-auto">
             <Image
@@ -44,9 +44,9 @@ export default function HeaderBar({
             />
           </div>
 
-          {/* Çok dar ekranlarda gerekirse text fallback */}
+          {/* Sadece title varsa küçük, sol tarafa yaz */}
           {title && (
-            <span className="ml-1 text-xs font-semibold truncate max-w-[100px] sm:max-w-[160px]">
+            <span className="ml-1 text-xs font-semibold truncate max-w-[120px]">
               {title}
             </span>
           )}

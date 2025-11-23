@@ -21,12 +21,28 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
+  const mapFirebaseError = (e: any, mode: 'login' | 'signup') => {
+    const code = e?.code || ''
+
+    switch (code) {
+      case 'auth/email-already-in-use':
+        return 'Bu e-posta ile zaten bir hesap var.'
+      case 'auth/invalid-credential':
+      case 'auth/wrong-password':
+        return 'E-posta veya şifre hatalı.'
+      case 'auth/user-not-found':
+        return mode === 'login'
+          ? 'Bu e-posta ile kayıt bulunamadı.'
+          : 'Bu e-posta zaten kullanılıyor.'
+      case 'auth/too-many-requests':
+        return 'Çok fazla deneme yapıldı. Bir süre sonra tekrar deneyin.'
+      default:
+        return 'Bir hata oluştu.'
+    }
+  }
+
   const handleSubmit = async () => {
     if (!auth) return
-    if (!email || !password) {
-      setError('E-posta ve şifre boş olamaz.')
-      return
-    }
 
     try {
       setError('')
@@ -41,7 +57,7 @@ export default function LoginPage() {
       router.replace('/profile')
     } catch (e: any) {
       console.error(e)
-      setError(e?.message || 'Giriş sırasında bir hata oluştu.')
+      setError(mapFirebaseError(e, mode))
     } finally {
       setLoading(false)
     }
@@ -49,14 +65,16 @@ export default function LoginPage() {
 
   const handleGoogle = async () => {
     if (!auth) return
+
     try {
       setError('')
       setLoading(true)
+
       await signInWithPopup(auth, google)
       router.replace('/profile')
     } catch (e: any) {
       console.error(e)
-      setError(e?.message || 'Google ile giriş başarısız.')
+      setError('Google ile giriş yapılamadı.')
     } finally {
       setLoading(false)
     }
@@ -66,14 +84,15 @@ export default function LoginPage() {
     <div className="min-h-[100svh] bg-white pb-[68px] flex flex-col">
       <HeaderBar title="Giriş / Kayıt" showBack />
 
-      <main className="flex-1 flex items-center justify-center px-4 pt-4 pb-4">
+      <main className="flex-1 flex items-center justify-center px-4 pt-6">
         <div className="w-full max-w-md space-y-4">
+
           <h1 className="text-xl font-bold text-center">
             {mode === 'signup' ? 'Kayıt Ol' : 'Giriş Yap'}
           </h1>
 
           {error && (
-            <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+            <div className="text-sm text-red-600 bg-red-100 border border-red-300 p-2 rounded-lg">
               {error}
             </div>
           )}
@@ -94,20 +113,14 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          {/* Email/şifre ile giriş veya kayıt */}
           <button
             onClick={handleSubmit}
             disabled={loading}
             className="w-full bg-[#0B3B7A] text-white rounded-lg py-2 font-semibold disabled:opacity-60"
           >
-            {loading
-              ? 'İşleniyor...'
-              : mode === 'signup'
-              ? 'Kayıt Ol'
-              : 'Giriş Yap'}
+            {loading ? 'İşleniyor...' : (mode === 'signup' ? 'Kayıt Ol' : 'Giriş Yap')}
           </button>
 
-          {/* Google ile giriş */}
           <button
             onClick={handleGoogle}
             disabled={loading}
@@ -116,10 +129,8 @@ export default function LoginPage() {
             Google ile Giriş Yap
           </button>
 
-          {/* Gri e-posta butonu YOK artık */}
           <button
             className="w-full text-[#0B3B7A] mt-2 underline text-sm"
-            type="button"
             onClick={() =>
               setMode(mode === 'signup' ? 'login' : 'signup')
             }
@@ -128,6 +139,7 @@ export default function LoginPage() {
               ? 'Hesabın var mı? Giriş Yap'
               : 'Hesabın yok mu? Kayıt Ol'}
           </button>
+
         </div>
       </main>
 
