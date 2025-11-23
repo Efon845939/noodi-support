@@ -1,20 +1,19 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
+import type { ReactNode } from 'react'
 
 type HeaderBarProps = {
   title?: string
-  name?: string | null
-  avatarUrl?: string | null
   showBack?: boolean
+  rightSlot?: ReactNode
 }
 
 export default function HeaderBar({
   title,
-  name,
-  avatarUrl,
   showBack = false,
+  rightSlot,
 }: HeaderBarProps) {
   const router = useRouter()
 
@@ -25,50 +24,31 @@ export default function HeaderBar({
           <button
             type="button"
             onClick={() => router.back()}
-            className="rounded-full p-1.5 hover:bg-white/10 active:scale-95 transition"
+            className="p-1 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40 shrink-0"
           >
+            {/* İstersen lucide-react ile ikon ekleriz, şimdilik basit ok */}
             <span className="text-lg leading-none">←</span>
           </button>
         )}
 
-        {/* Logo */}
         <div className="flex items-center gap-2 min-w-0">
-          <div className="relative h-7 w-auto">
+          <div className="relative w-7 h-7 shrink-0">
             <Image
-              src="/logos/noodi-support.png"  {/* ← senin dosya yolu */}
+              src="/logos/noodi-support.png"
               alt="Noodi Support"
-              width={160}
-              height={40}
-              className="h-7 w-auto"
+              fill
+              className="object-contain"
               priority
             />
           </div>
-
-          {/* sadece title varsa küçük yazı */}
-          {title && (
-            <span className="ml-1 text-xs font-semibold truncate max-w-[120px]">
-              {title}
-            </span>
-          )}
+          <span className="font-semibold text-sm truncate">
+            {title || 'Noodi Support'}
+          </span>
         </div>
       </div>
 
-      <div className="flex items-center gap-2">
-        {name && (
-          <span className="hidden sm:inline text-[11px] text-white/80 truncate max-w-[120px]">
-            {name}
-          </span>
-        )}
-        {avatarUrl && (
-          <div className="w-8 h-8 rounded-full overflow-hidden bg-white/20 relative">
-            <Image
-              src={avatarUrl}
-              alt="Profil"
-              fill
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-        )}
+      <div className="flex items-center gap-2 shrink-0">
+        {rightSlot}
       </div>
     </header>
   )
