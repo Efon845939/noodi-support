@@ -11,10 +11,12 @@ export default function HomePage() {
   return (
     <div className="min-h-[100svh] bg-white pb-[68px] flex flex-col">
       <HeaderBar />
+
       <main className="flex-1 px-4 pt-6 pb-4">
-        <div className="max-w-md mx-auto space-y-4">
+        <div className="max-w-md mx-auto space-y-5">
+
+          {/* KİŞİSEL YARDIM */}
           <button
-            type="button"
             onClick={() => r.push('/personal')}
             className="
               w-full
@@ -22,8 +24,8 @@ export default function HomePage() {
               text-white
               rounded-2xl
               shadow-md
-              py-10
-              text-lg
+              py-12               /* ← daha dik */
+              text-xl
               font-semibold
               active:scale-95
               transition
@@ -32,8 +34,8 @@ export default function HomePage() {
             KİŞİSEL YARDIM
           </button>
 
+          {/* ACİL DURUM */}
           <button
-            type="button"
             onClick={() => r.push('/disaster')}
             className="
               w-full
@@ -41,8 +43,8 @@ export default function HomePage() {
               text-white
               rounded-2xl
               shadow-md
-              py-10
-              text-lg
+              py-12               /* ← daha dik */
+              text-xl
               font-semibold
               active:scale-95
               transition
@@ -50,8 +52,10 @@ export default function HomePage() {
           >
             ACİL DURUM
           </button>
+
         </div>
       </main>
+
       <BottomTabs />
       <AssistantPanel />
     </div>
