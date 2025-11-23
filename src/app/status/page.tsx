@@ -1,6 +1,3 @@
-'use client'
-
-import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import HeaderBar from '@/components/HeaderBar'
 import BottomTabs from '@/components/BottomTabs'
@@ -32,16 +29,21 @@ type DisasterConfig = {
 }
 
 /**
- * Genel acil çağrı numaraları:
- * 112: tek acil numara, hepsi bunun altında birleşiyor
- * 110: Yangın
+ * Türkiye'de acil çağrı numaraları:
+ * 112: tek acil çağrı numarası (tümü bunun altında birleşmiş durumda)
+ * 110: Yangın ihbar
  * 122: AFAD
  * 155: Polis
  * 156: Jandarma
- * 177: Orman Yangını
- * 158: Sahil Güvenlik
- * 183: Sosyal Destek (şiddet / çocuk / aile vb.)
+ * 177: Orman yangını ihbar
+ * 158: Sahil güvenlik
+ * Ayrıca:
+ * 168: Türk Kızılay çağrı / bağış ve danışma hattı
+ * 115: Yeşilay YEDAM danışma hattı (bağımlılık)
+ * 114: Ulusal Zehir Danışma Merkezi (UZEM)
+ * 183: Aile / çocuk / şiddet / sosyal destek hattı
  */
+
 const GENERAL_EMERGENCY_NUMBERS: EmergencyLine[] = [
   {
     id: '112',
@@ -89,16 +91,44 @@ const GENERAL_EMERGENCY_NUMBERS: EmergencyLine[] = [
 
 const OTHER_IMPORTANT_LINES: EmergencyLine[] = [
   {
+    id: '168',
+    label: '168 Türk Kızılay Çağrı Merkezi',
+    number: '168',
+    info: 'Bağış, yardım talebi ve afetle ilgili danışma',
+  },
+  {
+    id: '115',
+    label: '115 Yeşilay YEDAM',
+    number: '115',
+    info: 'Bağımlılık konusunda psikososyal destek ve yönlendirme',
+  },
+  {
+    id: '114',
+    label: '114 Ulusal Zehir Danışma',
+    number: '114',
+    info: 'Zehirlenme ve madde maruziyetlerinde tıbbi danışma',
+  },
+  {
     id: '183',
     label: '183 Sosyal Destek Hattı',
     number: '183',
-    info: 'Şiddet, istismar, sosyal destek ve danışmanlık',
+    info: 'Şiddet, istismar, çocuk, aile ve sosyal destek başvuruları',
   },
 ]
 
 const BASE_LINES: EmergencyLine[] = [
-  { id: '112-base', label: '112 Acil Çağrı', number: '112', info: 'Tüm acil durumlar' },
-  { id: '122-base', label: '122 Alo AFAD', number: '122', info: 'Afet ve acil durum ihbarı' },
+  {
+    id: '112-base',
+    label: '112 Acil Çağrı',
+    number: '112',
+    info: 'Tüm acil durumlar',
+  },
+  {
+    id: '122-base',
+    label: '122 Alo AFAD',
+    number: '122',
+    info: 'Afet ve acil durum ihbarı',
+  },
 ]
 
 const DISASTER_CONFIG: Record<string, DisasterConfig> = {
@@ -106,10 +136,15 @@ const DISASTER_CONFIG: Record<string, DisasterConfig> = {
     title: 'Sel Yardımı',
     question: 'Şu anda selden etkilendiğiniz bölgedeyseniz hemen yardım isteyin.',
     description:
-      'Can güvenliği her şeyden önce gelir. Bulunduğunuz konumu mümkünse yüksek ve güvenli bir noktaya taşıyın. Ardından aşağıdaki acil hatları arayarak durumu bildirin.',
+      'Önce kendi can güvenliğinizi sağlayın. Mümkünse daha yüksek ve güvenli bir noktaya geçin, ardından acil hatları arayarak sel durumunu ve konumunuzu bildirin.',
     emergencyLines: [
       ...BASE_LINES,
-      { id: '110-sel', label: '110 İtfaiye', number: '110', info: 'Kurtarma / tahliye' },
+      {
+        id: '110-sel',
+        label: '110 İtfaiye',
+        number: '110',
+        info: 'Kurtarma, tahliye ve su baskını durumları',
+      },
     ],
     orgs: [
       {
@@ -136,6 +171,14 @@ const DISASTER_CONFIG: Record<string, DisasterConfig> = {
         website: 'https://www.akut.org.tr',
         logo: '/logos/akut.png',
       },
+      {
+        id: 'kizilay',
+        name: 'Türk Kızılay',
+        role: 'Barınma, temel yardım, kan bağışı ve psiko-sosyal destek',
+        phone: '168',
+        phoneLabel: '168 Kızılay Çağrı Merkezi',
+        website: 'https://www.kizilay.org.tr',
+      },
     ],
   },
   heyelan: {
@@ -143,7 +186,7 @@ const DISASTER_CONFIG: Record<string, DisasterConfig> = {
     question: 'Toprak kayması / heyelan bölgesinde misiniz?',
     description:
       'Çöken yamaçlardan ve riskli binalardan uzaklaşın. Güvenli bir alanda bekleyip konumunuzu paylaşarak yardım isteyin.',
-    emergencyLines: BASE_LINES,
+    emergencyLines: [...BASE_LINES],
     orgs: [
       {
         id: 'afad',
@@ -161,16 +204,29 @@ const DISASTER_CONFIG: Record<string, DisasterConfig> = {
         website: 'https://www.akut.org.tr',
         logo: '/logos/akut.png',
       },
+      {
+        id: 'kizilay',
+        name: 'Türk Kızılay',
+        role: 'Barınma, yardım ve psiko-sosyal destek',
+        phone: '168',
+        phoneLabel: '168 Kızılay Çağrı Merkezi',
+        website: 'https://www.kizilay.org.tr',
+      },
     ],
   },
   deprem: {
     title: 'Deprem Yardımı',
     question: 'Deprem sonrası güvende misiniz?',
     description:
-      'Artçı sarsıntılar devam edebilir. Güvenli bir toplanma alanına geçin ve göçük, gaz kaçağı, yangın gibi durumları acil hatlara bildirin.',
+      'Artçı sarsıntılar devam edebilir. Güvenli bir toplanma alanına geçin, göçük, gaz kaçağı, yangın gibi durumları acil hatlara bildirin, resmi uyarıları takip edin.',
     emergencyLines: [
       ...BASE_LINES,
-      { id: '110-deprem', label: '110 İtfaiye', number: '110', info: 'Kurtarma / yangın' },
+      {
+        id: '110-deprem',
+        label: '110 İtfaiye',
+        number: '110',
+        info: 'Enkaz, yangın ve kurtarma',
+      },
     ],
     orgs: [
       {
@@ -189,14 +245,30 @@ const DISASTER_CONFIG: Record<string, DisasterConfig> = {
         website: 'https://www.akut.org.tr',
         logo: '/logos/akut.png',
       },
+      {
+        id: 'kizilay',
+        name: 'Türk Kızılay',
+        role: 'Deprem sonrası barınma, gıda, kan ve psiko-sosyal destek',
+        phone: '168',
+        phoneLabel: '168 Kızılay Çağrı Merkezi',
+        website: 'https://www.kizilay.org.tr',
+      },
+      {
+        id: 'yedam',
+        name: 'Yeşilay YEDAM',
+        role: 'Afet sonrası bağımlılık ve psikososyal destek danışmanlığı',
+        phone: '115',
+        phoneLabel: '115 YEDAM Danışma Hattı',
+        website: 'https://www.yedam.org.tr',
+      },
     ],
   },
   'fırtına': {
     title: 'Fırtına / Şiddetli Rüzgar',
     question: 'Şiddetli fırtına nedeniyle risk altında mısınız?',
     description:
-      'Pencere kenarlarından uzak durun, düşebilecek nesnelerden ve elektrik hatlarından uzaklaşın. Yaralanma veya ciddi hasar varsa acil hatları arayın.',
-    emergencyLines: BASE_LINES,
+      'Pencere kenarlarından ve düşebilecek nesnelerden uzak durun. Elektrik hatlarına yaklaşmayın, çatlak / kopma varsa acil hatlara bildirin.',
+    emergencyLines: [...BASE_LINES],
     orgs: [
       {
         id: 'afad',
@@ -207,6 +279,14 @@ const DISASTER_CONFIG: Record<string, DisasterConfig> = {
         website: 'https://www.afad.gov.tr',
         logo: '/logos/afad.png',
       },
+      {
+        id: 'kizilay',
+        name: 'Türk Kızılay',
+        role: 'Barınma ve temel ihtiyaç desteği',
+        phone: '168',
+        phoneLabel: '168 Kızılay Çağrı Merkezi',
+        website: 'https://www.kizilay.org.tr',
+      },
     ],
   },
   yangın: {
@@ -215,9 +295,19 @@ const DISASTER_CONFIG: Record<string, DisasterConfig> = {
     description:
       'Can güvenliği her şeyden önce gelir. Yangın bölgesinden uzaklaşıp güvenli bir noktaya geçin, ardından itfaiye ve acil çağrı merkezini arayın.',
     emergencyLines: [
-      { id: '110-yangin', label: '110 İtfaiye', number: '110', info: 'Yangın ve kurtarma' },
+      {
+        id: '110-yangin',
+        label: '110 İtfaiye',
+        number: '110',
+        info: 'Yangın ve kurtarma',
+      },
       ...BASE_LINES,
-      { id: '177', label: '177 Orman Yangını', number: '177', info: 'Orman yangını ihbarı' },
+      {
+        id: '177',
+        label: '177 Orman Yangını',
+        number: '177',
+        info: 'Orman yangını ihbarı',
+      },
     ],
     orgs: [
       {
@@ -237,14 +327,22 @@ const DISASTER_CONFIG: Record<string, DisasterConfig> = {
         website: 'https://www.afad.gov.tr',
         logo: '/logos/afad.png',
       },
+      {
+        id: 'kizilay',
+        name: 'Türk Kızılay',
+        role: 'Yangın sonrası barınma ve ihtiyaç desteği',
+        phone: '168',
+        phoneLabel: '168 Kızılay Çağrı Merkezi',
+        website: 'https://www.kizilay.org.tr',
+      },
     ],
   },
   'diğer': {
     title: 'Diğer Afet / Acil Durum',
     question: 'Afet veya riskli bir durum mu yaşıyorsunuz?',
     description:
-      'Durumunuzu mümkün olduğunca net tarif edip konumunuzla birlikte acil hatlara bildirin. Yetkili kurumlar size en uygun yönlendirmeyi yapacaktır.',
-    emergencyLines: BASE_LINES,
+      'Durumu ve konumunuzu mümkün olduğunca net şekilde anlatıp acil hatlara bildirin. Yetkili kurumlar size en uygun yönlendirmeyi yapacaktır.',
+    emergencyLines: [...BASE_LINES],
     orgs: [
       {
         id: 'afad',
@@ -255,6 +353,14 @@ const DISASTER_CONFIG: Record<string, DisasterConfig> = {
         website: 'https://www.afad.gov.tr',
         logo: '/logos/afad.png',
       },
+      {
+        id: 'kizilay',
+        name: 'Türk Kızılay',
+        role: 'Yardım, barınma ve psiko-sosyal destek',
+        phone: '168',
+        phoneLabel: '168 Kızılay Çağrı Merkezi',
+        website: 'https://www.kizilay.org.tr',
+      },
     ],
   },
 }
@@ -263,10 +369,15 @@ const FALLBACK_CONFIG: DisasterConfig = {
   title: 'Acil Durum Yardımı',
   question: 'Bir afet / acil durum yaşıyorsanız hemen yardım isteyin.',
   description:
-    'Bulunduğunuz konumu güvenli hale getirin ve ardından acil hatlara durumu bildirin. Gerekirse çevrenizdekilerden de yardım isteyin.',
+    'Bulunduğunuz konumu güvenli hale getirin ve ardından acil hatlara durumu bildirin. Çevrenizdekilerden de yardım isteyebilirsiniz.',
   emergencyLines: [
     ...BASE_LINES,
-    { id: '110-fallback', label: '110 İtfaiye', number: '110', info: 'Yangın ve kurtarma' },
+    {
+      id: '110-fallback',
+      label: '110 İtfaiye',
+      number: '110',
+      info: 'Yangın ve kurtarma',
+    },
   ],
   orgs: [
     {
@@ -278,15 +389,29 @@ const FALLBACK_CONFIG: DisasterConfig = {
       website: 'https://www.afad.gov.tr',
       logo: '/logos/afad.png',
     },
+    {
+      id: 'kizilay',
+      name: 'Türk Kızılay',
+      role: 'Yardım ve barınma desteği',
+      phone: '168',
+      phoneLabel: '168 Kızılay Çağrı Merkezi',
+      website: 'https://www.kizilay.org.tr',
+    },
   ],
 }
 
-export default function StatusPage() {
-  const searchParams = useSearchParams()
-  const subtypeRaw = (searchParams.get('subtype') || '').toLowerCase()
+type SearchParams = { [key: string]: string | string[] | undefined }
 
-  const config =
-    DISASTER_CONFIG[subtypeRaw as keyof typeof DISASTER_CONFIG] ?? FALLBACK_CONFIG
+export default function StatusPage({
+  searchParams,
+}: {
+  searchParams: SearchParams
+}) {
+  const raw = searchParams.subtype
+  const subtype =
+    typeof raw === 'string' ? raw.toLowerCase() : Array.isArray(raw) ? (raw[0] || '').toLowerCase() : ''
+
+  const config = DISASTER_CONFIG[subtype] ?? FALLBACK_CONFIG
 
   return (
     <div className="min-h-[100svh] bg-white pb-[68px] flex flex-col">
@@ -295,14 +420,14 @@ export default function StatusPage() {
       <main className="flex-1 px-4 pt-4 pb-4">
         <div className="max-w-md mx-auto space-y-6">
 
-          {/* Durum kartı */}
+          {/* DURUM KARTI */}
           <section className="bg-[#D73333] text-white rounded-3xl shadow-xl p-4 space-y-2">
             <h1 className="text-xl font-bold">Acil Durum</h1>
             <p className="text-sm font-semibold">{config.question}</p>
             <p className="text-xs text-white/90">{config.description}</p>
           </section>
 
-          {/* O duruma özel hızlı hatlar */}
+          {/* O DURUMA ÖZEL HATLAR */}
           <section className="space-y-3">
             <h2 className="text-sm font-semibold text-gray-800">
               Bu duruma özel acil hatlar
@@ -326,13 +451,13 @@ export default function StatusPage() {
             </div>
           </section>
 
-          {/* GENEL ACİL NUMARALAR BLOKU */}
+          {/* GENEL ACİL NUMARALAR */}
           <section className="space-y-3">
             <h2 className="text-sm font-semibold text-gray-800">
               Genel acil çağrı numaraları
             </h2>
             <p className="text-[11px] text-gray-500">
-              Türkiye’de tüm acil çağrılar için tek numara <strong>112</strong>’dir.
+              Türkiye’de tüm acil durumlar için tek numara <strong>112</strong>’dir.
               Aşağıdaki numaralar da aynı sistem altında çalışır ve çoğu durumda
               112’yi aramanız yeterlidir.
             </p>
@@ -357,7 +482,7 @@ export default function StatusPage() {
             </div>
           </section>
 
-          {/* Diğer önemli hatlar (183 vs) */}
+          {/* DİĞER ÖNEMLİ HATLAR (KIZILAY / YEŞİLAY / UZEM / 183) */}
           <section className="space-y-3">
             <h2 className="text-sm font-semibold text-gray-800">
               Diğer önemli hatlar
@@ -383,14 +508,14 @@ export default function StatusPage() {
             </div>
           </section>
 
-          {/* Yakın kurumlar / STK listesi */}
+          {/* KURUMLAR & STK LİSTESİ */}
           <section className="space-y-3">
             <h2 className="text-sm font-semibold text-gray-800">
-              Yakınınızdaki Kurumlar &amp; STK’lar
+              Kurumlar &amp; STK’lar
             </h2>
 
             <p className="text-xs text-gray-500">
-              Konuma dayalı tam listeleme yakında eklenecek. Şu anda ülke
+              Konuma dayalı tam listeleme daha sonra eklenecek. Şu anda ülke
               genelinde en sık başvurulan kurumlar gösteriliyor.
             </p>
 
