@@ -1,21 +1,34 @@
+/* --------------------------------------------- */
+
+
+/*                  TAILWIND BASE                */
+
+
+/* --------------------------------------------- */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* --------------------------------------------- */
+
+
+/*                  CSS VARIABLES                */
+
+
+/* --------------------------------------------- */
+
 @layer base {
      :root {
         --background: 255 100% 100%;
-        /* #FFFFFF */
         --foreground: 215 80% 25%;
-        /* #0B3B7A */
         --card: 255 100% 100%;
         --card-foreground: 215 80% 25%;
         --popover: 255 100% 100%;
         --popover-foreground: 215 80% 25%;
         --primary: 0 63% 51%;
-        /* #D32F2F */
         --primary-foreground: 0 0% 98%;
         --secondary: 215 80% 25%;
-        /* #0B3B7A */
         --secondary-foreground: 0 0% 98%;
         --muted: 220 13% 91%;
         --muted-foreground: 220 8.9% 46.1%;
@@ -84,7 +97,13 @@
 }
 
 
-/* Ekran flaşı efekti – global, dark içine gömülmüyor */
+/* --------------------------------------------- */
+
+
+/*              SCREEN FLASH EFFECT              */
+
+
+/* --------------------------------------------- */
 
 body.noodi-flash::before {
     content: "";
