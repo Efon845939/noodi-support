@@ -40,7 +40,7 @@ type StatusPageProps = {
   }
 }
 
-/** TÜRKİYE ACİL VE ÖNEMLİ NUMARALAR – SAĞDAKİ SCROLLABLE LİSTE İÇİN */
+/** Sağdaki küçük kutu için acil numaralar */
 const EMERGENCY_LINES: { id: string; label: string; number: string }[] = [
   { id: '112', label: '112 Acil Çağrı', number: '112' },
   { id: '110', label: '110 Yangın İhbar', number: '110' },
@@ -77,11 +77,11 @@ export default function StatusPage({ searchParams }: StatusPageProps) {
       <div className="min-h-[100svh] bg-white flex flex-col">
         <AppHeader userName={null} />
 
-        <main className="flex-1 max-w-md w-full mx-auto p-4">
-          {/* BURASI ESKİ TASARIM + SAĞDA LİSTE */}
-          <div className="flex items-start gap-3">
-            {/* SOL: ESKİ DisasterStatus BLOĞU */}
-            <div className="flex-1">
+        <main className="flex-1 w-full max-w-5xl mx-auto px-4 py-4">
+          {/* SOLDA: senin DisasterStatus bloğun, SAĞDA: küçük acil numara listesi */}
+          <div className="flex items-start gap-4">
+            {/* SOL KOLON – HİÇ DEĞİŞTİRMEDİĞİM KISIM */}
+            <div className="flex-1 max-w-xl">
               <DisasterStatus
                 type={TYPE}
                 primaryOrg={map.primary}
@@ -89,23 +89,30 @@ export default function StatusPage({ searchParams }: StatusPageProps) {
               />
             </div>
 
-            {/* SAĞ: SCROLLABLE ACİL NUMARA LİSTESİ */}
-            <div className="w-32 sm:w-40 max-h-40 overflow-y-auto bg-gray-50 border border-gray-200 rounded-2xl p-2 space-y-1">
-              {EMERGENCY_LINES.map((line) => (
-                <a
-                  key={line.id}
-                  href={`tel:${line.number}`}
-                  className="flex flex-col rounded-xl px-2 py-1 hover:bg-gray-100 active:bg-gray-200"
-                >
-                  <span className="text-[11px] font-semibold text-gray-900 truncate">
-                    {line.label}
-                  </span>
-                  <span className="text-[11px] font-mono text-gray-700">
-                    {line.number}
-                  </span>
-                </a>
-              ))}
-            </div>
+            {/* SAĞDA KÜÇÜK, SCROLLABLE ACİL NUMARA KUTUSU */}
+            <aside className="w-44 shrink-0 hidden sm:block">
+              <div className="bg-[#F5F7FB] border border-[#E0E4F0] rounded-2xl shadow-sm px-3 py-2 max-h-[260px] overflow-y-auto">
+                <p className="text-[11px] font-semibold text-gray-700 mb-1">
+                  Acil Numaralar
+                </p>
+                <div className="space-y-1">
+                  {EMERGENCY_LINES.map((line) => (
+                    <a
+                      key={line.id}
+                      href={`tel:${line.number}`}
+                      className="block rounded-lg px-2 py-1 hover:bg-white active:bg-gray-100 transition"
+                    >
+                      <div className="text-[11px] font-semibold text-gray-900 truncate">
+                        {line.label}
+                      </div>
+                      <div className="text-[11px] font-mono text-gray-700">
+                        {line.number}
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </aside>
           </div>
         </main>
 
