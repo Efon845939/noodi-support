@@ -24,7 +24,7 @@ export default function HomePage() {
               text-white
               rounded-3xl
               shadow-lg
-              py-24                        /* ← DİKKAT: YÜKSEKLİĞİ UZATAN KISIM */
+              py-30                        /* ← DİKKAT: YÜKSEKLİĞİ UZATAN KISIM */
               text-2xl                     /* yazıyı da büyüttüm */
               font-bold
               tracking-wide
@@ -44,7 +44,7 @@ export default function HomePage() {
               text-white
               rounded-3xl
               shadow-lg
-              py-24                        /* ← BURASI DİKEY UZUNLUK */
+              py-16                        /* ← BURASI DİKEY UZUNLUK */
               text-2xl
               font-bold
               tracking-wide
