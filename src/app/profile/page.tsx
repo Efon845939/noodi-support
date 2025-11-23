@@ -61,7 +61,7 @@ export default function Profile() {
     })()
   }, [auth, db, user])
 
-  const login = () => {
+  const loginWithGoogle = () => {
     if (!auth) return
     signInWithPopup(auth, google).catch(console.error)
   }
@@ -89,8 +89,7 @@ export default function Profile() {
         <HeaderBar title="Profil" />
         <div className="max-w-md mx-auto p-5 space-y-4 text-center">
           <p className="text-sm text-gray-600">
-            Firebase yapılandırması eksik. Lütfen ortam değişkenlerinizi kontrol
-            edin.
+            Firebase yapılandırması eksik. Lütfen ortam değişkenlerinizi kontrol edin.
           </p>
           <button
             disabled
@@ -117,10 +116,18 @@ export default function Profile() {
           <>
             {/* Giriş yapmamış kullanıcı */}
             <button
-              onClick={login}
+              onClick={loginWithGoogle}
               className="w-full bg-[#0B3B7A] text-white rounded-lg py-2"
             >
               Google ile Giriş Yap
+            </button>
+
+            {/* E-posta / Şifre ile giriş sayfasına giden buton */}
+            <button
+              onClick={() => router.push('/login')}
+              className="w-full bg-gray-300 text-gray-700 rounded-lg py-2"
+            >
+              E-posta ile Giriş Yap
             </button>
 
             <button
@@ -176,7 +183,7 @@ export default function Profile() {
               </button>
             )}
 
-            {/* İsteğe bağlı özel bilgiler */}
+            {/* Kişisel bilgiler formu (sadece UI) */}
             <div className="space-y-4 bg-[#F5F7FA] p-4 rounded-xl border">
               <h2 className="text-lg font-semibold text-[#0B3B7A]">
                 Kişisel Bilgiler (İsteğe Bağlı)
@@ -209,9 +216,7 @@ export default function Profile() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium">
-                    Kilo (kg)
-                  </label>
+                  <label className="block text-sm font-medium">Kilo (kg)</label>
                   <input
                     type="number"
                     min={20}

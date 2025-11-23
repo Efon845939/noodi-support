@@ -44,7 +44,7 @@ export default function HomePage() {
               text-white
               rounded-3xl
               shadow-lg
-              py-16                        /* ← BURASI DİKEY UZUNLUK */
+              py-24                        /* ← BURASI DİKEY UZUNLUK */
               text-2xl
               font-bold
               tracking-wide
