@@ -1,4 +1,3 @@
-// src/components/NearbyFeed.tsx
 'use client'
 import { useEffect, useState } from 'react'
 
@@ -32,10 +31,24 @@ export default function NearbyFeed({
       return
     }
 
+    let cancelled = false
+
     setLoading(true)
+    setErr('')
+
+    // 10 saniye içinde hiçbir cevap gelmezse, loading’i zorla bitir
+    const timeout = setTimeout(() => {
+      if (!cancelled) {
+        setLoading(false)
+        if (!items.length) {
+          setErr('Konum alınamadı veya ağ yanıt vermedi.')
+        }
+      }
+    }, 10000)
 
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
+        if (cancelled) return
         try {
           const r = await fetch('/api/incidents/nearby', {
             method: 'POST',
@@ -49,21 +62,34 @@ export default function NearbyFeed({
             }),
           }).catch(() => null)
 
-          const j = await r?.json().catch(() => null)
-          const live = ((j?.items || []) as Item[]) || []
-          setItems(live)
+          if (!r) {
+            setErr('Yakın olaylar yüklenemedi (ağ hatası).')
+            setItems([])
+          } else {
+            const j = await r.json().catch(() => null)
+            const live = ((j?.items || []) as Item[]) || []
+            setItems(live)
+          }
         } catch {
           setErr('Yakın olaylar yüklenirken bir hata oluştu.')
+          setItems([])
         } finally {
-          setLoading(false)
+          if (!cancelled) setLoading(false)
         }
       },
       () => {
-        setErr('Konum reddedildi')
-        setLoading(false)
+        if (!cancelled) {
+          setErr('Konum reddedildi')
+          setLoading(false)
+        }
       }
     )
-  }, [radiusKm, windowRange, JSON.stringify(categories)])
+
+    return () => {
+      cancelled = true
+      clearTimeout(timeout)
+    }
+  }, [radiusKm, windowRange, JSON.stringify(categories)]) // bu kalsın
 
   if (err) {
     return (
@@ -142,6 +168,7 @@ function badge(t: string) {
       return 'Olay'
   }
 }
+
 function sev(s: 'low' | 'medium' | 'high') {
   return s === 'high'
     ? 'bg-red-100 text-red-700'
