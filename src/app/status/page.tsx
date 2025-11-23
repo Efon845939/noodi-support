@@ -1,31 +1,47 @@
-import Image from 'next/image'
-import HeaderBar from '@/components/HeaderBar'
-import BottomTabs from '@/components/BottomTabs'
-import AssistantPanel from '@/components/AssistantPanel'
+import AppHeader from '@/components/AppHeader'
+import BottomNav from '@/components/BottomNav'
+import GeoGate from '@/components/GeoGate'
+import DisasterStatus from '@/components/DisasterStatus'
 
-type EmergencyLine = {
-  id: string
-  label: string
-  number: string
+const ORGS: Record<
+  string,
+  {
+    primary: { name: string; logo?: string }
+    support: { name: string; logo?: string }[]
+  }
+> = {
+  DEPREM: {
+    primary: { name: 'AFAD', logo: '/logos/afad.png' },
+    support: [{ name: 'AKUT', logo: '/logos/akut.png' }],
+  },
+  SEL: {
+    primary: { name: 'AFAD', logo: '/logos/afad.png' },
+    support: [{ name: 'AKUT', logo: '/logos/akut.png' }],
+  },
+  YANGIN: {
+    primary: { name: 'İtfaiye', logo: '/logos/itfaiye.png' },
+    support: [{ name: 'AKUT', logo: '/logos/akut.png' }],
+  },
+  HEYELAN: {
+    primary: { name: 'AFAD', logo: '/logos/afad.png' },
+    support: [],
+  },
+  FIRTINA: {
+    primary: { name: 'AFAD', logo: '/logos/afad.png' },
+    support: [],
+  },
 }
 
-type Org = {
-  id: string
-  name: string
-  role: string
-  website?: string
-  logo?: string
+type DisasterType = keyof typeof ORGS
+
+type StatusPageProps = {
+  searchParams?: {
+    [key: string]: string | string[] | undefined
+  }
 }
 
-type DisasterConfig = {
-  title: string
-  question: string
-  description: string
-  orgs: Org[]
-}
-
-/** TÜRKİYE ACİL VE ÖNEMLİ NUMARALAR */
-const EMERGENCY_LINES: EmergencyLine[] = [
+/** TÜRKİYE ACİL VE ÖNEMLİ NUMARALAR – SAĞDAKİ SCROLLABLE LİSTE İÇİN */
+const EMERGENCY_LINES: { id: string; label: string; number: string }[] = [
   { id: '112', label: '112 Acil Çağrı', number: '112' },
   { id: '110', label: '110 Yangın İhbar', number: '110' },
   { id: '122', label: '122 Alo AFAD', number: '122' },
@@ -39,187 +55,62 @@ const EMERGENCY_LINES: EmergencyLine[] = [
   { id: '183', label: '183 Sosyal Destek', number: '183' },
 ]
 
-const BASE_ORGS: Org[] = [
-  {
-    id: 'afad',
-    name: 'AFAD',
-    role: 'Afet ve acil durum koordinasyonu, tahliye, barınma',
-    website: 'https://www.afad.gov.tr',
-    logo: '/logos/afad.png',
-  },
-  {
-    id: 'kizilay',
-    name: 'Türk Kızılay',
-    role: 'Barınma, temel yardım, kan bağışı, psiko-sosyal destek',
-    website: 'https://www.kizilay.org.tr',
-  },
-  {
-    id: 'akut',
-    name: 'AKUT',
-    role: 'Gönüllü arama kurtarma desteği',
-    website: 'https://www.akut.org.tr',
-    logo: '/logos/akut.png',
-  },
-]
+export default function StatusPage({ searchParams }: StatusPageProps) {
+  const raw = searchParams?.subtype
+  const subtype = (Array.isArray(raw) ? raw[0] : raw) || 'DEPREM'
 
-const DISASTER_CONFIG: Record<string, DisasterConfig> = {
-  sel: {
-    title: 'Sel Yardımı',
-    question: 'Şu anda selden etkilendiğiniz bir bölgede misiniz?',
-    description:
-      'Önce kendi can güvenliğinizi sağlayın. Mümkünse daha yüksek ve güvenli bir noktaya geçin, ardından acil hatları arayarak konumunuzu bildirin.',
-    orgs: BASE_ORGS,
-  },
-  heyelan: {
-    title: 'Heyelan Yardımı',
-    question: 'Toprak kayması / heyelan riski olan bir bölgede misiniz?',
-    description:
-      'Çöken yamaçlardan ve riskli binalardan uzaklaşın. Güvenli bir alanda bekleyip yetkili kurumlara haber verin.',
-    orgs: BASE_ORGS,
-  },
-  deprem: {
-    title: 'Deprem Yardımı',
-    question: 'Deprem sonrası güvende misiniz?',
-    description:
-      'Artçı sarsıntılar devam edebilir. Güvenli bir toplanma alanına geçip göçük, gaz kaçağı, yangın gibi durumları acil hatlara bildirin.',
-    orgs: BASE_ORGS,
-  },
-  'fırtına': {
-    title: 'Fırtına Yardımı',
-    question: 'Şiddetli rüzgar / fırtına nedeniyle risk altında mısınız?',
-    description:
-      'Pencere kenarlarından ve düşebilecek nesnelerden uzak durun. Elektrik hatlarına yaklaşmayın, hasarı acil hatlara bildirin.',
-    orgs: BASE_ORGS,
-  },
-  yangın: {
-    title: 'Yangın Yardımı',
-    question: 'Aktif yangın tehlikesi altındaysanız önce uzaklaşın.',
-    description:
-      'Yangın bölgesinden uzaklaşıp güvenli bir noktaya geçin, ardından itfaiye ve acil çağrı merkezini arayın.',
-    orgs: BASE_ORGS,
-  },
-  'diğer': {
-    title: 'Diğer Afet / Acil Durum',
-    question: 'Afet veya riskli bir durum mu yaşıyorsunuz?',
-    description:
-      'Durumu ve konumunuzu mümkün olduğunca net şekilde acil hatlara bildirin. Yetkili kurumlar gerekli yönlendirmeyi yapacaktır.',
-    orgs: BASE_ORGS,
-  },
-}
+  const subtypeRaw = subtype.toString().toUpperCase()
 
-const FALLBACK_CONFIG: DisasterConfig = {
-  title: 'Acil Durum Yardımı',
-  question: 'Bir afet / acil durum yaşıyorsanız hemen yardım isteyin.',
-  description:
-    'Önce bulunduğunuz yeri güvenli hale getirin, ardından acil hatlara durumu bildirin.',
-  orgs: BASE_ORGS,
-}
+  const validTypes = Object.keys(ORGS) as DisasterType[]
+  const TYPE: DisasterType = validTypes.includes(subtypeRaw as DisasterType)
+    ? (subtypeRaw as DisasterType)
+    : 'DEPREM'
 
-type SearchParams = { [key: string]: string | string[] | undefined }
-
-export default function StatusPage({
-  searchParams,
-}: {
-  searchParams: SearchParams
-}) {
-  const raw = searchParams.subtype
-  const subtype =
-    typeof raw === 'string'
-      ? raw.toLowerCase()
-      : Array.isArray(raw)
-      ? (raw[0] || '').toLowerCase()
-      : ''
-
-  const config = DISASTER_CONFIG[subtype] ?? FALLBACK_CONFIG
+  const map =
+    ORGS[TYPE] ?? {
+      primary: { name: 'AFAD', logo: '/logos/afad.png' },
+      support: [],
+    }
 
   return (
-    <div className="min-h-[100svh] bg-white pb-[68px] flex flex-col">
-      <HeaderBar title={config.title} showBack />
+    <GeoGate>
+      <div className="min-h-[100svh] bg-white flex flex-col">
+        <AppHeader userName={null} />
 
-      <main className="flex-1 px-4 pt-4 pb-4">
-        <div className="max-w-md mx-auto space-y-6">
-
-          {/* KIRMIZI ANA KART (ESKİ LAYOUTA BENZER) */}
-          <section className="bg-[#D73333] text-white rounded-3xl shadow-xl p-4 space-y-2">
-            <h1 className="text-xl font-bold">Acil Durum</h1>
-            <p className="text-sm font-semibold">{config.question}</p>
-            <p className="text-xs text-white/90">{config.description}</p>
-          </section>
-
-          {/* YANDA SCROLLABLE KÜÇÜK LİSTE */}
-          <section>
-            <div className="flex items-start gap-3">
-              <p className="flex-1 text-[11px] text-gray-600">
-                Aşağıdaki listede Türkiye’deki başlıca acil çağrı numaraları
-                yer alıyor. Dokunarak doğrudan arayabilirsiniz.
-              </p>
-              <div className="w-40 max-h-40 overflow-y-auto bg-gray-50 border border-gray-200 rounded-2xl p-2 space-y-1">
-                {EMERGENCY_LINES.map((line) => (
-                  <a
-                    key={line.id}
-                    href={`tel:${line.number}`}
-                    className="flex flex-col rounded-xl px-2 py-1 hover:bg-gray-100 active:bg-gray-200"
-                  >
-                    <span className="text-[11px] font-semibold text-gray-900 truncate">
-                      {line.label}
-                    </span>
-                    <span className="text-[11px] font-mono text-gray-700">
-                      {line.number}
-                    </span>
-                  </a>
-                ))}
-              </div>
+        <main className="flex-1 max-w-md w-full mx-auto p-4">
+          {/* BURASI ESKİ TASARIM + SAĞDA LİSTE */}
+          <div className="flex items-start gap-3">
+            {/* SOL: ESKİ DisasterStatus BLOĞU */}
+            <div className="flex-1">
+              <DisasterStatus
+                type={TYPE}
+                primaryOrg={map.primary}
+                supportOrgs={map.support}
+              />
             </div>
-          </section>
 
-          {/* KURUMLAR / STK’LAR (AFAD, KIZILAY, AKUT…) */}
-          <section className="space-y-3">
-            <h2 className="text-sm font-semibold text-gray-800">
-              Kurumlar &amp; STK’lar
-            </h2>
-            <div className="space-y-3">
-              {config.orgs.map((org) => (
-                <div
-                  key={org.id}
-                  className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-2xl px-3 py-3 shadow-sm"
+            {/* SAĞ: SCROLLABLE ACİL NUMARA LİSTESİ */}
+            <div className="w-32 sm:w-40 max-h-40 overflow-y-auto bg-gray-50 border border-gray-200 rounded-2xl p-2 space-y-1">
+              {EMERGENCY_LINES.map((line) => (
+                <a
+                  key={line.id}
+                  href={`tel:${line.number}`}
+                  className="flex flex-col rounded-xl px-2 py-1 hover:bg-gray-100 active:bg-gray-200"
                 >
-                  {org.logo && (
-                    <div className="relative w-10 h-10 rounded-full overflow-hidden bg-white border border-gray-200 shrink-0">
-                      <Image
-                        src={org.logo}
-                        alt={org.name}
-                        fill
-                        className="object-contain p-1.5"
-                      />
-                    </div>
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold truncate">
-                      {org.name}
-                    </p>
-                    <p className="text-xs text-gray-600 line-clamp-2">
-                      {org.role}
-                    </p>
-                    {org.website && (
-                      <a
-                        href={org.website}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-1 inline-block text-[11px] px-2 py-1 rounded-full bg-gray-200 text-gray-800"
-                      >
-                        Web sitesi
-                      </a>
-                    )}
-                  </div>
-                </div>
+                  <span className="text-[11px] font-semibold text-gray-900 truncate">
+                    {line.label}
+                  </span>
+                  <span className="text-[11px] font-mono text-gray-700">
+                    {line.number}
+                  </span>
+                </a>
               ))}
             </div>
-          </section>
-        </div>
-      </main>
+          </div>
+        </main>
 
-      <BottomTabs />
-      <AssistantPanel />
-    </div>
+        <BottomNav />
+      </div>
+    </GeoGate>
   )
 }
