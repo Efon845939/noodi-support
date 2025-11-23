@@ -224,18 +224,7 @@ export default function Settings() {
               </Section>
 
               {st.general.focusNearest && (
-                <Section
-                  title="AKIŞ"
-                  actionButton={
-                    <button
-                      onClick={handleClearHistory}
-                      className="text-xs text-blue-600 hover:underline"
-                      type="button"
-                    >
-                      Geçmişi Temizle
-                    </button>
-                  }
-                >
+                <Section title="AKIŞ">
                   <NearbyFeed
                     key={feedKey}
                     radiusKm={st.disaster.maxDistanceKm}
@@ -374,18 +363,7 @@ export default function Settings() {
           </Section>
 
           {st.personal.nearby.enabled && (
-            <Section
-              title="YAKIN OLAYLAR AKIŞI"
-              actionButton={
-                <button
-                  onClick={handleClearHistory}
-                  className="text-xs text-blue-600 hover:underline"
-                  type="button"
-                >
-                  Geçmişi Temizle
-                </button>
-              }
-            >
+            <Section title="YAKIN OLAYLAR AKIŞI">
               <NearbyFeed
                 key={feedKey}
                 radiusKm={st.personal.nearby.radiusKm}
@@ -538,7 +516,7 @@ export default function Settings() {
           type="button"
           onClick={() =>
             triggerTestAlertWeb({
-              sound: st[tab].tts || true, // senin eski mantığını bozmuyorum
+              sound: st[tab].tts || true,
               vibrate: (st as any)[tab].vibrate,
               tts: (st as any)[tab].tts,
             })
