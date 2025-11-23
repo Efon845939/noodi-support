@@ -26,23 +26,29 @@ export default function LoginPage() {
 
     switch (code) {
       case 'auth/email-already-in-use':
-        return 'Bu e-posta ile zaten bir hesap var.'
+        return 'Bu e-posta ile zaten bir hesap var. Lütfen giriş yapın.'
       case 'auth/invalid-credential':
       case 'auth/wrong-password':
         return 'E-posta veya şifre hatalı.'
       case 'auth/user-not-found':
-        return mode === 'login'
-          ? 'Bu e-posta ile kayıt bulunamadı.'
-          : 'Bu e-posta zaten kullanılıyor.'
-      case 'auth/too-many-requests':
-        return 'Çok fazla deneme yapıldı. Bir süre sonra tekrar deneyin.'
+        return 'Bu e-posta ile kayıtlı kullanıcı bulunamadı.'
+      case 'auth/weak-password':
+        return 'Şifre en az 6 karakter olmalı.'
+      case 'auth/invalid-email':
+        return 'Geçerli bir e-posta adresi girin.'
+      case 'auth/network-request-failed':
+        return 'Ağ hatası oluştu. İnternet bağlantını kontrol et.'
       default:
-        return 'Bir hata oluştu.'
+        return `Bir hata oluştu. (${code || 'bilinmiyor'})`
     }
   }
 
   const handleSubmit = async () => {
     if (!auth) return
+    if (!email || !password) {
+      setError('E-posta ve şifre boş olamaz.')
+      return
+    }
 
     try {
       setError('')
@@ -65,15 +71,14 @@ export default function LoginPage() {
 
   const handleGoogle = async () => {
     if (!auth) return
-
     try {
       setError('')
       setLoading(true)
-
       await signInWithPopup(auth, google)
       router.replace('/profile')
     } catch (e: any) {
       console.error(e)
+      // genelde popup kapanır / iptal; çok kasmaya gerek yok
       setError('Google ile giriş yapılamadı.')
     } finally {
       setLoading(false)
@@ -86,7 +91,6 @@ export default function LoginPage() {
 
       <main className="flex-1 flex items-center justify-center px-4 pt-6">
         <div className="w-full max-w-md space-y-4">
-
           <h1 className="text-xl font-bold text-center">
             {mode === 'signup' ? 'Kayıt Ol' : 'Giriş Yap'}
           </h1>
@@ -118,7 +122,11 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full bg-[#0B3B7A] text-white rounded-lg py-2 font-semibold disabled:opacity-60"
           >
-            {loading ? 'İşleniyor...' : (mode === 'signup' ? 'Kayıt Ol' : 'Giriş Yap')}
+            {loading
+              ? 'İşleniyor...'
+              : mode === 'signup'
+              ? 'Kayıt Ol'
+              : 'Giriş Yap'}
           </button>
 
           <button
@@ -131,6 +139,7 @@ export default function LoginPage() {
 
           <button
             className="w-full text-[#0B3B7A] mt-2 underline text-sm"
+            type="button"
             onClick={() =>
               setMode(mode === 'signup' ? 'login' : 'signup')
             }
@@ -139,7 +148,6 @@ export default function LoginPage() {
               ? 'Hesabın var mı? Giriş Yap'
               : 'Hesabın yok mu? Kayıt Ol'}
           </button>
-
         </div>
       </main>
 

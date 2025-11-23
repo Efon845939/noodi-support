@@ -35,16 +35,16 @@ export default function HeaderBar({
         <div className="flex items-center gap-2 min-w-0">
           <div className="relative h-7 w-auto">
             <Image
-              src="/logo-noodi-support.png"
+              src="/logos/noodi-support.png"  {/* ← senin dosya yolu */}
               alt="Noodi Support"
-              width={140}
-              height={28}
+              width={160}
+              height={40}
               className="h-7 w-auto"
               priority
             />
           </div>
 
-          {/* Sadece title varsa küçük, sol tarafa yaz */}
+          {/* sadece title varsa küçük yazı */}
           {title && (
             <span className="ml-1 text-xs font-semibold truncate max-w-[120px]">
               {title}
