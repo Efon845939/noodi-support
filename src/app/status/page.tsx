@@ -1,9 +1,10 @@
 'use client'
 
-import HeaderBar from '@/components/HeaderBar'
-import BottomTabs from '@/components/BottomTabs'
-import DisasterStatus from '@/components/DisasterStatus'
 import { useSearchParams } from 'next/navigation'
+import AppHeader from '@/components/AppHeader'
+import BottomNav from '@/components/BottomNav'
+import GeoGate from '@/components/GeoGate'
+import DisasterStatus from '@/components/DisasterStatus'
 
 const ORGS: Record<
   string,
@@ -18,7 +19,7 @@ const ORGS: Record<
   },
   SEL: {
     primary: { name: 'AFAD', logo: '/logos/afad.png' },
-    // Sel’de yardımcı olarak AKOM yeterli, itfaiyeyi karıştırmıyoruz
+    // Sel’de yardımcı olarak AKUT yeterli
     support: [{ name: 'AKUT', logo: '/logos/akut.png' }],
   },
   YANGIN: {
@@ -36,28 +37,36 @@ const ORGS: Record<
   },
 }
 
+type DisasterType = keyof typeof ORGS
+
 export default function StatusPage() {
   const sp = useSearchParams()
-  const subtypeRaw = (sp.get('subtype') || 'deprem').toString().toUpperCase()
+  const subtypeRaw = (sp.get('subtype') || 'DEPREM').toString().toUpperCase()
 
-  const TYPE = ['DEPREM', 'SEL', 'YANGIN', 'HEYELAN', 'FIRTINA'].includes(
-    subtypeRaw,
-  )
-    ? (subtypeRaw as any)
-    : ('DEPREM' as const)
+  const validTypes = Object.keys(ORGS) as DisasterType[]
+  const TYPE: DisasterType = validTypes.includes(subtypeRaw as DisasterType)
+    ? (subtypeRaw as DisasterType)
+    : 'DEPREM'
 
   const map =
-    ORGS[TYPE] || { primary: { name: 'AFAD', logo: '/logos/afad.png' }, support: [] }
+    ORGS[TYPE] ?? {
+      primary: { name: 'AFAD', logo: '/logos/afad.png' },
+      support: [],
+    }
 
   return (
-    <div className="min-h-[100svh] bg-white pb-[68px]">
-      <HeaderBar title="Durum" />
-      <DisasterStatus
-        type={TYPE}
-        primaryOrg={map.primary}
-        supportOrgs={map.support}
-      />
-      <BottomTabs />
-    </div>
+    <GeoGate>
+      <div className="min-h-[100svh] bg-white flex flex-col">
+        <AppHeader userName={null} />
+        <main className="flex-1 max-w-md w-full mx-auto p-4">
+          <DisasterStatus
+            type={TYPE}
+            primaryOrg={map.primary}
+            supportOrgs={map.support}
+          />
+        </main>
+        <BottomNav />
+      </div>
+    </GeoGate>
   )
 }
