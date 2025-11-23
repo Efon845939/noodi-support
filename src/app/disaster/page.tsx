@@ -14,11 +14,7 @@ export default function Disaster() {
   const click = (t: string) =>
     t === 'İhbar'
       ? r.push('/ihbar-olustur')
-      : r.push(
-          `/status?category=disaster&subtype=${encodeURIComponent(
-            t.toLowerCase()
-          )}`
-        )
+      : r.push(`/status?category=disaster&subtype=${encodeURIComponent(t.toLowerCase())}`)
 
   return (
     <div className="min-h-[100svh] bg-white pb-[68px]">
