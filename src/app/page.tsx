@@ -10,10 +10,10 @@ export default function HomePage() {
 
   return (
     <div className="min-h-[100svh] bg-white pb-[68px] flex flex-col">
-      <HeaderBar />
+      <HeaderBar title="Noodi Support" />
 
-      <main className="flex-1 px-4 pt-6 pb-4">
-        <div className="max-w-md mx-auto space-y-5">
+      <main className="flex-1 px-4 pt-8 pb-4">
+        <div className="max-w-md mx-auto space-y-8">
 
           {/* KİŞİSEL YARDIM */}
           <button
@@ -22,13 +22,14 @@ export default function HomePage() {
               w-full
               bg-[#D73333]
               text-white
-              rounded-2xl
-              shadow-md
-              py-12               /* ← daha dik */
-              text-xl
-              font-semibold
+              rounded-3xl
+              shadow-lg
+              py-16                        /* ← DİKKAT: YÜKSEKLİĞİ UZATAN KISIM */
+              text-2xl                     /* yazıyı da büyüttüm */
+              font-bold
+              tracking-wide
               active:scale-95
-              transition
+              transition-all
             "
           >
             KİŞİSEL YARDIM
@@ -41,13 +42,14 @@ export default function HomePage() {
               w-full
               bg-[#D73333]
               text-white
-              rounded-2xl
-              shadow-md
-              py-12               /* ← daha dik */
-              text-xl
-              font-semibold
+              rounded-3xl
+              shadow-lg
+              py-16                        /* ← BURASI DİKEY UZUNLUK */
+              text-2xl
+              font-bold
+              tracking-wide
               active:scale-95
-              transition
+              transition-all
             "
           >
             ACİL DURUM
