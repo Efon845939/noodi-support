@@ -7,7 +7,6 @@ import { Tile } from '@/components/Tile'
 import BottomTabs from '@/components/BottomTabs'
 import AssistantPanel from '@/components/AssistantPanel'
 
-// Burada sadece 'Diğer' -> 'İhbar' değişti
 const items = ['Sel', 'Heyelan', 'Deprem', 'Fırtına', 'Yangın', 'İhbar']
 
 export default function Disaster() {
@@ -15,7 +14,7 @@ export default function Disaster() {
 
   const click = (t: string) =>
     t === 'İhbar'
-      ? r.push('/disaster/other')
+      ? r.push('/ihbar-olustur')
       : r.push(
           `/status?category=disaster&subtype=${encodeURIComponent(
             t.toLowerCase()

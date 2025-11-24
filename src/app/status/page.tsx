@@ -1,3 +1,4 @@
+// src/app/status/page.tsx
 import AppHeader from '@/components/AppHeader'
 import BottomNav from '@/components/BottomNav'
 import GeoGate from '@/components/GeoGate'
@@ -40,7 +41,7 @@ type StatusPageProps = {
   }
 }
 
-/** Sağdaki küçük kutu için acil numaralar */
+/** Sağdaki küçük kutudaki acil numaralar */
 const EMERGENCY_LINES: { id: string; label: string; number: string }[] = [
   { id: '112', label: '112 Acil Çağrı', number: '112' },
   { id: '110', label: '110 Yangın İhbar', number: '110' },
@@ -58,7 +59,6 @@ const EMERGENCY_LINES: { id: string; label: string; number: string }[] = [
 export default function StatusPage({ searchParams }: StatusPageProps) {
   const raw = searchParams?.subtype
   const subtype = (Array.isArray(raw) ? raw[0] : raw) || 'DEPREM'
-
   const subtypeRaw = subtype.toString().toUpperCase()
 
   const validTypes = Object.keys(ORGS) as DisasterType[]
@@ -77,10 +77,10 @@ export default function StatusPage({ searchParams }: StatusPageProps) {
       <div className="min-h-[100svh] bg-white flex flex-col">
         <AppHeader userName={null} />
 
-        <main className="flex-1 w-full max-w-5xl mx-auto px-4 py-4">
-          {/* SOLDA: senin DisasterStatus bloğun, SAĞDA: küçük acil numara listesi */}
-          <div className="flex items-start gap-4">
-            {/* SOL KOLON – HİÇ DEĞİŞTİRMEDİĞİM KISIM */}
+        <main className="flex-1 w-full px-4 py-4">
+          {/* BURASI ORTALAMA İŞİ: max-w-5xl + mx-auto + flex */}
+          <div className="max-w-5xl mx-auto flex items-start justify-center gap-6">
+            {/* SOL KOLON: ORİJİNAL DisasterStatus BLOĞUN */}
             <div className="flex-1 max-w-xl">
               <DisasterStatus
                 type={TYPE}
@@ -89,8 +89,8 @@ export default function StatusPage({ searchParams }: StatusPageProps) {
               />
             </div>
 
-            {/* SAĞDA KÜÇÜK, SCROLLABLE ACİL NUMARA KUTUSU */}
-            <aside className="w-44 shrink-0 hidden sm:block">
+            {/* SAĞ KOLON: ACİL NUMARALAR KUTUSU */}
+            <aside className="hidden md:block w-48 shrink-0">
               <div className="bg-[#F5F7FB] border border-[#E0E4F0] rounded-2xl shadow-sm px-3 py-2 max-h-[260px] overflow-y-auto">
                 <p className="text-[11px] font-semibold text-gray-700 mb-1">
                   Acil Numaralar
