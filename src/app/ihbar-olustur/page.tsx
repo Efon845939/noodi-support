@@ -29,6 +29,36 @@ const REPORT_TYPES: { value: ReportType; label: string }[] = [
   { value: 'diger', label: 'Diğer' },
 ]
 
+// basit haversine km
+function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371
+  const dLat = ((lat2 - lat1) * Math.PI) / 180
+  const dLon = ((lon2 - lon1) * Math.PI) / 180
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  return R * c
+}
+
+// mevcut konuma en yakın PLACES kaydını bul
+function findNearestPlace(lat: number, lng: number): Place | null {
+  if (!PLACES.length) return null
+  let best: Place | null = null
+  let bestDist = Number.POSITIVE_INFINITY
+
+  for (const p of PLACES) {
+    const d = haversineKm(lat, lng, p.lat, p.lng)
+    if (d < bestDist) {
+      bestDist = d
+      best = p
+    }
+  }
+  return best
+}
+
 export default function IhbarOlusturPage() {
   const [type, setType] = useState<ReportType>('yangin')
   const [customType, setCustomType] = useState('')
@@ -60,14 +90,9 @@ export default function IhbarOlusturPage() {
     setError(null)
     setInfo(null)
 
+    // Firebase hiç yoksa zaten gönderemeyiz
     if (!auth) {
       setError('İhbar oluşturmak için sistemde giriş altyapısı bulunamadı.')
-      return
-    }
-
-    const user = auth.currentUser
-    if (!user) {
-      setError('İhbar oluşturmak için önce giriş yapmalısın.')
       return
     }
 
@@ -89,13 +114,16 @@ export default function IhbarOlusturPage() {
     try {
       setIsSubmitting(true)
 
+      const user = auth.currentUser
+      const userId = user?.uid || 'anon-' + Math.random().toString(36).slice(2)
+
       const finalDescription =
         type === 'diger'
           ? `[${customType.trim()}] ${description.trim()}`
           : description.trim()
 
       await createReport({
-        userId: user.uid,
+        userId,
         type,
         description: finalDescription,
         location: {
@@ -142,18 +170,27 @@ export default function IhbarOlusturPage() {
         const lat = pos.coords.latitude
         const lng = pos.coords.longitude
 
-        // Şimdilik sadece "Mevcut Konum" olarak kaydediyoruz
-        const me: Place = {
-          id: 'current-location',
-          cityCode: 0,
-          cityName: 'Mevcut konum',
-          districtName: '',
-          label: 'Mevcut konum',
-          lat,
-          lng,
+        const nearest = findNearestPlace(lat, lng)
+        if (nearest) {
+          setSelectedPlace(nearest)
+          setLocationQuery(nearest.label)
+          setInfo(
+            `Konumun en yakın yer olarak '${nearest.label}' ile eşleştirildi.`
+          )
+        } else {
+          // fallback eski davranış
+          const me: Place = {
+            id: 'current-location',
+            cityCode: 0,
+            cityName: 'Mevcut konum',
+            districtName: '',
+            label: 'Mevcut konum',
+            lat,
+            lng,
+          }
+          setSelectedPlace(me)
+          setLocationQuery('Mevcut konum')
         }
-        setSelectedPlace(me)
-        setLocationQuery('Mevcut konum')
         setGeoBusy(false)
       },
       () => {

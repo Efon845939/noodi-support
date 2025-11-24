@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { getSimIncidents } from '@/lib/nearby-sim'
 
 type Item = {
   id: string
@@ -52,15 +53,19 @@ export default function NearbyFeed({
             }),
           }).catch(() => null)
 
-          if (!r) {
-            // Ağ hatası → kullanıcıya sadece "yakın olay yok" gösterelim
-            setItems([])
-            return
-          }
+          const live: Item[] =
+            (await r?.json().catch(() => null))?.items || []
 
-          const j = await r.json().catch(() => null)
-          const live = ((j?.items || []) as Item[]) || []
-          setItems(live)
+          const sims = getSimIncidents() as Item[]
+
+          const merged = [...sims, ...live].sort(
+            (a, b) => b.ts - a.ts
+          )
+
+          setItems(merged)
+        } catch (e) {
+          console.warn('nearby fetch error', e)
+          setItems([])
         } finally {
           if (!cancelled) setLoading(false)
         }
@@ -123,7 +128,9 @@ export default function NearbyFeed({
             )}
           </div>
           <span
-            className={`text-xs px-2 py-1 rounded-full ${sev(x.severity)}`}
+            className={`text-xs px-2 py-1 rounded-full ${sev(
+              x.severity
+            )}`}
           >
             {x.severity.toUpperCase()}
           </span>

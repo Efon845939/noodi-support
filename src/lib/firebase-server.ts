@@ -19,7 +19,9 @@ export function getServerApp(): FirebaseApp {
 
   if (!getApps().length) {
     if (!firebaseConfig.apiKey) {
-      throw new Error('Firebase server config eksik (NEXT_PUBLIC_FIREBASE_API_KEY yok)')
+      throw new Error(
+        'Firebase server config eksik (NEXT_PUBLIC_FIREBASE_API_KEY yok)'
+      )
     }
     app = initializeApp(firebaseConfig)
   } else {
@@ -30,8 +32,8 @@ export function getServerApp(): FirebaseApp {
 }
 
 export function getServerDb(): Firestore {
-  if (db) return db!
+  if (db) return db
   const app = getServerApp()
   db = getFirestore(app)
-  return db!
+  return db
 }
