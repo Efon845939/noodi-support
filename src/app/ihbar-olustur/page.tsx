@@ -7,6 +7,7 @@ import { createReport, ReportType } from '@/lib/reports'
 import HeaderBar from '@/components/HeaderBar'
 import BottomTabs from '@/components/BottomTabs'
 import DisasterAssistant from '@/components/DisasterAssistant'
+import AcilNumaralarBox from '@/components/AcilNumaralarBox'
 import placesTr from '@/data/places-tr.json' assert { type: 'json' }
 
 type Place = {
@@ -29,7 +30,6 @@ const REPORT_TYPES: { value: ReportType; label: string }[] = [
   { value: 'diger', label: 'Diğer' },
 ]
 
-// küçük haversine helper
 function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   const R = 6371
   const dLat = ((lat2 - lat1) * Math.PI) / 180
@@ -43,12 +43,9 @@ function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   return R * c
 }
 
-// mevcut konuma en yakın il/ilçe kaydını bul
-function findNearestPlace(lat: number, lng: number): Place | null {
-  if (!PLACES.length) return null
+function findPlaceForCoords(lat: number, lng: number): Place | null {
   let best: Place | null = null
-  let bestDist = Number.POSITIVE_INFINITY
-
+  let bestDist = Infinity
   for (const p of PLACES) {
     const d = haversineKm(lat, lng, p.lat, p.lng)
     if (d < bestDist) {
@@ -91,7 +88,7 @@ export default function IhbarOlusturPage() {
     setInfo(null)
 
     if (!auth) {
-      setError('İhbar oluşturmak için Firebase yapılandırması eksik.')
+      setError('İhbar oluşturmak için sistem yapılandırması eksik.')
       return
     }
 
@@ -125,7 +122,7 @@ export default function IhbarOlusturPage() {
           : description.trim()
 
       await createReport({
-        userId: user.uid, // RULES İLE %100 UYUMLU
+        userId: user.uid,
         type,
         description: finalDescription,
         location: {
@@ -142,13 +139,9 @@ export default function IhbarOlusturPage() {
       setCustomType('')
       setLocationQuery('')
       setSelectedPlace(null)
-    } catch (err: any) {
-      console.error('IHBAR ERROR', err?.code, err?.message ?? err)
-      setError(
-        err?.code === 'permission-denied'
-          ? 'İhbar oluşturma iznin yok (Firestore rules).'
-          : 'İhbar oluşturulurken bir hata oluştu.'
-      )
+    } catch (err) {
+      console.error(err)
+      setError('İhbar oluşturulurken bir hata oluştu.')
     } finally {
       setIsSubmitting(false)
     }
@@ -175,16 +168,14 @@ export default function IhbarOlusturPage() {
       (pos) => {
         const lat = pos.coords.latitude
         const lng = pos.coords.longitude
+        const place = findPlaceForCoords(lat, lng)
 
-        const nearest = findNearestPlace(lat, lng)
-        if (nearest) {
-          setSelectedPlace(nearest)
-          setLocationQuery(nearest.label)
-          setInfo(
-            `Konumun '${nearest.label}' ile eşleştirildi.`
-          )
+        if (place) {
+          setSelectedPlace(place)
+          setLocationQuery(place.label)
+          setInfo(`Seçilen konum: ${place.label}`)
         } else {
-          setInfo('Konuma en yakın yer bulunamadı, elle yaz.')
+          setError('Yakınında kayıtlı bir il/ilçe bulunamadı.')
         }
         setGeoBusy(false)
       },
@@ -198,139 +189,145 @@ export default function IhbarOlusturPage() {
   return (
     <div className="min-h-[100svh] bg-white pb-[68px] flex flex-col">
       <HeaderBar title="İhbar Oluştur" />
-      <main className="flex-1 max-w-md mx-auto w-full px-4 py-4 space-y-4">
-        <p className="text-xs text-gray-700">
-          Yaptığın ihbar, <strong>Yakın Olaylar</strong> bölümüne eklenir. 
-          Acil durumlarda her zaman önce <strong>112</strong>&apos;yi ara.
-        </p>
+      <main className="flex-1 w-full px-4 py-4">
+        <div className="relative max-w-5xl mx-auto">
+          {/* FORM BLOĞU ORTADA */}
+          <div className="max-w-xl mx-auto space-y-4">
+            <p className="text-xs text-gray-700">
+              Yaptığın ihbar, <strong>Yakın Olaylar</strong> bölümüne eklenir. Gerçek
+              acil durumda her zaman önce <strong>112</strong>&apos;yi ara.
+            </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Tür */}
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              İhbar türü
-            </label>
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value as ReportType)}
-              className="w-full border rounded-lg px-3 py-2 text-sm"
-            >
-              {REPORT_TYPES.map((t) => (
-                <option key={t.value} value={t.value}>
-                  {t.label}
-                </option>
-              ))}
-            </select>
-            {type === 'diger' && (
-              <div className="mt-2 space-y-1">
-                <p className="text-xs text-gray-600">
-                  Diğer: yıkılan bina, kavga, hırsızlık, şüpheli paket vb.
-                </p>
-                <input
-                  value={customType}
-                  onChange={(e) => setCustomType(e.target.value)}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  İhbar türü
+                </label>
+                <select
+                  value={type}
+                  onChange={(e) => setType(e.target.value as ReportType)}
                   className="w-full border rounded-lg px-3 py-2 text-sm"
-                  placeholder="Örn: Yıkılan bina"
+                >
+                  {REPORT_TYPES.map((t) => (
+                    <option key={t.value} value={t.value}>
+                      {t.label}
+                    </option>
+                  ))}
+                </select>
+                {type === 'diger' && (
+                  <div className="mt-2 space-y-1">
+                    <p className="text-xs text-gray-600">
+                      Diğer: yıkılan bina, kavga, hırsızlık, şüpheli paket vb.
+                    </p>
+                    <input
+                      value={customType}
+                      onChange={(e) => setCustomType(e.target.value)}
+                      className="w-full border rounded-lg px-3 py-2 text-sm"
+                      placeholder="Örn: Yıkılan bina"
+                    />
+                  </div>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Olayı kısaca anlat
+                </label>
+                <textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  rows={4}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
                 />
               </div>
-            )}
-          </div>
 
-          {/* Açıklama */}
-          <div>
-            <label className="block text-sm font-medium mb-1">
-              Olayı kısaca anlat
-            </label>
-            <textarea
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={4}
-              className="w-full border rounded-lg px-3 py-2 text-sm"
-            />
-          </div>
-
-          {/* Konum */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <label className="block text-sm font-medium">
-                Konum (il / ilçe yazarak seç)
-              </label>
-              <button
-                type="button"
-                onClick={useMyLocation}
-                disabled={geoBusy}
-                className="text-[11px] px-2 py-1 rounded-full border border-[#0B3B7A33] text-[#0B3B7A]"
-              >
-                {geoBusy ? 'Alınıyor…' : 'Konumumu kullan'}
-              </button>
-            </div>
-            <input
-              value={locationQuery}
-              onChange={(e) => handleLocationChange(e.target.value)}
-              className={
-                'w-full border rounded-lg px-3 py-2 text-sm' +
-                (error?.includes('Konum') ? ' border-red-500' : '')
-              }
-              placeholder="Örn: İstanbul / Zeytinburnu"
-            />
-            {locationQuery && suggestions.length > 0 && (
-              <div className="mt-1 border rounded-lg bg-white shadow-sm max-h-40 overflow-y-auto text-sm">
-                {suggestions.map((p) => (
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <label className="block text-sm font-medium">
+                    Konum (il / ilçe yazarak seç)
+                  </label>
                   <button
-                    key={p.id}
                     type="button"
-                    onClick={() => handleSelectPlace(p)}
-                    className="w-full text-left px-3 py-1 hover:bg-blue-50"
+                    onClick={useMyLocation}
+                    disabled={geoBusy}
+                    className="text-[11px] px-2 py-1 rounded-full border border-[#0B3B7A33] text-[#0B3B7A]"
                   >
-                    {p.label}
+                    {geoBusy ? 'Alınıyor…' : 'Konumumu kullan'}
                   </button>
-                ))}
+                </div>
+                <input
+                  value={locationQuery}
+                  onChange={(e) => handleLocationChange(e.target.value)}
+                  className={
+                    'w-full border rounded-lg px-3 py-2 text-sm' +
+                    (error?.includes('Konum') ? ' border-red-500' : '')
+                  }
+                  placeholder="Örn: İstanbul / Zeytinburnu"
+                />
+                {locationQuery && suggestions.length > 0 && (
+                  <div className="mt-1 border rounded-lg bg-white shadow-sm max-h-40 overflow-y-auto text-sm">
+                    {suggestions.map((p) => (
+                      <button
+                        key={p.id}
+                        type="button"
+                        onClick={() => handleSelectPlace(p)}
+                        className="w-full text-left px-3 py-1 hover:bg-blue-50"
+                      >
+                        {p.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {locationQuery && suggestions.length === 0 && !selectedPlace && (
+                  <p className="text-xs text-red-600 mt-1">
+                    Bu isimde kayıtlı bir konum yok. Daha genel yaz (örn: şehir /
+                    ilçe) ya da “Konumumu kullan”ı dene.
+                  </p>
+                )}
+                {selectedPlace && (
+                  <p className="text-[11px] text-green-700 mt-1">
+                    Seçilen konum: <strong>{selectedPlace.label}</strong>
+                  </p>
+                )}
               </div>
-            )}
-            {locationQuery && suggestions.length === 0 && !selectedPlace && (
-              <p className="text-xs text-red-600 mt-1">
-                Bu isimde kayıtlı bir konum yok. Daha genel yaz (örn: şehir /
-                ilçe) ya da “Konumumu kullan”ı dene.
-              </p>
-            )}
-            {selectedPlace && (
-              <p className="text-[11px] text-green-700 mt-1">
-                Seçilen konum: <strong>{selectedPlace.label}</strong>
-              </p>
-            )}
+
+              {error && <p className="text-sm text-red-600">{error}</p>}
+              {info && <p className="text-sm text-green-600">{info}</p>}
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-[#0B3B7A] text-white rounded-lg py-2 text-sm font-semibold disabled:opacity-60"
+              >
+                {isSubmitting ? 'Gönderiliyor...' : 'İhbarı Gönder'}
+              </button>
+            </form>
+
+            {/* İHBAR ASİSTANI */}
+            <section className="mt-6 border-t pt-4 space-y-3">
+              <button
+                onClick={() => setAssistantOpen((v) => !v)}
+                className="w-full bg-[#0B3B7A] text-white rounded-lg py-2 font-semibold"
+              >
+                {assistantOpen ? 'Asistanı Gizle' : 'Asistanı Aç'}
+              </button>
+              {assistantOpen && (
+                <div className="border rounded-2xl p-3 space-y-2">
+                  <p className="text-sm text-gray-700">
+                    Sorunu yaz; asistan <strong>İHBAR</strong> bağlamına göre yanıt
+                    versin.
+                  </p>
+                  <DisasterAssistant type="IHBAR" />
+                </div>
+              )}
+            </section>
           </div>
 
-          {error && <p className="text-sm text-red-600">{error}</p>}
-          {info && <p className="text-sm text-green-600">{info}</p>}
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-[#0B3B7A] text-white rounded-lg py-2 text-sm font-semibold disabled:opacity-60"
-          >
-            {isSubmitting ? 'Gönderiliyor...' : 'İhbarı Gönder'}
-          </button>
-        </form>
-
-        {/* Asistan */}
-        <section className="mt-6 border-t pt-4 space-y-3">
-          <button
-            onClick={() => setAssistantOpen((v) => !v)}
-            className="w-full bg-[#0B3B7A] text-white rounded-lg py-2 font-semibold"
-            type="button"
-          >
-            {assistantOpen ? 'Asistanı Gizle' : 'Asistanı Aç'}
-          </button>
-          {assistantOpen && (
-            <div className="border rounded-2xl p-3 space-y-2 bg-[#F9FAFB]">
-              <p className="text-sm text-gray-700">
-                Sorunu yaz; asistan <strong>İHBAR</strong> bağlamına göre yanıt
-                versin.
-              </p>
-              <DisasterAssistant type="IHBAR" />
-            </div>
-          )}
-        </section>
+          {/* SAĞDA ACİL NUMARALAR */}
+          <aside className="hidden lg:block absolute top-0 right-0 w-52">
+            <AcilNumaralarBox />
+          </aside>
+        </div>
       </main>
 
       <BottomTabs />

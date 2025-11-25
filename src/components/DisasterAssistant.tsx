@@ -6,14 +6,6 @@ type DisasterAssistantProps = {
   type: 'IHBAR' | 'DISASTER' | 'PERSONAL' | string
 }
 
-/**
- * İHBAR asistanı:
- * - Önce her zaman 112 / 110 gibi gerçek hatları hatırlatır.
- * - Kullanıcının yazdığını özetleyip, 112'ye söyleyebileceği cümleyi taslak olarak verir.
- * - Sonra da madde madde neyi hazır tutması gerektiğini söyler.
- *
- * Şu an tamamen local çalışıyor. İstersen backend AI ile de besleyebilirsin.
- */
 export default function DisasterAssistant({ type }: DisasterAssistantProps) {
   const [input, setInput] = useState('')
   const [answer, setAnswer] = useState<string | null>(null)
@@ -29,27 +21,33 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
     setLoading(true)
 
     try {
-      // Eğer ileride backend AI bağlamak istersen, BURADA fetch yaparsın.
-      // Şimdilik local fallback kullanalım ki her zaman çalışsın.
-      const local = buildLocalReply(text, type)
-      setAnswer(local)
-
-      // Örnek backend entegrasyonu (şimdilik kapalı):
-      /*
-      const res = await fetch('/api/assistant/disaster', {
+      // Gemini backend'i dene
+      const res = await fetch('/api/ai/assist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type, message: text }),
+        body: JSON.stringify({
+          message: text,
+          context: { mode: type, source: 'ihbar' },
+        }),
       })
 
-      if (!res.ok) throw new Error('assistant-failed')
+      if (!res.ok) throw new Error('ai-request-failed')
 
-      const data = await res.json()
-      setAnswer(data.reply ?? local)
-      */
+      const j = await res.json()
+      const combined = [j?.reply, ...(Array.isArray(j?.nextSteps) ? j.nextSteps : [])]
+        .filter(Boolean)
+        .join('\n')
+
+      if (combined) {
+        setAnswer(combined)
+      } else {
+        // Boş döndüyse fallback
+        setAnswer(buildLocalReply(text, type))
+      }
     } catch (e: any) {
-      console.error('DisasterAssistant error', e)
-      setError('Asistan yanıt veremedi, lütfen bilgileri kendin hazırla.')
+      console.error('DisasterAssistant error:', e)
+      setError('Asistanla bağlantı kurulamadı, genel bir yönlendirme gösteriyorum.')
+      setAnswer(buildLocalReply(text, type))
     } finally {
       setLoading(false)
     }
@@ -88,8 +86,8 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
       )}
 
       {answer && (
-        <div className="bg-[#F5F7FA] border border-[#E2E6F0] rounded-xl px-3 py-3 space-y-2 text-sm">
-          <div className="font-semibold text-[#0B3B7A]">Cevap (asistan taslağı):</div>
+        <div className="bg-[#F5F7FA] border border-[#E2E4F0] rounded-2xl px-3 py-3 space-y-2 text-sm">
+          <div className="font-semibold text-[#0B3B7A]">Cevap:</div>
           <div className="text-gray-800 whitespace-pre-line">{answer}</div>
         </div>
       )}
@@ -102,29 +100,25 @@ function buildLocalReply(message: string, type: string): string {
 
   if (type === 'IHBAR') {
     return [
-      'Bu platform resmi bir acil çağrı hattı değildir. Gerçek acil durumda önce mutlaka **112 Acil Çağrı** veya ilgili hattı (110, 155 vb.) ara.',
+      'Bu platform resmi acil çağrı hattı değildir. Gerçek acil durumda önce mutlaka 112 Acil Çağrı (veya 110 / 155 vb.) numarasını arayın.',
       '',
-      '112’ye telefonu açtığında aşağıdaki gibi net bir cümle söyleyebilirsin:',
-      `• “Ben ${cleaned} ile ilgili ihbarda bulunmak istiyorum.”`,
-      '',
-      'Aramada şu bilgileri mümkün olduğunca net ver:',
-      '1. Olayın türü (yangın, trafik kazası, kavga, gaz kaçağı vb.)',
-      '2. Olayın tam adresi (il, ilçe, mahalle, sokak, yakın bir nokta)',
+      'Görüşmede aşağıdaki bilgileri net ve kısa şekilde verin:',
+      '1. Olayın türü (örneğin: yangın, trafik kazası, kavga, gaz kaçağı vb.)',
+      '2. Olayın tam adresi (il, ilçe, mahalle, sokak, mümkünse yakın bir referans nokta)',
       '3. Varsa yaralı / mahsur kalan kişi sayısı',
-      '4. Şu an güvenli bir bölgede olup olmadığın',
+      '4. Şu anda güvende olup olmadığınız.',
       '',
-      'Bu asistan sadece sana cümlelerini toparlamanda yardımcı olur; ihbarı mutlaka **112 ile konuşarak** tamamlamalısın.'
+      `İfade örneği: “${cleaned}”`,
     ].join('\n')
   }
 
-  // Diğer modlar için daha genel ama yine bağlama uygun yanıt
   return [
     'Durumu kısaca netleştirelim:',
-    `• Yazdığın ifade: “${cleaned}”`,
+    `• Yazdığınız ifade: “${cleaned}”`,
     '',
-    'Bir acil durumda şunları mutlaka gözden geçir:',
-    '1. Önce can güvenliğini sağla (tehlikeli alandan uzaklaş).',
-    '2. Gerekliyse 112 Acil Çağrı, 110 İtfaiye, 155 Polis gibi resmi hatları ara.',
-    '3. Olayın türünü, tam konumu ve varsa yaralı sayısını net şekilde ifade et.',
+    'Genel öneri:',
+    '1. Önce kendi güvenliğinizi sağlayın.',
+    '2. Gerekirse 112 Acil Çağrı’yı arayın.',
+    '3. Olayın türünü, konumu ve şiddetini net şekilde ifade edin.',
   ].join('\n')
 }
