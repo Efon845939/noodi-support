@@ -200,8 +200,8 @@ export default function IhbarOlusturPage() {
       <HeaderBar title="İhbar Oluştur" />
       <main className="flex-1 max-w-md mx-auto w-full px-4 py-4 space-y-4">
         <p className="text-xs text-gray-700">
-          Yaptığın ihbar, <strong>Yakın Olaylar</strong> bölümüne eklenir. Gerçek
-          acil durumda her zaman önce <strong>112</strong>&apos;yi ara.
+          Yaptığın ihbar, <strong>Yakın Olaylar</strong> bölümüne eklenir. 
+          Acil durumlarda her zaman önce <strong>112</strong>&apos;yi ara.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -313,15 +313,16 @@ export default function IhbarOlusturPage() {
         </form>
 
         {/* Asistan */}
-        <section className="mt-4 border-t pt-4 space-y-3">
+        <section className="mt-6 border-t pt-4 space-y-3">
           <button
             onClick={() => setAssistantOpen((v) => !v)}
             className="w-full bg-[#0B3B7A] text-white rounded-lg py-2 font-semibold"
+            type="button"
           >
             {assistantOpen ? 'Asistanı Gizle' : 'Asistanı Aç'}
           </button>
           {assistantOpen && (
-            <div className="border rounded-2xl p-3 space-y-2">
+            <div className="border rounded-2xl p-3 space-y-2 bg-[#F9FAFB]">
               <p className="text-sm text-gray-700">
                 Sorunu yaz; asistan <strong>İHBAR</strong> bağlamına göre yanıt
                 versin.
