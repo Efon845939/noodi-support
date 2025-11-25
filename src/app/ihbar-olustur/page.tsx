@@ -29,7 +29,7 @@ const REPORT_TYPES: { value: ReportType; label: string }[] = [
   { value: 'diger', label: 'Diğer' },
 ]
 
-// basit haversine km
+// küçük haversine helper
 function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   const R = 6371
   const dLat = ((lat2 - lat1) * Math.PI) / 180
@@ -43,7 +43,7 @@ function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   return R * c
 }
 
-// mevcut konuma en yakın PLACES kaydını bul
+// mevcut konuma en yakın il/ilçe kaydını bul
 function findNearestPlace(lat: number, lng: number): Place | null {
   if (!PLACES.length) return null
   let best: Place | null = null
@@ -90,9 +90,14 @@ export default function IhbarOlusturPage() {
     setError(null)
     setInfo(null)
 
-    // Firebase hiç yoksa zaten gönderemeyiz
     if (!auth) {
-      setError('İhbar oluşturmak için sistemde giriş altyapısı bulunamadı.')
+      setError('İhbar oluşturmak için Firebase yapılandırması eksik.')
+      return
+    }
+
+    const user = auth.currentUser
+    if (!user) {
+      setError('İhbar oluşturmak için önce giriş yapmalısın.')
       return
     }
 
@@ -114,16 +119,13 @@ export default function IhbarOlusturPage() {
     try {
       setIsSubmitting(true)
 
-      const user = auth.currentUser
-      const userId = user?.uid || 'anon-' + Math.random().toString(36).slice(2)
-
       const finalDescription =
         type === 'diger'
           ? `[${customType.trim()}] ${description.trim()}`
           : description.trim()
 
       await createReport({
-        userId,
+        userId: user.uid, // RULES İLE %100 UYUMLU
         type,
         description: finalDescription,
         location: {
@@ -140,9 +142,13 @@ export default function IhbarOlusturPage() {
       setCustomType('')
       setLocationQuery('')
       setSelectedPlace(null)
-    } catch (err) {
-      console.error(err)
-      setError('İhbar oluşturulurken bir hata oluştu.')
+    } catch (err: any) {
+      console.error('IHBAR ERROR', err?.code, err?.message ?? err)
+      setError(
+        err?.code === 'permission-denied'
+          ? 'İhbar oluşturma iznin yok (Firestore rules).'
+          : 'İhbar oluşturulurken bir hata oluştu.'
+      )
     } finally {
       setIsSubmitting(false)
     }
@@ -175,21 +181,10 @@ export default function IhbarOlusturPage() {
           setSelectedPlace(nearest)
           setLocationQuery(nearest.label)
           setInfo(
-            `Konumun en yakın yer olarak '${nearest.label}' ile eşleştirildi.`
+            `Konumun '${nearest.label}' ile eşleştirildi.`
           )
         } else {
-          // fallback eski davranış
-          const me: Place = {
-            id: 'current-location',
-            cityCode: 0,
-            cityName: 'Mevcut konum',
-            districtName: '',
-            label: 'Mevcut konum',
-            lat,
-            lng,
-          }
-          setSelectedPlace(me)
-          setLocationQuery('Mevcut konum')
+          setInfo('Konuma en yakın yer bulunamadı, elle yaz.')
         }
         setGeoBusy(false)
       },
