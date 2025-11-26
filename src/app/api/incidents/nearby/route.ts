@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerDb } from '@/lib/firebase-server'
 import { collection, getDocs } from 'firebase/firestore'
 
-const MIN_REPORTS_FOR_EVENT = 10
+const MIN_REPORTS_FOR_EVENT = 3
 
 function normalize(str: string | undefined): string {
   if (!str) return ''
