@@ -64,7 +64,7 @@ export default function StatusPage({ searchParams }: StatusPageProps) {
 
         <main className="flex-1 w-full px-4 py-6">
           <div className="relative max-w-5xl mx-auto">
-            {/* ORTA BLOK */}
+            {/* ORTA KOLON */}
             <div className="max-w-xl mx-auto">
               <DisasterStatus
                 type={TYPE}
@@ -73,7 +73,7 @@ export default function StatusPage({ searchParams }: StatusPageProps) {
               />
             </div>
 
-            {/* SAĞA YAPIŞAN ACİL NUMARALAR */}
+            {/* SAĞDA ACİL NUMARALAR */}
             <aside className="hidden lg:block absolute top-0 right-0 w-52">
               <AcilNumaralarBox />
             </aside>

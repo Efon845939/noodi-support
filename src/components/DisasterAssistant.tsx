@@ -17,21 +17,19 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
     setError(null)
     const text = input.trim()
     if (!text) return
-
     setLoading(true)
 
     try {
-      // Gemini backend'i dene
       const res = await fetch('/api/ai/assist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           message: text,
-          context: { mode: type, source: 'ihbar' },
+          context: { mode: type, source: 'inline-disaster' },
         }),
       })
 
-      if (!res.ok) throw new Error('ai-request-failed')
+      if (!res.ok) throw new Error('assistant-request-failed')
 
       const j = await res.json()
       const combined = [j?.reply, ...(Array.isArray(j?.nextSteps) ? j.nextSteps : [])]
@@ -41,11 +39,10 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
       if (combined) {
         setAnswer(combined)
       } else {
-        // Boş döndüyse fallback
         setAnswer(buildLocalReply(text, type))
       }
     } catch (e: any) {
-      console.error('DisasterAssistant error:', e)
+      console.error('DisasterAssistant error', e)
       setError('Asistanla bağlantı kurulamadı, genel bir yönlendirme gösteriyorum.')
       setAnswer(buildLocalReply(text, type))
     } finally {

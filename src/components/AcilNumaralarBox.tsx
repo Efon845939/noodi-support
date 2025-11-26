@@ -10,10 +10,10 @@ const LINES: Line[] = [
   { id: '156', label: '156 Jandarma İmdat', number: '156' },
   { id: '177', label: '177 Orman Yangını', number: '177' },
   { id: '158', label: '158 Sahil Güvenlik', number: '158' },
-  { id: '168', label: '168 Türk Kızılay', number: '168' },
+  { id: '168', label: '168 Türk Kızılay Çağrı Merkezi', number: '168' },
   { id: '115', label: '115 Yeşilay YEDAM', number: '115' },
   { id: '114', label: '114 UZEM Zehir Danışma', number: '114' },
-  { id: '183', label: '183 Sosyal Destek', number: '183' },
+  { id: '183', label: '183 Aile / Sosyal Destek', number: '183' },
 ]
 
 export default function AcilNumaralarBox({ className = '' }: { className?: string }) {

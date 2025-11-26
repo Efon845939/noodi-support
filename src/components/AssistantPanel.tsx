@@ -19,7 +19,9 @@ function HistoryDropdown({ sessions, load }: { sessions: any; load: (id: string)
           if (e.currentTarget.open) e.currentTarget.querySelector('button')?.focus()
         }}
       >
-        <summary className="cursor-pointer select-none px-2 py-1.5 rounded-lg bg-gray-100">Geçmiş</summary>
+        <summary className="cursor-pointer select-none px-2 py-1.5 rounded-lg bg-gray-100">
+          Geçmiş
+        </summary>
         <div className="absolute z-10 mt-1 w-60 max-h-64 overflow-auto bg-white border rounded-lg shadow">
           {entries.length === 0 && (
             <div className="px-3 py-2 text-gray-500 text-xs">Kayıt yok</div>
@@ -34,7 +36,9 @@ function HistoryDropdown({ sessions, load }: { sessions: any; load: (id: string)
               className="block w-full text-left px-3 py-2 hover:bg-gray-50 text-xs"
             >
               {new Date(s.ts).toLocaleString()} —{' '}
-              {s.msgs?.[1]?.text?.slice(0, 24) || s.msgs?.[0]?.text?.slice(0, 24) || 'Sohbet'}
+              {s.msgs?.[1]?.text?.slice(0, 24) ||
+                s.msgs?.[0]?.text?.slice(0, 24) ||
+                'Sohbet'}
             </button>
           ))}
         </div>
@@ -62,7 +66,7 @@ export default function AssistantPanel({
   const scRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // mikrofon / speech-to-text
+  // mikrofon
   const [speechSupported, setSpeechSupported] = useState(false)
   const [listening, setListening] = useState(false)
   const recRef = useRef<any>(null)
@@ -99,7 +103,6 @@ export default function AssistantPanel({
     saveSession(id, [welcome])
   }
 
-  // panel açılınca: session’ları, son sohbeti ve TTS ayarını yükle
   useEffect(() => {
     if (open) {
       try {
@@ -122,7 +125,6 @@ export default function AssistantPanel({
     }
   }, [open])
 
-  // speech API desteğini kontrol et
   useEffect(() => {
     if (typeof window === 'undefined') return
     const SR =
@@ -130,12 +132,10 @@ export default function AssistantPanel({
     setSpeechSupported(!!SR)
   }, [])
 
-  // otomatik kaydırma
   useEffect(() => {
     scRef.current?.scrollTo({ top: scRef.current.scrollHeight, behavior: 'smooth' })
   }, [msgs, busy])
 
-  // klavye kısayolları
   useEffect(() => {
     if (!open) return
     const onKey = (e: KeyboardEvent) => {
@@ -176,7 +176,6 @@ export default function AssistantPanel({
     const profile = safe(localStorage.getItem('profile_health')) || {}
     const settings = safe(localStorage.getItem('alert_settings_v3')) || {}
 
-    // Konumu asenkron al
     const location = await new Promise<any>((resolve) => {
       if (!navigator.geolocation) {
         return resolve(safe(localStorage.getItem('lastGeo')))
@@ -291,7 +290,6 @@ export default function AssistantPanel({
         ]
       : ['Deprem sonrası ilk adım?', 'Yangında ne yapmalıyım?', 'Selde güvenli nokta?']
 
-  // mikrofon start/stop
   const startListening = () => {
     if (!speechSupported || listening) return
     const SR =
@@ -307,12 +305,8 @@ export default function AssistantPanel({
         .join(' ')
       setInput((prev) => (prev ? prev + ' ' + transcript : transcript))
     }
-    rec.onerror = () => {
-      setListening(false)
-    }
-    rec.onend = () => {
-      setListening(false)
-    }
+    rec.onerror = () => setListening(false)
+    rec.onend = () => setListening(false)
     recRef.current = rec
     setListening(true)
     rec.start()
@@ -359,7 +353,7 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Küçük acil numaralar bloğu */}
+          {/* Küçük acil numara satırı */}
           <div className="px-5 pt-2 pb-2">
             <div className="bg-[#F5F7FB] border border-[#E0E4F0] rounded-xl px-3 py-2 text-[11px] text-gray-700">
               <div className="font-semibold mb-1">Acil Numaralar</div>
@@ -380,7 +374,7 @@ export default function AssistantPanel({
                   156 Jandarma
                 </a>
                 <a href="tel:177" className="underline">
-                  177 Orman
+                  177 Orman Yangını
                 </a>
               </div>
             </div>
