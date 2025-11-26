@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   collection,
   onSnapshot,
@@ -48,6 +48,13 @@ type ReportItem = {
 
 type EditMode = 'approve' | 'edit'
 
+type Cluster = {
+  key: string
+  type: ReportType
+  label: string
+  reports: ReportItem[]
+}
+
 export default function AdminReportsPage() {
   const [reports, setReports] = useState<ReportItem[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
@@ -59,6 +66,8 @@ export default function AdminReportsPage() {
   const [editDisplayLocation, setEditDisplayLocation] = useState('')
   const [editSeverity, setEditSeverity] = useState<Severity>('medium')
   const [editDescription, setEditDescription] = useState('')
+
+  const [openClusterKey, setOpenClusterKey] = useState<string | null>(null)
 
   const auth = getFirebaseAuth()
   const db = getFirebaseDb()
@@ -136,6 +145,32 @@ export default function AdminReportsPage() {
   const pendingReports = reports.filter((r) => r.status === 'pending')
   const approvedReports = reports.filter((r) => r.status === 'approved')
   const rejectedReports = reports.filter((r) => r.status === 'rejected')
+
+  // tür + konum bazlı cluster
+  const clusters = useMemo<Cluster[]>(() => {
+    const map = new Map<string, Cluster>()
+    for (const r of reports) {
+      const label = r.location?.address || 'Konum belirtilmemiş'
+      const key = `${r.type}__${label}`
+
+      const existing = map.get(key)
+      if (existing) {
+        existing.reports.push(r)
+      } else {
+        map.set(key, {
+          key,
+          type: r.type,
+          label,
+          reports: [r],
+        })
+      }
+    }
+
+    const arr = Array.from(map.values())
+    // büyükten küçüğe
+    arr.sort((a, b) => b.reports.length - a.reports.length)
+    return arr
+  }, [reports])
 
   function guessTitleFromReport(r: ReportItem) {
     const base = r.type.toUpperCase()
@@ -262,7 +297,7 @@ export default function AdminReportsPage() {
     return (
       <div className="min-h-[100svh] bg-white px-4 py-6">
         <h1 className="text-2xl font-bold text-[#0B3B7A] mb-2">
-          İhbar Yönetimi
+          İhbarlar
         </h1>
         <p className="text-sm text-gray-600">
           Firebase yapılandırması eksik. Ortam değişkenlerini kontrol et.
@@ -275,7 +310,7 @@ export default function AdminReportsPage() {
     return (
       <div className="min-h-[100svh] bg-white px-4 py-6 flex flex-col items-center justify-center text-center">
         <h1 className="text-2xl font-bold text-[#0B3B7A] mb-2">
-          İhbar Yönetimi
+          İhbarlar
         </h1>
         <p className="text-sm text-gray-600 mb-2">
           Bu sayfaya sadece admin kullanıcılar erişebilir.
@@ -291,7 +326,7 @@ export default function AdminReportsPage() {
     return (
       <div className="min-h-[100svh] bg-white px-4 py-6">
         <h1 className="text-2xl font-bold text-[#0B3B7A] mb-2">
-          İhbar Yönetimi
+          İhbarlar
         </h1>
         <p className="text-sm text-gray-600">Admin bilgisi yükleniyor...</p>
       </div>
@@ -400,7 +435,7 @@ export default function AdminReportsPage() {
 
   return (
     <div className="min-h-[100svh] bg-white pb-[68px] flex flex-col">
-      <HeaderBar title="İhbar Yönetimi" />
+      <HeaderBar title="İhbarlar" />
 
       <div className="px-4 pt-2">
         <button
@@ -431,6 +466,105 @@ export default function AdminReportsPage() {
           allowApprove={false}
           allowEdit={true}
         />
+
+        {/* YENİ: GRUPLANMIŞ İHBARLAR */}
+        <section className="space-y-2">
+          <h2 className="text-lg font-semibold mb-2">
+            Gruplanmış İhbarlar (Tür + Konum)
+          </h2>
+          {clusters.length === 0 ? (
+            <p className="text-sm text-gray-500">Gruplanacak ihbar yok.</p>
+          ) : (
+            <div className="space-y-3">
+              {clusters.map((c) => {
+                const isOpen = openClusterKey === c.key
+                const count = c.reports.length
+                return (
+                  <div
+                    key={c.key}
+                    className="border rounded-xl bg-white p-3 text-sm space-y-2"
+                  >
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <div className="text-xs text-gray-500">
+                          {c.type.toUpperCase()} • {c.label}
+                        </div>
+                        <div className="text-sm font-semibold text-[#102A43]">
+                          {count} ihbar
+                          {count >= 10 && (
+                            <span className="ml-2 text-[11px] px-2 py-0.5 rounded-full bg-red-100 text-red-700">
+                              Yakın Olay eşiği aşıldı
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setOpenClusterKey(isOpen ? null : c.key)
+                        }
+                        className="text-xs text-[#0B3B7A]"
+                      >
+                        {isOpen ? 'Listeyi Gizle' : 'Listeyi Göster'}
+                      </button>
+                    </div>
+
+                    {isOpen && (
+                      <div className="mt-2 border-t pt-2 space-y-2">
+                        {c.reports.map((r) => (
+                          <div
+                            key={r.id}
+                            className="border rounded-lg px-3 py-2 bg-[#F9FAFB]"
+                          >
+                            <div className="flex justify-between text-[11px] text-gray-500 mb-1">
+                              <span>{r.userId}</span>
+                              <span>
+                                {r.createdAt?.toDate
+                                  ? r.createdAt.toDate().toLocaleString()
+                                  : ''}
+                              </span>
+                            </div>
+                            <div className="text-xs font-semibold mb-1">
+                              {r.title || guessTitleFromReport(r)}
+                            </div>
+                            <div className="text-xs text-gray-700 mb-1">
+                              {r.description}
+                            </div>
+                            <div className="flex flex-wrap gap-2 pt-1">
+                              <button
+                                type="button"
+                                onClick={() =>
+                                  openEdit(
+                                    r,
+                                    r.status === 'pending'
+                                      ? 'approve'
+                                      : 'edit'
+                                  )
+                                }
+                                className="px-3 py-1 text-[11px] rounded-md bg-[#0B3B7A] text-white"
+                              >
+                                Ayrıntılı Aç
+                              </button>
+                              {r.status === 'pending' && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleReject(r)}
+                                  className="px-3 py-1 text-[11px] rounded-md bg-gray-200 text-gray-800"
+                                >
+                                  Reddet
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        </section>
       </main>
 
       {editingReport && (
@@ -469,9 +603,7 @@ export default function AdminReportsPage() {
                 </label>
                 <input
                   value={editDisplayLocation}
-                  onChange={(e) =>
-                    setEditDisplayLocation(e.target.value)
-                  }
+                  onChange={(e) => setEditDisplayLocation(e.target.value)}
                   className="w-full border rounded-lg px-3 py-2 text-sm"
                 />
                 <div className="flex flex-wrap gap-2 mt-2">
