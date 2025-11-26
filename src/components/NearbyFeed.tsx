@@ -17,9 +17,9 @@ type Item = {
 }
 
 export default function NearbyFeed({
-  radiusKm,
+  radiusKm,      // şu an backend radius kullanmıyor ama ayarlardan gelmeye devam etsin
   windowRange,
-  categories,
+  categories,    // backend şu an kategoriyi filtrelemiyor, istersen sonra ekleriz
 }: {
   radiusKm: number
   windowRange: '24h' | '3d' | '7d'
@@ -40,14 +40,12 @@ export default function NearbyFeed({
     setLoading(true)
     setErr('')
 
-    // konum alma için manuel timeout
     const timeoutId = window.setTimeout(() => {
       if (!cancelled) {
         const cached = window.localStorage.getItem('nearby_last_geo')
         if (cached) {
           try {
             const c = JSON.parse(cached)
-            // cached konumla devam et
             fetchNearby(c.lat, c.lng)
             return
           } catch {}
@@ -57,7 +55,7 @@ export default function NearbyFeed({
       }
     }, 8000)
 
-    const fetchNearby = async (lat: number, lng: number) => {
+    const fetchNearby = async (lat?: number, lng?: number) => {
       try {
         const r = await fetch('/api/incidents/nearby', {
           method: 'POST',
@@ -75,7 +73,6 @@ export default function NearbyFeed({
           (await r?.json().catch(() => null))?.items || []
 
         const sims = getSimIncidents() as Item[]
-
         const merged = [...sims, ...live].sort((a, b) => b.ts - a.ts)
 
         if (!cancelled) {
@@ -161,7 +158,7 @@ export default function NearbyFeed({
         >
           <div>
             <div className="text-[13px] uppercase tracking-wide text-gray-500">
-              {badge(x.type)} • {x.distKm} km
+              {badge(x.type)} • {x.distKm || 0} km
               {typeof x.meta?.count === 'number' && x.meta.count > 0 && (
                 <> • {x.meta.count} ihbar</>
               )}
