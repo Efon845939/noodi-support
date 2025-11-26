@@ -13,19 +13,21 @@
  * NOT: Bu fonksiyon sadece tarayıcıda çalışır, SSR ortamında hiçbir şey yapmaz.
  */
 
+export type AlertSound = 'Alarm' | 'Siren' | 'Beep' | 'Sessiz'
+
 export type TestAlertOptions = {
   /**
    * Ses modu:
-   *  - string: 'Alarm' | 'Siren' | 'Beep' (veya küçük harfli)
+   *  - 'Alarm' | 'Siren' | 'Beep' | 'Sessiz'
    *  - boolean:
    *      true  -> varsayılan 'Beep'
    *      false -> sessiz
    *  - undefined -> varsayılan 'Beep'
    */
-  sound?: string | boolean
+  sound?: AlertSound | boolean
   /** Titreşim olsun mu */
   vibrate?: boolean
-  /** Ekran flaşı olsun mu (kamera flashına erişim yok, yalnızca ekran beyaz parlama) */
+  /** Ekran flaşı olsun mu (kamera flashı değil, ekran beyaz parlama) */
   flash?: boolean
   /** TTS açıksa test cümlesi okunsun mu */
   tts?: boolean | string
@@ -36,19 +38,19 @@ const audioCache: Record<string, HTMLAudioElement> = {}
 /**
  * Verilen moda göre Audio elementini hazırlar ve çalar.
  */
-function playSound(mode: string | boolean | undefined) {
+function playSound(mode: AlertSound | boolean | undefined) {
   if (typeof window === 'undefined') return
 
   let resolved: 'silent' | 'alarm' | 'siren' | 'beep' = 'beep'
 
-  if (mode === false) {
+  if (mode === false || mode === 'Sessiz') {
     resolved = 'silent'
-  } else if (typeof mode === 'string') {
-    const m = mode.toLowerCase()
-    if (m.includes('alarm')) resolved = 'alarm'
-    else if (m.includes('siren')) resolved = 'siren'
-    else if (m.includes('beep')) resolved = 'beep'
-    else resolved = 'beep'
+  } else if (mode === 'Alarm') {
+    resolved = 'alarm'
+  } else if (mode === 'Siren') {
+    resolved = 'siren'
+  } else if (mode === 'Beep') {
+    resolved = 'beep'
   } else if (mode === true || mode === undefined) {
     resolved = 'beep'
   }
@@ -72,14 +74,10 @@ function playSound(mode: string | boolean | undefined) {
       // Kullanıcı etkileşimi yoksa tarayıcı engelleyebilir, patlatma
     })
   } catch {
-    // Yine de sessiz fail
+    // Sessiz fail
   }
 }
 
-/**
- * Basit bir ekran flaşı: body'ye .noodi-flash class'ı ekler
- * CSS tarafında noodi-flash animasyonunu tanımladık.
- */
 function doFlash() {
   if (typeof document === 'undefined') return
   document.body.classList.add('noodi-flash')
@@ -88,22 +86,15 @@ function doFlash() {
   }, 300)
 }
 
-/**
- * Titreşim desteği varsa hafif bir pattern uygular.
- */
 function doVibrate() {
   if (typeof navigator === 'undefined') return
   // @ts-ignore
   if (navigator.vibrate) {
-    // 200ms titreşim, 100ms ara, 200ms titreşim
     // @ts-ignore
     navigator.vibrate([200, 100, 200])
   }
 }
 
-/**
- * Basit TTS (SpeechSynthesis API)
- */
 function doTTS(tts: boolean | string | undefined) {
   if (!tts) return
   if (typeof window === 'undefined') return
@@ -129,10 +120,8 @@ function doTTS(tts: boolean | string | undefined) {
 
 /**
  * Ana fonksiyon: Settings ekranından çağrılan test bildirimi.
- * Usage:
+ * Örnek:
  *   triggerTestAlertWeb({ sound: 'Alarm', vibrate: true, flash: true, tts: true })
- * veya senin eski koduna göre:
- *   triggerTestAlertWeb({ sound: st[tab].tts || true, vibrate: st[tab].vibrate, tts: st[tab].tts })
  */
 export function triggerTestAlertWeb(options: TestAlertOptions = {}) {
   if (typeof window === 'undefined') {
@@ -145,14 +134,10 @@ export function triggerTestAlertWeb(options: TestAlertOptions = {}) {
   playSound(sound)
 
   // Titreşim
-  if (vibrate) {
-    doVibrate()
-  }
+  if (vibrate) doVibrate()
 
   // Ekran flaşı
-  if (flash) {
-    doFlash()
-  }
+  if (flash) doFlash()
 
   // TTS
   doTTS(tts)
