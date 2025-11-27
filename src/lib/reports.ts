@@ -1,3 +1,4 @@
+// src/lib/reports.ts
 import {
   addDoc,
   collection,
@@ -9,6 +10,7 @@ import {
   where,
   limit,
   writeBatch,
+  Timestamp,
 } from 'firebase/firestore'
 import { getFirebaseDb } from '@/lib/firebase'
 
@@ -46,8 +48,36 @@ function requireDb() {
   return db
 }
 
+/**
+ * Anti-spam:
+ * Aynı kullanıcı, aynı türde ihbarı 2 dakika içinde tekrar yollamaya çalışırsa
+ * hata fırlatıyoruz.
+ */
+async function assertNotSpam(input: CreateReportInput) {
+  const db = requireDb()
+  const since = Timestamp.fromDate(
+    new Date(Date.now() - 2 * 60 * 1000) // 2 dakika
+  )
+
+  const qSpam = query(
+    collection(db, 'reports'),
+    where('userId', '==', input.userId),
+    where('type', '==', input.type),
+    where('createdAt', '>=', since)
+  )
+
+  const snap = await getDocs(qSpam)
+  if (!snap.empty) {
+    throw new Error(
+      'SPAM_LIMIT: Aynı tür ihbarı çok sık gönderiyorsun. Birkaç dakika bekle ve tekrar dene.'
+    )
+  }
+}
+
 export async function createReport(input: CreateReportInput) {
   const db = requireDb()
+
+  await assertNotSpam(input)
 
   await addDoc(collection(db, 'reports'), {
     userId: input.userId,

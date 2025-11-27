@@ -1,6 +1,7 @@
+// src/components/DisasterAssistant.tsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 type DisasterAssistantProps = {
   type: 'IHBAR' | 'DISASTER' | 'PERSONAL' | string
@@ -11,6 +12,50 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
   const [answer, setAnswer] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  const [speechSupported, setSpeechSupported] = useState(false)
+  const [listening, setListening] = useState(false)
+  const recRef = useRef<any>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const SR =
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition
+    setSpeechSupported(!!SR)
+  }, [])
+
+  const startListening = () => {
+    if (!speechSupported || listening) return
+    const SR =
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition
+    if (!SR) return
+
+    const rec = new SR()
+    rec.lang = 'tr-TR'
+    rec.continuous = false
+    rec.interimResults = false
+
+    rec.onresult = (event: any) => {
+      const transcript = Array.from(event.results)
+        .map((r: any) => r[0].transcript)
+        .join(' ')
+      setInput((prev) => (prev ? prev + ' ' + transcript : transcript))
+    }
+    rec.onerror = () => setListening(false)
+    rec.onend = () => setListening(false)
+
+    recRef.current = rec
+    setListening(true)
+    rec.start()
+  }
+
+  const stopListening = () => {
+    const rec = recRef.current
+    if (rec) rec.stop()
+    setListening(false)
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -32,7 +77,10 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
       if (!res.ok) throw new Error('assistant-request-failed')
 
       const j = await res.json()
-      const combined = [j?.reply, ...(Array.isArray(j?.nextSteps) ? j.nextSteps : [])]
+      const combined = [
+        j?.reply,
+        ...(Array.isArray(j?.nextSteps) ? j.nextSteps : []),
+      ]
         .filter(Boolean)
         .join('\n')
 
@@ -43,7 +91,9 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
       }
     } catch (e: any) {
       console.error('DisasterAssistant error', e)
-      setError('Asistanla bağlantı kurulamadı, genel bir yönlendirme gösteriyorum.')
+      setError(
+        'Asistanla bağlantı kurulamadı, genel bir yönlendirme gösteriyorum.'
+      )
       setAnswer(buildLocalReply(text, type))
     } finally {
       setLoading(false)
@@ -54,7 +104,11 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
     <div className="space-y-3">
       <form onSubmit={handleSubmit} className="space-y-2">
         <label className="block text-xs text-gray-600">
-          Sorunu yaz; asistan <strong>{type === 'IHBAR' ? 'İHBAR' : 'ACİL DURUM'}</strong> bağlamına göre yanıt versin.
+          Sorunu yaz; asistan{' '}
+          <strong>
+            {type === 'IHBAR' ? 'İHBAR' : 'ACİL DURUM'}
+          </strong>{' '}
+          bağlamına göre yanıt versin.
         </label>
         <textarea
           value={input}
@@ -67,13 +121,31 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
               : 'Kısaca durumu yaz...'
           }
         />
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-[#D73333] text-white rounded-lg py-2 text-sm font-semibold disabled:opacity-60"
-        >
-          {loading ? 'Gönderiliyor…' : 'Gönder'}
-        </button>
+
+        <div className="flex items-center gap-2">
+          {speechSupported && (
+            <button
+              type="button"
+              onClick={listening ? stopListening : startListening}
+              className={`px-3 py-2 rounded-xl text-sm border ${
+                listening
+                  ? 'bg-red-50 border-red-400 text-red-700'
+                  : 'bg-white border-gray-300 text-gray-700'
+              }`}
+              title="Sesle yaz"
+            >
+              {listening ? 'Dinleniyor…' : '🎙'}
+            </button>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="flex-1 bg-[#D73333] text-white rounded-lg py-2 text-sm font-semibold disabled:opacity-60"
+          >
+            {loading ? 'Gönderiliyor…' : 'Gönder'}
+          </button>
+        </div>
       </form>
 
       {error && (
