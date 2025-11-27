@@ -1,5 +1,7 @@
 // src/app/settings/page.tsx
 'use client'
+import { getFirebaseDb } from '@/lib/firebase'
+import { collection, getDocs } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import HeaderBar from '@/components/HeaderBar'
 import BottomTabs from '@/components/BottomTabs'
@@ -44,8 +46,15 @@ export default function Settings() {
     }
   }
 
-    const handleNearbyHealthCheck = () => {
-    setNearbyDebug('Test başlatılıyor…')
+      const handleNearbyHealthCheck = () => {
+    setNearbyDebug('Test başlıyor…')
+
+    const db = getFirebaseDb()
+    if (!db) {
+      setNearbyDebug('Firebase db yok (getFirebaseDb null döndü).')
+      return
+    }
+
     if (typeof navigator === 'undefined' || !navigator.geolocation) {
       setNearbyDebug('Tarayıcın konum desteği vermiyor.')
       return
@@ -56,50 +65,83 @@ export default function Settings() {
         try {
           const lat = pos.coords.latitude
           const lng = pos.coords.longitude
+          const radiusKm = st.personal.nearby.radiusKm
+          const windowRange = st.personal.nearby.window as
+            | '24h'
+            | '3d'
+            | '7d'
 
-          const body = {
-            lat,
-            lng,
-            radiusKm: st.personal.nearby.radiusKm,
-            window: st.personal.nearby.window as '24h' | '3d' | '7d',
+          const now = Date.now()
+          const maxAgeMs =
+            windowRange === '24h'
+              ? 24 * 3600 * 1000
+              : windowRange === '3d'
+              ? 3 * 24 * 3600 * 1000
+              : 7 * 24 * 3600 * 1000
+
+          const snap = await getDocs(collection(db, 'reports'))
+
+          type DebugItem = {
+            id: string
+            type: string
+            title: string
+            ts: number
+            distKm: number
+            location?: any
           }
 
-          const res = await fetch('/api/incidents/nearby', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body),
-          }).catch(() => null)
+          const results: DebugItem[] = []
 
-          if (!res) {
-            setNearbyDebug('API isteği yapılamadı (fetch null döndü).')
-            return
-          }
+          snap.forEach((docSnap) => {
+            const data: any = docSnap.data()
+            const loc = data.location || {}
+            const rLat = typeof loc.lat === 'number' ? loc.lat : null
+            const rLng = typeof loc.lng === 'number' ? loc.lng : null
+            if (rLat == null || rLng == null) return
 
-          const j = await res.json().catch(() => ({
-            error: 'JSON_PARSE',
-          }))
+            let createdAtMs = now
+            const rawCreated = data.createdAt
+            if (rawCreated?.toDate) {
+              createdAtMs = rawCreated.toDate().getTime()
+            } else if (typeof rawCreated === 'number') {
+              createdAtMs = rawCreated
+            } else if (typeof rawCreated === 'string') {
+              const parsed = Date.parse(rawCreated)
+              if (!Number.isNaN(parsed)) createdAtMs = parsed
+            }
+            if (now - createdAtMs > maxAgeMs) return
 
-          const count = Array.isArray(j?.items) ? j.items.length : 0
-          const first = count > 0 ? j.items[0] : null
+            const dist = Math.round(
+              haversineKm(lat, lng, rLat, rLng)
+            )
+            if (dist > radiusKm) return
+
+            results.push({
+              id: docSnap.id,
+              type: data.type || 'other',
+              title: data.title || loc.address || 'Yakın ihbar',
+              ts: createdAtMs,
+              distKm: dist,
+              location: loc,
+            })
+          })
+
+          results.sort((a, b) => b.ts - a.ts)
 
           setNearbyDebug(
             JSON.stringify(
               {
-                request: body,
-                count,
-                first,
-                rawError: j?.error || null,
+                request: { lat, lng, radiusKm, windowRange },
+                count: results.length,
+                first: results[0] || null,
               },
               null,
               2
             )
           )
         } catch (e: any) {
-          console.error('nearby health check error:', e)
-          setNearbyDebug(
-            'Health check sırasında hata oluştu: ' +
-              String(e?.message || e)
-          )
+          console.error('Health check error:', e)
+          setNearbyDebug('Hata: ' + String(e?.message || e))
         }
       },
       (err) => {
@@ -109,6 +151,7 @@ export default function Settings() {
       }
     )
   }
+
 
 
   return (
@@ -797,3 +840,17 @@ function labelPreview(p: 'show' | 'sender_only' | 'hidden') {
   if (p === 'sender_only') return 'Yalnızca gönderici'
   return 'Gizli'
 }
+
+function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371
+  const dLat = ((lat2 - lat1) * Math.PI) / 180
+  const dLon = ((lon2 - lon1) * Math.PI) / 180
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  return R * c
+}
+

@@ -2,6 +2,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { getFirebaseDb } from '@/lib/firebase'
+import { collection, getDocs } from 'firebase/firestore'
 
 type Item = {
   id: string
@@ -15,13 +17,29 @@ type Item = {
   }
 }
 
+function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371
+  const dLat = ((lat2 - lat1) * Math.PI) / 180
+  const dLon = ((lon2 - lon1) * Math.PI) / 180
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  return R * c
+}
+
 export default function NearbyFeed({
   radiusKm,
   windowRange,
+  // imza bozulmasın diye alıyoruz ama kullanmıyoruz
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  categories,
 }: {
   radiusKm: number
   windowRange: '24h' | '3d' | '7d'
-  categories: string[] // imza uyumu için ama kullanılmıyor
+  categories?: string[]
 }) {
   const [items, setItems] = useState<Item[]>([])
   const [err, setErr] = useState<string>('')
@@ -31,45 +49,89 @@ export default function NearbyFeed({
     let cancelled = false
     setLoading(true)
     setErr('')
+    setItems([])
 
-    if (typeof navigator === 'undefined' || !navigator.geolocation) {
-      setErr('Konum erişimi yok.')
+    const db = getFirebaseDb()
+    if (!db) {
+      setErr('Firebase yapılandırması eksik (db yok).')
       setLoading(false)
       return
     }
 
+    if (typeof navigator === 'undefined' || !navigator.geolocation) {
+      setErr('Tarayıcın konum desteği vermiyor.')
+      setLoading(false)
+      return
+    }
+
+    const maxAgeMs =
+      windowRange === '24h'
+        ? 24 * 3600 * 1000
+        : windowRange === '3d'
+        ? 3 * 24 * 3600 * 1000
+        : 7 * 24 * 3600 * 1000
+
     const fetchNearby = async (lat: number, lng: number) => {
       try {
-        const res = await fetch('/api/incidents/nearby', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ lat, lng, radiusKm, window: windowRange }),
-        }).catch(() => null)
+        const snap = await getDocs(collection(db, 'reports'))
+        const now = Date.now()
+        const res: Item[] = []
 
-        if (!res) {
-          if (!cancelled) {
-            setErr('Yakın ihbarlar çağrısı başarısız (fetch null).')
-            setItems([])
+        snap.forEach((docSnap) => {
+          const data: any = docSnap.data()
+          const loc = data.location || {}
+          const rLat = typeof loc.lat === 'number' ? loc.lat : null
+          const rLng = typeof loc.lng === 'number' ? loc.lng : null
+          if (rLat == null || rLng == null) return
+
+          let createdAtMs = now
+          const rawCreated = data.createdAt
+          if (rawCreated?.toDate) {
+            createdAtMs = rawCreated.toDate().getTime()
+          } else if (typeof rawCreated === 'number') {
+            createdAtMs = rawCreated
+          } else if (typeof rawCreated === 'string') {
+            const parsed = Date.parse(rawCreated)
+            if (!Number.isNaN(parsed)) createdAtMs = parsed
           }
-          return
-        }
+          if (now - createdAtMs > maxAgeMs) return
 
-        const json = await res.json().catch(() => null)
-        const live: Item[] = (json && Array.isArray(json.items))
-          ? json.items
-          : []
+          const dist = haversineKm(lat, lng, rLat, rLng)
+          if (dist > radiusKm) return
+
+          const severity: 'low' | 'medium' | 'high' =
+            data.severity === 'high'
+              ? 'high'
+              : data.severity === 'low'
+              ? 'low'
+              : 'medium'
+
+          res.push({
+            id: docSnap.id,
+            type: data.type || 'other',
+            title: data.title || loc.address || 'Yakın ihbar',
+            ts: createdAtMs,
+            distKm: Math.round(dist),
+            severity,
+            meta: {
+              address: loc.address || undefined,
+            },
+          })
+        })
+
+        res.sort((a, b) => b.ts - a.ts)
 
         if (!cancelled) {
-          setItems(live)
+          setItems(res)
+          setLoading(false)
         }
       } catch (e) {
-        console.warn('nearby fetch error', e)
+        console.error('NearbyFeed Firestore error:', e)
         if (!cancelled) {
-          setErr('Yakın ihbarlar alınamadı.')
+          setErr('Yakın ihbarlar alınırken hata oluştu.')
           setItems([])
+          setLoading(false)
         }
-      } finally {
-        if (!cancelled) setLoading(false)
       }
     }
 
@@ -112,7 +174,7 @@ export default function NearbyFeed({
   if (!items.length) {
     return (
       <div className="text-sm text-gray-500 px-4 py-2">
-        Yakınında son günlerde ihbar yok.
+        Yakınında seçilen zaman aralığında ihbar yok.
       </div>
     )
   }
