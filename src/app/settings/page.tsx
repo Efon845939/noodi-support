@@ -1,3 +1,4 @@
+// src/app/settings/page.tsx
 'use client'
 import { useEffect, useState } from 'react'
 import HeaderBar from '@/components/HeaderBar'
@@ -13,6 +14,8 @@ export default function Settings() {
   const [st, setSt] = useState<AllSettings>(DEFAULT_SETTINGS)
   // NearbyFeed'i zorla yeniden render etmek için key
   const [feedKey, setFeedKey] = useState(Date.now())
+  // Yakın olaylar health check çıktısı
+  const [nearbyDebug, setNearbyDebug] = useState<string>('')
 
   useEffect(() => {
     try {
@@ -39,6 +42,72 @@ export default function Settings() {
     } finally {
       setFeedKey(Date.now())
     }
+  }
+
+  const handleNearbyHealthCheck = () => {
+    setNearbyDebug('Test başlatılıyor…')
+    if (typeof navigator === 'undefined' || !navigator.geolocation) {
+      setNearbyDebug('Tarayıcın konum desteği vermiyor.')
+      return
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        try {
+          const lat = pos.coords.latitude
+          const lng = pos.coords.longitude
+
+          const body = {
+            lat,
+            lng,
+            radiusKm: st.personal.nearby.radiusKm,
+            window: st.personal.nearby.window as '24h' | '3d' | '7d',
+          }
+
+          const res = await fetch('/api/incidents/nearby', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+          }).catch(() => null)
+
+          if (!res) {
+            setNearbyDebug('API isteği yapılamadı (fetch null döndü).')
+            return
+          }
+
+          const j = await res.json().catch(() => ({
+            error: 'JSON_PARSE',
+          }))
+
+          const count = Array.isArray(j?.items) ? j.items.length : 0
+          const first = count > 0 ? j.items[0] : null
+
+          setNearbyDebug(
+            JSON.stringify(
+              {
+                request: body,
+                count,
+                first,
+                rawError: j?.error || null,
+              },
+              null,
+              2
+            )
+          )
+        } catch (e: any) {
+          console.error('nearby health check error:', e)
+          setNearbyDebug(
+            'Health check sırasında hata oluştu: ' +
+              String(e?.message || e)
+          )
+        }
+      },
+      (err) => {
+        setNearbyDebug(
+          'Konum alınamadı / reddedildi: ' + String(err?.message || '')
+        )
+      }
+    )
   }
 
   return (
@@ -303,27 +372,6 @@ export default function Settings() {
               }
             />
             <RowSelect
-              label="Minimum şiddet"
-              value={(st.personal.nearby.minSeverity || 'medium').toUpperCase()}
-              onClick={() =>
-                cycle(
-                  ['low', 'medium', 'high'],
-                  st.personal.nearby.minSeverity || 'medium',
-                  (v) =>
-                    save({
-                      ...st,
-                      personal: {
-                        ...st.personal,
-                        nearby: {
-                          ...st.personal.nearby,
-                          minSeverity: v as any,
-                        },
-                      },
-                    })
-                )
-              }
-            />
-            <RowSelect
               label="Yenileme sıklığı"
               value={`${st.personal.nearby.refreshMins} dk`}
               onClick={() =>
@@ -510,40 +558,61 @@ export default function Settings() {
         </>
       )}
 
-      <div className="px-4 pt-3 pb-6 max-w-md mx-auto grid grid-cols-2 gap-3">
-        <button
-          className="bg-[#D32F2F] text-white rounded-lg py-2 font-semibold"
-          type="button"
-          onClick={() =>
-            triggerTestAlertWeb({
-              sound: st[tab].tts || true,
-              vibrate: (st as any)[tab].vibrate,
-              tts: (st as any)[tab].tts,
-            })
-          }
-        >
-          Uyarıyı Test Et
-        </button>
+      <div className="px-4 pt-3 pb-6 max-w-md mx-auto space-y-3">
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            className="bg-[#D32F2F] text-white rounded-lg py-2 font-semibold"
+            type="button"
+            onClick={() =>
+              triggerTestAlertWeb({
+                sound: st[tab].tts || true,
+                vibrate: (st as any)[tab].vibrate,
+                tts: (st as any)[tab].tts,
+              })
+            }
+          >
+            Uyarıyı Test Et
+          </button>
+
+          <button
+            className="bg-[#0B3B7A] text-white rounded-lg py-2 font-semibold"
+            type="button"
+            onClick={() => {
+              addSimIncident({
+                type: 'earthquake',
+                title: 'Simülasyon: M 4.2, 12 km kuzeydoğu',
+                distKm: 12,
+                severity: 'high',
+                meta: { magnitude: 4.2 },
+              })
+              setFeedKey(Date.now())
+              alert(
+                'Simülasyon olayı eklendi. Kişisel Uyarılar > Yakın Olaylar listesine yansıdı.'
+              )
+            }}
+          >
+            Olayı Simüle Et
+          </button>
+        </div>
 
         <button
-          className="bg-[#0B3B7A] text-white rounded-lg py-2 font-semibold"
+          className="w-full bg-gray-800 text-white rounded-lg py-2 text-sm font-semibold"
           type="button"
-          onClick={() => {
-            addSimIncident({
-              type: 'earthquake',
-              title: 'Simülasyon: M 4.2, 12 km kuzeydoğu',
-              distKm: 12,
-              severity: 'high',
-              meta: { magnitude: 4.2 },
-            })
-            setFeedKey(Date.now())
-            alert(
-              'Simülasyon olayı eklendi. Kişisel Uyarılar > Yakın Olaylar listesine yansıdı.'
-            )
-          }}
+          onClick={handleNearbyHealthCheck}
         >
-          Olayı Simüle Et
+          Yakın Olaylar Sağlık Testi
         </button>
+
+        {nearbyDebug && (
+          <div className="mt-2 bg-[#F3F4F6] border border-[#E5E7EB] rounded-xl p-2 max-h-64 overflow-auto">
+            <div className="text-xs font-semibold mb-1 text-gray-700">
+              Health check çıktısı
+            </div>
+            <pre className="text-[11px] whitespace-pre-wrap break-words text-gray-700">
+              {nearbyDebug}
+            </pre>
+          </div>
+        )}
       </div>
 
       <BottomTabs />
