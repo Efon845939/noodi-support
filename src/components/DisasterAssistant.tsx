@@ -166,8 +166,8 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
 
         {!speechSupported && (
           <p className="text-[11px] text-gray-500">
-            Mikrofon için ses tanıma desteği olan bir tarayıcı (örneğin
-            Chromium tabanlı) kullanman gerekir.
+            Mikrofon için ses tanıma desteği olan bir tarayıcı (Chromium vb.)
+            kullanman gerekir.
           </p>
         )}
       </form>

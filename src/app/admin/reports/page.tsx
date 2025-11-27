@@ -1,3 +1,4 @@
+// src/app/admin/reports/page.tsx
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
@@ -44,8 +45,6 @@ type Cluster = {
   reports: ReportItem[]
 }
 
-type EditMode = 'edit'
-
 const SOFT_DELETE_DAYS = 24
 
 const LOCATION_TEMPLATES = [
@@ -63,7 +62,6 @@ export default function AdminReportsPage() {
   const [openClusterKey, setOpenClusterKey] = useState<string | null>(null)
 
   const [editingReport, setEditingReport] = useState<ReportItem | null>(null)
-  const [editMode, setEditMode] = useState<EditMode>('edit')
   const [editTitle, setEditTitle] = useState('')
   const [editDisplayLocation, setEditDisplayLocation] = useState('')
   const [editSeverity, setEditSeverity] = useState<Severity>('medium')
@@ -73,7 +71,6 @@ export default function AdminReportsPage() {
   const db = getFirebaseDb()
   const router = useRouter()
 
-  // Admin kontrolü
   useEffect(() => {
     if (!auth || !db) {
       setIsAdmin(false)
@@ -108,7 +105,6 @@ export default function AdminReportsPage() {
     }
   }, [isAdmin, router])
 
-  // Tüm ihbarlar
   useEffect(() => {
     if (!db) return
 
@@ -142,13 +138,11 @@ export default function AdminReportsPage() {
     return () => unsub()
   }, [db])
 
-  // Admin’de gösterilenler
   const visibleReports = useMemo(
     () => reports.filter((r) => !r.hiddenInAdmin),
     [reports]
   )
 
-  // Cluster (tür + konum)
   const clusters = useMemo<Cluster[]>(() => {
     const map = new Map<string, Cluster>()
     for (const r of visibleReports) {
@@ -190,7 +184,6 @@ export default function AdminReportsPage() {
   }
 
   function openEdit(report: ReportItem) {
-    setEditMode('edit')
     setEditingReport(report)
     setEditTitle(report.title || guessTitleFromReport(report))
     setEditDisplayLocation(report.location?.address || '')
@@ -437,11 +430,6 @@ export default function AdminReportsPage() {
                         </div>
                         <div className="text-sm font-semibold text-[#102A43]">
                           {count} ihbar
-                          {count >= 10 && (
-                            <span className="ml-2 text-[11px] px-2 py-0.5 rounded-full bg-red-100 text-red-700">
-                              Yakın Olay eşiği aşıldı
-                            </span>
-                          )}
                         </div>
                       </div>
                       <div className="flex items-center gap-1 flex-wrap justify-end">
@@ -505,7 +493,6 @@ export default function AdminReportsPage() {
                               >
                                 İhbarı Düzenle
                               </button>
-
                               {canSoftHide(r) && (
                                 <button
                                   type="button"

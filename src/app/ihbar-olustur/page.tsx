@@ -114,23 +114,6 @@ export default function IhbarOlusturPage() {
       return
     }
 
-    // BASİT ANTI-SPAM: Aynı tür + aynı kullanıcı için 60 sn limiti
-    try {
-      const key = `ihbar_last_${user.uid}_${type}`
-      const now = Date.now()
-      const lastRaw = localStorage.getItem(key)
-      const last = lastRaw ? Number(lastRaw) : 0
-      if (last && now - last < 60_000) {
-        const sec = Math.ceil((60_000 - (now - last)) / 1000)
-        setError(
-          `Aynı tür ihbarı çok sık gönderiyorsun. Lütfen yaklaşık ${sec} saniye bekleyip tekrar dene.`
-        )
-        return
-      }
-    } catch {
-      // localStorage bozulsa bile ihbarı bloklamayalım
-    }
-
     try {
       setIsSubmitting(true)
 
@@ -150,13 +133,8 @@ export default function IhbarOlusturPage() {
         },
       })
 
-      try {
-        const key = `ihbar_last_${user.uid}_${type}`
-        localStorage.setItem(key, String(Date.now()))
-      } catch {}
-
       setInfo(
-        'İhbarın alındı. Onaylandıktan sonra Yakın Olaylar bölümünde görünecek.'
+        'İhbarın alındı. Yakın Olaylar bölümünde kümeye dahil edilecek.'
       )
       setDescription('')
       setCustomType('')
@@ -164,14 +142,7 @@ export default function IhbarOlusturPage() {
       setSelectedPlace(null)
     } catch (err: any) {
       console.error(err)
-      const msg = String(err?.message || '')
-      if (msg.includes('SPAM_LIMIT')) {
-        setError(
-          'Kısa sürede çok fazla ihbar göndermeye çalışıyorsun. Biraz bekleyip tekrar dene.'
-        )
-      } else {
-        setError('İhbar oluşturulurken bir hata oluştu.')
-      }
+      setError('İhbar oluşturulurken bir hata oluştu.')
     } finally {
       setIsSubmitting(false)
     }
@@ -223,8 +194,9 @@ export default function IhbarOlusturPage() {
         <div className="relative max-w-5xl mx-auto">
           <div className="max-w-xl mx-auto space-y-4">
             <p className="text-xs text-gray-700">
-              Yaptığın ihbar, <strong>Yakın Olaylar</strong> bölümüne eklenir. Gerçek
-              acil durumda her zaman önce <strong>112</strong>&apos;yi ara.
+              Yaptığın ihbar, <strong>Yakın Olaylar</strong> bölümünde kümeler
+              içinde gösterilecek. Gerçek acil durumda her zaman önce{' '}
+              <strong>112</strong>&apos;yi ara.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -332,7 +304,6 @@ export default function IhbarOlusturPage() {
               </button>
             </form>
 
-            {/* İHBAR ASİSTANI */}
             <section className="mt-6 border-t pt-4 space-y-3">
               <button
                 onClick={() => setAssistantOpen((v) => !v)}

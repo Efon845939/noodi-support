@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerDb } from '@/lib/firebase-server'
 import { collection, getDocs } from 'firebase/firestore'
 
-const MIN_REPORTS_FOR_EVENT = 1  // ÖNCE 3’TÜ, ARTIK 1
+const MIN_REPORTS_FOR_EVENT = 1 // TEK İHBAR BİLE GÖRÜNSÜN
 
 function normalize(str: string | undefined): string {
   if (!str) return ''
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     const {
       window = '24h',
-      // lat, lng, radiusKm, categories şu an filtrelemede kullanılmıyor
+      // lat, lng, radiusKm, categories şu an filtreye girmiyor
     } = body as {
       lat?: number
       lng?: number
@@ -110,9 +110,9 @@ export async function POST(req: NextRequest) {
         return {
           id: c.key,
           type: c.type,
-          title: `${c.label}`,
+          title: c.label,
           ts: latestTs,
-          distKm: 0, // şimdilik mesafe yok
+          distKm: 0,
           severity: sev,
           meta: {
             address: c.label,
