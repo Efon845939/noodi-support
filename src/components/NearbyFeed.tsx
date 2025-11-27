@@ -12,16 +12,19 @@ type Item = {
   severity: 'low' | 'medium' | 'high'
   meta?: {
     address?: string
+    province?: string
+    district?: string
   }
 }
 
-type Props = {
-  radiusKm?: number
-  windowRange?: '24h' | '3d' | '7d' // şu an kullanılmıyor
-  categories?: string[]             // şu an kullanılmıyor
-}
-
-export default function NearbyFeed({ radiusKm = 50 }: Props) {
+export default function NearbyFeed({
+  radiusKm,
+  windowRange,
+}: {
+  radiusKm: number
+  windowRange: '24h' | '3d' | '7d'
+  categories: string[] // şimdilik yok sayılıyor
+}) {
   const [items, setItems] = useState<Item[]>([])
   const [err, setErr] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(true)
@@ -42,7 +45,12 @@ export default function NearbyFeed({ radiusKm = 50 }: Props) {
         const r = await fetch('/api/incidents/nearby', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ lat, lng, radiusKm }),
+          body: JSON.stringify({
+            lat,
+            lng,
+            radiusKm,
+            window: windowRange,
+          }),
         }).catch(() => null)
 
         const live: Item[] =
@@ -80,7 +88,7 @@ export default function NearbyFeed({ radiusKm = 50 }: Props) {
     return () => {
       cancelled = true
     }
-  }, [radiusKm])
+  }, [radiusKm, windowRange])
 
   if (err) {
     return (
@@ -101,7 +109,7 @@ export default function NearbyFeed({ radiusKm = 50 }: Props) {
   if (!items.length) {
     return (
       <div className="text-sm text-gray-500 px-4 py-2">
-        Yakınında son günlerde ihbar yok.
+        Seçtiğin bölge için yakın zamanda ihbar yok.
       </div>
     )
   }
@@ -120,9 +128,13 @@ export default function NearbyFeed({ radiusKm = 50 }: Props) {
             <div className="text-[15px] text-[#102A43] font-semibold">
               {x.title}
             </div>
-            {x.meta?.address && (
+            {(x.meta?.district || x.meta?.province || x.meta?.address) && (
               <div className="text-xs text-gray-500">
-                {x.meta.address}
+                {x.meta?.district && x.meta?.province
+                  ? `${x.meta.district}, ${x.meta.province}`
+                  : x.meta?.province ||
+                    x.meta?.district ||
+                    x.meta?.address}
               </div>
             )}
           </div>
