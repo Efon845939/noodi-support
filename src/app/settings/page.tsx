@@ -15,7 +15,7 @@ export default function Settings() {
   // NearbyFeed'i zorla yeniden render etmek için key
   const [feedKey, setFeedKey] = useState(Date.now())
   // Yakın olaylar health check çıktısı
-  const [nearbyDebug, setNearbyDebug] = useState<string>('')
+  const [nearbyDebug, setNearbyDebug] = useState('')
 
   useEffect(() => {
     try {
@@ -44,7 +44,7 @@ export default function Settings() {
     }
   }
 
-  const handleNearbyHealthCheck = () => {
+    const handleNearbyHealthCheck = () => {
     setNearbyDebug('Test başlatılıyor…')
     if (typeof navigator === 'undefined' || !navigator.geolocation) {
       setNearbyDebug('Tarayıcın konum desteği vermiyor.')
@@ -109,6 +109,7 @@ export default function Settings() {
       }
     )
   }
+
 
   return (
     <div className="min-h-[100svh] bg-white pb-[68px]">
@@ -558,7 +559,7 @@ export default function Settings() {
         </>
       )}
 
-      <div className="px-4 pt-3 pb-6 max-w-md mx-auto space-y-3">
+            <div className="px-4 pt-3 pb-6 max-w-md mx-auto space-y-3">
         <div className="grid grid-cols-2 gap-3">
           <button
             className="bg-[#D32F2F] text-white rounded-lg py-2 font-semibold"
@@ -619,6 +620,7 @@ export default function Settings() {
     </div>
   )
 }
+
 
 /* ——— küçük bileşenler ——— */
 function Seg({
