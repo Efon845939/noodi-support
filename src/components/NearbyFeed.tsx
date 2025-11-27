@@ -2,7 +2,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getSimIncidents, removeSimIncident } from '@/lib/nearby-sim'
 
 type Item = {
   id: string
@@ -13,19 +12,16 @@ type Item = {
   severity: 'low' | 'medium' | 'high'
   meta?: {
     address?: string
-    count?: number
   }
 }
 
-export default function NearbyFeed({
-  radiusKm,
-  windowRange,
-  categories,
-}: {
-  radiusKm: number
-  windowRange: '24h' | '3d' | '7d'
-  categories: string[]
-}) {
+type Props = {
+  radiusKm?: number
+  windowRange?: '24h' | '3d' | '7d' // şu an kullanılmıyor
+  categories?: string[]             // şu an kullanılmıyor
+}
+
+export default function NearbyFeed({ radiusKm = 50 }: Props) {
   const [items, setItems] = useState<Item[]>([])
   const [err, setErr] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(true)
@@ -41,48 +37,25 @@ export default function NearbyFeed({
     setLoading(true)
     setErr('')
 
-    const timeoutId = window.setTimeout(() => {
-      if (!cancelled) {
-        const cached = window.localStorage.getItem('nearby_last_geo')
-        if (cached) {
-          try {
-            const c = JSON.parse(cached)
-            fetchNearby(c.lat, c.lng)
-            return
-          } catch {}
-        }
-        setErr('Konum alınamadı veya çok uzun sürdü.')
-        setLoading(false)
-      }
-    }, 8000)
-
-    const fetchNearby = async (lat?: number, lng?: number) => {
+    const fetchNearby = async (lat: number, lng: number) => {
       try {
         const r = await fetch('/api/incidents/nearby', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            lat,
-            lng,
-            radiusKm,
-            window: windowRange,
-            categories,
-          }),
+          body: JSON.stringify({ lat, lng, radiusKm }),
         }).catch(() => null)
 
         const live: Item[] =
           (await r?.json().catch(() => null))?.items || []
 
-        const sims = getSimIncidents() as Item[]
-        const merged = [...sims, ...live].sort((a, b) => b.ts - a.ts)
-
         if (!cancelled) {
-          setItems(merged)
+          setItems(live)
           setLoading(false)
         }
       } catch (e) {
         console.warn('nearby fetch error', e)
         if (!cancelled) {
+          setErr('Yakın ihbarlar alınamadı.')
           setItems([])
           setLoading(false)
         }
@@ -92,29 +65,13 @@ export default function NearbyFeed({
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         if (cancelled) return
-        window.clearTimeout(timeoutId)
         const lat = pos.coords.latitude
         const lng = pos.coords.longitude
-        try {
-          window.localStorage.setItem(
-            'nearby_last_geo',
-            JSON.stringify({ lat, lng, ts: Date.now() })
-          )
-        } catch {}
         fetchNearby(lat, lng)
       },
       (error) => {
         if (cancelled) return
-        window.clearTimeout(timeoutId)
         console.warn('Geolocation error:', error)
-        const cached = window.localStorage.getItem('nearby_last_geo')
-        if (cached) {
-          try {
-            const c = JSON.parse(cached)
-            fetchNearby(c.lat, c.lng)
-            return
-          } catch {}
-        }
         setErr('Konum alınamadı veya reddedildi.')
         setLoading(false)
       }
@@ -122,14 +79,8 @@ export default function NearbyFeed({
 
     return () => {
       cancelled = true
-      window.clearTimeout(timeoutId)
     }
-  }, [radiusKm, windowRange, JSON.stringify(categories)])
-
-  const handleRemoveSim = (id: string) => {
-    removeSimIncident(id)
-    setItems((old) => old.filter((x) => x.id !== id))
-  }
+  }, [radiusKm])
 
   if (err) {
     return (
@@ -142,7 +93,7 @@ export default function NearbyFeed({
   if (loading) {
     return (
       <div className="text-sm text-gray-500 px-4 py-2">
-        Yakın olaylar yükleniyor…
+        Yakın ihbarlar yükleniyor…
       </div>
     )
   }
@@ -150,55 +101,40 @@ export default function NearbyFeed({
   if (!items.length) {
     return (
       <div className="text-sm text-gray-500 px-4 py-2">
-        Yakın gerçekleşen olay yok.
+        Yakınında son günlerde ihbar yok.
       </div>
     )
   }
 
   return (
     <div className="px-4 py-2 space-y-2">
-      {items.map((x) => {
-        const isSim = x.id.startsWith('sim-')
-        return (
-          <div
-            key={x.id}
-            className="bg-white border border-[#E7EAF0] rounded-xl p-3 flex items-center justify-between gap-3"
-          >
-            <div className="flex-1">
-              <div className="text-[13px] uppercase tracking-wide text-gray-500">
-                {badge(x.type)} • {x.distKm || 0} km
-                {typeof x.meta?.count === 'number' && x.meta.count > 0 && (
-                  <> • {x.meta.count} ihbar</>
-                )}
-              </div>
-              <div className="text-[15px] text-[#102A43] font-semibold">
-                {x.title}
-              </div>
-              {x.meta?.address && (
-                <div className="text-xs text-gray-500">
-                  {x.meta.address}
-                </div>
-              )}
-              {isSim && (
-                <button
-                  type="button"
-                  onClick={() => handleRemoveSim(x.id)}
-                  className="mt-1 text-[11px] text-red-600 underline"
-                >
-                  Bu simülasyonu sil
-                </button>
-              )}
+      {items.map((x) => (
+        <div
+          key={x.id}
+          className="bg-white border border-[#E7EAF0] rounded-xl p-3 flex items-center justify-between gap-3"
+        >
+          <div className="flex-1">
+            <div className="text-[13px] uppercase tracking-wide text-gray-500">
+              {badge(x.type)} • {x.distKm} km
             </div>
-            <span
-              className={`text-xs px-2 py-1 rounded-full ${sev(
-                x.severity
-              )}`}
-            >
-              {x.severity.toUpperCase()}
-            </span>
+            <div className="text-[15px] text-[#102A43] font-semibold">
+              {x.title}
+            </div>
+            {x.meta?.address && (
+              <div className="text-xs text-gray-500">
+                {x.meta.address}
+              </div>
+            )}
           </div>
-        )
-      })}
+          <span
+            className={`text-xs px-2 py-1 rounded-full ${sev(
+              x.severity
+            )}`}
+          >
+            {x.severity.toUpperCase()}
+          </span>
+        </div>
+      ))}
     </div>
   )
 }
@@ -214,12 +150,6 @@ function badge(t: string) {
     case 'sel':
     case 'flood':
       return 'Sel'
-    case 'heyelan':
-    case 'landslide':
-      return 'Heyelan'
-    case 'firtina':
-    case 'storm':
-      return 'Fırtına'
     case 'trafik':
       return 'Trafik'
     case 'kayip':

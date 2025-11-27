@@ -3,16 +3,17 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerDb } from '@/lib/firebase-server'
 import { collection, getDocs } from 'firebase/firestore'
 
-const MIN_REPORTS_FOR_EVENT = 1 // TEK İHBAR BİLE GÖRÜNSÜN
-
-function normalize(str: string | undefined): string {
-  if (!str) return ''
-  return str
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim()
+function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371
+  const dLat = ((lat2 - lat1) * Math.PI) / 180
+  const dLon = ((lon2 - lon1) * Math.PI) / 180
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  return R * c
 }
 
 export async function POST(req: NextRequest) {
@@ -21,41 +22,33 @@ export async function POST(req: NextRequest) {
     const body = await req.json().catch(() => ({}))
 
     const {
-      window = '24h',
-      // lat, lng, radiusKm, categories şu an filtreye girmiyor
-    } = body as {
-      lat?: number
-      lng?: number
-      radiusKm?: number
-      window?: '24h' | '3d' | '7d'
-      categories?: string[]
-    }
+      lat,
+      lng,
+      radiusKm = 50,
+    }: { lat?: number; lng?: number; radiusKm?: number } = body
 
-    const now = Date.now()
-    const maxAgeMs =
-      window === '24h'
-        ? 24 * 3600 * 1000
-        : window === '3d'
-        ? 3 * 24 * 3600 * 1000
-        : 7 * 24 * 3600 * 1000
+    if (typeof lat !== 'number' || typeof lng !== 'number') {
+      return NextResponse.json(
+        { items: [], error: 'NO_LOCATION' },
+        { status: 200 }
+      )
+    }
 
     const snap = await getDocs(collection(db, 'reports'))
 
-    type Cluster = {
-      key: string
-      type: string
-      label: string
-      reports: {
-        ts: number
-        severity: 'low' | 'medium' | 'high'
-      }[]
-    }
+    const now = Date.now()
+    const maxAgeMs = 7 * 24 * 3600 * 1000 // son 7 gün
 
-    const clusters = new Map<string, Cluster>()
+    const items: any[] = []
 
     snap.forEach((docSnap) => {
       const data: any = docSnap.data()
+      const loc = data.location || {}
+      const rLat = typeof loc.lat === 'number' ? loc.lat : null
+      const rLng = typeof loc.lng === 'number' ? loc.lng : null
+      if (rLat == null || rLng == null) return
 
+      // zaman filtresi
       let createdAtMs = now
       const rawCreated = data.createdAt
       if (rawCreated?.toDate) {
@@ -66,14 +59,11 @@ export async function POST(req: NextRequest) {
         const parsed = Date.parse(rawCreated)
         if (!Number.isNaN(parsed)) createdAtMs = parsed
       }
-
       if (now - createdAtMs > maxAgeMs) return
 
-      const type = (data.type || 'other').toString()
-      const loc = data.location || {}
-      const label = (loc.label || loc.address || '') as string
+      const dist = haversineKm(lat, lng, rLat, rLng)
+      if (dist > radiusKm) return
 
-      const key = `${normalize(type)}__${normalize(label)}`
       const severity: 'low' | 'medium' | 'high' =
         data.severity === 'high'
           ? 'high'
@@ -81,52 +71,26 @@ export async function POST(req: NextRequest) {
           ? 'low'
           : 'medium'
 
-      const existing = clusters.get(key)
-      if (existing) {
-        existing.reports.push({ ts: createdAtMs, severity })
-      } else {
-        clusters.set(key, {
-          key,
-          type,
-          label: label || 'Konum belirtilmemiş',
-          reports: [{ ts: createdAtMs, severity }],
-        })
-      }
+      items.push({
+        id: docSnap.id,
+        type: data.type || 'other',
+        title: data.title || loc.address || 'Yakın ihbar',
+        ts: createdAtMs,
+        distKm: Math.round(dist),
+        severity,
+        meta: {
+          address: loc.address || '',
+        },
+      })
     })
 
-    const items = Array.from(clusters.values())
-      .filter((c) => c.reports.length >= MIN_REPORTS_FOR_EVENT)
-      .map((c) => {
-        const count = c.reports.length
-        const latestTs = Math.max(...c.reports.map((r) => r.ts))
-        const sev: 'low' | 'medium' | 'high' = c.reports.some(
-          (r) => r.severity === 'high'
-        )
-          ? 'high'
-          : c.reports.some((r) => r.severity === 'low')
-          ? 'low'
-          : 'medium'
-
-        return {
-          id: c.key,
-          type: c.type,
-          title: c.label,
-          ts: latestTs,
-          distKm: 0,
-          severity: sev,
-          meta: {
-            address: c.label,
-            count,
-          },
-        }
-      })
-      .sort((a, b) => b.ts - a.ts)
+    items.sort((a, b) => b.ts - a.ts)
 
     return NextResponse.json({ items }, { status: 200 })
   } catch (e) {
     console.error('nearby error:', e)
     return NextResponse.json(
-      { items: [], error: 'api exploded' },
+      { items: [], error: 'INTERNAL' },
       { status: 200 }
     )
   }

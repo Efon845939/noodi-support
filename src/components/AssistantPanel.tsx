@@ -1,4 +1,6 @@
+// src/components/AssistantPanel.tsx
 'use client'
+
 import { useEffect, useRef, useState } from 'react'
 
 type Msg = { role: 'user' | 'assistant'; text: string }
@@ -7,7 +9,13 @@ const welcome: Msg = {
   text: 'Size yardımcı olacağım. Kısaca durumu yazın veya üstteki hazır seçeneklerden birini seçin.',
 }
 
-function HistoryDropdown({ sessions, load }: { sessions: any; load: (id: string) => void }) {
+function HistoryDropdown({
+  sessions,
+  load,
+}: {
+  sessions: any
+  load: (id: string) => void
+}) {
   const entries = Object.values(sessions || {})
     .sort((a: any, b: any) => b.ts - a.ts)
     .slice(0, 20)
@@ -16,7 +24,8 @@ function HistoryDropdown({ sessions, load }: { sessions: any; load: (id: string)
       <details
         className="text-xs"
         onToggle={(e) => {
-          if (e.currentTarget.open) e.currentTarget.querySelector('button')?.focus()
+          if (e.currentTarget.open)
+            e.currentTarget.querySelector('button')?.focus()
         }}
       >
         <summary className="cursor-pointer select-none px-2 py-1.5 rounded-lg bg-gray-100">
@@ -128,7 +137,8 @@ export default function AssistantPanel({
   useEffect(() => {
     if (typeof window === 'undefined') return
     const SR =
-      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition
     setSpeechSupported(!!SR)
   }, [])
 
@@ -290,35 +300,48 @@ export default function AssistantPanel({
         ]
       : ['Deprem sonrası ilk adım?', 'Yangında ne yapmalıyım?', 'Selde güvenli nokta?']
 
-  const startListening = () => {
-    if (!speechSupported || listening) return
-    const SR =
-      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition
-    if (!SR) return
-    const rec = new SR()
-    rec.lang = 'tr-TR'
-    rec.continuous = false
-    rec.interimResults = false
-    rec.onresult = (event: any) => {
-      const transcript = Array.from(event.results)
-        .map((r: any) => r[0].transcript)
-        .join(' ')
-      setInput((prev) => (prev ? prev + ' ' + transcript : transcript))
+  const handleMicClick = () => {
+    if (!speechSupported) {
+      alert(
+        'Tarayıcın sesle yazmayı desteklemiyor. Chromium tabanlı bir tarayıcı kullanırsan mikrofon çalışır.'
+      )
+      return
     }
-    rec.onerror = () => setListening(false)
-    rec.onend = () => setListening(false)
-    recRef.current = rec
-    setListening(true)
-    rec.start()
+    if (listening) {
+      const rec = recRef.current
+      if (rec) rec.stop()
+      setListening(false)
+    } else {
+      const SR =
+        (window as any).SpeechRecognition ||
+        (window as any).webkitSpeechRecognition
+      if (!SR) {
+        alert(
+          'Ses tanıma bu tarayıcıda yok. Farklı bir tarayıcı dene.'
+        )
+        return
+      }
+      const rec = new SR()
+      rec.lang = 'tr-TR'
+      rec.continuous = false
+      rec.interimResults = false
+      rec.onresult = (event: any) => {
+        const transcript = Array.from(event.results)
+          .map((r: any) => r[0].transcript)
+          .join(' ')
+        setInput((prev) => (prev ? prev + ' ' + transcript : transcript))
+      }
+      rec.onerror = () => setListening(false)
+      rec.onend = () => setListening(false)
+      recRef.current = rec
+      setListening(true)
+      rec.start()
+    }
   }
 
-  const stopListening = () => {
-    const rec = recRef.current
-    if (rec) rec.stop()
-    setListening(false)
-  }
+  if (!open) return null
 
-  return open ? (
+  return (
     <div className="fixed inset-0 z-50 bg-black/35 backdrop-blur-[2px]" onClick={onClose}>
       <div className="min-h-[100svh] flex items-center justify-center p-4">
         <div
@@ -446,7 +469,7 @@ export default function AssistantPanel({
             )}
           </div>
 
-          {/* Giriş alanı */}
+          {/* Giriş alanı + MİKROFON */}
           <div className="p-4 border-t bg-white">
             <form
               onSubmit={(e) => {
@@ -463,20 +486,25 @@ export default function AssistantPanel({
                 aria-label="Mesaj"
                 className="flex-1 border rounded-xl px-3 py-2 text-sm focus-visible:outline-none focus:ring-2 focus:ring-[#0B3B7A]"
               />
-              {speechSupported && (
-                <button
-                  type="button"
-                  onClick={listening ? stopListening : startListening}
-                  className={`px-3 py-2 rounded-xl text-sm border ${
-                    listening
-                      ? 'bg-red-50 border-red-400 text-red-700'
-                      : 'bg-white border-gray-300 text-gray-700'
-                  }`}
-                  title="Sesle yaz"
-                >
-                  {listening ? 'Dinleniyor…' : '🎙'}
-                </button>
-              )}
+
+              <button
+                type="button"
+                onClick={handleMicClick}
+                disabled={busy}
+                className={`px-3 py-2 rounded-xl text-sm border ${
+                  listening
+                    ? 'bg-red-50 border-red-400 text-red-700'
+                    : 'bg-white border-gray-300 text-gray-700'
+                }`}
+                title={
+                  speechSupported
+                    ? 'Sesle yaz'
+                    : 'Tarayıcın sesle yazmayı desteklemiyor'
+                }
+              >
+                {listening ? 'Dinleniyor…' : '🎙'}
+              </button>
+
               <button
                 type="submit"
                 disabled={busy || !input.trim()}
@@ -493,5 +521,5 @@ export default function AssistantPanel({
         </div>
       </div>
     </div>
-  ) : null
+  )
 }
