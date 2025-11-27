@@ -12,8 +12,6 @@ type Item = {
   severity: 'low' | 'medium' | 'high'
   meta?: {
     address?: string
-    province?: string
-    district?: string
   }
 }
 
@@ -23,50 +21,55 @@ export default function NearbyFeed({
 }: {
   radiusKm: number
   windowRange: '24h' | '3d' | '7d'
-  categories: string[] // şimdilik yok sayılıyor
+  categories: string[] // imza uyumu için ama kullanılmıyor
 }) {
   const [items, setItems] = useState<Item[]>([])
   const [err, setErr] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
+    let cancelled = false
+    setLoading(true)
+    setErr('')
+
     if (typeof navigator === 'undefined' || !navigator.geolocation) {
       setErr('Konum erişimi yok.')
       setLoading(false)
       return
     }
 
-    let cancelled = false
-    setLoading(true)
-    setErr('')
-
     const fetchNearby = async (lat: number, lng: number) => {
       try {
-        const r = await fetch('/api/incidents/nearby', {
+        const res = await fetch('/api/incidents/nearby', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            lat,
-            lng,
-            radiusKm,
-            window: windowRange,
-          }),
+          body: JSON.stringify({ lat, lng, radiusKm, window: windowRange }),
         }).catch(() => null)
 
-        const live: Item[] =
-          (await r?.json().catch(() => null))?.items || []
+        if (!res) {
+          if (!cancelled) {
+            setErr('Yakın ihbarlar çağrısı başarısız (fetch null).')
+            setItems([])
+          }
+          return
+        }
+
+        const json = await res.json().catch(() => null)
+        const live: Item[] = (json && Array.isArray(json.items))
+          ? json.items
+          : []
 
         if (!cancelled) {
           setItems(live)
-          setLoading(false)
         }
       } catch (e) {
         console.warn('nearby fetch error', e)
         if (!cancelled) {
           setErr('Yakın ihbarlar alınamadı.')
           setItems([])
-          setLoading(false)
         }
+      } finally {
+        if (!cancelled) setLoading(false)
       }
     }
 
@@ -109,7 +112,7 @@ export default function NearbyFeed({
   if (!items.length) {
     return (
       <div className="text-sm text-gray-500 px-4 py-2">
-        Seçtiğin bölge için yakın zamanda ihbar yok.
+        Yakınında son günlerde ihbar yok.
       </div>
     )
   }
@@ -128,13 +131,9 @@ export default function NearbyFeed({
             <div className="text-[15px] text-[#102A43] font-semibold">
               {x.title}
             </div>
-            {(x.meta?.district || x.meta?.province || x.meta?.address) && (
+            {x.meta?.address && (
               <div className="text-xs text-gray-500">
-                {x.meta?.district && x.meta?.province
-                  ? `${x.meta.district}, ${x.meta.province}`
-                  : x.meta?.province ||
-                    x.meta?.district ||
-                    x.meta?.address}
+                {x.meta.address}
               </div>
             )}
           </div>

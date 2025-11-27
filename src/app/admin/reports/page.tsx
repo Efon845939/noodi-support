@@ -45,7 +45,7 @@ type Cluster = {
   reports: ReportItem[]
 }
 
-const SOFT_DELETE_DAYS = 24
+const SOFT_DELETE_DAYS = 1
 
 const LOCATION_TEMPLATES = [
   'İlçe merkezi',
