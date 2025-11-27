@@ -1,4 +1,3 @@
-// src/app/admin/reports/page.tsx
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
@@ -15,7 +14,13 @@ import {
 import { onAuthStateChanged } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
 import { getFirebaseAuth, getFirebaseDb } from '@/lib/firebase'
-import { deleteReportCompletely, ReportType, ReportLocation, Severity } from '@/lib/reports'
+import {
+  deleteReportCompletely,
+  updateApprovedReportDetails,
+  ReportType,
+  ReportLocation,
+  Severity,
+} from '@/lib/reports'
 import HeaderBar from '@/components/HeaderBar'
 import BottomTabs from '@/components/BottomTabs'
 
@@ -39,13 +44,30 @@ type Cluster = {
   reports: ReportItem[]
 }
 
+type EditMode = 'edit'
+
 const SOFT_DELETE_DAYS = 24
+
+const LOCATION_TEMPLATES = [
+  'İlçe merkezi',
+  'Zeytinburnu ormanlık alanı',
+  'Ana cadde üzerinde',
+  'Sanayi bölgesi',
+  'Sahil şeridi',
+]
 
 export default function AdminReportsPage() {
   const [reports, setReports] = useState<ReportItem[]>([])
   const [isProcessing, setIsProcessing] = useState(false)
   const [isAdmin, setIsAdmin] = useState<boolean | null>(null)
   const [openClusterKey, setOpenClusterKey] = useState<string | null>(null)
+
+  const [editingReport, setEditingReport] = useState<ReportItem | null>(null)
+  const [editMode, setEditMode] = useState<EditMode>('edit')
+  const [editTitle, setEditTitle] = useState('')
+  const [editDisplayLocation, setEditDisplayLocation] = useState('')
+  const [editSeverity, setEditSeverity] = useState<Severity>('medium')
+  const [editDescription, setEditDescription] = useState('')
 
   const auth = getFirebaseAuth()
   const db = getFirebaseDb()
@@ -167,6 +189,19 @@ export default function AdminReportsPage() {
     return diffDays >= SOFT_DELETE_DAYS
   }
 
+  function openEdit(report: ReportItem) {
+    setEditMode('edit')
+    setEditingReport(report)
+    setEditTitle(report.title || guessTitleFromReport(report))
+    setEditDisplayLocation(report.location?.address || '')
+    setEditSeverity(report.severity || 'medium')
+    setEditDescription(report.description || '')
+  }
+
+  function closeEdit() {
+    setEditingReport(null)
+  }
+
   async function hideReportFromAdmin(report: ReportItem) {
     if (!auth?.currentUser) {
       alert('Admin olarak giriş yapman gerekiyor.')
@@ -283,6 +318,47 @@ export default function AdminReportsPage() {
       alert('İhbar silinirken hata oluştu.')
     } finally {
       setIsProcessing(false)
+    }
+  }
+
+  async function handleSave() {
+    if (!editingReport) return
+    if (!auth?.currentUser) {
+      alert('Admin olarak giriş yapman gerekiyor.')
+      return
+    }
+
+    if (!editTitle.trim()) {
+      alert('Başlık boş olamaz.')
+      return
+    }
+    if (!editDisplayLocation.trim()) {
+      alert('Gösterilecek konum boş olamaz.')
+      return
+    }
+    if (!editDescription.trim()) {
+      alert('Açıklama boş olamaz.')
+      return
+    }
+
+    try {
+      setIsProcessing(true)
+
+      await updateApprovedReportDetails({
+        reportId: editingReport.id,
+        adminId: auth.currentUser.uid,
+        title: editTitle.trim(),
+        description: editDescription.trim(),
+        location: editingReport.location,
+        displayLocation: editDisplayLocation.trim(),
+        severity: editSeverity,
+      })
+    } catch (e) {
+      console.error(e)
+      alert('Değişiklik uygulanırken hata oluştu.')
+    } finally {
+      setIsProcessing(false)
+      closeEdit()
     }
   }
 
@@ -422,6 +498,14 @@ export default function AdminReportsPage() {
                               Durum: {r.status.toUpperCase()}
                             </div>
                             <div className="flex flex-wrap gap-2 pt-1">
+                              <button
+                                type="button"
+                                onClick={() => openEdit(r)}
+                                className="px-3 py-1 text-[11px] rounded-md bg-blue-100 text-[#0B3B7A] border border-[#0B3B7A]/40"
+                              >
+                                İhbarı Düzenle
+                              </button>
+
                               {canSoftHide(r) && (
                                 <button
                                   type="button"
@@ -450,6 +534,111 @@ export default function AdminReportsPage() {
           )}
         </section>
       </main>
+
+      {editingReport && (
+        <div className="fixed inset-0 bg-black/40 flex items-end justify-center z-50">
+          <div className="w-full max-w-md bg-white rounded-t-2xl p-4 space-y-3">
+            <div className="flex items-center justify-between">
+              <h3 className="text-base font-semibold text-[#0B3B7A]">
+                İhbarı Düzenle
+              </h3>
+              <button
+                onClick={closeEdit}
+                className="text-sm text-gray-500"
+                type="button"
+              >
+                Kapat ✕
+              </button>
+            </div>
+
+            <div className="space-y-2">
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Yakın Olaylar Başlığı
+                </label>
+                <input
+                  value={editTitle}
+                  onChange={(e) => setEditTitle(e.target.value)}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Gösterilecek Konum
+                </label>
+                <input
+                  value={editDisplayLocation}
+                  onChange={(e) => setEditDisplayLocation(e.target.value)}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                />
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {LOCATION_TEMPLATES.map((loc) => (
+                    <button
+                      key={loc}
+                      type="button"
+                      onClick={() => setEditDisplayLocation(loc)}
+                      className="px-2 py-1 text-xs rounded-full border border-[#0B3B7A33] text-[#0B3B7A]"
+                    >
+                      {loc}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Şiddet
+                </label>
+                <select
+                  value={editSeverity}
+                  onChange={(e) =>
+                    setEditSeverity(e.target.value as Severity)
+                  }
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                >
+                  <option value="low">Düşük</option>
+                  <option value="medium">Orta</option>
+                  <option value="high">Yüksek</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">
+                  Açıklama
+                </label>
+                <textarea
+                  value={editDescription}
+                  onChange={(e) =>
+                    setEditDescription(e.target.value)
+                  }
+                  rows={3}
+                  className="w-full border rounded-lg px-3 py-2 text-sm"
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-2 pt-2">
+              <button
+                onClick={handleSave}
+                disabled={isProcessing}
+                className="flex-1 px-3 py-2 text-sm rounded-md bg-[#0B3B7A] text-white disabled:opacity-60"
+                type="button"
+              >
+                {isProcessing ? 'Kaydediliyor…' : 'Kaydet'}
+              </button>
+              <button
+                onClick={closeEdit}
+                disabled={isProcessing}
+                className="px-3 py-2 text-sm rounded-md bg-gray-200 text-gray-800"
+                type="button"
+              >
+                İptal
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <BottomTabs />
     </div>

@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerDb } from '@/lib/firebase-server'
 import { collection, getDocs } from 'firebase/firestore'
 
-const MIN_REPORTS_FOR_EVENT = 3
+const MIN_REPORTS_FOR_EVENT = 1  // ÖNCE 3’TÜ, ARTIK 1
 
 function normalize(str: string | undefined): string {
   if (!str) return ''
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     const {
       window = '24h',
-      // lat, lng, radiusKm, categories şu an kullanılmıyor
+      // lat, lng, radiusKm, categories şu an filtrelemede kullanılmıyor
     } = body as {
       lat?: number
       lng?: number
@@ -56,7 +56,6 @@ export async function POST(req: NextRequest) {
     snap.forEach((docSnap) => {
       const data: any = docSnap.data()
 
-      // zaman filtresi
       let createdAtMs = now
       const rawCreated = data.createdAt
       if (rawCreated?.toDate) {
@@ -76,8 +75,10 @@ export async function POST(req: NextRequest) {
 
       const key = `${normalize(type)}__${normalize(label)}`
       const severity: 'low' | 'medium' | 'high' =
-        data.severity === 'high' || data.severity === 'medium'
-          ? data.severity
+        data.severity === 'high'
+          ? 'high'
+          : data.severity === 'low'
+          ? 'low'
           : 'medium'
 
       const existing = clusters.get(key)
@@ -98,18 +99,20 @@ export async function POST(req: NextRequest) {
       .map((c) => {
         const count = c.reports.length
         const latestTs = Math.max(...c.reports.map((r) => r.ts))
-        const sev: 'low' | 'medium' | 'high' = c.reports.some((r) => r.severity === 'high')
+        const sev: 'low' | 'medium' | 'high' = c.reports.some(
+          (r) => r.severity === 'high'
+        )
           ? 'high'
-          : c.reports.some((r) => r.severity === 'medium')
-          ? 'medium'
-          : 'low'
+          : c.reports.some((r) => r.severity === 'low')
+          ? 'low'
+          : 'medium'
 
         return {
           id: c.key,
           type: c.type,
           title: `${c.label}`,
           ts: latestTs,
-          distKm: 0, // şu an mesafeye göre filtre yok
+          distKm: 0, // şimdilik mesafe yok
           severity: sev,
           meta: {
             address: c.label,
@@ -122,6 +125,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ items }, { status: 200 })
   } catch (e) {
     console.error('nearby error:', e)
-    return NextResponse.json({ items: [], error: 'api exploded' }, { status: 200 })
+    return NextResponse.json(
+      { items: [], error: 'api exploded' },
+      { status: 200 }
+    )
   }
 }

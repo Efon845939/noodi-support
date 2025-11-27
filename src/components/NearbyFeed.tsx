@@ -1,7 +1,8 @@
+// src/components/NearbyFeed.tsx
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getSimIncidents } from '@/lib/nearby-sim'
+import { getSimIncidents, removeSimIncident } from '@/lib/nearby-sim'
 
 type Item = {
   id: string
@@ -17,9 +18,9 @@ type Item = {
 }
 
 export default function NearbyFeed({
-  radiusKm,      // şu an backend radius kullanmıyor ama ayarlardan gelmeye devam etsin
+  radiusKm,
   windowRange,
-  categories,    // backend şu an kategoriyi filtrelemiyor, istersen sonra ekleriz
+  categories,
 }: {
   radiusKm: number
   windowRange: '24h' | '3d' | '7d'
@@ -125,6 +126,11 @@ export default function NearbyFeed({
     }
   }, [radiusKm, windowRange, JSON.stringify(categories)])
 
+  const handleRemoveSim = (id: string) => {
+    removeSimIncident(id)
+    setItems((old) => old.filter((x) => x.id !== id))
+  }
+
   if (err) {
     return (
       <div className="text-sm text-red-600 px-4 py-2">
@@ -151,30 +157,48 @@ export default function NearbyFeed({
 
   return (
     <div className="px-4 py-2 space-y-2">
-      {items.map((x) => (
-        <div
-          key={x.id}
-          className="bg-white border border-[#E7EAF0] rounded-xl p-3 flex items-center justify-between"
-        >
-          <div>
-            <div className="text-[13px] uppercase tracking-wide text-gray-500">
-              {badge(x.type)} • {x.distKm || 0} km
-              {typeof x.meta?.count === 'number' && x.meta.count > 0 && (
-                <> • {x.meta.count} ihbar</>
+      {items.map((x) => {
+        const isSim = x.id.startsWith('sim-')
+        return (
+          <div
+            key={x.id}
+            className="bg-white border border-[#E7EAF0] rounded-xl p-3 flex items-center justify-between gap-3"
+          >
+            <div className="flex-1">
+              <div className="text-[13px] uppercase tracking-wide text-gray-500">
+                {badge(x.type)} • {x.distKm || 0} km
+                {typeof x.meta?.count === 'number' && x.meta.count > 0 && (
+                  <> • {x.meta.count} ihbar</>
+                )}
+              </div>
+              <div className="text-[15px] text-[#102A43] font-semibold">
+                {x.title}
+              </div>
+              {x.meta?.address && (
+                <div className="text-xs text-gray-500">
+                  {x.meta.address}
+                </div>
+              )}
+              {isSim && (
+                <button
+                  type="button"
+                  onClick={() => handleRemoveSim(x.id)}
+                  className="mt-1 text-[11px] text-red-600 underline"
+                >
+                  Bu simülasyonu sil
+                </button>
               )}
             </div>
-            <div className="text-[15px] text-[#102A43] font-semibold">
-              {x.title}
-            </div>
-            {x.meta?.address && (
-              <div className="text-xs text-gray-500">{x.meta.address}</div>
-            )}
+            <span
+              className={`text-xs px-2 py-1 rounded-full ${sev(
+                x.severity
+              )}`}
+            >
+              {x.severity.toUpperCase()}
+            </span>
           </div>
-          <span className={`text-xs px-2 py-1 rounded-full ${sev(x.severity)}`}>
-            {x.severity.toUpperCase()}
-          </span>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }
