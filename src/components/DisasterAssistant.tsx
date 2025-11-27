@@ -100,6 +100,20 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
     }
   }
 
+  const handleMicClick = () => {
+    if (!speechSupported) {
+      alert(
+        'Tarayıcın sesle yazmayı desteklemiyor. Chromium tabanlı bir tarayıcı kullanırsan mikrofon çalışır.'
+      )
+      return
+    }
+    if (listening) {
+      stopListening()
+    } else {
+      startListening()
+    }
+  }
+
   return (
     <div className="space-y-3">
       <form onSubmit={handleSubmit} className="space-y-2">
@@ -123,20 +137,23 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
         />
 
         <div className="flex items-center gap-2">
-          {speechSupported && (
-            <button
-              type="button"
-              onClick={listening ? stopListening : startListening}
-              className={`px-3 py-2 rounded-xl text-sm border ${
-                listening
-                  ? 'bg-red-50 border-red-400 text-red-700'
-                  : 'bg-white border-gray-300 text-gray-700'
-              }`}
-              title="Sesle yaz"
-            >
-              {listening ? 'Dinleniyor…' : '🎙'}
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={handleMicClick}
+            disabled={loading}
+            className={`px-3 py-2 rounded-xl text-sm border ${
+              listening
+                ? 'bg-red-50 border-red-400 text-red-700'
+                : 'bg-white border-gray-300 text-gray-700'
+            }`}
+            title={
+              speechSupported
+                ? 'Sesle yaz'
+                : 'Tarayıcın sesle yazmayı desteklemiyor'
+            }
+          >
+            {listening ? 'Dinleniyor…' : '🎙'}
+          </button>
 
           <button
             type="submit"
@@ -146,6 +163,13 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
             {loading ? 'Gönderiliyor…' : 'Gönder'}
           </button>
         </div>
+
+        {!speechSupported && (
+          <p className="text-[11px] text-gray-500">
+            Mikrofon için ses tanıma desteği olan bir tarayıcı (örneğin
+            Chromium tabanlı) kullanman gerekir.
+          </p>
+        )}
       </form>
 
       {error && (
