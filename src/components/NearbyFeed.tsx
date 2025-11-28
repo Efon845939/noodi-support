@@ -5,17 +5,27 @@ import { useEffect, useState } from 'react'
 import { getFirebaseDb } from '@/lib/firebase'
 import { collection, getDocs } from 'firebase/firestore'
 
-type Item = {
+type Report = {
   id: string
   type: string
   title: string
   ts: number
   distKm: number
-  severity: 'low' | 'medium' | 'high'
   meta?: {
     address?: string
   }
 }
+
+type Cluster = {
+  key: string
+  type: string
+  address: string
+  count: number
+  minDistKm: number
+  latestTs: number
+}
+
+const MIN_REPORTS_FOR_EVENT = 10
 
 function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   const R = 6371
@@ -33,15 +43,12 @@ function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
 export default function NearbyFeed({
   radiusKm,
   windowRange,
-  // imza bozulmasın diye alıyoruz ama kullanmıyoruz
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  categories,
 }: {
   radiusKm: number
   windowRange: '24h' | '3d' | '7d'
-  categories?: string[]
+  categories?: string[] // imza uyumu için, kullanılmıyor
 }) {
-  const [items, setItems] = useState<Item[]>([])
+  const [clusters, setClusters] = useState<Cluster[]>([])
   const [err, setErr] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -49,7 +56,7 @@ export default function NearbyFeed({
     let cancelled = false
     setLoading(true)
     setErr('')
-    setItems([])
+    setClusters([])
 
     const db = getFirebaseDb()
     if (!db) {
@@ -75,7 +82,7 @@ export default function NearbyFeed({
       try {
         const snap = await getDocs(collection(db, 'reports'))
         const now = Date.now()
-        const res: Item[] = []
+        const reports: Report[] = []
 
         snap.forEach((docSnap) => {
           const data: any = docSnap.data()
@@ -99,37 +106,64 @@ export default function NearbyFeed({
           const dist = haversineKm(lat, lng, rLat, rLng)
           if (dist > radiusKm) return
 
-          const severity: 'low' | 'medium' | 'high' =
-            data.severity === 'high'
-              ? 'high'
-              : data.severity === 'low'
-              ? 'low'
-              : 'medium'
-
-          res.push({
+          reports.push({
             id: docSnap.id,
             type: data.type || 'other',
             title: data.title || loc.address || 'Yakın ihbar',
             ts: createdAtMs,
             distKm: Math.round(dist),
-            severity,
             meta: {
               address: loc.address || undefined,
             },
           })
         })
 
-        res.sort((a, b) => b.ts - a.ts)
+        // tür + adres bazlı cluster
+        const map = new Map<string, Cluster>()
+
+        for (const r of reports) {
+          const addr =
+            r.meta?.address?.trim() || 'Konum belirtilmemiş'
+          const key = `${r.type}__${addr}`
+
+          const existing = map.get(key)
+          if (existing) {
+            existing.count += 1
+            if (r.distKm < existing.minDistKm) {
+              existing.minDistKm = r.distKm
+            }
+            if (r.ts > existing.latestTs) {
+              existing.latestTs = r.ts
+            }
+          } else {
+            map.set(key, {
+              key,
+              type: r.type,
+              address: addr,
+              count: 1,
+              minDistKm: r.distKm,
+              latestTs: r.ts,
+            })
+          }
+        }
+
+        let cls = Array.from(map.values())
+
+        // eşik: en az MIN_REPORTS_FOR_EVENT ihbar
+        cls = cls.filter((c) => c.count >= MIN_REPORTS_FOR_EVENT)
+
+        // yeni tarih en üstte
+        cls.sort((a, b) => b.latestTs - a.latestTs)
 
         if (!cancelled) {
-          setItems(res)
+          setClusters(cls)
           setLoading(false)
         }
       } catch (e) {
         console.error('NearbyFeed Firestore error:', e)
         if (!cancelled) {
-          setErr('Yakın ihbarlar alınırken hata oluştu.')
-          setItems([])
+          setErr('Yakın olaylar alınırken hata oluştu.')
+          setClusters([])
           setLoading(false)
         }
       }
@@ -166,46 +200,38 @@ export default function NearbyFeed({
   if (loading) {
     return (
       <div className="text-sm text-gray-500 px-4 py-2">
-        Yakın ihbarlar yükleniyor…
+        Yakın olaylar yükleniyor…
       </div>
     )
   }
 
-  if (!items.length) {
+  if (!clusters.length) {
     return (
       <div className="text-sm text-gray-500 px-4 py-2">
-        Yakınında seçilen zaman aralığında ihbar yok.
+        Yakınında eşik sayısına ulaşan (en az {MIN_REPORTS_FOR_EVENT} ihbar)
+        olay yok.
       </div>
     )
   }
 
   return (
     <div className="px-4 py-2 space-y-2">
-      {items.map((x) => (
+      {clusters.map((c) => (
         <div
-          key={x.id}
+          key={c.key}
           className="bg-white border border-[#E7EAF0] rounded-xl p-3 flex items-center justify-between gap-3"
         >
           <div className="flex-1">
             <div className="text-[13px] uppercase tracking-wide text-gray-500">
-              {badge(x.type)} • {x.distKm} km
+              {badge(c.type)} • {c.minDistKm} km
             </div>
             <div className="text-[15px] text-[#102A43] font-semibold">
-              {x.title}
+              {c.address}
             </div>
-            {x.meta?.address && (
-              <div className="text-xs text-gray-500">
-                {x.meta.address}
-              </div>
-            )}
+            <div className="text-xs text-gray-600 mt-1">
+              {c.count} ihbar
+            </div>
           </div>
-          <span
-            className={`text-xs px-2 py-1 rounded-full ${sev(
-              x.severity
-            )}`}
-          >
-            {x.severity.toUpperCase()}
-          </span>
         </div>
       ))}
     </div>
@@ -232,12 +258,4 @@ function badge(t: string) {
     default:
       return 'Olay'
   }
-}
-
-function sev(s: 'low' | 'medium' | 'high') {
-  return s === 'high'
-    ? 'bg-red-100 text-red-700'
-    : s === 'medium'
-    ? 'bg-amber-100 text-amber-700'
-    : 'bg-gray-200 text-gray-700'
 }
