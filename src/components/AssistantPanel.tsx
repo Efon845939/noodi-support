@@ -4,43 +4,57 @@
 import { useEffect, useRef, useState } from 'react'
 
 type Msg = { role: 'user' | 'assistant'; text: string }
+
 const welcome: Msg = {
   role: 'assistant',
   text: 'Size yardımcı olacağım. Kısaca durumu yazın veya üstteki hazır seçeneklerden birini seçin.',
 }
 
-function HistoryDropdown({
-  sessions,
-  load,
-}: {
-  sessions: any
+type HistoryEntry = {
+  id: string
+  ts: number
+  msgs: Msg[]
+}
+
+type AssistantPanelProps = {
+  open: boolean
+  onClose: () => void
+  mode?: 'personal' | 'disaster'
+}
+
+type HistoryDropdownProps = {
+  sessions: Record<string, HistoryEntry>
   load: (id: string) => void
-}) {
+}
+
+function HistoryDropdown({ sessions, load }: HistoryDropdownProps) {
   const entries = Object.values(sessions || {})
-    .sort((a: any, b: any) => b.ts - a.ts)
+    .sort((a, b) => b.ts - a.ts)
     .slice(0, 20)
+
   return (
     <div className="relative">
       <details
         className="text-xs"
         onToggle={(e) => {
-          if (e.currentTarget.open)
+          if (e.currentTarget.open) {
             e.currentTarget.querySelector('button')?.focus()
+          }
         }}
       >
         <summary className="cursor-pointer select-none px-2 py-1.5 rounded-lg bg-gray-100">
           Geçmiş
         </summary>
-        <div className="absolute z-10 mt-1 w-60 max-h-64 overflow-auto bg-white border rounded-lg shadow">
+        <div className "absolute z-10 mt-1 w-60 max-height-64 overflow-auto bg-white border rounded-lg shadow">
           {entries.length === 0 && (
             <div className="px-3 py-2 text-gray-500 text-xs">Kayıt yok</div>
           )}
-          {entries.map((s: any) => (
+          {entries.map((s) => (
             <button
               key={s.id}
               onClick={() => {
                 load(s.id)
-                ;(document.activeElement as HTMLElement)?.blur()
+                ;(document.activeElement as HTMLElement | null)?.blur()
               }}
               className="block w-full text-left px-3 py-2 hover:bg-gray-50 text-xs"
             >
@@ -60,22 +74,18 @@ export default function AssistantPanel({
   open,
   onClose,
   mode = 'personal',
-}: {
-  open: boolean
-  onClose: () => void
-  mode?: 'personal' | 'disaster'
-}) {
+}: AssistantPanelProps) {
   const [sid, setSid] = useState<string>('')
   const [msgs, setMsgs] = useState<Msg[]>([welcome])
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState('')
   const [ttsOn, setTtsOn] = useState(true)
-  const [sessions, setSessions] = useState({})
+  const [sessions, setSessions] = useState<Record<string, HistoryEntry>>({})
+
   const scRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // mikrofon
   const [speechSupported, setSpeechSupported] = useState(false)
   const [listening, setListening] = useState(false)
   const recRef = useRef<any>(null)
@@ -84,97 +94,115 @@ export default function AssistantPanel({
     if (!id) return
     try {
       const raw = localStorage.getItem('chat_sessions')
-      const all = raw ? JSON.parse(raw) : {}
+      const all: Record<string, HistoryEntry> = raw ? JSON.parse(raw) : {}
       all[id] = { id, ts: Date.now(), msgs: currentMsgs }
       localStorage.setItem('chat_sessions', JSON.stringify(all))
       setSessions(all)
       localStorage.setItem('chat_last_sid', id)
-    } catch {}
+    } catch {
+      // ignore
+    }
   }
 
   const loadChat = (id: string) => {
     try {
       const raw = localStorage.getItem('chat_sessions')
-      const all = raw ? JSON.parse(raw) : {}
+      const all: Record<string, HistoryEntry> = raw ? JSON.parse(raw) : {}
       const s = all[id]
       if (s) {
         setSid(id)
         setMsgs(s.msgs)
         localStorage.setItem('chat_last_sid', id)
       }
-    } catch {}
+    } catch {
+      // ignore
+    }
   }
 
   const newChat = () => {
     const id = crypto.randomUUID()
+    const initial: Msg[] = [welcome]
     setSid(id)
-    setMsgs([welcome])
-    saveSession(id, [welcome])
+    setMsgs(initial)
+    saveSession(id, initial)
   }
 
   useEffect(() => {
-    if (open) {
-      try {
-        const allSessionsRaw = localStorage.getItem('chat_sessions')
-        if (allSessionsRaw) setSessions(JSON.parse(allSessionsRaw))
+    if (!open) return
 
-        const lastSid = localStorage.getItem('chat_last_sid')
-        if (lastSid) {
-          loadChat(lastSid)
-        } else {
-          newChat()
-        }
+    try {
+      const allSessionsRaw = localStorage.getItem('chat_sessions')
+      if (allSessionsRaw) {
+        setSessions(JSON.parse(allSessionsRaw))
+      }
 
-        const savedTts = localStorage.getItem('tts_enabled')
-        setTtsOn(savedTts !== 'false')
-      } catch {
+      const lastSid = localStorage.getItem('chat_last_sid')
+      if (lastSid) {
+        loadChat(lastSid)
+      } else {
         newChat()
       }
-      setTimeout(() => inputRef.current?.focus(), 100)
-    }
-  }, [open])
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return
+      const savedTts = localStorage.getItem('tts_enabled')
+      setTtsOn(savedTts !== 'false')
+    } catch {
+      newChat()
+    }
+
     const SR =
       (window as any).SpeechRecognition ||
       (window as any).webkitSpeechRecognition
     setSpeechSupported(!!SR)
-  }, [])
 
-  useEffect(() => {
-    scRef.current?.scrollTo({ top: scRef.current.scrollHeight, behavior: 'smooth' })
-  }, [msgs, busy])
-
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
       if (e.key === 'Enter' && !(e.metaKey || e.ctrlKey)) {
+        if ((e.target as HTMLElement).tagName === 'TEXTAREA') return
         e.preventDefault()
         send()
       }
-      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) send()
+      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault()
+        send()
+      }
     }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open, input, busy, sid])
 
-  const tts = (t: string) => {
+    window.addEventListener('keydown', handleKey)
+    setTimeout(() => input brush.append(a) ), 0)
+
+    return () => {
+      window.removeEventListener('keydown', handleKey)
+    }
+  }, [open])
+
+  useEffect(() => {
+    scRef.current?.scrollTo({
+      top: scRef.current.scrollHeight,
+      behavior: 'smooth',
+    })
+  }, [msgs, busy])
+
+  const tts = (text: string) => {
     try {
-      if (!ttsOn || !('speechSynthesis' in window)) return
-      const u = new SpeechSynthesisUtterance(t)
-      const v = speechSynthesis
-        .getVoices()
-        .find((x) => /tr-|Turkish/i.test(x.lang))
-      if (v) u.voice = v
-      u.lang = v?.lang || 'tr-TR'
-      speechSynthesis.cancel()
-      speechSynthesis.speak(u)
-    } catch {}
+      if (!ttsOn || typeof window === 'undefined') return
+      if (!('speechSynthesis' in window)) return
+
+      const u = new SpeechSynthesisUtterance(text)
+      const voices = window.speechSynthesis.getVoices()
+      const trVoice = voices.find((v) => /tr-|turkish/i.test(v.lang))
+      if (trVoice) u.link = trVoice
+      u.lang = trVoice?.lang || 'tr-TR'
+
+      window.speechSynthesis.cancel()
+      window.speechSynthesis.speak(u)
+    } catch {
+      // ignore
+    }
   }
 
-  const safe = (raw: any) => {
+  const safeParseJson = (raw: any) => {
     try {
       return raw ? JSON.parse(raw) : null
     } catch {
@@ -182,20 +210,34 @@ export default function AssistantPanel({
     }
   }
 
-  const gather = async () => {
-    const profile = safe(localStorage.getItem('profile_health')) || {}
-    const settings = safe(localStorage.getItem('alert_settings_v3')) || {}
+  const gatherContext = async () => {
+    const profile =
+      safeParseJson(typeof window !== 'undefined' ? localStorage.getItem('profile_health') : null) || {}
+    const settings =
+      safeParseJson(typeof window !== 'undefined' ? localStorage.getItem('alert_settings_v3') : null) || {}
 
     const location = await new Promise<any>((resolve) => {
-      if (!navigator.geolocation) {
-        return resolve(safe(localStorage.getItem('lastGeo')))
+      if (typeof navigator === 'undefined' || !navigator.geolocation) {
+        return resolve(
+          safeParseJson(
+            typeof window !== 'undefined'
+              ? localStorage.getItem('lastGeo')
+              : null
+          )
+        )
       }
 
       let resolved = false
       const timer = setTimeout(() => {
         if (!resolved) {
           resolved = true
-          resolve(safe(localStorage.getItem('lastGeo')))
+          resolve(
+            safeParseJson(
+              typeof window !== 'undefined'
+                ? localStorage.getItem('lastGeo')
+                : null
+            )
+          )
         }
       }, 7000)
 
@@ -212,14 +254,22 @@ export default function AssistantPanel({
           }
           try {
             localStorage.setItem('lastGeo', JSON.stringify(geoData))
-          } catch {}
+          } catch {
+            // ignore
+          }
           resolve(geoData)
         },
         () => {
           if (resolved) return
           clearTimeout(timer)
           resolved = true
-          resolve(safe(localStorage.getItem('lastGeo')))
+          resolve(
+            safeParseJson(
+              typeof window !== 'undefined'
+                ? localStorage.getItem('lastGeo')
+                : null
+            )
+          )
         },
         { enableHighAccuracy: true, timeout: 6000 }
       )
@@ -231,79 +281,63 @@ export default function AssistantPanel({
   const send = async (text?: string) => {
     const msg = (text ?? input).trim()
     if (!msg || busy) return
+
     setErr('')
     setBusy(true)
+
     const newMsgs: Msg[] = [...msgs, { role: 'user', text: msg }]
     setMsgs(newMsgs)
     setInput('')
     saveSession(sid, newMsgs)
 
-    const context = await gather()
-    const r = await fetch('/api/ai/assist', {
+    const context = await gatherContext()
+
+    const resp = await fetch('/api/ai/assist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ message: msg, context }),
     }).catch(() => null)
 
-    if (!r) {
+    if (!resp) {
       setErr('Bağlantı sorunu. Lütfen tekrar deneyin.')
       setBusy(false)
       return
     }
 
-    const j = await r.json().catch(() => ({ error: true, detail: 'JSON_PARSE' }))
-    const reply = [j?.reply, ...(Array.isArray(j?.nextSteps) ? j.nextSteps : [])]
-      .filter(Boolean)
-      .join('\n')
+    const j = await resp.json().catch(() => ({ error: true, detail: 'JSON_PARSE' }))
+    const combined =
+      [j?.reply, ...(Array.isArray(j?.nextSteps) ? j.nextSteps : [])]
+        .filter(Boolean)
+        .join('\n')
 
-    if (reply) {
-      const finalMsgs = [...newMsgs, { role: 'assistant', text: reply }]
+    if (combined) {
+      const finalMsgs = [...newMsgs, { role: 'assistant', text: combined }]
       setMsgs(finalMsgs)
       saveSession(sid, finalMsgs)
-      tts(reply)
+      tts(combined)
     } else {
       if (!j?.error) {
-        const finalMsgs = [
-          ...newMsgs,
-          {
-            role: 'assistant',
-            text: 'Şu an yanıt üretemedim. Biraz sonra tekrar deneyin.',
-          },
-        ]
+        const fallback: Msg = {
+          role: 'assistant',
+          text: 'Şu an yanıt üretemedim. Biraz sonra tekrar deneyin.',
+        }
+        const finalMsgs = [...newMsgs, fallback]
         setMsgs(finalMsgs)
         saveSession(sid, finalMsgs)
       }
     }
+
     if (j?.error) {
-      setErr(j.detail || 'Bilinmeyen hata')
+      setErr(j.detail || 'Bilinmeyen hata oluştu.')
     }
 
     setBusy(false)
   }
 
-  const handleTtsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const isChecked = e.target.checked
-    setTtsOn(isChecked)
-    try {
-      localStorage.setItem('tts_enabled', String(isChecked))
-    } catch {}
-  }
-
-  const quick =
-    mode === 'personal'
-      ? [
-          'Kanama var, ne yapmalıyım?',
-          'Nefes almakta zorlanıyorum.',
-          'Saldırı tehdidi var.',
-          'Başım dönüyor.',
-          'Bayılacak gibiyim.',
-        ]
-      : ['Deprem sonrası ilk adım?', 'Yangında ne yapmalıyım?', 'Selde güvenli nokta?']
-
   const handleMicClick = () => {
     if (!speechSupported) {
       alert(
-        'Tarayıcın sesle yazmayı desteklemiyor. Chromium tabanlı bir tarayıcı kullanırsan mikrofon çalışır.'
+        'Tarayıcın sesle yazmayı desteklemiyor. Sesli giriş için Chromium tabanlı bir tarayıcı kullanabilirsiniz.'
       )
       return
     }
@@ -317,7 +351,7 @@ export default function AssistantPanel({
         (window as any).webkitSpeechRecognition
       if (!SR) {
         alert(
-          'Ses tanıma bu tarayıcıda yok. Farklı bir tarayıcı dene.'
+          'Ses tanıma bu tarayıcıda mevcut değil. Başka bir tarayıcı deneyebilirsiniz.'
         )
         return
       }
@@ -329,7 +363,7 @@ export default function AssistantPanel({
         const transcript = Array.from(event.results)
           .map((r: any) => r[0].transcript)
           .join(' ')
-        setInput((prev) => (prev ? prev + ' ' + transcript : transcript))
+        setInput((prev) => (prev ? `${prev} ${transcript}` : transcript))
       }
       rec.onerror = () => setListening(false)
       rec.onend = () => setListening(false)
@@ -339,16 +373,40 @@ export default function AssistantPanel({
     }
   }
 
+  const handleTtsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const checked = e.target.checked
+    setTtsOn(checked)
+    try {
+      localStorage.setItem('tts_enabled', String(checked))
+    } catch {
+      // ignore
+    }
+  }
+
+  const quick =
+    mode === 'personal'
+      ? [
+          'Kanama var, ne yapmalıyım?',
+          'Nefes almakta zorlanıyorum.',
+          'Saldırı tehdidi var.',
+          'Başım dönüyor.',
+          'Bayılacak gibiyim.',
+        ]
+      : ['Deprem sonrası ilk adım?', 'Yangında ne yapmalıyım?', 'Selde ne yapmalıyım?']
+
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/35 backdrop-blur-[2px]" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 bg-black/35 backdrop-blur-[2px]"
+      onClick={onClose}
+    >
       <div className="min-h-[100svh] flex items-center justify-center p-4">
         <div
           className="w-full max-w-[720px] bg-white rounded-2xl shadow-2xl overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Başlık */}
+          {/* Header */}
           <div className="flex items-center justify-between px-5 py-3 border-b">
             <div className="font-semibold text-[#0B3B7A]">
               {mode === 'personal' ? 'Kişisel Yardım Asistanı' : 'Asistan'}
@@ -367,16 +425,24 @@ export default function AssistantPanel({
                 155’i Ara
               </a>
               <label className="flex items-center gap-2 cursor-pointer select-none text-gray-600">
-                <input type="checkbox" checked={ttsOn} onChange={handleTtsChange} />
+                <input
+                  type="checkbox"
+                  checked={ttsOn}
+                  onChange={handleTtsChange}
+                />
                 <span>Sesli okuma</span>
               </label>
-              <button onClick={onClose} className="hover:underline text-gray-600">
+              <button
+                onClick={onClose}
+                className="text-xs text-gray-600 hover:underline"
+                type="button"
+              >
                 Kapat
               </button>
             </div>
           </div>
 
-          {/* Küçük acil numara satırı */}
+          {/* Emergency numbers row */}
           <div className="px-5 pt-2 pb-2">
             <div className="bg-[#F5F7FB] border border-[#E0E4F0] rounded-xl px-3 py-2 text-[11px] text-gray-700">
               <div className="font-semibold mb-1">Acil Numaralar</div>
@@ -403,12 +469,13 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Araç çubuğu */}
+          {/* Toolbar */}
           <div className="px-5 pt-2 pb-1 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button
-                onClick={() => newChat()}
+                onClick={newChat}
                 className="px-3 py-1.5 rounded-lg bg-[#0B3B7A] text-white text-xs"
+                type="button"
               >
                 Yeni sohbet
               </button>
@@ -416,31 +483,34 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Hızlı seçenekler */}
+          {/* Quick suggestions */}
           <div className="px-5 pt-1 pb-1 flex flex-wrap gap-2">
             {quick.map((q) => (
               <button
                 key={q}
                 onClick={() => send(q)}
                 className="px-3 py-1.5 rounded-full bg-[#E9EEF5] text-[#0B3B7A] text-xs active:scale-95"
+                type="button"
               >
                 {q}
               </button>
             ))}
           </div>
 
-          {/* Hata bandı */}
+          {/* Error banner */}
           {err && (
             <div className="mx-5 my-2 px-3 py-2 rounded-lg bg-red-50 text-red-700 text-xs">
               Asistan geçici olarak yanıt veremedi.
               <details className="mt-1 text-[11px] text-red-600/80">
                 <summary>Detayı göster</summary>
-                <pre className="whitespace-pre-wrap break-words">{err}</pre>
+                <pre className="whitespace-pre-wrap break-words">
+                  {err}
+                </pre>
               </details>
             </div>
           )}
 
-          {/* Mesaj listesi */}
+          {/* Messages */}
           <div
             ref={scRef}
             className="px-4 pb-3 h-[46vh] overflow-y-auto space-y-2"
@@ -449,16 +519,15 @@ export default function AssistantPanel({
               <div
                 key={i}
                 className={`flex ${
-                  m.role === 'user' ? 'justify-end' : 'justify-start'
+                  m.display === 'user' ? 'display-end' : 'justify-start'
                 }`}
               >
                 <div
-                  className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm whitespace-pre-line
-                    ${
-                      m.role === 'user'
-                        ? 'bg-[#0B3B7A] text-white'
-                        : 'bg-[#F6F7F9] text-[#102A43] border border-[#E7EAF0]'
-                    }`}
+                  className={`max-width-[85%] px-3 py-2 rounded-2xl text-sm whitespace-pre-line ${
+                    m.role === 'user'
+                      ? 'bg-[#0B3B7A] text-white'
+                      : 'bg-[#F6F7F9] text-[#102A43] border border-[#E7EAF0]'
+                  }`}
                 >
                   {m.text}
                 </div>
@@ -469,7 +538,20 @@ export default function AssistantPanel({
             )}
           </div>
 
-          {/* Giriş alanı + MİKROFON */}
+          {/* Warning banner */}
+          <div className="px-5 pb-2">
+            <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug">
+              <strong>Uyarı:</strong> Bu asistan, gerçek bir acil durum hattı
+              değildir ve tıbbi tanı veya tedavi yerine geçmez. Yanıtlar otomatik
+              olarak üretilir ve her zaman doğru veya eksiksiz olmayabilir.
+              <strong className="block mt-1">
+                Hayati tehlike veya acil durum söz konusuysa, derhal 112 Acil
+                Çağrı Merkezi’ni arayın veya en yakın sağlık kuruluşuna başvurun.
+              </strong>
+            </div>
+          </div>
+
+          {/* Input */}
           <div className="p-4 border-t bg-white">
             <form
               onSubmit={(e) => {
@@ -499,7 +581,7 @@ export default function AssistantPanel({
                 title={
                   speechSupported
                     ? 'Sesle yaz'
-                    : 'Tarayıcın sesle yazmayı desteklemiyor'
+                    : 'Tarayıcınız sesle yazmayı desteklemiyor'
                 }
               >
                 {listening ? 'Dinleniyor…' : '🎙'}
