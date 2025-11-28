@@ -26,12 +26,16 @@ export default function HeaderBar({
             onClick={() => router.back()}
             className="p-1 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/40 shrink-0"
           >
-            {/* İstersen lucide-react ile ikon ekleriz, şimdilik basit ok */}
             <span className="text-lg leading-none">←</span>
           </button>
         )}
 
-        <div className="flex items-center gap-2 min-w-0">
+        {/* LOGO + BAŞLIK BURADA TIKLANABİLİR */}
+        <button
+          type="button"
+          onClick={() => router.push('/')}
+          className="flex items-center gap-2 min-w-0 focus:outline-none hover:opacity-90 active:scale-[0.98] transition"
+        >
           <div className="relative w-7 h-7 shrink-0">
             <Image
               src="/logos/noodi-support.png"
@@ -41,10 +45,10 @@ export default function HeaderBar({
               priority
             />
           </div>
-          <span className="font-semibold text-sm truncate">
+          <span className="font-semibold text-sm truncate text-left">
             {title || 'Noodi Support'}
           </span>
-        </div>
+        </button>
       </div>
 
       <div className="flex items-center gap-2 shrink-0">

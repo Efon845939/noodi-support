@@ -573,20 +573,17 @@ export default function AssistantPanel({
             )}
           </div>
 
-          {/* UYARI BANDI */}
-          <div className="px-5 pb-2">
-            <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug">
-              <strong>Uyarı:</strong> Bu asistan resmi bir acil çağrı hattı
-              değildir ve tıbbi muayene, teşhis veya tedavi yerine geçmez.
-              Yanıtlar yapay zeka tarafından üretilir ve her zaman eksiksiz
-              veya doğru olmayabilir.
-              <strong className="block mt-1">
-                Hayati tehlike veya acil durum söz konusuysa derhal 112 Acil
-                Çağrı Merkezi’ni arayın veya en yakın sağlık kuruluşuna
-                başvurun.
-              </strong>
-            </div>
-          </div>
+        {/* WARNING */}
+<div className="px-5 pb-3">
+  <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug shadow-sm">
+    <strong>Dikkat:</strong> Bu asistan bir acil çağrı sistemi değildir.
+    Yanıtlar yapay zeka tarafından otomatik oluşturulur ve
+    <strong> kritik durumlarda hatalı veya eksik olabilir.</strong>
+    <span className="block mt-1">
+      Gerçek bir tehlike varsa derhal <strong>112 Acil Çağrı Merkezi</strong>’ni arayın.
+    </span>
+  </div>
+</div>
 
           {/* Giriş alanı */}
           <div className=" p-4 border-t bg-white">
