@@ -171,6 +171,15 @@ export default function DisasterAssistant({ type }: DisasterAssistantProps) {
           </p>
         )}
       </form>
+      {/* GEMINI UYARI BANDI */}
+<div className="px-5 pb-3">
+  <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug">
+    <strong>Uyarı:</strong> Bu asistan acil durum hattı değildir.  
+    Yapay zeka zaman zaman hatalı, eksik veya gecikmeli yanıt verebilir.  
+    <strong>Gerçek tehlike durumlarında her zaman önce 112 Acil Çağrı Merkezi’ni arayın.</strong>
+  </div>
+</div>
+
 
       {error && (
         <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2">
