@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from 'react'
 
 type Msg = { role: 'user' | 'assistant'; text: string }
 
-const WELCOME: Msg = {
-  role: 'assistant',
-  text: 'Size yardımcı olacağım. Kısaca durumu yazın veya üstteki hazır seçeneklerden birini seçin.',
+type HistoryEntry = {
+  id: string
+  ts: number
+  msgs: Msg[]
 }
 
 type AssistantPanelProps = {
@@ -15,16 +16,81 @@ type AssistantPanelProps = {
   mode?: 'personal' | 'disaster'
 }
 
+const WELCOME: Msg = {
+  role: 'assistant',
+  text: 'Size yardımcı olacağım. Kısaca durumu yazın veya üstteki hazır seçeneklerden birini seçin.',
+}
+
+function safeParse<T = any>(raw: string | null): T | null {
+  try {
+    return raw ? (JSON.parse(raw) as T) : null
+  } catch {
+    return null
+  }
+}
+
+function HistoryDropdown({
+  sessions,
+  load,
+}: {
+  sessions: Record<string, HistoryEntry>
+  load: (id: string) => void
+}) {
+  const entries = Object.values(sessions || {})
+    .sort((a, b) => b.ts - a.ts)
+    .slice(0, 20)
+
+  return (
+    <div className="relative">
+      <details
+        className="text-xs"
+        onToggle={(e) => {
+          if (e.currentTarget.open) {
+            const btn = e.currentTarget.querySelector('button')
+            if (btn) btn.focus()
+          }
+        }}
+      >
+        <summary className="cursor-pointer select-none px-2 py-1.5 rounded-lg bg-gray-100">
+          Geçmiş
+        </summary>
+        <div className="absolute z-10 mt-1 w-60 max-h-64 overflow-auto bg-white border rounded-lg shadow">
+          {entries.length === 0 && (
+            <div className="px-3 py-2 text-gray-500 text-xs">Kayıt yok</div>
+          )}
+          {entries.map((s) => (
+            <button
+              key={s.id}
+              onClick={() => {
+                load(s.id)
+                ;(document.activeElement as HTMLElement | null)?.blur()
+              }}
+              className="block w-full text-left px-3 py-2 hover:bg-gray-50 text-xs"
+            >
+              {new Date(s.ts).toLocaleString('tr-TR', { hour12: false })} —{' '}
+              {s.msgs?.[1]?.text?.slice(0, 40) ||
+                s.msgs?.[0]?.text?.slice(0, 40) ||
+                'Sohbet'}
+            </button>
+          ))}
+        </div>
+      </details>
+    </div>
+  )
+}
+
 export default function AssistantPanel({
   open,
   onClose,
   mode = 'personal',
 }: AssistantPanelProps) {
+  const [sid, setSid] = useState<string>('')
   const [msgs, setMsgs] = useState<Msg[]>([WELCOME])
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState('')
   const [ttsOn, setTtsOn] = useState(true)
+  const [sessions, setSessions] = useState<Record<string, HistoryEntry>>({})
 
   const [speechSupported, setSpeechSupported] = useState(false)
   const [listening, setListening] = useState(false)
@@ -33,21 +99,61 @@ export default function AssistantPanel({
   const scRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Panel açılınca temel ayarları yükle
+  // Panel açılınca session ve ayarları yükle
   useEffect(() => {
     if (!open) return
 
-    setMsgs([WELCOME])
-    setErr('')
+    try {
+      const raw = typeof window !== 'undefined'
+        ? window.localStorage.getItem('chat_sessions')
+        : null
+      const all = safeParse<Record<string, HistoryEntry>>(raw) || {}
 
-    if (typeof window !== 'undefined') {
-      const savedTts = localStorage.getItem('tts_enabled')
+      const lastId =
+        typeof window !== 'undefined'
+          ? window.localStorage.getItem('chat_last_sid')
+          : null
+
+      setSessions(all)
+
+      if (lastId && all[lastId]) {
+        setSid(lastId)
+        setMsgs(all[lastId].msgs)
+      } else {
+        const id = crypto.randomUUID()
+        const initial = [WELCOME]
+        setSid(id)
+        setMsgs(initial)
+        const updated: Record<string, HistoryEntry> = {
+          ...all,
+          [id]: { id, ts: Date.now(), msgs: initial },
+        }
+        setSessions(updated)
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem(
+            'chat_sessions',
+            JSON.stringify(updated)
+          )
+          window.localStorage.setItem('chat_last_sid', id)
+        }
+      }
+
+      const savedTts =
+        typeof window !== 'undefined'
+          ? window.localStorage.getItem('tts_enabled')
+          : null
       setTtsOn(savedTts !== 'false')
 
-      const SR =
-        (window as any).SpeechRecognition ||
-        (window as any).webkitSpeechRecognition
-      setSpeechSupported(!!SR)
+      if (typeof window !== 'undefined') {
+        const SR =
+          (window as any).SpeechRecognition ||
+          (window as any).webkitSpeechRecognition
+        setSpeechSupported(!!SR)
+      }
+    } catch {
+      const id = crypto.randomUUID()
+      setSid(id)
+      setMsgs([WELCOME])
     }
 
     const handleKey = (e: KeyboardEvent) => {
@@ -73,7 +179,7 @@ export default function AssistantPanel({
     }
   }, [open, onClose])
 
-  // Mesaj geldikçe aşağı kay
+  // Mesajlar değişince scroll
   useEffect(() => {
     if (!scRef.current) return
     scRef.current.scrollTo({
@@ -82,27 +188,64 @@ export default function AssistantPanel({
     })
   }, [msgs, busy])
 
-  const safeParse = (raw: string | null) => {
+  const saveSession = (id: string, list: Msg[]) => {
     try {
-      return raw ? JSON.parse(raw) : null
+      const raw =
+        typeof window !== 'undefined'
+          ? window.localStorage.getItem('chat_sessions')
+          : null
+      const all = safeParse<Record<string, HistoryEntry>>(raw) || {}
+      all[id] = { id, ts: Date.now(), msgs: list }
+      setSessions(all)
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('chat_sessions', JSON.stringify(all))
+        window.localStorage.setItem('chat_last_sid', id)
+      }
     } catch {
-      return null
+      // boş ver
     }
+  }
+
+  const loadChat = (id: string) => {
+    try {
+      const raw =
+        typeof window !== 'undefined'
+          ? window.localStorage.getItem('chat_sessions')
+          : null
+      const all = safeParse<Record<string, HistoryEntry>>(raw) || {}
+      const entry = all[id]
+      if (!entry) return
+      setSid(id)
+      setMsgs(entry.msgs)
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('chat_last_sid', id)
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  const handleNewChat = () => {
+    const id = crypto.randomUUID()
+    const initial = [WELCOME]
+    setSid(id)
+    setMsgs(initial)
+    saveSession(id, initial)
   }
 
   async function gatherContext() {
     const profile =
       typeof window !== 'undefined'
-        ? safeParse(localStorage.getItem('profile_health'))
+        ? safeParse<any>(localStorage.getItem('profile_health'))
         : null
     const settings =
       typeof window !== 'undefined'
-        ? safeParse(localStorage.getItem('alert_settings_v3'))
+        ? safeParse<any>(localStorage.getItem('alert_settings_v3'))
         : null
 
     const location =
       typeof navigator === 'undefined' || !navigator.geolocation
-        ? safeParse(
+        ? safeParse<any>(
             typeof window !== 'undefined'
               ? localStorage.getItem('lastGeo')
               : null
@@ -113,7 +256,7 @@ export default function AssistantPanel({
               if (!resolved) {
                 resolved = true
                 resolve(
-                  safeParse(
+                  safeParse<any>(
                     typeof window !== 'undefined'
                       ? localStorage.getItem('lastGeo')
                       : null
@@ -135,9 +278,7 @@ export default function AssistantPanel({
                 }
                 try {
                   localStorage.setItem('lastGeo', JSON.stringify(geoData))
-                } catch {
-                  // ignore
-                }
+                } catch {}
                 resolve(geoData)
               },
               () => {
@@ -145,7 +286,7 @@ export default function AssistantPanel({
                 resolved = true
                 clearTimeout(timer)
                 resolve(
-                  safeParse(
+                  safeParse<any>(
                     typeof window !== 'undefined'
                       ? localStorage.getItem('lastGeo')
                       : null
@@ -156,7 +297,11 @@ export default function AssistantPanel({
             )
           })
 
-    return { profile: profile || {}, settings: settings || {}, location }
+    return {
+      profile: profile || {},
+      settings: settings || {},
+      location,
+    }
   }
 
   async function handleSend(text?: string) {
@@ -169,6 +314,7 @@ export default function AssistantPanel({
     const newMsgs: Msg[] = [...msgs, { role: 'user', text: msg }]
     setMsgs(newMsgs)
     setInput('')
+    saveSession(sid, newMsgs)
 
     const context = await gatherContext()
 
@@ -197,11 +343,12 @@ export default function AssistantPanel({
       role: 'assistant',
       text:
         combined ||
-        'Şu an yanıt üretemedim. Biraz sonra tekrar deneyin.',
+        'Şu an yanıt üretemedim. Biraz sonra tekrar denemeyi düşün.',
     }
 
-    const finalMsgs = [...newMsgs, assistantMsg]
+    const finalMsgs: Msg[] = [...newMsgs, assistantMsg]
     setMsgs(finalMsgs)
+    saveSession(sid, finalMsgs)
 
     if (!j?.error && combined && ttsOn && typeof window !== 'undefined') {
       try {
@@ -214,13 +361,14 @@ export default function AssistantPanel({
           window.speechSynthesis.cancel()
           window.speechSynthesis.speak(u)
         }
-      } catch {
-        // ignore
-      }
+      } catch {}
     }
 
     if (j?.error) {
-      setErr(j.detail || 'Asistan şu anda tutarsız yanıt veriyor.')
+      setErr(
+        j.detail ||
+          'Asistan şu anda tutarsız yanıt veriyor. Bir süre sonra tekrar dene.'
+      )
     }
 
     setBusy(false)
@@ -229,7 +377,7 @@ export default function AssistantPanel({
   const handleMicClick = () => {
     if (!speechSupported) {
       alert(
-        'Tarayıcın sesle yazmayı desteklemiyor. Sesle giriş için Chromium tabanlı bir tarayıcı kullanabilirsin.'
+        'Tarayıcın sesle yazmayı desteklemiyor. Sesle yazmak için Chromium tabanlı bir tarayıcı kullanabilirsin.'
       )
       return
     }
@@ -272,10 +420,10 @@ export default function AssistantPanel({
     const v = e.target.checked
     setTtsOn(v)
     try {
-      localStorage.setItem('tts_enabled', String(v))
-    } catch {
-      // ignore
-    }
+      if (typeof window !== 'undefined') {
+        window.localStorage.setItem('tts_enabled', String(v))
+      }
+    } catch {}
   }
 
   const quick =
@@ -301,7 +449,7 @@ export default function AssistantPanel({
           className="w-full max-w-[720px] bg-white rounded-2xl shadow-2xl overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Üst bar */}
+          {/* ÜST BAR */}
           <div className="flex items-center justify-between px-5 py-3 border-b">
             <div className="font-semibold text-[#0B3B7A]">
               {mode === 'personal' ? 'Kişisel Yardım Asistanı' : 'Asistan'}
@@ -337,7 +485,7 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Acil numaralar satırı */}
+          {/* ACİL NUMARALAR SATIRI */}
           <div className="px-5 pt-2 pb-2">
             <div className="bg-[#F5F7FB] border border-[#E0E4F0] rounded-xl px-3 py-2 text-[11px] text-gray-700">
               <div className="font-semibold mb-1">Acil Numaralar</div>
@@ -364,7 +512,19 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Hızlı seçenekler */}
+          {/* HIZLI SEÇENEKLER */}
+          <div className="px-5 pt-1 pb-1 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleNewChat}
+                className="px-3 py-1.5 rounded-lg bg-[#0B3B7A] text-white text-xs"
+                type="button"
+              >
+                Yeni sohbet
+              </button>
+              <HistoryDropdown sessions={sessions} load={loadChat} />
+            </div>
+          </div>
           <div className="px-5 pt-1 pb-1 flex flex-wrap gap-2">
             {quick.map((q) => (
               <button
@@ -378,10 +538,10 @@ export default function AssistantPanel({
             ))}
           </div>
 
-          {/* Hata bandı */}
+          {/* HATA BANDI */}
           {err && (
             <div className="mx-5 my-2 px-3 py-2 rounded-lg bg-red-50 text-red-700 text-xs">
-              Asistan geçici olarak düzgün yanıt veremedi.
+              Asistan geçici olarak tutarsız yanıt veriyor.
               <details className="mt-1 text-[11px] text-red-600/80">
                 <summary>Detayı göster</summary>
                 <pre className="whitespace-pre-wrap break-words">{err}</pre>
@@ -389,7 +549,7 @@ export default function AssistantPanel({
             </div>
           )}
 
-          {/* Mesaj listesi */}
+          {/* MESAJ LİSTESİ */}
           <div
             ref={scRef}
             className="px-4 pb-3 h-[46vh] overflow-y-auto space-y-2"
@@ -419,12 +579,12 @@ export default function AssistantPanel({
             )}
           </div>
 
-          {/* Uyarı bandı */}
+          {/* UYARI BANDI */}
           <div className="px-5 pb-2">
             <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug">
               <strong>Uyarı:</strong> Bu asistan, resmi bir acil çağrı hattı
               değildir ve tıbbi muayene, teşhis veya tedavi yerine geçmez.
-              Yanıtlar yapay zeka tarafından otomatik üretilir ve her zaman
+              Yanıtlar yapay zeka tarafından otomatik oluşturulur ve her zaman
               eksiksiz veya doğru olmayabilir.
               <span className="block mt-1">
                 <strong>
@@ -435,7 +595,7 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Giriş alanı */}
+          {/* GİRİŞ ALANI */}
           <div className="p-4 border-t bg-white">
             <form
               onSubmit={(e) => {
@@ -448,7 +608,7 @@ export default function AssistantPanel({
                 ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Kısaca durumunuzu yazın…"
+                placeholder="Kısaca durumunu yaz…"
                 aria-label="Mesaj"
                 className="flex-1 border rounded-xl px-3 py-2 text-sm focus-visible:outline-none focus:ring-2 focus:ring-[#0B3B7A]"
               />
