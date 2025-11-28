@@ -4,15 +4,9 @@ import { useEffect, useRef, useState } from 'react'
 
 type Msg = { role: 'user' | 'assistant'; text: string }
 
-const welcome: Msg = {
+const WELCOME: Msg = {
   role: 'assistant',
   text: 'Size yardımcı olacağım. Kısaca durumu yazın veya üstteki hazır seçeneklerden birini seçin.',
-}
-
-type HistoryEntry = {
-  id: string
-  ts: number
-  msgs: Msg[]
 }
 
 type AssistantPanelProps = {
@@ -21,129 +15,35 @@ type AssistantPanelProps = {
   mode?: 'personal' | 'disaster'
 }
 
-type HistoryDropdownProps = {
-  sessions: Record<string, HistoryEntry>
-  load: (id: string) => void
-}
-
-function HistoryDropdown({ sessions, load }: HistoryDropdownProps) {
-  const entries = Object.values(sessions || {})
-    .sort((a, b) => b.ts - a.ts)
-    .slice(0, 20)
-
-  return (
-    <div className="relative">
-      <details
-        className="text-xs"
-        onToggle={(e) => {
-          if (e.currentTarget.open) {
-            const btn = e.currentTarget.querySelector('button')
-            if (btn) btn.focus()
-          }
-        }}
-      >
-        <summary className="cursor-pointer select-none px-2 py-1.5 rounded-lg bg-gray-100">
-          Geçmiş
-        </summary>
-        <div className="absolute z-10 mt-1 w-60 max-h-64 overflow-auto bg-white border rounded-lg shadow">
-          {entries.length === 0 && (
-            <div className="px-3 py-2 text-gray-500 text-xs">Kayıt yok</div>
-          )}
-          {entries.map((s) => (
-            <button
-              key={s.id}
-              onClick={() => {
-                load(s.id)
-                ;(document.activeElement as HTMLElement | null)?.blur()
-              }}
-              className="block w-full text-left px-3 py-2 hover:bg-gray-50 text-xs"
-            >
-              {new Date(s.ts).toLocaleString('tr-TR', {
-                hour12: false,
-              })}{' '}
-              —{' '}
-              {s.msgs?.[1]?.text?.slice(0, 40) ||
-                s.msgs?.[0]?.text?.slice(0, 40) ||
-                'Sohbet'}
-            </button>
-          ))}
-        </div>
-      </details>
-    </div>
-  )
-}
-
 export default function AssistantPanel({
   open,
   onClose,
   mode = 'personal',
 }: AssistantPanelProps) {
-  const [sid, setSid] = useState<string>('')
-  const [msgs, setMsgs] = useState<Msg[]>([welcome])
+  const [msgs, setMsgs] = useState<Msg[]>([WELCOME])
   const [input, setInput] = useState('')
-  const [busy, setBusy] = use state(false)
+  const [busy, setBusy] = useState(false)
   const [err, setErr] = useState('')
   const [ttsOn, setTtsOn] = useState(true)
-  const [sessions, setSessions] = useState<Record<string, HistoryEntry>>({})
+
+  const [speechSupported, setSpeechSupported] = useState(false)
+  const [listening, setListening] = useState(false)
+  const recRef = useRef<any>(null)
 
   const scRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Mikrofon durumu
-  const [speechSupported, setSpeechSupported] = useState(false)
-  const [listening, setListening] = useState(false)
-  const recRef = useRef<SpeechRecognition | null>(null)
-
-  // Panel açıldığında geçmiş ve ayarları yükle
+  // Panel açılınca temel ayarları yükle
   useEffect(() => {
     if (!open) return
 
-    try {
-      const raw = localStorage.getItem('chat_sessions')
-      if (raw) {
-        setSessions(JSON.parse(raw))
-      }
-
-      const lastId = localStorage.getItem('chat_last_sid')
-      if (lastId) {
-        const all: Record<string, HistoryEntry> = raw ? JSON.parse(raw) : {}
-        if (all[lastId]) {
-          setSid(lastId)
-          setMsgs(all[lastId].msgs)
-        } else {
-          const id = crypto.randomUUID()
-          setSid(id)
-          setMsgs([welcome])
-          const updated: Record<string, HistoryEntry> = {
-            ...all,
-            [id]: { id, ts: Date.now(), msgs: [welcome] },
-          }
-          setSessions(updated)
-          localStorage.setItem('chat_sessions', JSON.stringify(updated))
-          localStorage.setItem('chat_last_sid', id)
-        }
-      } else {
-        const id = crypto.randomUUID()
-        setSid(id)
-        setMsgs([welcome])
-        const updated: Record<string, HistoryEntry> = {
-          [id]: { id, ts: Date.now(), msgs: [welcome] },
-        }
-        setSessions(updated)
-        localStorage.setItem('chat_sessions', JSON.stringify(updated))
-        localStorage.setItem('chat_last_sid', id)
-      }
-
-      const savedTts = localStorage.getItem('tts_enabled')
-      setTtsOn(savedTts !== 'false')
-    } catch {
-      // sessizce geç
-      const id = crypto.randomUUID()
-      setSid(id)
-      setMsgs([welcome])
-    }
+    setMsgs([WELCOME])
+    setErr('')
 
     if (typeof window !== 'undefined') {
+      const savedTts = localStorage.getItem('tts_enabled')
+      setTtsOn(savedTts !== 'false')
+
       const SR =
         (window as any).SpeechRecognition ||
         (window as any).webkitSpeechRecognition
@@ -155,24 +55,25 @@ export default function AssistantPanel({
       if (e.key === 'Escape') {
         e.preventDefault()
         onClose()
-      } else if (e.key === 'Enter' && !(e.metaKey || e.ctrlKey)) {
-        if ((e.target as HTMLElement).tagName === 'TEXTAREA') return
+      } else if (
+        e.key === 'Enter' &&
+        !(e.metaKey || e.ctrlKey) &&
+        (e.target as HTMLElement).tagName !== 'TEXTAREA'
+      ) {
         e.preventDefault()
         handleSend()
       }
     }
 
     window.addEventListener('keydown', handleKey)
-    setTimeout(() => {
-      inputRef.current?.focus()
-    }, 100)
+    setTimeout(() => inputRef.current?.focus(), 100)
 
     return () => {
       window.removeEventListener('keydown', handleKey)
     }
-  }, [open])
+  }, [open, onClose])
 
-  // Mesaj gelince aşağıya kaydır
+  // Mesaj geldikçe aşağı kay
   useEffect(() => {
     if (!scRef.current) return
     scRef.current.scrollTo({
@@ -181,43 +82,7 @@ export default function AssistantPanel({
     })
   }, [msgs, busy])
 
-  const saveSession = (id: string, currentMsgs: Msg[]) => {
-    try {
-      const raw = localStorage.getItem('chat_sessions')
-      const all: Record<string, HistoryEntry> = raw ? JSON.parse(raw) : {}
-      all[id] = { id, ts: Date.now(), msgs: currentMsgs }
-      localStorage.setItem('chat_sessions', JSON.stringify(all))
-      setSessions(all)
-      localStorage.setItem('chat_last_sid', id)
-    } catch {
-      // geç
-    }
-  }
-
-  const loadChat = (id: string) => {
-    try {
-      const raw = localStorage.getItem('chat_sessions')
-      const all: Record<string, HistoryEntry> = raw ? JSON.parse(raw) : {}
-      const entry = all.id
-      if (entry) {
-        setSid(id)
-        setMsgs(entry.msgs)
-        localStorage.setItem('chat_last_sid', id)
-      }
-    } catch {
-      // ignore
-    }
-  }
-
-  const handleNewChat = () => {
-    const id = crypto.randomUUID()
-    const initial = [welcome]
-    setSid(id)
-    setMsgs(initial)
-    saveSession(id, initial)
-  }
-
-  const safeParseJson = (raw: string | null) => {
+  const safeParse = (raw: string | null) => {
     try {
       return raw ? JSON.parse(raw) : null
     } catch {
@@ -225,30 +90,30 @@ export default function AssistantPanel({
     }
   }
 
-  const gatherContext = async () => {
+  async function gatherContext() {
     const profile =
       typeof window !== 'undefined'
-        ? safeParseJson(localStorage.getItem('profile_health'))
+        ? safeParse(localStorage.getItem('profile_health'))
         : null
     const settings =
       typeof window !== 'undefined'
-        ? safeParseJson(localStorage.getItem('alert_settings_v3'))
+        ? safeParse(localStorage.getItem('alert_settings_v3'))
         : null
 
     const location =
       typeof navigator === 'undefined' || !navigator.geolocation
-        ? safeParseJson(
+        ? safeParse(
             typeof window !== 'undefined'
               ? localStorage.getItem('lastGeo')
               : null
           )
         : await new Promise<any>((resolve) => {
-            let done = false
+            let resolved = false
             const timer = setTimeout(() => {
-              if (!done) {
-                done = true
+              if (!resolved) {
+                resolved = true
                 resolve(
-                  safeParseJson(
+                  safeParse(
                     typeof window !== 'undefined'
                       ? localStorage.getItem('lastGeo')
                       : null
@@ -259,28 +124,28 @@ export default function AssistantPanel({
 
             navigator.geolocation.getCurrentPosition(
               (p) => {
-                if (done) return
-                done = true
+                if (resolved) return
+                resolved = true
                 clearTimeout(timer)
-                const g = {
+                const geoData = {
                   lat: p.coords.latitude,
                   lng: p.coords.longitude,
                   acc: p.coords.accuracy,
                   t: Date.now(),
                 }
                 try {
-                  localStorage.setItem('lastGeo', JSON.stringify(g))
+                  localStorage.setItem('lastGeo', JSON.stringify(geoData))
                 } catch {
                   // ignore
                 }
-                resolve(g)
+                resolve(geoData)
               },
               () => {
-                if (done) return
-                done = true
+                if (resolved) return
+                resolved = true
                 clearTimeout(timer)
                 resolve(
-                  safeParseJson(
+                  safeParse(
                     typeof window !== 'undefined'
                       ? localStorage.getItem('lastGeo')
                       : null
@@ -294,57 +159,51 @@ export default function AssistantPanel({
     return { profile: profile || {}, settings: settings || {}, location }
   }
 
-  const handleSend = async (text?: string) => {
-    const message = (text ?? input).trim()
-    if (!message || busy) return
+  async function handleSend(text?: string) {
+    const msg = (text ?? input).trim()
+    if (!msg || busy) return
 
     setErr('')
     setBusy(true)
 
-    const newMessages: Msg[] = [...msgs, { role: 'user', text: message }]
-    setMsgs(newMessages)
+    const newMsgs: Msg[] = [...msgs, { role: 'user', text: msg }]
+    setMsgs(newMsgs)
     setInput('')
-    saveSession(sid, newMessages)
 
     const context = await gatherContext()
 
-    const resp = await fetch('/api/ai/assist', {
+    const res = await fetch('/api/ai/assist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message, context }),
+      body: JSON.stringify({ message: msg, context }),
     }).catch(() => null)
 
-    if (!resp) {
+    if (!res) {
       setErr('Bağlantı sorunu. Lütfen tekrar deneyin.')
       setBusy(false)
       return
     }
 
-    const data = await resp.json().catch(() => ({ error: true, detail: 'JSON_PARSE' }))
+    const j = await res.json().catch(() => ({ error: true }))
 
     const combined = [
-      data?.reply,
-      ...(Array.isArray(data?.nextSteps) ? data.nextSteps : []),
+      j?.reply,
+      ...(Array.isArray(j?.nextSteps) ? j.nextSteps : []),
     ]
       .filter(Boolean)
       .join('\n')
 
-    let toPush: Msg
-
-    if (combined) {
-      toPush = { role: 'assistant', text: combined }
-    } else {
-      toPush = {
-        role: 'assistant',
-        text: 'Şu an yanıt üretemedim. Biraz sonra tekrar deneyin.',
-      }
+    const assistantMsg: Msg = {
+      role: 'assistant',
+      text:
+        combined ||
+        'Şu an yanıt üretemedim. Biraz sonra tekrar deneyin.',
     }
 
-    const finalMessages = [...newMessages, toPush]
-    setMsgs(finalMessages)
-    saveSession(sid, finalMessages)
+    const finalMsgs = [...newMsgs, assistantMsg]
+    setMsgs(finalMsgs)
 
-    if (!data?.error && combined && ttsOn) {
+    if (!j?.error && combined && ttsOn && typeof window !== 'undefined') {
       try {
         if ('speechSynthesis' in window) {
           const u = new SpeechSynthesisUtterance(combined)
@@ -360,8 +219,8 @@ export default function AssistantPanel({
       }
     }
 
-    if (data?.error) {
-      setErr(data.detail || 'Bilinmeyen bir hata oluştu.')
+    if (j?.error) {
+      setErr(j.detail || 'Asistan şu anda tutarsız yanıt veriyor.')
     }
 
     setBusy(false)
@@ -370,15 +229,14 @@ export default function AssistantPanel({
   const handleMicClick = () => {
     if (!speechSupported) {
       alert(
-        'Tarayıcın sesle yazmayı desteklemiyor. Sesli giriş için Chromium tabanlı bir tarayıcı kullanabilirsin.'
+        'Tarayıcın sesle yazmayı desteklemiyor. Sesle giriş için Chromium tabanlı bir tarayıcı kullanabilirsin.'
       )
       return
     }
 
     if (listening) {
-      if (recRef.current) {
-        recRef.current.stop()
-      }
+      const rec = recRef.current
+      if (rec) rec.stop()
       setListening(false)
       return
     }
@@ -391,16 +249,16 @@ export default function AssistantPanel({
       return
     }
 
-    const rec: SpeechRecognition = new SR()
+    const rec = new SR()
     rec.lang = 'tr-TR'
     rec.continuous = false
     rec.interimResults = false
 
-    rec.onresult = (event: SpeechRecognitionEvent) => {
+    rec.onresult = (event: any) => {
       const transcript = Array.from(event.results)
-        .map((r) => r[0].transcript)
+        .map((r: any) => r[0].transcript)
         .join(' ')
-      setInput((prev) => (prev ? `${prev} ${transcript}` : transcript))
+      setInput((prev) => (prev ? prev + ' ' + transcript : transcript))
     }
     rec.onerror = () => setListening(false)
     rec.onend = () => setListening(false)
@@ -410,11 +268,11 @@ export default function AssistantPanel({
     rec.start()
   }
 
-  const handleTtsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const on = e.target.checked
-    setTtsOn(on)
+  const handleTtsToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const v = e.target.checked
+    setTtsOn(v)
     try {
-      localStorage.setItem('tts_enabled', String(on))
+      localStorage.setItem('tts_enabled', String(v))
     } catch {
       // ignore
     }
@@ -465,7 +323,7 @@ export default function AssistantPanel({
                 <input
                   type="checkbox"
                   checked={ttsOn}
-                  onChange={handleTtsChange}
+                  onChange={handleTtsToggle}
                 />
                 <span>Sesli okuma</span>
               </label>
@@ -506,20 +364,6 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Araç çubuğu */}
-          <div className="px-5 pt-2 pb-1 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <button
-                onClick={handleNewChat}
-                className="px-3 py-1.5 rounded-lg bg-[#0B3B7A] text-white text-xs"
-                type="button"
-              >
-                Yeni sohbet
-              </button>
-              <HistoryDropdown sessions={sessions} load={loadChat} />
-            </div>
-          </div>
-
           {/* Hızlı seçenekler */}
           <div className="px-5 pt-1 pb-1 flex flex-wrap gap-2">
             {quick.map((q) => (
@@ -537,7 +381,7 @@ export default function AssistantPanel({
           {/* Hata bandı */}
           {err && (
             <div className="mx-5 my-2 px-3 py-2 rounded-lg bg-red-50 text-red-700 text-xs">
-              Asistan geçici olarak yanıt veremedi.
+              Asistan geçici olarak düzgün yanıt veremedi.
               <details className="mt-1 text-[11px] text-red-600/80">
                 <summary>Detayı göster</summary>
                 <pre className="whitespace-pre-wrap break-words">{err}</pre>
@@ -569,24 +413,30 @@ export default function AssistantPanel({
               </div>
             ))}
             {busy && (
-              <div className="px-3 py-2 text-sm text-gray-500">yazıyor…</div>
+              <div className="px-3 py-2 text-sm text-gray-500">
+                yazıyor…
+              </div>
             )}
           </div>
 
-        {/* WARNING */}
-<div className="px-5 pb-3">
-  <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug shadow-sm">
-    <strong>Dikkat:</strong> Bu asistan bir acil çağrı sistemi değildir.
-    Yanıtlar yapay zeka tarafından otomatik oluşturulur ve
-    <strong> kritik durumlarda hatalı veya eksik olabilir.</strong>
-    <span className="block mt-1">
-      Gerçek bir tehlike varsa derhal <strong>112 Acil Çağrı Merkezi</strong>’ni arayın.
-    </span>
-  </div>
-</div>
+          {/* Uyarı bandı */}
+          <div className="px-5 pb-2">
+            <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug">
+              <strong>Uyarı:</strong> Bu asistan, resmi bir acil çağrı hattı
+              değildir ve tıbbi muayene, teşhis veya tedavi yerine geçmez.
+              Yanıtlar yapay zeka tarafından otomatik üretilir ve her zaman
+              eksiksiz veya doğru olmayabilir.
+              <span className="block mt-1">
+                <strong>
+                  Hayati tehlike veya acil durum varsa derhal 112 Acil Çağrı
+                  Merkezi’ni arayın veya en yakın sağlık kuruluşuna başvurun.
+                </strong>
+              </span>
+            </div>
+          </div>
 
           {/* Giriş alanı */}
-          <div className=" p-4 border-t bg-white">
+          <div className="p-4 border-t bg-white">
             <form
               onSubmit={(e) => {
                 e.preventDefault()
