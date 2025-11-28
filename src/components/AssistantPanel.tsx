@@ -1,4 +1,3 @@
-// src/components/AssistantPanel.tsx
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
@@ -38,14 +37,15 @@ function HistoryDropdown({ sessions, load }: HistoryDropdownProps) {
         className="text-xs"
         onToggle={(e) => {
           if (e.currentTarget.open) {
-            e.currentTarget.querySelector('button')?.focus()
+            const btn = e.currentTarget.querySelector('button')
+            if (btn) btn.focus()
           }
         }}
       >
         <summary className="cursor-pointer select-none px-2 py-1.5 rounded-lg bg-gray-100">
           Geçmiş
         </summary>
-        <div className "absolute z-10 mt-1 w-60 max-height-64 overflow-auto bg-white border rounded-lg shadow">
+        <div className="absolute z-10 mt-1 w-60 max-h-64 overflow-auto bg-white border rounded-lg shadow">
           {entries.length === 0 && (
             <div className="px-3 py-2 text-gray-500 text-xs">Kayıt yok</div>
           )}
@@ -58,9 +58,12 @@ function HistoryDropdown({ sessions, load }: HistoryDropdownProps) {
               }}
               className="block w-full text-left px-3 py-2 hover:bg-gray-50 text-xs"
             >
-              {new Date(s.ts).toLocaleString()} —{' '}
-              {s.msgs?.[1]?.text?.slice(0, 24) ||
-                s.msgs?.[0]?.text?.slice(0, 24) ||
+              {new Date(s.ts).toLocaleString('tr-TR', {
+                hour12: false,
+              })}{' '}
+              —{' '}
+              {s.msgs?.[1]?.text?.slice(0, 40) ||
+                s.msgs?.[0]?.text?.slice(0, 40) ||
                 'Sohbet'}
             </button>
           ))}
@@ -78,7 +81,7 @@ export default function AssistantPanel({
   const [sid, setSid] = useState<string>('')
   const [msgs, setMsgs] = useState<Msg[]>([welcome])
   const [input, setInput] = useState('')
-  const [busy, setBusy] = useState(false)
+  const [busy, setBusy] = use state(false)
   const [err, setErr] = useState('')
   const [ttsOn, setTtsOn] = useState(true)
   const [sessions, setSessions] = useState<Record<string, HistoryEntry>>({})
@@ -86,12 +89,99 @@ export default function AssistantPanel({
   const scRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
+  // Mikrofon durumu
   const [speechSupported, setSpeechSupported] = useState(false)
   const [listening, setListening] = useState(false)
-  const recRef = useRef<any>(null)
+  const recRef = useRef<SpeechRecognition | null>(null)
+
+  // Panel açıldığında geçmiş ve ayarları yükle
+  useEffect(() => {
+    if (!open) return
+
+    try {
+      const raw = localStorage.getItem('chat_sessions')
+      if (raw) {
+        setSessions(JSON.parse(raw))
+      }
+
+      const lastId = localStorage.getItem('chat_last_sid')
+      if (lastId) {
+        const all: Record<string, HistoryEntry> = raw ? JSON.parse(raw) : {}
+        if (all[lastId]) {
+          setSid(lastId)
+          setMsgs(all[lastId].msgs)
+        } else {
+          const id = crypto.randomUUID()
+          setSid(id)
+          setMsgs([welcome])
+          const updated: Record<string, HistoryEntry> = {
+            ...all,
+            [id]: { id, ts: Date.now(), msgs: [welcome] },
+          }
+          setSessions(updated)
+          localStorage.setItem('chat_sessions', JSON.stringify(updated))
+          localStorage.setItem('chat_last_sid', id)
+        }
+      } else {
+        const id = crypto.randomUUID()
+        setSid(id)
+        setMsgs([welcome])
+        const updated: Record<string, HistoryEntry> = {
+          [id]: { id, ts: Date.now(), msgs: [welcome] },
+        }
+        setSessions(updated)
+        localStorage.setItem('chat_sessions', JSON.stringify(updated))
+        localStorage.setItem('chat_last_sid', id)
+      }
+
+      const savedTts = localStorage.getItem('tts_enabled')
+      setTtsOn(savedTts !== 'false')
+    } catch {
+      // sessizce geç
+      const id = crypto.randomUUID()
+      setSid(id)
+      setMsgs([welcome])
+    }
+
+    if (typeof window !== 'undefined') {
+      const SR =
+        (window as any).SpeechRecognition ||
+        (window as any).webkitSpeechRecognition
+      setSpeechSupported(!!SR)
+    }
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (!open) return
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        onClose()
+      } else if (e.key === 'Enter' && !(e.metaKey || e.ctrlKey)) {
+        if ((e.target as HTMLElement).tagName === 'TEXTAREA') return
+        e.preventDefault()
+        handleSend()
+      }
+    }
+
+    window.addEventListener('keydown', handleKey)
+    setTimeout(() => {
+      inputRef.current?.focus()
+    }, 100)
+
+    return () => {
+      window.removeEventListener('keydown', handleKey)
+    }
+  }, [open])
+
+  // Mesaj gelince aşağıya kaydır
+  useEffect(() => {
+    if (!scRef.current) return
+    scRef.current.scrollTo({
+      top: scRef.current.scrollHeight,
+      behavior: 'smooth',
+    })
+  }, [msgs, busy])
 
   const saveSession = (id: string, currentMsgs: Msg[]) => {
-    if (!id) return
     try {
       const raw = localStorage.getItem('chat_sessions')
       const all: Record<string, HistoryEntry> = raw ? JSON.parse(raw) : {}
@@ -100,7 +190,7 @@ export default function AssistantPanel({
       setSessions(all)
       localStorage.setItem('chat_last_sid', id)
     } catch {
-      // ignore
+      // geç
     }
   }
 
@@ -108,10 +198,10 @@ export default function AssistantPanel({
     try {
       const raw = localStorage.getItem('chat_sessions')
       const all: Record<string, HistoryEntry> = raw ? JSON.parse(raw) : {}
-      const s = all[id]
-      if (s) {
+      const entry = all.id
+      if (entry) {
         setSid(id)
-        setMsgs(s.msgs)
+        setMsgs(entry.msgs)
         localStorage.setItem('chat_last_sid', id)
       }
     } catch {
@@ -119,90 +209,15 @@ export default function AssistantPanel({
     }
   }
 
-  const newChat = () => {
+  const handleNewChat = () => {
     const id = crypto.randomUUID()
-    const initial: Msg[] = [welcome]
+    const initial = [welcome]
     setSid(id)
     setMsgs(initial)
     saveSession(id, initial)
   }
 
-  useEffect(() => {
-    if (!open) return
-
-    try {
-      const allSessionsRaw = localStorage.getItem('chat_sessions')
-      if (allSessionsRaw) {
-        setSessions(JSON.parse(allSessionsRaw))
-      }
-
-      const lastSid = localStorage.getItem('chat_last_sid')
-      if (lastSid) {
-        loadChat(lastSid)
-      } else {
-        newChat()
-      }
-
-      const savedTts = localStorage.getItem('tts_enabled')
-      setTtsOn(savedTts !== 'false')
-    } catch {
-      newChat()
-    }
-
-    const SR =
-      (window as any).SpeechRecognition ||
-      (window as any).webkitSpeechRecognition
-    setSpeechSupported(!!SR)
-
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose()
-      }
-      if (e.key === 'Enter' && !(e.metaKey || e.ctrlKey)) {
-        if ((e.target as HTMLElement).tagName === 'TEXTAREA') return
-        e.preventDefault()
-        send()
-      }
-      if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        send()
-      }
-    }
-
-    window.addEventListener('keydown', handleKey)
-    setTimeout(() => input brush.append(a) ), 0)
-
-    return () => {
-      window.removeEventListener('keydown', handleKey)
-    }
-  }, [open])
-
-  useEffect(() => {
-    scRef.current?.scrollTo({
-      top: scRef.current.scrollHeight,
-      behavior: 'smooth',
-    })
-  }, [msgs, busy])
-
-  const tts = (text: string) => {
-    try {
-      if (!ttsOn || typeof window === 'undefined') return
-      if (!('speechSynthesis' in window)) return
-
-      const u = new SpeechSynthesisUtterance(text)
-      const voices = window.speechSynthesis.getVoices()
-      const trVoice = voices.find((v) => /tr-|turkish/i.test(v.lang))
-      if (trVoice) u.link = trVoice
-      u.lang = trVoice?.lang || 'tr-TR'
-
-      window.speechSynthesis.cancel()
-      window.speechSynthesis.speak(u)
-    } catch {
-      // ignore
-    }
-  }
-
-  const safeParseJson = (raw: any) => {
+  const safeParseJson = (raw: string | null) => {
     try {
       return raw ? JSON.parse(raw) : null
     } catch {
@@ -212,90 +227,91 @@ export default function AssistantPanel({
 
   const gatherContext = async () => {
     const profile =
-      safeParseJson(typeof window !== 'undefined' ? localStorage.getItem('profile_health') : null) || {}
+      typeof window !== 'undefined'
+        ? safeParseJson(localStorage.getItem('profile_health'))
+        : null
     const settings =
-      safeParseJson(typeof window !== 'undefined' ? localStorage.getItem('alert_settings_v3') : null) || {}
+      typeof window !== 'undefined'
+        ? safeParseJson(localStorage.getItem('alert_settings_v3'))
+        : null
 
-    const location = await new Promise<any>((resolve) => {
-      if (typeof navigator === 'undefined' || !navigator.geolocation) {
-        return resolve(
-          safeParseJson(
+    const location =
+      typeof navigator === 'undefined' || !navigator.geolocation
+        ? safeParseJson(
             typeof window !== 'undefined'
               ? localStorage.getItem('lastGeo')
               : null
           )
-        )
-      }
+        : await new Promise<any>((resolve) => {
+            let done = false
+            const timer = setTimeout(() => {
+              if (!done) {
+                done = true
+                resolve(
+                  safeParseJson(
+                    typeof window !== 'undefined'
+                      ? localStorage.getItem('lastGeo')
+                      : null
+                  )
+                )
+              }
+            }, 7000)
 
-      let resolved = false
-      const timer = setTimeout(() => {
-        if (!resolved) {
-          resolved = true
-          resolve(
-            safeParseJson(
-              typeof window !== 'undefined'
-                ? localStorage.getItem('lastGeo')
-                : null
+            navigator.geolocation.getCurrentPosition(
+              (p) => {
+                if (done) return
+                done = true
+                clearTimeout(timer)
+                const g = {
+                  lat: p.coords.latitude,
+                  lng: p.coords.longitude,
+                  acc: p.coords.accuracy,
+                  t: Date.now(),
+                }
+                try {
+                  localStorage.setItem('lastGeo', JSON.stringify(g))
+                } catch {
+                  // ignore
+                }
+                resolve(g)
+              },
+              () => {
+                if (done) return
+                done = true
+                clearTimeout(timer)
+                resolve(
+                  safeParseJson(
+                    typeof window !== 'undefined'
+                      ? localStorage.getItem('lastGeo')
+                      : null
+                  )
+                )
+              },
+              { enableHighAccuracy: true, timeout: 6000 }
             )
-          )
-        }
-      }, 7000)
+          })
 
-      navigator.geolocation.getCurrentPosition(
-        (p) => {
-          if (resolved) return
-          clearTimeout(timer)
-          resolved = true
-          const geoData = {
-            lat: p.coords.latitude,
-            lng: p.coords.longitude,
-            acc: p.coords.accuracy,
-            t: Date.now(),
-          }
-          try {
-            localStorage.setItem('lastGeo', JSON.stringify(geoData))
-          } catch {
-            // ignore
-          }
-          resolve(geoData)
-        },
-        () => {
-          if (resolved) return
-          clearTimeout(timer)
-          resolved = true
-          resolve(
-            safeParseJson(
-              typeof window !== 'undefined'
-                ? localStorage.getItem('lastGeo')
-                : null
-            )
-          )
-        },
-        { enableHighAccuracy: true, timeout: 6000 }
-      )
-    })
-
-    return { profile, settings, location }
+    return { profile: profile || {}, settings: settings || {}, location }
   }
 
-  const send = async (text?: string) => {
-    const msg = (text ?? input).trim()
-    if (!msg || busy) return
+  const handleSend = async (text?: string) => {
+    const message = (text ?? input).trim()
+    if (!message || busy) return
 
     setErr('')
     setBusy(true)
 
-    const newMsgs: Msg[] = [...msgs, { role: 'user', text: msg }]
-    setMsgs(newMsgs)
+    const newMessages: Msg[] = [...msgs, { role: 'user', text: message }]
+    setMsgs(newMessages)
     setInput('')
-    saveSession(sid, newMsgs)
+    saveSession(sid, newMessages)
 
     const context = await gatherContext()
 
     const resp = await fetch('/api/ai/assist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: msg, context }),
+      body: JSON.stringify({ message, context }),
     }).catch(() => null)
 
     if (!resp) {
@@ -304,31 +320,48 @@ export default function AssistantPanel({
       return
     }
 
-    const j = await resp.json().catch(() => ({ error: true, detail: 'JSON_PARSE' }))
-    const combined =
-      [j?.reply, ...(Array.isArray(j?.nextSteps) ? j.nextSteps : [])]
-        .filter(Boolean)
-        .join('\n')
+    const data = await resp.json().catch(() => ({ error: true, detail: 'JSON_PARSE' }))
+
+    const combined = [
+      data?.reply,
+      ...(Array.isArray(data?.nextSteps) ? data.nextSteps : []),
+    ]
+      .filter(Boolean)
+      .join('\n')
+
+    let toPush: Msg
 
     if (combined) {
-      const finalMsgs = [...newMsgs, { role: 'assistant', text: combined }]
-      setMsgs(finalMsgs)
-      saveSession(sid, finalMsgs)
-      tts(combined)
+      toPush = { role: 'assistant', text: combined }
     } else {
-      if (!j?.error) {
-        const fallback: Msg = {
-          role: 'assistant',
-          text: 'Şu an yanıt üretemedim. Biraz sonra tekrar deneyin.',
-        }
-        const finalMsgs = [...newMsgs, fallback]
-        setMsgs(finalMsgs)
-        saveSession(sid, finalMsgs)
+      toPush = {
+        role: 'assistant',
+        text: 'Şu an yanıt üretemedim. Biraz sonra tekrar deneyin.',
       }
     }
 
-    if (j?.error) {
-      setErr(j.detail || 'Bilinmeyen hata oluştu.')
+    const finalMessages = [...newMessages, toPush]
+    setMsgs(finalMessages)
+    saveSession(sid, finalMessages)
+
+    if (!data?.error && combined && ttsOn) {
+      try {
+        if ('speechSynthesis' in window) {
+          const u = new SpeechSynthesisUtterance(combined)
+          const voices = window.speechSynthesis.getVoices()
+          const tr = voices.find((v) => /tr-|turkish/i.test(v.lang))
+          if (tr) u.voice = tr
+          u.lang = tr?.lang || 'tr-TR'
+          window.speechSynthesis.cancel()
+          window.speechSynthesis.speak(u)
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    if (data?.error) {
+      setErr(data.detail || 'Bilinmeyen bir hata oluştu.')
     }
 
     setBusy(false)
@@ -337,47 +370,51 @@ export default function AssistantPanel({
   const handleMicClick = () => {
     if (!speechSupported) {
       alert(
-        'Tarayıcın sesle yazmayı desteklemiyor. Sesli giriş için Chromium tabanlı bir tarayıcı kullanabilirsiniz.'
+        'Tarayıcın sesle yazmayı desteklemiyor. Sesli giriş için Chromium tabanlı bir tarayıcı kullanabilirsin.'
       )
       return
     }
+
     if (listening) {
-      const rec = recRef.current
-      if (rec) rec.stop()
+      if (recRef.current) {
+        recRef.current.stop()
+      }
       setListening(false)
-    } else {
-      const SR =
-        (window as any).SpeechRecognition ||
-        (window as any).webkitSpeechRecognition
-      if (!SR) {
-        alert(
-          'Ses tanıma bu tarayıcıda mevcut değil. Başka bir tarayıcı deneyebilirsiniz.'
-        )
-        return
-      }
-      const rec = new SR()
-      rec.lang = 'tr-TR'
-      rec.continuous = false
-      rec.interimResults = false
-      rec.onresult = (event: any) => {
-        const transcript = Array.from(event.results)
-          .map((r: any) => r[0].transcript)
-          .join(' ')
-        setInput((prev) => (prev ? `${prev} ${transcript}` : transcript))
-      }
-      rec.onerror = () => setListening(false)
-      rec.onend = () => setListening(false)
-      recRef.current = rec
-      setListening(true)
-      rec.start()
+      return
     }
+
+    const SR =
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition
+    if (!SR) {
+      alert('Bu tarayıcıda ses tanıma desteği yok.')
+      return
+    }
+
+    const rec: SpeechRecognition = new SR()
+    rec.lang = 'tr-TR'
+    rec.continuous = false
+    rec.interimResults = false
+
+    rec.onresult = (event: SpeechRecognitionEvent) => {
+      const transcript = Array.from(event.results)
+        .map((r) => r[0].transcript)
+        .join(' ')
+      setInput((prev) => (prev ? `${prev} ${transcript}` : transcript))
+    }
+    rec.onerror = () => setListening(false)
+    rec.onend = () => setListening(false)
+
+    recRef.current = rec
+    setListening(true)
+    rec.start()
   }
 
   const handleTtsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const checked = e.target.checked
-    setTtsOn(checked)
+    const on = e.target.checked
+    setTtsOn(on)
     try {
-      localStorage.setItem('tts_enabled', String(checked))
+      localStorage.setItem('tts_enabled', String(on))
     } catch {
       // ignore
     }
@@ -406,7 +443,7 @@ export default function AssistantPanel({
           className="w-full max-w-[720px] bg-white rounded-2xl shadow-2xl overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header */}
+          {/* Üst bar */}
           <div className="flex items-center justify-between px-5 py-3 border-b">
             <div className="font-semibold text-[#0B3B7A]">
               {mode === 'personal' ? 'Kişisel Yardım Asistanı' : 'Asistan'}
@@ -442,7 +479,7 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Emergency numbers row */}
+          {/* Acil numaralar satırı */}
           <div className="px-5 pt-2 pb-2">
             <div className="bg-[#F5F7FB] border border-[#E0E4F0] rounded-xl px-3 py-2 text-[11px] text-gray-700">
               <div className="font-semibold mb-1">Acil Numaralar</div>
@@ -469,11 +506,11 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Toolbar */}
+          {/* Araç çubuğu */}
           <div className="px-5 pt-2 pb-1 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button
-                onClick={newChat}
+                onClick={handleNewChat}
                 className="px-3 py-1.5 rounded-lg bg-[#0B3B7A] text-white text-xs"
                 type="button"
               >
@@ -483,12 +520,12 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* Quick suggestions */}
+          {/* Hızlı seçenekler */}
           <div className="px-5 pt-1 pb-1 flex flex-wrap gap-2">
             {quick.map((q) => (
               <button
                 key={q}
-                onClick={() => send(q)}
+                onClick={() => handleSend(q)}
                 className="px-3 py-1.5 rounded-full bg-[#E9EEF5] text-[#0B3B7A] text-xs active:scale-95"
                 type="button"
               >
@@ -497,20 +534,18 @@ export default function AssistantPanel({
             ))}
           </div>
 
-          {/* Error banner */}
+          {/* Hata bandı */}
           {err && (
             <div className="mx-5 my-2 px-3 py-2 rounded-lg bg-red-50 text-red-700 text-xs">
               Asistan geçici olarak yanıt veremedi.
               <details className="mt-1 text-[11px] text-red-600/80">
                 <summary>Detayı göster</summary>
-                <pre className="whitespace-pre-wrap break-words">
-                  {err}
-                </pre>
+                <pre className="whitespace-pre-wrap break-words">{err}</pre>
               </details>
             </div>
           )}
 
-          {/* Messages */}
+          {/* Mesaj listesi */}
           <div
             ref={scRef}
             className="px-4 pb-3 h-[46vh] overflow-y-auto space-y-2"
@@ -519,11 +554,11 @@ export default function AssistantPanel({
               <div
                 key={i}
                 className={`flex ${
-                  m.display === 'user' ? 'display-end' : 'justify-start'
+                  m.role === 'user' ? 'justify-end' : 'justify-start'
                 }`}
               >
                 <div
-                  className={`max-width-[85%] px-3 py-2 rounded-2xl text-sm whitespace-pre-line ${
+                  className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm whitespace-pre-line ${
                     m.role === 'user'
                       ? 'bg-[#0B3B7A] text-white'
                       : 'bg-[#F6F7F9] text-[#102A43] border border-[#E7EAF0]'
@@ -538,25 +573,27 @@ export default function AssistantPanel({
             )}
           </div>
 
-          {/* Warning banner */}
+          {/* UYARI BANDI */}
           <div className="px-5 pb-2">
             <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug">
-              <strong>Uyarı:</strong> Bu asistan, gerçek bir acil durum hattı
-              değildir ve tıbbi tanı veya tedavi yerine geçmez. Yanıtlar otomatik
-              olarak üretilir ve her zaman doğru veya eksiksiz olmayabilir.
+              <strong>Uyarı:</strong> Bu asistan resmi bir acil çağrı hattı
+              değildir ve tıbbi muayene, teşhis veya tedavi yerine geçmez.
+              Yanıtlar yapay zeka tarafından üretilir ve her zaman eksiksiz
+              veya doğru olmayabilir.
               <strong className="block mt-1">
-                Hayati tehlike veya acil durum söz konusuysa, derhal 112 Acil
-                Çağrı Merkezi’ni arayın veya en yakın sağlık kuruluşuna başvurun.
+                Hayati tehlike veya acil durum söz konusuysa derhal 112 Acil
+                Çağrı Merkezi’ni arayın veya en yakın sağlık kuruluşuna
+                başvurun.
               </strong>
             </div>
           </div>
 
-          {/* Input */}
-          <div className="p-4 border-t bg-white">
+          {/* Giriş alanı */}
+          <div className=" p-4 border-t bg-white">
             <form
               onSubmit={(e) => {
                 e.preventDefault()
-                send()
+                handleSend()
               }}
               className="flex items-center gap-2"
             >
@@ -581,7 +618,7 @@ export default function AssistantPanel({
                 title={
                   speechSupported
                     ? 'Sesle yaz'
-                    : 'Tarayıcınız sesle yazmayı desteklemiyor'
+                    : 'Tarayıcın sesle yazmayı desteklemiyor'
                 }
               >
                 {listening ? 'Dinleniyor…' : '🎙'}
