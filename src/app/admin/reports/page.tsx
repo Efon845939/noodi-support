@@ -448,7 +448,7 @@ export default function AdminReportsPage() {
                           disabled={isProcessing}
                           className="text-[11px] px-2 py-1 rounded-md bg-yellow-50 text-yellow-800 border border-yellow-300 disabled:opacity-60"
                         >
-                          Listeyi Admin’den Gizle (24+ gün)
+                          Listeyi Admin’den Gizle (24+ saat)
                         </button>
                         <button
                           type="button"
