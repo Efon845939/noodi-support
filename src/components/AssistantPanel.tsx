@@ -99,14 +99,15 @@ export default function AssistantPanel({
   const scRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // Panel açılınca session ve ayarları yükle
+  // panel açıldığında session + ayarları yükle
   useEffect(() => {
     if (!open) return
 
     try {
-      const raw = typeof window !== 'undefined'
-        ? window.localStorage.getItem('chat_sessions')
-        : null
+      const raw =
+        typeof window !== 'undefined'
+          ? window.localStorage.getItem('chat_sessions')
+          : null
       const all = safeParse<Record<string, HistoryEntry>>(raw) || {}
 
       const lastId =
@@ -179,7 +180,7 @@ export default function AssistantPanel({
     }
   }, [open, onClose])
 
-  // Mesajlar değişince scroll
+  // mesajlar değişince scroll
   useEffect(() => {
     if (!scRef.current) return
     scRef.current.scrollTo({
@@ -202,7 +203,7 @@ export default function AssistantPanel({
         window.localStorage.setItem('chat_last_sid', id)
       }
     } catch {
-      // boş ver
+      // geç
     }
   }
 
@@ -512,7 +513,7 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* HIZLI SEÇENEKLER */}
+          {/* HIZLI SEÇENEKLER + GEÇMİŞ */}
           <div className="px-5 pt-1 pb-1 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button
@@ -552,7 +553,7 @@ export default function AssistantPanel({
           {/* MESAJ LİSTESİ */}
           <div
             ref={scRef}
-            className="px-4 pb-3 h-[46vh] overflow-y-auto space-y-2"
+            className="px-4 pb-2 max-h-[40vh] overflow-y-auto space-y-2"
           >
             {msgs.map((m, i) => (
               <div
@@ -580,7 +581,7 @@ export default function AssistantPanel({
           </div>
 
           {/* UYARI BANDI */}
-          <div className="px-5 pb-2">
+          <div className="px-5 pb-1">
             <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug">
               <strong>Uyarı:</strong> Bu asistan, resmi bir acil çağrı hattı
               değildir ve tıbbi muayene, teşhis veya tedavi yerine geçmez.
@@ -608,7 +609,7 @@ export default function AssistantPanel({
                 ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Kısaca durumunu yaz…"
+                placeholder="Kısaca durumunuzu yazın…"
                 aria-label="Mesaj"
                 className="flex-1 border rounded-xl px-3 py-2 text-sm focus-visible:outline-none focus:ring-2 focus:ring-[#0B3B7A]"
               />
