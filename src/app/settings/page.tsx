@@ -602,67 +602,47 @@ export default function Settings() {
         </>
       )}
 
-            <div className="px-4 pt-3 pb-6 max-w-md mx-auto space-y-3">
-        <div className="grid grid-cols-2 gap-3">
-          <button
-            className="bg-[#D32F2F] text-white rounded-lg py-2 font-semibold"
-            type="button"
-            onClick={() =>
-              triggerTestAlertWeb({
-                sound: st[tab].tts || true,
-                vibrate: (st as any)[tab].vibrate,
-                tts: (st as any)[tab].tts,
-              })
-            }
-          >
-            Uyarıyı Test Et
-          </button>
-
-          <button
-            className="bg-[#0B3B7A] text-white rounded-lg py-2 font-semibold"
-            type="button"
-            onClick={() => {
-              addSimIncident({
-                type: 'earthquake',
-                title: 'Simülasyon: M 4.2, 12 km kuzeydoğu',
-                distKm: 12,
-                severity: 'high',
-                meta: { magnitude: 4.2 },
-              })
-              setFeedKey(Date.now())
-              alert(
-                'Simülasyon olayı eklendi. Kişisel Uyarılar > Yakın Olaylar listesine yansıdı.'
-              )
-            }}
-          >
-            Olayı Simüle Et
-          </button>
-        </div>
-
+                  <div className="px-4 pt-3 pb-6 max-w-md mx-auto grid grid-cols-2 gap-3">
         <button
-          className="w-full bg-gray-800 text-white rounded-lg py-2 text-sm font-semibold"
+          className="bg-[#D32F2F] text-white rounded-lg py-2 font-semibold"
           type="button"
-          onClick={handleNearbyHealthCheck}
+          onClick={() =>
+            triggerTestAlertWeb({
+              sound: st[tab].tts || true,
+              vibrate: (st as any)[tab].vibrate,
+              tts: (st as any)[tab].tts,
+            })
+          }
         >
-          Yakın Olaylar Sağlık Testi
+          Uyarıyı Test Et
         </button>
 
-        {nearbyDebug && (
-          <div className="mt-2 bg-[#F3F4F6] border border-[#E5E7EB] rounded-xl p-2 max-h-64 overflow-auto">
-            <div className="text-xs font-semibold mb-1 text-gray-700">
-              Health check çıktısı
-            </div>
-            <pre className="text-[11px] whitespace-pre-wrap break-words text-gray-700">
-              {nearbyDebug}
-            </pre>
-          </div>
-        )}
+        <button
+          className="bg-[#0B3B7A] text-white rounded-lg py-2 font-semibold"
+          type="button"
+          onClick={() => {
+            addSimIncident({
+              type: 'earthquake',
+              title: 'Simülasyon: M 4.2, 12 km kuzeydoğu',
+              distKm: 12,
+              severity: 'high',
+              meta: { magnitude: 4.2 },
+            })
+            setFeedKey(Date.now())
+            alert(
+              'Simülasyon olayı eklendi. Kişisel Uyarılar > Yakın Olaylar listesine yansıdı.'
+            )
+          }}
+        >
+          Olayı Simüle Et
+        </button>
       </div>
 
       <BottomTabs />
     </div>
   )
 }
+
 
 
 /* ——— küçük bileşenler ——— */

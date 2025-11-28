@@ -11,6 +11,7 @@ type Report = {
   title: string
   ts: number
   distKm: number
+  description: string
   meta?: {
     address?: string
   }
@@ -23,6 +24,7 @@ type Cluster = {
   count: number
   minDistKm: number
   latestTs: number
+  reports: Report[]
 }
 
 const MIN_REPORTS_FOR_EVENT = 10
@@ -51,6 +53,7 @@ export default function NearbyFeed({
   const [clusters, setClusters] = useState<Cluster[]>([])
   const [err, setErr] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(true)
+  const [openKey, setOpenKey] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -112,6 +115,7 @@ export default function NearbyFeed({
             title: data.title || loc.address || 'Yakın ihbar',
             ts: createdAtMs,
             distKm: Math.round(dist),
+            description: data.description || '',
             meta: {
               address: loc.address || undefined,
             },
@@ -129,6 +133,7 @@ export default function NearbyFeed({
           const existing = map.get(key)
           if (existing) {
             existing.count += 1
+            existing.reports.push(r)
             if (r.distKm < existing.minDistKm) {
               existing.minDistKm = r.distKm
             }
@@ -143,6 +148,7 @@ export default function NearbyFeed({
               count: 1,
               minDistKm: r.distKm,
               latestTs: r.ts,
+              reports: [r],
             })
           }
         }
@@ -216,24 +222,61 @@ export default function NearbyFeed({
 
   return (
     <div className="px-4 py-2 space-y-2">
-      {clusters.map((c) => (
-        <div
-          key={c.key}
-          className="bg-white border border-[#E7EAF0] rounded-xl p-3 flex items-center justify-between gap-3"
-        >
-          <div className="flex-1">
-            <div className="text-[13px] uppercase tracking-wide text-gray-500">
-              {badge(c.type)} • {c.minDistKm} km
+      {clusters.map((c) => {
+        const isOpen = openKey === c.key
+        return (
+          <div
+            key={c.key}
+            className="bg-white border border-[#E7EAF0] rounded-xl p-3 space-y-2"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex-1">
+                <div className="text-[13px] uppercase tracking-wide text-gray-500">
+                  {badge(c.type)} • {c.minDistKm} km
+                </div>
+                <div className="text-[15px] text-[#102A43] font-semibold">
+                  {c.address}
+                </div>
+                <div className="text-xs text-gray-600 mt-1">
+                  {c.count} ihbar
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setOpenKey(isOpen ? null : c.key)}
+                className="text-xs px-3 py-1 rounded-full border border-[#0B3B7A33] text-[#0B3B7A]"
+              >
+                {isOpen ? 'Detayları Gizle' : 'Detayları Göster'}
+              </button>
             </div>
-            <div className="text-[15px] text-[#102A43] font-semibold">
-              {c.address}
-            </div>
-            <div className="text-xs text-gray-600 mt-1">
-              {c.count} ihbar
-            </div>
+
+            {isOpen && (
+              <div className="mt-2 border-t pt-2 space-y-2">
+                {c.reports.map((r) => (
+                  <div
+                    key={r.id}
+                    className="border rounded-lg px-3 py-2 bg-[#F9FAFB]"
+                  >
+                    <div className="text-[11px] text-gray-500 mb-1">
+                      {new Date(r.ts).toLocaleString()} • {r.distKm} km
+                    </div>
+                    {r.title && (
+                      <div className="text-xs font-semibold mb-1">
+                        {r.title}
+                      </div>
+                    )}
+                    {r.description && (
+                      <div className="text-xs text-gray-800 whitespace-pre-line">
+                        {r.description}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }

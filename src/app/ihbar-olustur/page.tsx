@@ -31,6 +31,20 @@ const REPORT_TYPES: { value: ReportType; label: string }[] = [
   { value: 'diger', label: 'Diğer' },
 ]
 
+function normalizeText(s: string) {
+  return s
+    .toLowerCase()
+    .replace(/ç/g, 'c')
+    .replace(/ğ/g, 'g')
+    .replace(/ı/g, 'i')
+    .replace(/î/g, 'i')
+    .replace(/ï/g, 'i')
+    .replace(/ö/g, 'o')
+    .replace(/ş/g, 's')
+    .replace(/ü/g, 'u')
+}
+
+
 function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
   const R = 6371
   const dLat = ((lat2 - lat1) * Math.PI) / 180
@@ -72,16 +86,35 @@ export default function IhbarOlusturPage() {
   const auth = getFirebaseAuth()
   const router = useRouter()
 
-  const suggestions = useMemo(() => {
-    if (!locationQuery.trim()) return []
-    const q = locationQuery.toLowerCase()
-    return PLACES.filter(
-      (p) =>
-        p.label.toLowerCase().includes(q) ||
-        p.cityName.toLowerCase().includes(q) ||
-        p.districtName.toLowerCase().includes(q)
-    ).slice(0, 5)
+    const suggestions = useMemo(() => {
+    const raw = locationQuery.trim()
+    if (!raw) return []
+
+    const qNorm = normalizeText(raw)
+    const qNoVowels = qNorm.replace(/[aeiou]/g, '')
+
+    return PLACES.filter((p) => {
+      const labelNorm = normalizeText(p.label)
+      const cityNorm = normalizeText(p.cityName)
+      const distNorm = normalizeText(p.districtName)
+
+      const combined = `${labelNorm} ${cityNorm} ${distNorm}`
+
+      // direkt içeriyorsa zaten eşleşme
+      if (combined.includes(qNorm)) return true
+
+      // sesli harfleri atarak yaklaşık eşleşme
+      const combinedNoVowels = combined.replace(/[aeiou]/g, '')
+      if (
+        qNoVowels.length >= 3 &&
+        combinedNoVowels.includes(qNoVowels)
+      )
+        return true
+
+      return false
+    }).slice(0, 5)
   }, [locationQuery])
+
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
