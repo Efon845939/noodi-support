@@ -99,7 +99,7 @@ export default function AssistantPanel({
   const scRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
-  // panel açıldığında session + ayarları yükle
+  // panel açıldığında session yükle
   useEffect(() => {
     if (!open) return
 
@@ -202,9 +202,7 @@ export default function AssistantPanel({
         window.localStorage.setItem('chat_sessions', JSON.stringify(all))
         window.localStorage.setItem('chat_last_sid', id)
       }
-    } catch {
-      // geç
-    }
+    } catch {}
   }
 
   const loadChat = (id: string) => {
@@ -221,9 +219,7 @@ export default function AssistantPanel({
       if (typeof window !== 'undefined') {
         window.localStorage.setItem('chat_last_sid', id)
       }
-    } catch {
-      // ignore
-    }
+    } catch {}
   }
 
   const handleNewChat = () => {
@@ -486,7 +482,7 @@ export default function AssistantPanel({
             </div>
           </div>
 
-          {/* ACİL NUMARALAR SATIRI */}
+          {/* ACİL NUMARALAR */}
           <div className="px-5 pt-2 pb-2">
             <div className="bg-[#F5F7FB] border border-[#E0E4F0] rounded-xl px-3 py-2 text-[11px] text-gray-700">
               <div className="font-semibold mb-1">Acil Numaralar</div>
@@ -526,6 +522,7 @@ export default function AssistantPanel({
               <HistoryDropdown sessions={sessions} load={loadChat} />
             </div>
           </div>
+
           <div className="px-5 pt-1 pb-1 flex flex-wrap gap-2">
             {quick.map((q) => (
               <button
@@ -580,22 +577,6 @@ export default function AssistantPanel({
             )}
           </div>
 
-          {/* UYARI BANDI */}
-          <div className="px-5 pb-1">
-            <div className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2 leading-snug">
-              <strong>Uyarı:</strong> Bu asistan, resmi bir acil çağrı hattı
-              değildir ve tıbbi muayene, teşhis veya tedavi yerine geçmez.
-              Yanıtlar yapay zeka tarafından otomatik oluşturulur ve her zaman
-              eksiksiz veya doğru olmayabilir.
-              <span className="block mt-1">
-                <strong>
-                  Hayati tehlike veya acil durum varsa derhal 112 Acil Çağrı
-                  Merkezi’ni arayın veya en yakın sağlık kuruluşuna başvurun.
-                </strong>
-              </span>
-            </div>
-          </div>
-
           {/* GİRİŞ ALANI */}
           <div className="p-4 border-t bg-white">
             <form
@@ -644,6 +625,13 @@ export default function AssistantPanel({
                 {busy ? 'Gönderiliyor…' : 'Gönder'}
               </button>
             </form>
+          </div>
+
+          {/* TEK SATIR UYARI – INPUT ALTINDA */}
+          <div className="px-4 pb-3 text-center bg-white">
+            <p className="text-[11px] text-red-700 bg-red-50 border border-red-200 rounded-md py-1 px-2 inline-block">
+              Bu asistan hata yapabilir; gerçek acil durumda her zaman 112’yi arayın.
+            </p>
           </div>
         </div>
       </div>
