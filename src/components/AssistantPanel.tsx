@@ -131,10 +131,7 @@ export default function AssistantPanel({
         }
         setSessions(updated)
         if (typeof window !== 'undefined') {
-          window.localStorage.setItem(
-            'chat_sessions',
-            JSON.stringify(updated)
-          )
+          window.localStorage.setItem('chat_sessions', JSON.stringify(updated))
           window.localStorage.setItem('chat_last_sid', id)
         }
       }
@@ -443,7 +440,7 @@ export default function AssistantPanel({
     >
       <div className="min-h-[100svh] flex items-center justify-center p-4">
         <div
-          className="w-full max-w-[720px] bg-white rounded-2xl shadow-2xl overflow-hidden"
+          className="w-full max-w-[720px] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90svh]"
           onClick={(e) => e.stopPropagation()}
         >
           {/* ÜST BAR */}
@@ -547,91 +544,95 @@ export default function AssistantPanel({
             </div>
           )}
 
-          {/* MESAJ LİSTESİ */}
-          <div
-            ref={scRef}
-            className="px-4 pb-2 max-h-[40vh] overflow-y-auto space-y-2"
-          >
-            {msgs.map((m, i) => (
-              <div
-                key={i}
-                className={`flex ${
-                  m.role === 'user' ? 'justify-end' : 'justify-start'
-                }`}
-              >
+          {/* ANA GÖVDE: MESAJLAR + INPUT */}
+          <div className="flex flex-1 flex-col min-h-0">
+            {/* MESAJ LİSTESİ (SCROLLABLE) */}
+            <div
+              ref={scRef}
+              className="flex-1 px-4 pb-2 overflow-y-auto space-y-2"
+            >
+              {msgs.map((m, i) => (
                 <div
-                  className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm whitespace-pre-line ${
-                    m.role === 'user'
-                      ? 'bg-[#0B3B7A] text-white'
-                      : 'bg-[#F6F7F9] text-[#102A43] border border-[#E7EAF0]'
+                  key={i}
+                  className={`flex ${
+                    m.role === 'user' ? 'justify-end' : 'justify-start'
                   }`}
                 >
-                  {m.text}
+                  <div
+                    className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm whitespace-pre-line ${
+                      m.role === 'user'
+                        ? 'bg-[#0B3B7A] text-white'
+                        : 'bg-[#F6F7F9] text-[#102A43] border border-[#E7EAF0]'
+                    }`}
+                  >
+                    {m.text}
+                  </div>
                 </div>
-              </div>
-            ))}
-            {busy && (
-              <div className="px-3 py-2 text-sm text-gray-500">
-                yazıyor…
-              </div>
-            )}
-          </div>
+              ))}
+              {busy && (
+                <div className="px-3 py-2 text-sm text-gray-500">
+                  yazıyor…
+                </div>
+              )}
+            </div>
 
-          {/* GİRİŞ ALANI */}
-          <div className="p-4 border-t bg-white">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault()
-                handleSend()
-              }}
-              className="flex items-center gap-2"
-            >
-              <input
-                ref={inputRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Kısaca durumunuzu yazın…"
-                aria-label="Mesaj"
-                className="flex-1 border rounded-xl px-3 py-2 text-sm focus-visible:outline-none focus:ring-2 focus:ring-[#0B3B7A]"
-              />
-
-              <button
-                type="button"
-                onClick={handleMicClick}
-                disabled={busy}
-                className={`px-3 py-2 rounded-xl text-sm border ${
-                  listening
-                    ? 'bg-red-50 border-red-400 text-red-700'
-                    : 'bg-white border-gray-300 text-gray-700'
-                }`}
-                title={
-                  speechSupported
-                    ? 'Sesle yaz'
-                    : 'Tarayıcın sesle yazmayı desteklemiyor'
-                }
+            {/* INPUT ALANI */}
+            <div className="p-4 border-t bg-white">
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  handleSend()
+                }}
+                className="flex items-center gap-2"
               >
-                {listening ? 'Dinleniyor…' : '🎙'}
-              </button>
+                <input
+                  ref={inputRef}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Kısaca durumunuzu yazın…"
+                  aria-label="Mesaj"
+                  className="flex-1 border rounded-xl px-3 py-2 text-sm focus-visible:outline-none focus:ring-2 focus:ring-[#0B3B7A]"
+                />
 
-              <button
-                type="submit"
-                disabled={busy || !input.trim()}
-                className={`px-4 py-2 rounded-xl text-white ${
-                  busy || !input.trim()
-                    ? 'bg-gray-300'
-                    : 'bg-[#D32F2F] active:scale-95'
-                }`}
-              >
-                {busy ? 'Gönderiliyor…' : 'Gönder'}
-              </button>
-            </form>
-          </div>
+                <button
+                  type="button"
+                  onClick={handleMicClick}
+                  disabled={busy}
+                  className={`px-3 py-2 rounded-xl text-sm border ${
+                    listening
+                      ? 'bg-red-50 border-red-400 text-red-700'
+                      : 'bg-white border-gray-300 text-gray-700'
+                  }`}
+                  title={
+                    speechSupported
+                      ? 'Sesle yaz'
+                      : 'Tarayıcın sesle yazmayı desteklemiyor'
+                  }
+                >
+                  {listening ? 'Dinleniyor…' : '🎙'}
+                </button>
 
-          {/* TEK SATIR UYARI – INPUT ALTINDA */}
-          <div className="px-4 pb-3 text-center bg-white">
-            <p className="text-[11px] text-red-700 bg-red-50 border border-red-200 rounded-md py-1 px-2 inline-block">
-              Bu asistan hata yapabilir; gerçek acil durumda her zaman 112’yi arayın.
-            </p>
+                <button
+                  type="submit"
+                  disabled={busy || !input.trim()}
+                  className={`px-4 py-2 rounded-xl text-white ${
+                    busy || !input.trim()
+                      ? 'bg-gray-300'
+                      : 'bg-[#D32F2F] active:scale-95'
+                  }`}
+                >
+                  {busy ? 'Gönderiliyor…' : 'Gönder'}
+                </button>
+              </form>
+            </div>
+
+            {/* TEK SATIR UYARI – INPUT ALTINDA */}
+            <div className="px-4 pb-3 text-center bg-white">
+              <p className="text-[11px] text-red-700 bg-red-50 border border-red-200 rounded-md py-1 px-2 inline-block">
+                Bu asistan hata yapabilir; gerçek acil durumda her zaman 112’yi
+                arayın.
+              </p>
+            </div>
           </div>
         </div>
       </div>
